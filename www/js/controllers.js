@@ -13,8 +13,13 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope) {
+.controller('AccountCtrl', function($scope, $state) {
   $scope.settings = {
     enableFriends: true
+  };
+
+  $scope.fbLogout = function(arg){
+    openFB.logout();
+    $state.go('tab.login')
   };
 });
