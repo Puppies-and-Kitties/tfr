@@ -12,11 +12,7 @@ angular.module('login', [])
         alert('Facebook login failed');
       }
     },
-    {scope: 'email, publish_actions'});
-    
-    // setTimeout(function() {
-    //   $scope.closeLogin();
-    // }, 1000);
+    {scope: 'email, publish_actions'});    
   };
     
 });
