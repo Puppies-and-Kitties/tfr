@@ -34,7 +34,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   .state('tab', {
     url: "/tab",
     abstract: true,
-    templateUrl: "templates/tabs.html"
+    templateUrl: "templates/tabs.html",
+    // Half-baked attempt to manipulate tabs based on user login status
+    controller: 'LoginCtrl'
   })
 
   // Each tab has its own nav history stack:
@@ -78,16 +80,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   })
 
-  .state('login', {
+  .state('tab.login', {
     url: '/login',
-        templateUrl: 'login/login.html',
-        controller: 'LoginCtrl'
+      views: {
+        'tab-login': {
+          templateUrl: 'login/login.html',
+          controller: 'LoginCtrl'          
+        }        
+      }
   })
 
-  .state('logout', {
+  .state('tab.logout', {
     url: '/logout',
-        templateUrl: 'login/logout.html',
-        controller: 'LogoutCtrl'
+      views: {
+        'tab-logout': {
+          templateUrl: 'login/logout.html',
+          controller: 'LogoutCtrl'          
+        }        
+      }
   })
 
 
