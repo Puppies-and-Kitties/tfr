@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'login'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'login.controllers', 'login.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -80,17 +80,23 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   })
 
-  .state('tab.login', {
+  // .state('tab.login', {
+  //   url: '/login',
+  //     views: {
+  //       'tab-login': {
+  //         templateUrl: 'login/login.html',
+  //         controller: 'LoginCtrl'          
+  //       }        
+  //     }
+  // })
+
+  .state('login', {
     url: '/login',
-      views: {
-        'tab-login': {
-          templateUrl: 'login/login.html',
-          controller: 'LoginCtrl'          
-        }        
-      }
+    templateUrl: 'login/login.html',
+    controller: 'LoginCtrl'
   })
 
   // if none of the above states are matched, redirect to the login tab
-  $urlRouterProvider.otherwise('/tab/login');
+  $urlRouterProvider.otherwise('/login');
 
 });

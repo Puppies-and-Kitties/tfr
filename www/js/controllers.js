@@ -18,10 +18,14 @@ angular.module('starter.controllers', [])
     enableFriends: true
   };
 
+  $scope.checkState = function(){
+    console.log('state check - ', $state);
+  }
+  
   $scope.fbLogout = function(arg){
     // Call logout function from openFB
     openFB.logout();
     // redirect to login tab 
-    $state.go('tab.login')
+    $state.go('login')
   };
 });

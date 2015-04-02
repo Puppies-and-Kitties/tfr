@@ -178,7 +178,6 @@ var openFB = (function () {
     function logout(callback) {
         var logoutWindow,
             token = tokenStore['fbtoken'];
-            console.log('token - ', token);
 
         /* Remove token. Will fail silently if does not exist */
         tokenStore.removeItem('fbtoken');
