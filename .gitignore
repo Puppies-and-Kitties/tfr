@@ -1,4 +1,5 @@
-
+www/lib/
+!www/lib/ionic
 bower_components/
 *.log
 
