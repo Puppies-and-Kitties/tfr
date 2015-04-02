@@ -4,9 +4,9 @@
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: David Blanchard
+  - __Scrum Master__: Jack Peterson
+  - __Development Team Members__: Daniel Miller
 
 ## Table of Contents
 
