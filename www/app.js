@@ -5,7 +5,16 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'login.controllers', 'login.services'])
+angular.module('starter', [
+  'ionic', 
+  'starter.controllers', 
+  'starter.services', 
+  'login.controllers', 
+  'login.services', 
+  'matches.services', 
+  'matches.controllers',
+  'matchProfile.controllers'
+  ])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -80,15 +89,25 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   })
 
-  // .state('tab.login', {
-  //   url: '/login',
-  //     views: {
-  //       'tab-login': {
-  //         templateUrl: 'login/login.html',
-  //         controller: 'LoginCtrl'          
-  //       }        
-  //     }
-  // })
+  .state('tab.matches', {
+    url: '/matches',
+      views: {
+        'tab-matches': {
+          templateUrl: 'matches/matches.html',
+          controller: 'MatchesCtrl'          
+        }        
+      }
+  })
+
+  .state('tab.match-detail', {
+    url: '/matches/:matchId',
+    views: {
+      'tab-matches': {
+        templateUrl: 'matches/match-profile/match-profile.html',
+        controller: 'MatchProfileCtrl'
+      }
+    }
+  })
 
   .state('login', {
     url: '/login',
