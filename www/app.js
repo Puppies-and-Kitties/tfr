@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'login.controllers', 'login.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -22,6 +22,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
+  openFB.init({appId: 1631486397070306})
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -30,10 +31,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   $stateProvider
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
+  .state('tab', {
     url: "/tab",
     abstract: true,
-    templateUrl: "templates/tabs.html"
+    templateUrl: "templates/tabs.html",
+    // Half-baked attempt to manipulate tabs based on user login status
+    controller: 'LoginCtrl'
   })
 
   // Each tab has its own nav history stack:
@@ -75,9 +78,25 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         controller: 'AccountCtrl'
       }
     }
-  });
+  })
 
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  // .state('tab.login', {
+  //   url: '/login',
+  //     views: {
+  //       'tab-login': {
+  //         templateUrl: 'login/login.html',
+  //         controller: 'LoginCtrl'          
+  //       }        
+  //     }
+  // })
+
+  .state('login', {
+    url: '/login',
+    templateUrl: 'login/login.html',
+    controller: 'LoginCtrl'
+  })
+
+  // if none of the above states are matched, redirect to the login tab
+  $urlRouterProvider.otherwise('/login');
 
 });
