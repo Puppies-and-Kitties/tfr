@@ -1,18 +1,22 @@
+<!-- Currently using this view to test fb API calls -->
+
 <ion-view view-title="Dashboard">
   <ion-content class="padding">
     <div class="list card">
       <div class="item item-divider">Recent Updates</div>
       <div class="item item-body">
         <div>
-          There is a fire in <b>sector 3</b>
+          <h2>Just Hanging out</h2>
         </div>
       </div>
     </div>
     <div class="list card">
-      <div class="item item-divider">Health</div>
+      <div class="item item-divider">My FB Profile Photo!</div>
       <div class="item item-body">
         <div>
-          You ate an apple today!
+          Maybe a photo?
+          <img ng-src="//graph.facebook.com/{{fbId}}/picture">
+          ID:  {{fbId}}
         </div>
       </div>
     </div>
@@ -20,7 +24,6 @@
       <div class="item item-divider">Upcoming</div>
       <div class="item item-body">
         <div>
-          You have <b>29</b> meetings on your calendar tomorrow.
         </div>
       </div>
     </div>

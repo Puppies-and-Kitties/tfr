@@ -1,8 +1,15 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
 
-.controller('ChatsCtrl', function($scope, Chats) {
+// One of the pre-loaded controllers, will be using it to make test calls to the facebook api
+.controller('DashCtrl', function($scope, $resource, LoginFact, User) {
+  $scope.fbId = User.id;
+  console.log('User object - ', User);
+})
+
+.controller('ChatsCtrl', function($scope, Chats, User) {
+  $scope.fbId = User.id;
+
   $scope.chats = Chats.all();
   $scope.remove = function(chat) {
     Chats.remove(chat);
@@ -13,19 +20,18 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope, $state) {
+.controller('AccountCtrl', function($scope, $state, User) {
+  $scope.fbId = User.id;
+  $scope.username = User.first_name;
+
   $scope.settings = {
     enableFriends: true
   };
-
-  $scope.checkState = function(){
-    console.log('state check - ', $state);
-  }
   
   $scope.fbLogout = function(arg){
     // Call logout function from openFB
     openFB.logout();
-    // redirect to login tab 
+    // redirect to login page 
     $state.go('login')
   };
 });
