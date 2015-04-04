@@ -4,4 +4,5 @@ angular.module('profile.controllers', [])
   $scope.User = User;
 
   $scope.profile = ProfileFact.get($stateParams.profileId);
+
 })
