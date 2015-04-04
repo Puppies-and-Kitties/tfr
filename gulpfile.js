@@ -8,14 +8,18 @@ var rename = require('gulp-rename');
 var sh = require('shelljs');
 var karma = require('karma').server;
 
+//add condition for Travis
+var isTravis = process.env.TRAVIS || false;
+
 var paths = {
   sass: ['./scss/**/*.scss']
 };
 
 gulp.task('test', function(done) {
+  console.log('isTravis ', isTravis);
   karma.start({
     configFile: __dirname + '/tests/my.conf.js',
-    singleRun: true
+    singleRun: isTravis
   }, function() {
     done();
   });
