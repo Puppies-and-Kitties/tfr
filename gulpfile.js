@@ -20,9 +20,8 @@ gulp.task('test', function(done) {
   karma.start({
     configFile: __dirname + '/tests/karma.conf.js',
     singleRun: isTravis
-  }, function() {
-    done();
-  });
+  }, done)
+
 });
 
 gulp.task('default', ['sass']);
