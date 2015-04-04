@@ -1,5 +1,5 @@
 describe('Chats Unit Tests', function() {
-  var Chats
+  var Chats;
   beforeEach(module('starter.services'));
 
   beforeEach(inject(function(_Chats_) {
