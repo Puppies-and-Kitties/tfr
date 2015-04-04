@@ -7,13 +7,16 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', [
   'ionic', 
+  'ngResource',
   'starter.controllers', 
   'starter.services', 
   'login.controllers', 
   'login.services', 
   'matches.services', 
   'matches.controllers',
-  'matchProfile.controllers'
+  'matchProfile.controllers',
+  'profile.controllers',
+  'profile.services'
   ])
 
 .run(function($ionicPlatform) {
@@ -31,6 +34,7 @@ angular.module('starter', [
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
+  // Initializes the openFB library with the appId, which enables oAuth.
   openFB.init({appId: 1631486397070306})
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -44,12 +48,19 @@ angular.module('starter', [
     url: "/tab",
     abstract: true,
     templateUrl: "templates/tabs.html",
-    // Half-baked attempt to manipulate tabs based on user login status
-    controller: 'LoginCtrl'
+    // Sets the User object to the user data fb returns
+    // To access this data, simply inject User into the controller
+    resolve: {
+      User: function(LoginFact){
+        return LoginFact.getFbInfo()
+          .then(function(data){
+            return data
+          });
+      }
+    }
   })
 
   // Each tab has its own nav history stack:
-
   .state('tab.dash', {
     url: '/dash',
     views: {
@@ -89,6 +100,7 @@ angular.module('starter', [
     }
   })
 
+  // all matches state view
   .state('tab.matches', {
     url: '/matches',
       views: {
@@ -99,12 +111,25 @@ angular.module('starter', [
       }
   })
 
+  // was for the match-detail state view, which is being refactored to be the profile state view
+  // .state('tab.match-detail', {
+  //   url: '/matches/:matchId',
+  //   views: {
+  //     'tab-matches': {
+  //       templateUrl: 'matches/match-profile/match-profile.html',
+  //       controller: 'MatchProfileCtrl'
+  //     }
+  //   }
+  // })
+
+// profile state view
+
   .state('tab.match-detail', {
-    url: '/matches/:matchId',
+    url: '/matches/:profileId',
     views: {
       'tab-matches': {
-        templateUrl: 'matches/match-profile/match-profile.html',
-        controller: 'MatchProfileCtrl'
+        templateUrl: 'profiles/profiles.html',
+        controller: 'ProfileCtrl'
       }
     }
   })
