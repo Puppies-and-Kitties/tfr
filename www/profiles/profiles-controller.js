@@ -5,4 +5,11 @@ angular.module('profile.controllers', [])
 
   $scope.profile = ProfileFact.get($stateParams.profileId);
 
+  $scope.matched = $scope.profile.matched
+
+  // basic mathc function, example use only
+  $scope.like = function(){
+    $scope.matched = !$scope.matched;
+  }
+
 })
