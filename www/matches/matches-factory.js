@@ -1,7 +1,7 @@
 angular.module('matches.services', [])
 
 .factory('MatchesFact', function(){
-
+  
   var matches = [{
     id: 0,
     name: 'Ben Sparrow',
@@ -39,7 +39,7 @@ angular.module('matches.services', [])
      return matches;
     },
     remove: function(match) {
-      matches.splice(chats.indexOf(match), 1);
+      matches.splice(matches.indexOf(match), 1);
     },
     get: function(matchId) {
       for (var i = 0; i < matches.length; i++) {
