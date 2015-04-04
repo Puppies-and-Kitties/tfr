@@ -8,6 +8,18 @@ describe('controller: login', function() {
   beforeEach(inject(function($rootScope, $controller) {
     scope = $rootScope.$new();
     var controller = $controller('LoginCtrl', { $scope: scope})
+
+describe('login controller', function() {
+  var scope;
+
+  //load controller's module
+  beforeEach(module('login.controllers'));
+
+  beforeEach(inject(function($rootScope, $controller) {
+    scope = $rootScope.$new();
+    $controller('LoginCtrl', {
+      $scope: scope
+    });
   }));
 
   //tests start here
@@ -15,4 +27,6 @@ describe('controller: login', function() {
     expect(scope.fbLogin).toBeDefined();
   });
   
+    expect(scope.fbLogin).to.be.a('function');
+  });
 });
