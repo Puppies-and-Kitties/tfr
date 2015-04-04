@@ -1,6 +1,8 @@
 angular.module('profile.services', [])
 
-.factory('ProfileFact', function(){
+.factory('ProfileFact', function($resource){
+  var UserProfile = $resource('https://graph.facebook.com/')
+  var fbToken = window.sessionStorage['fbtoken'];
 
   var profiles = [{
     id: 0,

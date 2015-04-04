@@ -1,12 +1,22 @@
-<ion-view view-title="{{profile.name}}">
+<ion-view view-title="{{User.first_name + ' ' + User.last_name}}">
   <ion-content class="padding">
-    <img ng-src="{{profile.face}}" style="width: 64px; height: 64px">
-    <p>
-      {{profile.lastText}}
-    </p>
-    <p>
-      Phone Number: {{profile.phone}}<br>
-      This is the profile view
-    </p>
+
+    <div class="card">
+      <div class="profile-content">
+        <!-- <img ng-src="{{profile.face}}"> -->
+        <img ng-src="//graph.facebook.com/{{User.id}}/picture?type=large">
+      </div>
+    </div>
+    <div class="card">
+      <div class="profile-content item item-text-wrap">
+      <h2>Holy Jesus, It's YOU!</h2>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="profile-content item item-text-wrap">
+        Phone Number: {{User.email}}<br>
+      </div>
+    </div>
   </ion-content>
 </ion-view>
