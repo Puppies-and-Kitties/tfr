@@ -8,7 +8,7 @@ angular.module('login.controllers', [])
         console.log('Facebook login succeeded');
         
         // Redirect to tab.dash
-        $state.go('tab.account');
+        $state.go('tab.preferences');
       }
       else {
         alert('Facebook login failed');
