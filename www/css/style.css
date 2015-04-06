@@ -1,4 +1,77 @@
-/* Empty. Add your own CSS if you like */
+
+
 div .profile-content {
   text-align: center;
+}
+
+.swipe-page {
+
+}
+
+.swipe-page .current-candidate {
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
+
+  -webkit-transition:all cubic-bezier(0.420, 0.000, 1.000, 1.000) 0.1s;
+  transition:all cubic-bezier(0.420, 0.000, 1.000, 1.000) 0.1s;
+}
+
+.swipe-page .current-candidate .item-image {
+  max-height:300px;
+  overflow:hidden;
+}
+
+/*.item {
+  overflow:visible;
+  word-wrap:break-word;
+}*/
+
+@media screen and (max-height: 600px) {
+  .swipe-page .current-candidate .item-image {
+    max-height:200px;
+    overflow:hidden;
+  }
+}
+
+.swipe-page .current-candidate.favorited.ng-hide {
+  -webkit-transform: translateX(1000px) rotate(50deg);
+  -ms-transform: translateX(1000px) rotate(50deg);
+  transform: translateX(1000px) rotate(50deg);
+  opacity:0;
+}
+
+.swipe-page .current-candidate.skipped.ng-hide {
+  -webkit-transform: translateX(-1000px) rotate(-50deg);
+  -ms-transform: translateX(-1000px) rotate(-50deg);
+  transform: translateX(-1000px) rotate(-50deg);
+  opacity:0;
+}
+
+.swipe-page .current-candidate.ng-hide-add {
+  -webkit-transition:all cubic-bezier(0.420, 0.000, 1.000, 1.000) 0.3s;
+  transition:all cubic-bezier(0.420, 0.000, 1.000, 1.000) 0.3s;
+  display:block!important;
+}
+
+.swipe-page .current-candidate.ng-hide-remove {
+  -webkit-transform: scale(0.7) translateX(0px) rotate(0deg);
+  -ms-transform: scale(0.7) translateX(0px) rotate(0deg);
+  transform: scale(0.7) translateX(0px) rotate(0deg);
+  opacity: 0;
+}
+
+
+.swipe-page .img-lookahead img {
+  height:1px;
+  width:1px;
+  opacity:0.01;
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> added css
+=======
+>>>>>>> added css
+=======
+>>>>>>> 6e62b12d184a710185d8229da9c829396d62b2d8
 }
