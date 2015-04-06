@@ -13,7 +13,9 @@ angular.module('starter', [
   'login.services', 
   'matches.services', 
   'matches.controllers',
-  'matchProfile.controllers'
+  'matchProfile.controllers',
+  'swipe.controllers',
+  'swipe.services'
   ])
 
 .run(function($ionicPlatform) {
@@ -50,7 +52,7 @@ angular.module('starter', [
 
   // Each tab has its own nav history stack:
 
-  state('tab.swipe', {
+  .state('tab.swipe', {
     url: '/swipe',
     views: {
       'tab-swipe': {
