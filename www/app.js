@@ -19,6 +19,9 @@ angular.module('starter', [
   'profile.services',
   'preferences.controllers',
   'preferences.services'
+  'swipe.controllers',
+  'swipe.services'
+>>>>>>> swipe controllers and factories working
   ])
 
 .run(function($ionicPlatform) {
@@ -64,7 +67,7 @@ angular.module('starter', [
 
   // Each tab has its own nav history stack:
 
-  state('tab.swipe', {
+  .state('tab.swipe', {
     url: '/swipe',
     views: {
       'tab-swipe': {
