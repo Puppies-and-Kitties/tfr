@@ -1,0 +1,34 @@
+<ion-view view-title="Swipe" class="swipe-page">
+  <ion-content scroll="false">
+
+
+    <div class="list card current-candidate" 
+      ng-class="{skipped: currentCandidate.rated == false,
+                 favorited: currentCandidate.rated == true}"
+      ng-show="currentCandidate && !currentCandidate.hide">
+
+      <div class="item item-image">
+        <img ng-src="{{ currentCandidate.face }}">
+      </div>
+
+      <div class="item item-text-wrap">
+        <h2>{{ currentCandidate.name }}</h2>
+        <p>{{ currentCandidate.aboutMeWords }}</p>
+      </div>
+
+      <div class="item tabs tabs-secondary tabs-icon-left">
+        <a class="tab-item" ng-click="sendFeedback(false)">
+          <i class="icon ion-close"></i>
+          Skip
+        </a>
+        <a class="tab-item" ng-click="sendFeedback(true)">
+          <i class="icon ion-android-happy"></i>
+          Match
+        </a>
+      </div>
+
+    </div>
+
+
+  </ion-content>
+</ion-view>
