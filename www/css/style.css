@@ -1,4 +1,4 @@
-/* Empty. Add your own CSS if you like */
+
 div .profile-content {
   text-align: center;
 }
@@ -66,5 +66,8 @@ div .profile-content {
   height:1px;
   width:1px;
   opacity:0.01;
+<<<<<<< HEAD
+>>>>>>> added css
+=======
 >>>>>>> added css
 }
