@@ -1,13 +1,14 @@
 angular.module('swipe.controllers', [])
 
-.controller('SwipeController', function($scope,$timeout,Candidates,User) {
+.controller('SwipeController', function($scope,$timeout,Candidates,UpdateMatches) {
+
   $scope.candidates = Candidates.all();
 
   $scope.currentCandidate = angular.copy($scope.candidates[0]);
 
   $scope.candidateSwipe =  function (match){
     if (match) {
-      User.addCandidateToMatches($scope.currentCandidate);
+      UpdateMatches.addCandidateToMatches($scope.currentCandidate);
     }
 
     $scope.currentCandidate.rated = match;

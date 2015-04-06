@@ -49,7 +49,7 @@ angular.module('swipe.services', [])
     };
   })
 
-  .factory('User', function() {
+  .factory('UpdateMatches', function() {
     
     var o = {
       matches: []
