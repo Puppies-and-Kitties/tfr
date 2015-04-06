@@ -1,12 +1,12 @@
 angular.module('swipe.controllers', [])
 
 .controller('SwipeController', function($scope,$timeout,Candidates,UpdateMatches) {
-
   $scope.candidates = Candidates.all();
 
   $scope.currentCandidate = angular.copy($scope.candidates[0]);
 
   $scope.candidateSwipe =  function (match){
+
     if (match) {
       UpdateMatches.addCandidateToMatches($scope.currentCandidate);
     }
@@ -20,4 +20,5 @@ angular.module('swipe.controllers', [])
     },250);
 
   };
+
 })

@@ -15,10 +15,13 @@ angular.module('starter', [
   'matches.services', 
   'matches.controllers',
   'matchProfile.controllers',
+<<<<<<< HEAD
   'profile.controllers',
   'profile.services',
   'preferences.controllers',
   'preferences.services',
+=======
+>>>>>>> 6e62b12d184a710185d8229da9c829396d62b2d8
   'swipe.controllers',
   'swipe.services'
   ])
