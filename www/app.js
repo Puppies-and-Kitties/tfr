@@ -18,10 +18,9 @@ angular.module('starter', [
   'profile.controllers',
   'profile.services',
   'preferences.controllers',
-  'preferences.services'
+  'preferences.services',
   'swipe.controllers',
   'swipe.services'
->>>>>>> swipe controllers and factories working
   ])
 
 .run(function($ionicPlatform) {
