@@ -1,6 +1,10 @@
 <ion-view view-title="Account">
   <ion-content>
     <ion-list>
+    <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap">
+      <img ng-src="//graph.facebook.com/{{fbId}}/picture">
+      <h2>Welcome, {{username}}</h2>
+    </ion-item>
     <ion-toggle  ng-model="settings.enableFriends">
         Enable Friends
     </ion-toggle>

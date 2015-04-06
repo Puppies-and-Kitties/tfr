@@ -1,26 +1,16 @@
 angular.module('login.services', [])
 
-.factory('LoginFact', function(){
+.factory('LoginFact', function($resource){
 
-  var getUserStatus = function(){
-    var userStatus = null;
+  var UserProfile = $resource('https://graph.facebook.com/me')
+  var fbToken = window.sessionStorage['fbtoken'];
 
-    openFB.getLoginStatus(function(response){
-      if(response.status === 'connected'){
-        console.log('Logged in')
-        userStatus = true;
-      } 
-      else {
-        console.log('logged out')
-        userStatus = false;
-      }
-    });
-    return userStatus;  
-  };
-
-  var userStatus = getUserStatus();
+  var getFbInfo = function(){
+    // Returns a promise with the logged in user's basic FB info, this is resolved in the app.js stateprovider
+    return UserProfile.get({access_token: fbToken}).$promise
+  }
 
   return {
-    getUserStatus: getUserStatus
+    getFbInfo: getFbInfo
   }
 })

@@ -1,0 +1,63 @@
+<ion-view view-title="{{User.first_name + ' ' + User.last_name}}">
+  <ion-content class="padding">
+
+    <div class="card">
+      <div class="profile-content">
+        <!-- <img ng-src="{{profile.face}}"> -->
+        <img class="profile-content-pic" ng-src="//graph.facebook.com/{{User.id}}/picture?type=large">
+      </div>
+    </div>
+    <div class="card" ng-if="matched">
+      <div class="profile-content item item-text-wrap">
+      <h1>We're a match!</h1>
+      </div>
+    </div>
+
+    <div class="card" ng-if="!matched">
+      <div class="profile-content item item-text-wrap">
+      <h1>Alas, we are not a match...yet!</h1>
+      </div>
+    </div>
+
+    <!-- Only display contact info if matched -->
+    <div class="card" ng-if="matched">
+      <div class="profile-content item item-text-wrap">
+        <strong>Email:</strong><br> {{User.email}}
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="profile-content item item-text-wrap">
+        <strong>Ideal Rent:</strong> <br>$1,000<br> ...per year
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="profile-content item item-text-wrap">
+        <strong>Ideal Zip Code:</strong><br> Where you are?
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="profile-content item item-text-wrap">
+        <strong>Choice Ionicons:</strong><br>
+        <div class="profile-icons"><span class="ion-android-bar"></span><span class="ion-social-github"></span><span class="ion-social-freebsd-devil"></span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="profile-content item item-text-wrap">
+      <strong>Description:</strong><br> I'm you. We're perfectly suited to living with one another, because we are the exact same person. Literally.
+      </div>
+    </div>
+
+    <!-- only display like/dislike buttons if not matched -->
+    <div class="card" ng-if="!matched">
+      <div class="profile-content item item-text-wrap">
+        <button class="button-large button button-assertive icon-left ion-heart-broken" ng-click="pass()">Pass</button>
+        <button class="button-large button button-positive icon-left ion-heart" ng-click="like(profile.id)">Like</button>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>
