@@ -16,7 +16,13 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
         '../www/lib/angular/angular.js',
+        '../www/lib/angular-ui-router/**/*.js',
         '../www/js/*.js',
+        '../www/login/*.js',
+        '../www/matches/*.js',
+        '../www/preferences/*.js',
+        '../www/profiles/*.js',
+        '../www/swipe/*.js',
         '../node_modules/angular-mocks/angular-mocks.js',
         '**/*tests.js'
     ],
@@ -63,6 +69,6 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: true
+    singleRun: false
   });
 };

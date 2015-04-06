@@ -1,7 +1,8 @@
 describe('Controllers', function() {
-  var scope;
+  var scope, state;
 
   //load controller's module
+  beforeEach(module('ui.router'));
   beforeEach(module('starter.controllers'));
 
   beforeEach(inject(function($rootScope, $controller) {
