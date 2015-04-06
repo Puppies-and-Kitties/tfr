@@ -63,6 +63,17 @@ angular.module('starter', [
   })
 
   // Each tab has its own nav history stack:
+
+  state('tab.swipe', {
+    url: '/swipe',
+    views: {
+      'tab-swipe': {
+        templateUrl: 'swipe/view.html',
+        controller: 'SwipeController'
+      }
+    }
+  })
+
   .state('tab.dash', {
     url: '/dash',
     views: {
