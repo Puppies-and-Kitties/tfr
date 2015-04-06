@@ -16,7 +16,9 @@ angular.module('starter', [
   'matches.controllers',
   'matchProfile.controllers',
   'profile.controllers',
-  'profile.services'
+  'profile.services',
+  'preferences.controllers',
+  'preferences.services'
   ])
 
 .run(function($ionicPlatform) {
@@ -96,6 +98,16 @@ angular.module('starter', [
       'tab-account': {
         templateUrl: 'templates/tab-account.html',
         controller: 'AccountCtrl'
+      }
+    }
+  })
+
+  .state('tab.preferences', {
+    url: '/preferences',
+    views: {
+      'tab-preferences': {
+        templateUrl: 'preferences/preferences.html',
+        controller: 'PreferencesCtrl'
       }
     }
   })
