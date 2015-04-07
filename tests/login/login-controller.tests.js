@@ -31,4 +31,5 @@ describe('login controller', function() {
     console.log("scope ", scope.fbLogin)
     expect(scope.fbLogin).toBeDefined();
   });
+  
 });

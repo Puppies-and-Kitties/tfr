@@ -1,5 +1,6 @@
 describe('services: login', function() {
 
+
   var LoginFact, httpBackend;
   
   beforeEach(module('login.services'));
@@ -12,4 +13,16 @@ describe('services: login', function() {
   // it('should have a get fb info function', function(){
   //   expect(LoginFact.getFbInfo).toBeDefined();
   // });
+
+  var LoginFact;
+  
+  beforeEach(module('login.services'));
+  
+  beforeEach(inject(function(_LoginFact_) {
+    LoginFact = _LoginFact_;
+  }));
+
+  it('should have a get user status function', function(){
+    expect(LoginFact.getUserStatus).toBeDefined();
+  });
 })
