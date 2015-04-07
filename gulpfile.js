@@ -18,11 +18,10 @@ var paths = {
 gulp.task('test', function(done) {
   console.log('isTravis ', isTravis);
   karma.start({
-    configFile: __dirname + '/tests/my.conf.js',
+    configFile: __dirname + '/tests/karma.conf.js',
     singleRun: isTravis
-  }, function() {
-    done();
-  });
+  }, done)
+
 });
 
 gulp.task('default', ['sass']);
