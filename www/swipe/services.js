@@ -42,8 +42,7 @@ angular.module('swipe.services', [])
       matched: false,
       likeCurrentUser: true,
 
-     preferences: {
-        radius: 7,
+      preferences: {
         zipCode: 94720,
         lookingForRoommateOnly: false,
         rent: 700,
@@ -72,7 +71,7 @@ angular.module('swipe.services', [])
       matched: false,
       likeCurrentUser: true,
 
-     preferences: {
+      preferences: {
         radius: 7,
         zipCode: 94604,
         lookingForRoommateOnly: false,
