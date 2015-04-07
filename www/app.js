@@ -76,6 +76,16 @@ angular.module('starter', [
     }
   })
 
+  .state('tab.swipe-detail', {
+    url: '/swipe/:profileId',
+    views: {
+      'tab-swipe': {
+        templateUrl: 'profiles/profiles.html',
+        controller: 'ProfileCtrl'
+      }
+    }
+  })
+
   .state('tab.dash', {
     url: '/dash',
     views: {
