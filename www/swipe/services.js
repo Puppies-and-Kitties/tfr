@@ -8,27 +8,67 @@ angular.module('swipe.services', [])
       id: 0,
       name: 'Ben Sparrow',
       aboutMeWords: 'Dogs, Night-Owl, Meditator, Coffee',
-      face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png'
+      face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png',
+      matched: false,
+      preferences: {
+        radius: 7,
+        zipCode: 95991,
+        lookingForRoommateOnly: false,
+        rent: 250,
+        gender: 'either'
+      }
     }, {
       id: 1,
       name: 'Max Lynx',
       aboutMeWords: 'Fitness, football, work-from-home, house-plants',
-      face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460'
+      face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460',
+      matched: false,
+      preferences: {
+        radius: 7,
+        zipCode: 53011,
+        lookingForRoommateOnly: false,
+        rent: 400,
+        gender: 'male'
+      }
     }, {
       id: 2,
       name: 'Andrew Jostlin',
       aboutMeWords: 'Partyer, Christian, often-travelling, cats',
-      face: 'https://pbs.twimg.com/profile_images/491274378181488640/Tti0fFVJ.jpeg'
+      face: 'https://pbs.twimg.com/profile_images/491274378181488640/Tti0fFVJ.jpeg',
+      matched: false,
+      preferences: {
+        radius: 7,
+        zipCode: 94720,
+        lookingForRoommateOnly: false,
+        rent: 700,
+        gender: 'either'
+      }
     }, {
       id: 3,
       name: 'Adam Bradleyson',
       aboutMeWords: 'Beer, barbeques, books, big-screen tv',
-      face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg'
+      face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg',
+      matched: false,
+      preferences: {
+        radius: 7,
+        zipCode: 53017,
+        lookingForRoommateOnly: false,
+        rent: 1300,
+        gender: 'female'
+      }
     }, {
       id: 4,
       name: 'Perry Governor',
       aboutMeWords: 'Recycling, chef, works nights, Coffee',
-      face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg'
+      face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg',
+      matched: false,
+      preferences: {
+        radius: 7,
+        zipCode: 94604,
+        lookingForRoommateOnly: false,
+        rent: 1000,
+        gender: 'male'
+      }
     }];
 
     return {
