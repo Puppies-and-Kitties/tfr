@@ -8,7 +8,9 @@
       ng-show="currentCandidate && !currentCandidate.hide">
 
       <div class="item item-image">
-        <img ng-src="{{ currentCandidate.face }}">
+        <a href="#/tab/swipe/{{currentCandidate.id}}">
+          <img ng-src="{{ currentCandidate.face }}">
+        </a>
       </div>
 
       <div class="item item-text-wrap">

@@ -1,6 +1,6 @@
 angular.module('swipe.controllers', [])
 
-.controller('SwipeController', function($scope,$timeout,Candidates,UpdateMatches) {
+.controller('SwipeController', function($scope, $timeout, Candidates, UpdateMatches, MatchesFact) {
   $scope.candidates = Candidates.all();
 
   $scope.currentCandidate = angular.copy($scope.candidates[0]);
@@ -9,6 +9,9 @@ angular.module('swipe.controllers', [])
 
     if (match) {
       UpdateMatches.addCandidateToMatches($scope.currentCandidate);
+      
+      $scope.currentCandidate.matched = true;
+      MatchesFact.add($scope.currentCandidate);
     }
 
     $scope.currentCandidate.rated = match;
@@ -17,7 +20,7 @@ angular.module('swipe.controllers', [])
     $timeout(function(){
       var randomCandidate = Math.round(Math.random() * ($scope.candidates.length-1)) ;
       $scope.currentCandidate = angular.copy($scope.candidates[randomCandidate]);
-    },250);
+    }, 250);
 
   };
 
