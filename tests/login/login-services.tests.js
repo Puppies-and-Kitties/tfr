@@ -9,6 +9,6 @@ describe('services: login', function() {
   }));
 
   it('should have a get user status function', function(){
-    expect(LoginFact.getUserStatus).toBeDefined();
+    expect(LoginFact.getFbInfo).toBeDefined();
   });
 })
