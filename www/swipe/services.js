@@ -11,6 +11,7 @@ angular.module('swipe.services', [])
       face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png',
       matched: false,
       likeCurrentUser: true,
+
       preferences: {
         radius: 7,
         zipCode: 95991,
@@ -25,6 +26,7 @@ angular.module('swipe.services', [])
       face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460',
       matched: false,
       likeCurrentUser: true,
+
       preferences: {
         radius: 7,
         zipCode: 53011,
@@ -39,7 +41,8 @@ angular.module('swipe.services', [])
       face: 'https://pbs.twimg.com/profile_images/491274378181488640/Tti0fFVJ.jpeg',
       matched: false,
       likeCurrentUser: true,
-      preferences: {
+
+     preferences: {
         radius: 7,
         zipCode: 94720,
         lookingForRoommateOnly: false,
@@ -53,6 +56,7 @@ angular.module('swipe.services', [])
       face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg',
       matched: false,
       likeCurrentUser: true,
+
       preferences: {
         radius: 7,
         zipCode: 53017,
@@ -67,7 +71,8 @@ angular.module('swipe.services', [])
       face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg',
       matched: false,
       likeCurrentUser: true,
-      preferences: {
+
+     preferences: {
         radius: 7,
         zipCode: 94604,
         lookingForRoommateOnly: false,
