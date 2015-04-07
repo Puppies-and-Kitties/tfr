@@ -1,6 +1,5 @@
 //Can we reuse the initialize functions?
 //Can we reuse the all functions?
-//
 
 angular.module('data', [])
 
@@ -9,6 +8,13 @@ angular.module('data', [])
   var matches = [];
 
   //Possibly too much repetition/redundancy with CandidatesFactory
+angular.module('data.services', [])
+
+.factory('MatchFactory', function(){
+
+  var matches = [];
+
+  //How best to remove the redundancy in lines 8-26 and lines 34-52?
   return {
     initialize: function(usersMatches){
       var matches = usersMatches;
@@ -110,6 +116,9 @@ angular.module('data', [])
     }];
 
   //Possibly too much repetition/redundancy with MatchesFactory
+  var candidates = [];
+
+   //How best to remove the redundancy in lines 8-26 and lines 34-52?
   return {
     initialize: function(usersCandidates){
       candidates = usersCandidates;
@@ -122,6 +131,8 @@ angular.module('data', [])
     },
     getFirst: function() {
       return candidates[0];
+    remove: function(candidate) {
+      candidates.splice(candidates.indexOf(candidate), 1);
     },
     add: function(candidate){
       candidates.push(candidate);
@@ -167,7 +178,7 @@ angular.module('data', [])
     update: function(property,newValue) {
       profile.property = newValue;
     },
-    getProperty: function(property) {
+    get: function(property) {
       return profile.property;
     },
   };
@@ -189,7 +200,7 @@ angular.module('data', [])
     update: function(property,newValue) {
       profile.property = newValue;
     },
-    getObject: function(property) {
+    get: function(property) {
       return profile.property;
     },
   };
