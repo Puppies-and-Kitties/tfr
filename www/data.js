@@ -14,6 +14,7 @@ angular.module('data.services', [])
 =======
 =======
 //Can we reuse the initialize functions?
+//Can we reuse the all functions?
 //
 
 >>>>>>> (cleanup) eliminating commented out code from before the refactor
