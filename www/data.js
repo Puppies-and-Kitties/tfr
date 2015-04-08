@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //Can we reuse the initialize functions?
 //Can we reuse the all functions?
 
@@ -9,8 +10,11 @@ angular.module('data', [])
 
   //Possibly too much repetition/redundancy with CandidatesFactory
 angular.module('data.services', [])
+=======
+angular.module('data', [])
+>>>>>>> (refactor) Now have one profile state across swipe and matches
 
-.factory('MatchFactory', function(){
+.factory('MatchesFactory', function(){
 
   var matches = [];
 
@@ -116,9 +120,6 @@ angular.module('data.services', [])
     }];
 
   //Possibly too much repetition/redundancy with MatchesFactory
-  var candidates = [];
-
-   //How best to remove the redundancy in lines 8-26 and lines 34-52?
   return {
     initialize: function(usersCandidates){
       candidates = usersCandidates;
@@ -131,8 +132,6 @@ angular.module('data.services', [])
     },
     getFirst: function() {
       return candidates[0];
-    remove: function(candidate) {
-      candidates.splice(candidates.indexOf(candidate), 1);
     },
     add: function(candidate){
       candidates.push(candidate);

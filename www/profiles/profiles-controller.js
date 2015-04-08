@@ -3,6 +3,7 @@ angular.module('profile.controllers', [])
 .controller('ProfileCtrl', function($scope, $stateParams, $state, User, CandidatesFactory, MatchesFactory) {
   $scope.User = User;
 
+
   switch($stateParams.type){
     case 'swipe':
       $scope.profile = CandidatesFactory.getFirst();
@@ -19,6 +20,7 @@ angular.module('profile.controllers', [])
 
   //Need to tell the profile which sub-template - "edit my profile" 
   //"like or skip" "contact info" - to render within the profile
+<<<<<<< HEAD
 
   $scope.candidateSwipe =  function (match){
 
@@ -36,6 +38,7 @@ angular.module('profile.controllers', [])
 
   };
 })
+
 
 
 

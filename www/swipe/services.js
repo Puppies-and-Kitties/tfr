@@ -101,22 +101,3 @@
   //   };
   // })
 
-
-//   .factory('UpdateMatches', function() {
-    
-//     var o = {
-//       matches: []
-//     };
-
-//     o.addCandidateToMatches = function(candidate){
-//       if(!candidate) return false;
-//       o.matches.unshift(candidate);
-//     };
-
-//     o.removeCandidateFromMatches = function(candidate,index) {
-//       if(!candidate) return false;
-//       o.matches.splice(index,1);
-//     };
-
-//     return o;
-//   });
