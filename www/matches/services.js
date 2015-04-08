@@ -34,7 +34,7 @@
   //   face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg',
   //   phone: '530.635.4095'
   // }
-  ];
+  // ];
 
   return {
     all: function() {
