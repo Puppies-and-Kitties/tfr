@@ -1,4 +1,5 @@
 //Can we reuse the initialize functions?
+//Can we reuse the all functions?
 //
 
 angular.module('data', [])
