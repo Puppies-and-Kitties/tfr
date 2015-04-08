@@ -18,7 +18,8 @@ angular.module('starter', [
   'profile.controllers',
   'profile.directives',
   //'profile.services',
-  'settings.controllers',
+  'userProfile.controllers',
+  'preferences.controllers',
   //'preferences.services',
   'swipe.controllers',
   //'swipe.services',
@@ -116,7 +117,7 @@ angular.module('starter', [
     views: {
       'tab-preferences': {
         templateUrl: 'settings/userProfile/view.html',
-        controller: 'SettingsCtrl'
+        controller: 'UserProfileCtrl'
       }
     }
   })
@@ -127,7 +128,7 @@ angular.module('starter', [
       'tab-preferences': {
         //templateUrl: 'preferences/view.html',
         templateUrl: 'settings/preferences/view.html',
-        controller: 'SettingsCtrl'
+        controller: 'PreferencesCtrl'
       }
     }
   })

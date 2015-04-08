@@ -166,7 +166,8 @@ angular.module('data', [])
       profile = usersProfile;
     },
     all: function() {
-     return profile;
+      console.log("in all ")
+      return profile;
     },
     update: function(property,newValue) {
       profile.property = newValue;
