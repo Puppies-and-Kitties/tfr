@@ -160,7 +160,7 @@ angular.module('data', [])
     initialize: function(usersProfile){
       profile = usersProfile;
     },
-    getObject: function() {
+    all: function() {
      return profile;
     },
     update: function(property,newValue) {
@@ -182,7 +182,7 @@ angular.module('data', [])
     initialize: function(usersProfile){
       profile = usersProfile;
     },
-    getProperty: function() {
+    all: function() {
      return profile;
     },
     update: function(property,newValue) {

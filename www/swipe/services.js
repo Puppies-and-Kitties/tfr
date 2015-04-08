@@ -1,4 +1,7 @@
 // angular.module('swipe.services', [])
+//Pre-refactor code
+
+//angular.module('swipe.services', []);
 
 //   .factory('Candidates', function() {
   // Might use a resource here that returns a JSON array
