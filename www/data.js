@@ -43,6 +43,7 @@ angular.module('data', [])
       face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png',
       matched: false,
       likeCurrentUser: true,
+      email: 'bensparrow@test.com',
       preferences: {
         radius: 7,
         zipCode: 95991,
@@ -57,6 +58,7 @@ angular.module('data', [])
       face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460',
       matched: false,
       likeCurrentUser: true,
+      email: 'maxlynx@test.com',
       preferences: {
         radius: 7,
         zipCode: 53011,
@@ -71,6 +73,7 @@ angular.module('data', [])
       face: 'https://pbs.twimg.com/profile_images/491274378181488640/Tti0fFVJ.jpeg',
       matched: false,
       likeCurrentUser: true,
+      email: 'andrewjostlin@test.com',
       preferences: {
         radius: 7,
         zipCode: 94720,
@@ -85,6 +88,7 @@ angular.module('data', [])
       face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg',
       matched: false,
       likeCurrentUser: true,
+      email: 'adambradleyson@test.com',
       preferences: {
         radius: 7,
         zipCode: 53017,
@@ -99,6 +103,7 @@ angular.module('data', [])
       face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg',
       matched: false,
       likeCurrentUser: true,
+      email: 'perrygovernor@test.com',
       preferences: {
         radius: 7,
         zipCode: 94604,
