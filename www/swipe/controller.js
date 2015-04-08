@@ -12,7 +12,6 @@ angular.module('swipe.controllers', [])
 
     CandidatesFactory.removeFirst();
 
-
     if (match) {
       $scope.currentCandidate.matched = true;
       //Once server is up, this will be a POST request to the server
