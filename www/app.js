@@ -20,7 +20,8 @@ angular.module('starter', [
   'preferences.controllers',
   'preferences.services',
   'swipe.controllers',
-  'swipe.services'
+  'swipe.services',
+  'data'
   ])
 
 .run(function($ionicPlatform) {
@@ -76,15 +77,25 @@ angular.module('starter', [
     }
   })
 
-  .state('tab.swipe-detail', {
-    url: '/swipe/:profileId',
+  .state('tab.profiles', {
+    url: '/profiles/:type/:id',
     views: {
-      'tab-swipe': {
+      'tab-profiles': {
         templateUrl: 'profiles/profiles.html',
         controller: 'ProfileCtrl'
       }
     }
   })
+
+  // .state('tab.swipe-detail', {
+  //   url: '/swipe/:profileId',
+  //   views: {
+  //     'tab-swipe': {
+  //       templateUrl: 'profiles/profiles.html',
+  //       controller: 'ProfileCtrl'
+  //     }
+  //   }
+  // })
 
   .state('tab.dash', {
     url: '/dash',
@@ -96,24 +107,24 @@ angular.module('starter', [
     }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
-      }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
+  // .state('tab.chats', {
+  //     url: '/chats',
+  //     views: {
+  //       'tab-chats': {
+  //         templateUrl: 'templates/tab-chats.html',
+  //         controller: 'ChatsCtrl'
+  //       }
+  //     }
+  //   })
+  //   .state('tab.chat-detail', {
+  //     url: '/chats/:chatId',
+  //     views: {
+  //       'tab-chats': {
+  //         templateUrl: 'templates/chat-detail.html',
+  //         controller: 'ChatDetailCtrl'
+  //       }
+  //     }
+  //   })
 
   .state('tab.account', {
     url: '/account',
@@ -159,15 +170,15 @@ angular.module('starter', [
 
 // profile state view
 
-  .state('tab.match-detail', {
-    url: '/matches/:profileId',
-    views: {
-      'tab-matches': {
-        templateUrl: 'profiles/profiles.html',
-        controller: 'ProfileCtrl'
-      }
-    }
-  })
+  // .state('tab.match-detail', {
+  //   url: '/matches/:profileId',
+  //   views: {
+  //     'tab-matches': {
+  //       templateUrl: 'profiles/profiles.html',
+  //       controller: 'ProfileCtrl'
+  //     }
+  //   }
+  // })
 
   .state('login', {
     url: '/login',

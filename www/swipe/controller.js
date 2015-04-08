@@ -1,27 +1,29 @@
 angular.module('swipe.controllers', [])
 
-.controller('SwipeController', function($scope, $timeout, Candidates, UpdateMatches, MatchesFact) {
-  $scope.candidates = Candidates.all();
+.controller('SwipeController', function($scope, $timeout, CandidatesFactory, MatchesFactory) { //Candidates, MatchesFact
+  $scope.candidates = CandidatesFactory.all();
 
   $scope.currentCandidate = angular.copy($scope.candidates[0]);
 
   $scope.candidateSwipe =  function (match){
 
+    CandidatesFactory.removeFirst();   
+
     if (match) {
-      UpdateMatches.addCandidateToMatches($scope.currentCandidate);
-      
       $scope.currentCandidate.matched = true;
-      MatchesFact.add($scope.currentCandidate);
+
+      //Once server is up, this will be a POST request to the server
+      MatchesFactory.add($scope.currentCandidate);
     }
 
     $scope.currentCandidate.rated = match;
     $scope.currentCandidate.hide = true;
 
     $timeout(function(){
-      var randomCandidate = Math.round(Math.random() * ($scope.candidates.length-1)) ;
-      $scope.currentCandidate = angular.copy($scope.candidates[randomCandidate]);
-    }, 250);
+      $scope.currentCandidate = angular.copy($scope.candidates[0]);
+    }, 300);
 
   };
 
 })
+
