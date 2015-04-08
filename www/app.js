@@ -17,12 +17,25 @@ angular.module('starter', [
   //'matchProfile.controllers',
   'profile.controllers',
   //'profile.services',
-  'preferences.controllers',
+  'settings.controllers',
   //'preferences.services',
   'swipe.controllers',
   //'swipe.services',
   'data'
   ])
+
+.filter('range', function() {
+  return function(input, start, end) {    
+    start = parseInt(start);
+    end = parseInt(end);
+    var direction = (start <= end) ? 1 : -1;
+    while (start != end) {
+        input.push(start);
+        start += direction;
+    }
+    return input;
+  };
+})
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -97,12 +110,23 @@ angular.module('starter', [
     }
   })
 
-  .state('tab.preferences', {
-    url: '/preferences',
+  .state('tab.settings-profile', {
+    url: '/settings/userProfile',
     views: {
       'tab-preferences': {
-        templateUrl: 'preferences/view.html',
-        controller: 'PreferencesCtrl'
+        templateUrl: 'settings/userProfile/view.html',
+        controller: 'SettingsCtrl'
+      }
+    }
+  })
+
+  .state('tab.settings-preferences', {
+    url: '/settings/preferences',
+    views: {
+      'tab-preferences': {
+        //templateUrl: 'preferences/view.html',
+        templateUrl: 'settings/preferences/view.html',
+        controller: 'SettingsCtrl'
       }
     }
   })

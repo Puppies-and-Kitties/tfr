@@ -1,0 +1,128 @@
+<ion-view view-title="Account-Profile" >
+  <ion-content>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap">
+        <img ng-src="//graph.facebook.com/{{fbId}}/picture">
+        <h2>Welcome, {{username}}</h2>
+      </ion-item>
+     
+      <ion-list>
+        <!-- <h2><strong>About Me</strong></h2> -->
+        <ion-form ng-model="profile.host">
+          <ion-checkbox ng-if="profile.host === true || profile.host === null;" ng-click="toggleHost(profile.host, true)">I already have a place, just need a roommate</ion-checkbox>
+          <ion-checkbox ng-if="!profile.host" ng-click="toggleHost(profile.host, false)">I have nothing!</ion-checkbox>
+        </ion-form>
+        <!-- <ion-toggle  ng-model="profile.host">
+            <h2><strong>Do you already have a Place?</strong></h2>
+        </ion-toggle> -->
+
+        <h2 ng-if="profile.host === true">My Place</h2>
+        <ion-item ng-if="profile.host">
+            <div class="item item-input item-select">
+              <span class="input-label"><h2>Rooms Available</h2></span>
+              <select ng-model="profile.myPlace.openRooms">
+                <option ng-repeat="n in [] | range:1:10"> {{n}} </option>
+              </select>
+            </div>
+          <h2><strong>Rent:</strong>  {{profile.rent | currency}}</h2><br>
+          <div class="range">
+            <i class="ion-social-usd"></i>
+            <input type="range" name="volume" ng-model="profile.myPlace.rent" min="0" max="5000" step="10">
+          </div>
+        </ion-item>
+
+        <!-- <ion-item ng-if="profile.host === false">
+          <h2><strong>Search radius:</strong>  {{profile.radius}} miles</h2> <br>
+          <div class="range">
+            <i class="ion-earth"></i>
+            <input type="range" name="volume" ng-model="profile.radius" min="0" max="15" >
+          </div>
+        </ion-item> -->
+
+        <label class="item item-input item-stacked-label" ng-if="profile.host">
+          <span class="input-lable" ng-if="profile.host"><h2><strong>Zip Code:</strong></h2></span>
+          <input type="text" ng-if="profile.host" placeholder="Please enter your zip code" ng-model="profile.zipCode">
+        </label>
+
+        <ion-list ng-if="profile.host">
+          <span class="input-label"><h4>Current Occupants</h4></span>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label"><h2>Number: {{profile.myPlace.peopleCount}}</h2></span>
+            <div class="range">
+              <i class="ion-person-stalker"></i>
+              <input type="range" name="volume" ng-model="profile.myPlace.peopleCount" min="0" max="10">
+            </div>
+            <div class="item item-input item-select">
+              <span class="input-label"><h2>Genders</h2></span>
+              <select ng-model="profile.myPlace.genders">
+                <option><h2>Mixed</h2></option>
+                <option><h2>Male</h2></option>
+                <option><h2>Female</h2></option>
+              </select>
+            </div>
+          </label>
+        </ion-list>
+      </ion-list>
+
+      <h2 ng-if="profile.host !== null"><strong>About Me</strong></h2>
+      <ion-list ng-if="profile.host !== null;">  
+        <label class="item item-input item-stacked-label">
+          <div class="item item-input item-select">
+            <span class="input-label"><h2>Gender</h2></span>
+            <select ng-model="profile.genders">
+              <option><h2>Male</h2></option>
+              <option><h2>Female</h2></option>
+            </select>
+          </div>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <div class="item item-input item-select">
+            <span class="input-label"><h2>Age</h2></span>
+            <select ng-model="profile.age">
+              <option ng-repeat="n in [] | range:16:100"> {{n}} </option>
+            </select>
+          </div>
+        </label>
+        <span class="input-label"><h2>Keywords</h2></span>
+        <div class="list list-inset">
+          <!-- <label class="item item-input" ng-if="profile.keywords.length" ng-repeat="keyword in profile.keywords">
+            <input type="text" value="{{keyword}}"> 
+          </label>
+          <label class="item item-input" ng-if="!profile.keywords.length" ng-repeat="keyword in mockKeywords.keywords">
+            <input type="text" placeholder="ex. {{keyword}}">
+          </label> -->
+          <label class="item item-input">
+            <input type="text" ng-model="profile.keywords[0]" placeholder="ex. Reading">
+          </label>
+          <label class="item item-input">
+            <input type="text" ng-model="profile.keywords[1]" placeholder="ex. Night-Owl">
+          </label>
+          <label class="item item-input">
+            <input type="text" ng-model="profile.keywords[2]" placeholder="ex. Beer">
+          </label>
+          <label class="item item-input">
+            <input type="text" ng-model="profile.keywords[3]" placeholder="ex. Hiking">
+          </label>
+          <label class="item item-input">
+            <input type="text" ng-model="profile.keywords[4]" placeholder="ex. Cooking">
+          </label>
+          <!-- <button class="button button-small button-assertive" type="submit">Save Keywords</button> -->
+        </div>
+      </ion-list>
+      
+      <ion-item ng-if="profile.host !== null"> 
+        <a  class="button icon-right ion-chevron-right button-calm" ng-href="#/tab/settings/preferences">Set Search Preferences</a>
+      </ion-item>
+
+      <ion-item ng-if="profile.host !== null">
+        <button class="button button-block button-positive col col-50 col-offset-25 col-center" ng-click="save()">
+          Save Profile
+        </button>
+      </ion-item>
+
+      <ion-item>
+        <button class="button button-block button-assertive col col-50 col-offset-25 col-center" ng-click="fbLogout()">
+          Logout
+        </button>
+      </ion-item>
+  </ion-content>
+</ion-view>
