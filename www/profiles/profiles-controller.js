@@ -20,7 +20,6 @@ angular.module('profile.controllers', [])
 
   //Need to tell the profile which sub-template - "edit my profile" 
   //"like or skip" "contact info" - to render within the profile
-<<<<<<< HEAD
 
   $scope.candidateSwipe =  function (match){
 
@@ -38,7 +37,6 @@ angular.module('profile.controllers', [])
 
   };
 })
-
 
 
 

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 //Can we reuse the initialize functions?
 //Can we reuse the all functions?
 
@@ -11,6 +12,11 @@ angular.module('data', [])
   //Possibly too much repetition/redundancy with CandidatesFactory
 angular.module('data.services', [])
 =======
+=======
+//Can we reuse the initialize functions?
+//
+
+>>>>>>> (cleanup) eliminating commented out code from before the refactor
 angular.module('data', [])
 >>>>>>> (refactor) Now have one profile state across swipe and matches
 
@@ -18,7 +24,7 @@ angular.module('data', [])
 
   var matches = [];
 
-  //How best to remove the redundancy in lines 8-26 and lines 34-52?
+  //Possibly too much repetition/redundancy with CandidatesFactory
   return {
     initialize: function(usersMatches){
       var matches = usersMatches;
@@ -171,13 +177,13 @@ angular.module('data', [])
     initialize: function(usersProfile){
       profile = usersProfile;
     },
-    all: function() {
+    getObject: function() {
      return profile;
     },
     update: function(property,newValue) {
       profile.property = newValue;
     },
-    get: function(property) {
+    getProperty: function(property) {
       return profile.property;
     },
   };
@@ -199,7 +205,7 @@ angular.module('data', [])
     update: function(property,newValue) {
       profile.property = newValue;
     },
-    get: function(property) {
+    getProperty: function(property) {
       return profile.property;
     },
   };

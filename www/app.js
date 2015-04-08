@@ -92,7 +92,6 @@ angular.module('starter', [
     }
   })
 
-
   .state('tab.account', {
     url: '/account',
     views: {
