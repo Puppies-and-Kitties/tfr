@@ -24,6 +24,19 @@ angular.module('starter', [
   'data'
   ])
 
+.filter('range', function() {
+  return function(input, start, end) {    
+    start = parseInt(start);
+    end = parseInt(end);
+    var direction = (start <= end) ? 1 : -1;
+    while (start != end) {
+        input.push(start);
+        start += direction;
+    }
+    return input;
+  };
+})
+
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -97,11 +110,22 @@ angular.module('starter', [
     }
   })
 
-  .state('tab.preferences', {
-    url: '/preferences',
+  .state('tab.preferences-profile', {
+    url: '/preferences-profile',
     views: {
       'tab-preferences': {
-        templateUrl: 'preferences/view.html',
+        templateUrl: 'preferences/preferences-profile.html',
+        controller: 'PreferencesCtrl'
+      }
+    }
+  })
+
+  .state('tab.preferences-search', {
+    url: '/preferences-search',
+    views: {
+      'tab-preferences': {
+        //templateUrl: 'preferences/view.html',
+        templateUrl: 'preferences/preferences-search.html',
         controller: 'PreferencesCtrl'
       }
     }
