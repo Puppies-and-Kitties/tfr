@@ -10,7 +10,7 @@ angular.module('swipe.controllers', [])
   //I don't like all the side effects here...
   $scope.candidateSwipe =  function (match){
 
-    CandidatesFactory.removeFirst();   
+    CandidatesFactory.removeFirst();
 
 
     if (match) {
@@ -18,7 +18,7 @@ angular.module('swipe.controllers', [])
       //Once server is up, this will be a POST request to the server
       MatchesFactory.add($scope.currentCandidate);
     } else {
-      //Perhaps we just need to do a PUT request to the server here?
+      //Perhaps we only need to do a PUT request to the server here?
       SkippedFactory.add($scope.currentCandidate);
     }
 

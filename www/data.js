@@ -177,7 +177,7 @@ angular.module('data', [])
     initialize: function(usersProfile){
       profile = usersProfile;
     },
-    getObject: function() {
+    all: function() {
      return profile;
     },
     update: function(property,newValue) {

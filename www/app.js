@@ -20,11 +20,7 @@ angular.module('starter', [
   'preferences.controllers',
   //'preferences.services',
   'swipe.controllers',
-<<<<<<< HEAD
   //'swipe.services',
-=======
-  'swipe.services',
->>>>>>> (refactor) Now have one profile state across swipe and matches
   'data'
   ])
 

@@ -3,7 +3,6 @@ angular.module('profile.controllers', [])
 .controller('ProfileCtrl', function($scope, $stateParams, $state, User, CandidatesFactory, MatchesFactory) {
   $scope.User = User;
 
-
   switch($stateParams.type){
     case 'swipe':
       $scope.profile = CandidatesFactory.getFirst();
