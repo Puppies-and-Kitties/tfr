@@ -1,6 +1,6 @@
-angular.module('preferences.services', [])
+// angular.module('preferences.services', [])
 
-.factory('PreferencesFact', function($resource){
+// .factory('PreferencesFact', function($resource){
 
  
-})
+// })

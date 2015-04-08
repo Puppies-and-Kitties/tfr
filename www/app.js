@@ -12,15 +12,15 @@ angular.module('starter', [
   'starter.services', 
   'login.controllers', 
   'login.services', 
-  'matches.services', 
+  //'matches.services', 
   'matches.controllers',
-  'matchProfile.controllers',
+  //'matchProfile.controllers',
   'profile.controllers',
-  'profile.services',
+  //'profile.services',
   'preferences.controllers',
-  'preferences.services',
+  //'preferences.services',
   'swipe.controllers',
-  'swipe.services',
+  //'swipe.services',
   'data'
   ])
 
@@ -77,22 +77,13 @@ angular.module('starter', [
     }
   })
 
+//how do we render profiles without them being a tab or a child of another tab?
   .state('tab.profiles', {
     url: '/profiles/:type/:id',
     views: {
       'tab-profiles': {
         templateUrl: 'profiles/profiles.html',
         controller: 'ProfileCtrl'
-      }
-    }
-  })
-
-  .state('tab.dash', {
-    url: '/dash',
-    views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
       }
     }
   })

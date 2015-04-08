@@ -3,9 +3,6 @@ angular.module('profile.controllers', [])
 .controller('ProfileCtrl', function($scope, $stateParams, $state, User, CandidatesFactory, MatchesFactory) {
   $scope.User = User;
 
-console.log('ProfileCtrl');
-console.log($stateParams);
-  
   switch($stateParams.type){
     case 'swipe':
       $scope.profile = CandidatesFactory.getFirst();
@@ -35,7 +32,7 @@ console.log($stateParams);
       SkippedFactory.add($scope.currentCandidate);
     }
 
-    $state.go('tab.matches');
+    $state.go('tab.swipe');
 
   };
 })
