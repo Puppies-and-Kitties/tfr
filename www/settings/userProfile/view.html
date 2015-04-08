@@ -23,7 +23,7 @@
                 <option ng-repeat="n in [] | range:1:10"> {{n}} </option>
               </select>
             </div>
-          <h2><strong>Rent:</strong>  {{profile.rent | currency}}</h2><br>
+          <h2><strong>Rent:</strong>  {{profile.myPlace.rent | currency}}</h2><br>
           <div class="range">
             <i class="ion-social-usd"></i>
             <input type="range" name="volume" ng-model="profile.myPlace.rent" min="0" max="5000" step="10">
@@ -114,7 +114,7 @@
       </ion-item>
 
       <ion-item ng-if="profile.host !== null">
-        <button class="button button-block button-positive col col-50 col-offset-25 col-center" ng-click="save()">
+        <button class="button button-block button-positive col col-50 col-offset-25 col-center" ng-click="saveProfile()">
           Save Profile
         </button>
       </ion-item>

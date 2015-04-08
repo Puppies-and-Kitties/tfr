@@ -184,17 +184,17 @@ angular.module('data', [])
 
   //How best to remove the redundancy in lines 86-99 and lines 107-120?
   return {
-    initialize: function(usersProfile){
-      profile = usersProfile;
+    initialize: function(userPreferences){
+      preferences = userPreferences;
     },
     all: function() {
-     return profile;
+     return preferences;
     },
     update: function(property,newValue) {
-      profile.property = newValue;
+      preferences.property = newValue;
     },
     getProperty: function(property) {
-      return profile.property;
+      return preferences.property;
     },
   };
 
