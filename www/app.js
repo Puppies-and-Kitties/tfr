@@ -77,12 +77,11 @@ angular.module('starter', [
     }
   })
 
-//how do we render profiles without them being a tab or a child of another tab?
-  .state('tab.profiles', {
-    url: '/profiles/:type/:id',
+  .state('tab.swipe-detail', {
+    url: '/:type/profiles/:id',
     views: {
-      'tab-profiles': {
-        templateUrl: 'profiles/profiles.html',
+      'tab-swipe': {
+        templateUrl: 'profiles/view.html',
         controller: 'ProfileCtrl'
       }
     }
@@ -102,7 +101,7 @@ angular.module('starter', [
     url: '/preferences',
     views: {
       'tab-preferences': {
-        templateUrl: 'preferences/preferences.html',
+        templateUrl: 'preferences/view.html',
         controller: 'PreferencesCtrl'
       }
     }
@@ -113,15 +112,25 @@ angular.module('starter', [
     url: '/matches',
       views: {
         'tab-matches': {
-          templateUrl: 'matches/matches.html',
+          templateUrl: 'matches/view.html',
           controller: 'MatchesCtrl'          
         }        
       }
   })
+  // Tried using the same pattern as for the swipe/profile, but it was causing a bunch of errors
+  .state('tab.matches-detail', {
+    url: '/matches/profiles/:type/:id',
+    views: {
+      'tab-matches': {
+        templateUrl: 'profiles/view.html',
+        controller: 'ProfileCtrl'
+      }
+    }
+  })
 
   .state('login', {
     url: '/login',
-    templateUrl: 'login/login.html',
+    templateUrl: 'login/view.html',
     controller: 'LoginCtrl'
   })
 

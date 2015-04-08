@@ -1,7 +1,6 @@
 angular.module('swipe.controllers', [])
 
-.controller('SwipeController', function($scope, $timeout, CandidatesFactory, 
-                                        MatchesFactory, SkippedFactory) {
+.controller('SwipeController', function($scope, $timeout, CandidatesFactory, MatchesFactory, SkippedFactory) {
 
   $scope.candidates = CandidatesFactory.all();
 
