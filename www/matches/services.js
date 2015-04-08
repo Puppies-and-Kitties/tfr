@@ -36,24 +36,24 @@
   // }
   // ];
 
-  return {
-    all: function() {
-     return matches;
-    },
-    remove: function(match) {
-      matches.splice(matches.indexOf(match), 1);
-    },
-    get: function(matchId) {
-      for (var i = 0; i < matches.length; i++) {
-        if (matches[i].id === parseInt(matchId)) {
-          return matches[i];
-        }
-      }
-      return null;
-    },
-    add: function(match){
-      matches.push(match);
-    }
-  };
+//   return {
+//     all: function() {
+//      return matches;
+//     },
+//     remove: function(match) {
+//       matches.splice(matches.indexOf(match), 1);
+//     },
+//     get: function(matchId) {
+//       for (var i = 0; i < matches.length; i++) {
+//         if (matches[i].id === parseInt(matchId)) {
+//           return matches[i];
+//         }
+//       }
+//       return null;
+//     },
+//     add: function(match){
+//       matches.push(match);
+//     }
+//   };
 
-})
+// })
