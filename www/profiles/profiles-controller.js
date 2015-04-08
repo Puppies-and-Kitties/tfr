@@ -28,25 +28,17 @@ console.log($stateParams);
     CandidatesFactory.remove();   
 
     if (match) {
-
       //Once server is up, this will be a POST request to the server
       MatchesFactory.add($scope.currentCandidate);
+    } else {
+      //Perhaps we just need to do a PUT request to the server here?
+      SkippedFactory.add($scope.currentCandidate);
     }
 
     $state.go('tab.matches');
 
   };
 })
-  // $scope.pass = function(profile){
-  //   console.log(profile)
-  // }
 
-  // // basic match function, example use only
-  // $scope.like = function(profile){
-  //   profile.matched = true;
-  //   console.log(profile)
-  //   MatchesFact.add(profile);
-  //   $state.go('tab.matches');
-  // }
 
 

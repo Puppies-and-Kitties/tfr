@@ -1,10 +1,13 @@
+//Can we reuse the initialize functions?
+//
+
 angular.module('data', [])
 
 .factory('MatchesFactory', function(){
 
   var matches = [];
 
-  //How best to remove the redundancy in lines 8-26 and lines 34-52?
+  //Possibly too much repetition/redundancy with CandidatesFactory
   return {
     initialize: function(usersMatches){
       var matches = usersMatches;
@@ -32,6 +35,7 @@ angular.module('data', [])
 
 .factory('CandidatesFactory', function(){
 
+  //Dummy data for now, eventually will be initialized in tab state resolve
   var candidates = [{
       id: 0,
       name: 'Ben Sparrow',
@@ -104,7 +108,7 @@ angular.module('data', [])
       }
     }];
 
-   //How best to remove the redundancy in lines 8-26 and lines 34-52?
+  //Possibly too much repetition/redundancy with MatchesFactory
   return {
     initialize: function(usersCandidates){
       candidates = usersCandidates;
@@ -116,12 +120,6 @@ angular.module('data', [])
       candidates.splice(0, 1);
     },
     getFirst: function() {
-      // for (var i = 0; i < candidates.length; i++) {
-      //   if (candidates[i].id === parseInt(candidateId)) {
-      //     return candidates[i];
-      //   }
-      // }
-      // return null;
       return candidates[0];
     },
     add: function(candidate){
@@ -131,6 +129,10 @@ angular.module('data', [])
 
 })
 
+//Outstanding question: Should be just handle those 'skipped' ('disliked') on 
+//the backend?
+//Do we need this list on the front end?
+//... probably not...
 .factory('SkippedFactory', function(){
 
   var skipped = [];
@@ -142,8 +144,8 @@ angular.module('data', [])
     all: function() {
      return skipped;
     },
-    add: function(candidate){
-      candidates.push(candidate);
+    add: function(skip){
+      skipped.push(skip);
     }
   };
 
@@ -158,13 +160,13 @@ angular.module('data', [])
     initialize: function(usersProfile){
       profile = usersProfile;
     },
-    all: function() {
+    getObject: function() {
      return profile;
     },
     update: function(property,newValue) {
       profile.property = newValue;
     },
-    get: function(property) {
+    getProperty: function(property) {
       return profile.property;
     },
   };
@@ -180,13 +182,13 @@ angular.module('data', [])
     initialize: function(usersProfile){
       profile = usersProfile;
     },
-    allProperties: function() {
+    getProperty: function() {
      return profile;
     },
     update: function(property,newValue) {
       profile.property = newValue;
     },
-    get: function(property) {
+    getObject: function(property) {
       return profile.property;
     },
   };
