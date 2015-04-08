@@ -1,6 +1,6 @@
 angular.module('profile.controllers', [])
 
-.controller('ProfileCtrl', function($scope, $stateParams, $state, User, CandidatesFactory, MatchesFactory) {
+.controller('ProfileCtrl', function($scope, $stateParams, $state, $ionicHistory, User, CandidatesFactory, MatchesFactory) {
   $scope.User = User;
 
   switch($stateParams.type){
@@ -14,6 +14,10 @@ angular.module('profile.controllers', [])
       $scope.profile = User.profile;
       break;
   }
+
+  $scope.myGoBack = function() {
+      $ionicHistory.goBack();
+  };
 
   $scope.profile.matched = true;
 

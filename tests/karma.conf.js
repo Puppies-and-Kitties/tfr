@@ -25,6 +25,7 @@ module.exports = function(config) {
         '../www/profiles/*.js',
         '../www/swipe/*.js',
         '../www/app.js',
+        '../www/data.js',
         '../node_modules/angular-mocks/angular-mocks.js',
         '**/*tests.js'
     ],
