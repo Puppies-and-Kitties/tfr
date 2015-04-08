@@ -1,5 +1,11 @@
 describe('Controllers', function() {
   var scope, state, User;
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+  //load controller's module
+  beforeEach(module('starter.controllers', 'ui.router'));
+  var scope, state;
 
   //load controller's module
   beforeEach(module('starter.controllers', 'ui.router'));

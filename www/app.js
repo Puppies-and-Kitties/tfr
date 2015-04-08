@@ -12,15 +12,16 @@ angular.module('starter', [
   'starter.services', 
   'login.controllers', 
   'login.services', 
-  'matches.services', 
+  //'matches.services', 
   'matches.controllers',
-  'matchProfile.controllers',
+  //'matchProfile.controllers',
   'profile.controllers',
-  'profile.services',
+  //'profile.services',
   'preferences.controllers',
-  'preferences.services',
+  //'preferences.services',
   'swipe.controllers',
-  'swipe.services'
+  //'swipe.services',
+  'data'
   ])
 
 .run(function($ionicPlatform) {
@@ -76,44 +77,16 @@ angular.module('starter', [
     }
   })
 
-  .state('tab.swipe-detail', {
-    url: '/swipe/:profileId',
+//how do we render profiles without them being a tab or a child of another tab?
+  .state('tab.profiles', {
+    url: '/profiles/:type/:id',
     views: {
-      'tab-swipe': {
+      'tab-profiles': {
         templateUrl: 'profiles/profiles.html',
         controller: 'ProfileCtrl'
       }
     }
   })
-
-  .state('tab.dash', {
-    url: '/dash',
-    views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
-      }
-    }
-  })
-
-  .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
-      }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
 
   .state('tab.account', {
     url: '/account',
@@ -144,29 +117,6 @@ angular.module('starter', [
           controller: 'MatchesCtrl'          
         }        
       }
-  })
-
-  // was for the match-detail state view, which is being refactored to be the profile state view
-  // .state('tab.match-detail', {
-  //   url: '/matches/:matchId',
-  //   views: {
-  //     'tab-matches': {
-  //       templateUrl: 'matches/match-profile/match-profile.html',
-  //       controller: 'MatchProfileCtrl'
-  //     }
-  //   }
-  // })
-
-// profile state view
-
-  .state('tab.match-detail', {
-    url: '/matches/:profileId',
-    views: {
-      'tab-matches': {
-        templateUrl: 'profiles/profiles.html',
-        controller: 'ProfileCtrl'
-      }
-    }
   })
 
   .state('login', {

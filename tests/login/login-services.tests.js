@@ -12,4 +12,5 @@ describe('services: login', function() {
   // it('should have a get fb info function', function(){
   //   expect(LoginFact.getFbInfo).toBeDefined();
   // });
+
 })
