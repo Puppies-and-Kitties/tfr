@@ -1,25 +1,7 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 //Can we reuse the initialize functions?
 //Can we reuse the all functions?
 
 angular.module('data', [])
-
-.factory('MatchesFactory', function(){
-
-  var matches = [];
-
-  //Possibly too much repetition/redundancy with CandidatesFactory
-angular.module('data.services', [])
-=======
-=======
-//Can we reuse the initialize functions?
-//Can we reuse the all functions?
-//
-
->>>>>>> (cleanup) eliminating commented out code from before the refactor
-angular.module('data', [])
->>>>>>> (refactor) Now have one profile state across swipe and matches
 
 .factory('MatchesFactory', function(){
 
