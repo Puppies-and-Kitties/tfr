@@ -3,7 +3,7 @@ describe('controllers: swipe', function() {
   var scope, User;
 
   //load controller's module and other necessary modules
-  beforeEach(module('swipe.controllers', 'swipe.services','ui.router'));
+  beforeEach(module('swipe.controllers','ui.router'));
 
   beforeEach(inject(function($rootScope, $controller, _User_) {
     scope = $rootScope.$new();

@@ -2,13 +2,13 @@ describe('services: swipe', function() {
 
   var Candidates;
   
-  beforeEach(module('swipe.services', 'ui.router'));
+  beforeEach(module('data', 'ui.router'));
   
-  beforeEach(inject(function(_Candidates_) {
-    Candidates = _Candidates_;
+  beforeEach(inject(function(_CandidatesFactory_) {
+    CandidatesFactory = _CandidatesFactory_;
   }));
 
   it('should have a remove function', function(){
-    expect(Candidates.remove).toBeDefined();
+    expect(CandidatesFactory.removeFirst).toBeDefined();
   });
 })
