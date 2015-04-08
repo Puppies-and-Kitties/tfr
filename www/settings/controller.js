@@ -1,6 +1,6 @@
-angular.module('preferences.controllers', [])
+angular.module('settings.controllers', [])
 
-.controller('PreferencesCtrl', function($scope, $state, User){
+.controller('SettingsCtrl', function($scope, $state, User){
   $scope.fbId = User.id;
   $scope.username = User.first_name;
 
@@ -17,8 +17,8 @@ angular.module('preferences.controllers', [])
     keywords: ['','','','','']
   };
   $scope.preferences = {
-    minRent: 500,
-    maxRent: 2000
+    rent: 1000,
+    gender: null
   };
   // $scope.mockKeywords = {
   //   keywords: ['Reading', 'Night-Owl', 'Beer', 'Cooking', 'Hiking']

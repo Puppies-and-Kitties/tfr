@@ -17,7 +17,7 @@ angular.module('starter', [
   //'matchProfile.controllers',
   'profile.controllers',
   //'profile.services',
-  'preferences.controllers',
+  'settings.controllers',
   //'preferences.services',
   'swipe.controllers',
   //'swipe.services',
@@ -110,23 +110,23 @@ angular.module('starter', [
     }
   })
 
-  .state('tab.preferences-profile', {
-    url: '/preferences-profile',
+  .state('tab.settings-profile', {
+    url: '/settings/userProfile',
     views: {
       'tab-preferences': {
-        templateUrl: 'preferences/preferences-profile.html',
-        controller: 'PreferencesCtrl'
+        templateUrl: 'settings/userProfile/view.html',
+        controller: 'SettingsCtrl'
       }
     }
   })
 
-  .state('tab.preferences-search', {
-    url: '/preferences-search',
+  .state('tab.settings-preferences', {
+    url: '/settings/preferences',
     views: {
       'tab-preferences': {
         //templateUrl: 'preferences/view.html',
-        templateUrl: 'preferences/preferences-search.html',
-        controller: 'PreferencesCtrl'
+        templateUrl: 'settings/preferences/view.html',
+        controller: 'SettingsCtrl'
       }
     }
   })
