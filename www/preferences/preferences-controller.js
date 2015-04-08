@@ -16,6 +16,8 @@ angular.module('preferences.controllers', [])
 
   $scope.save = function(){
     // Just prints the currently inputed preferences to the console
+    // Will need to call PreferencesFactory.update and do a PUT/POST request to
+    // the server
     console.log('preferences - ', $scope.preferences);
   }
 

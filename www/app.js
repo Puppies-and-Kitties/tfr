@@ -87,16 +87,6 @@ angular.module('starter', [
     }
   })
 
-  // .state('tab.swipe-detail', {
-  //   url: '/swipe/:profileId',
-  //   views: {
-  //     'tab-swipe': {
-  //       templateUrl: 'profiles/profiles.html',
-  //       controller: 'ProfileCtrl'
-  //     }
-  //   }
-  // })
-
   .state('tab.dash', {
     url: '/dash',
     views: {
@@ -106,25 +96,6 @@ angular.module('starter', [
       }
     }
   })
-
-  // .state('tab.chats', {
-  //     url: '/chats',
-  //     views: {
-  //       'tab-chats': {
-  //         templateUrl: 'templates/tab-chats.html',
-  //         controller: 'ChatsCtrl'
-  //       }
-  //     }
-  //   })
-  //   .state('tab.chat-detail', {
-  //     url: '/chats/:chatId',
-  //     views: {
-  //       'tab-chats': {
-  //         templateUrl: 'templates/chat-detail.html',
-  //         controller: 'ChatDetailCtrl'
-  //       }
-  //     }
-  //   })
 
   .state('tab.account', {
     url: '/account',
@@ -156,29 +127,6 @@ angular.module('starter', [
         }        
       }
   })
-
-  // was for the match-detail state view, which is being refactored to be the profile state view
-  // .state('tab.match-detail', {
-  //   url: '/matches/:matchId',
-  //   views: {
-  //     'tab-matches': {
-  //       templateUrl: 'matches/match-profile/match-profile.html',
-  //       controller: 'MatchProfileCtrl'
-  //     }
-  //   }
-  // })
-
-// profile state view
-
-  // .state('tab.match-detail', {
-  //   url: '/matches/:profileId',
-  //   views: {
-  //     'tab-matches': {
-  //       templateUrl: 'profiles/profiles.html',
-  //       controller: 'ProfileCtrl'
-  //     }
-  //   }
-  // })
 
   .state('login', {
     url: '/login',
