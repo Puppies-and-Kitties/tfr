@@ -1,8 +1,8 @@
-angular.module('matches.services', [])
+// angular.module('matches.services', [])
 
-.factory('MatchesFact', function(){
+// .factory('MatchesFact', function(){
   
-  var matches = [
+//   var matches = [
   // {
   //   id: 0,
   //   name: 'Ben Sparrow',
