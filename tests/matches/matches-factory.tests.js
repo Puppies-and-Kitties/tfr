@@ -2,13 +2,13 @@ describe('services: matches', function() {
 
   var MatchesFact;
   
-  beforeEach(module('matches.services', 'ui.router'));
+  beforeEach(module('data', 'ui.router'));
   
-  beforeEach(inject(function(_MatchesFact_) {
-    MatchesFact = _MatchesFact_;
+  beforeEach(inject(function(_MatchesFactory_) {
+    MatchesFactory = _MatchesFactory_;
   }));
 
   it('should have a remove function', function(){
-    expect(MatchesFact.remove).toBeDefined();
+    expect(MatchesFactory.remove).toBeDefined();
   });
 })

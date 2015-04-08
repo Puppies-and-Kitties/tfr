@@ -2,10 +2,10 @@ describe('services: profile', function() {
 
   var ProfileFact;
   
-  beforeEach(module('profile.services', 'ui.router'));
+  beforeEach(module('data', 'ui.router'));
   
-  beforeEach(inject(function(_ProfileFact_) {
-    ProfileFact = _ProfileFact_;
+  beforeEach(inject(function(_ProfileFactory_) {
+    ProfileFactory = _ProfileFactory_;
   }));
 
   // it('should have a remove function', function(){

@@ -2,10 +2,10 @@ describe('services: preferences', function() {
 
   var PreferencesFact;
   
-  beforeEach(module('preferences.services', 'ui.router'));
+  beforeEach(module('data', 'ui.router'));
   
-  beforeEach(inject(function(_PreferencesFact_) {
-    PreferencesFact = _PreferencesFact_;
+  beforeEach(inject(function(_PreferencesFactory_) {
+    PreferencesFactory = _PreferencesFactory_;
   }));
 
 })
