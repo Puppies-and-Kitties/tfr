@@ -17,7 +17,7 @@
 
     <ion-list>
 
-      <li class="item match"><!--<div class="card">-->
+      <li class="item match item-text-wrap"><!--<div class="card">-->
         <div class="profile-content">
           <candidate-top-box ng-if="profile.type==='swipe'"></candidate-top-box>
           <match-top-box ng-if="profile.type==='matches'"></match-top-box>
@@ -28,32 +28,32 @@
       <!-- /////////////////////////For Non Users //////////////////////-->
 
       <div ng-if="profile!==User"
-        <li class="item"><!--<div class="card">-->
+        <li class="item item-text-wrap"><!--<div class="card">-->
           <div class="profile-content">
             <strong>Ideal Rent:</strong> <br>{{profile.preferences.rent | currency}}
           </div>
         </li><!-- </div> -->
 
-        <li class="item"><!--<div class="card">-->
+        <li class="item item-text-wrap"><!--<div class="card">-->
           <div class="profile-content">
             <strong>Ideal Zip Code:</strong><br>{{profile.preferences.zipCode}}
           </div>
         </li><!-- </div> -->
 
-        <li class="item"><!--<div class="card">-->
+        <li class="item item-text-wrap"><!--<div class="card">-->
           <div class="profile-content">
             <strong>Choice Ionicons:</strong><br>
-            <div class="profile-icons"><span class="ion-android-bar"></span><span class="ion-social-github"></span><span class="ion-social-freebsd-devil"></span></div>
+            <div id="listIcons" class="profile-icons"><span id="listIcons" class="ion-android-bar"></span><span id="listIcons" class="ion-social-github"></span><span id="listIcons" class="ion-social-freebsd-devil"></span></div>
           </div>
         </li><!-- </div> -->
 
-        <li class="item"><!--<div class="card">-->
+        <li class="item item-text-wrap"><!--<div class="card">-->
           <div class="profile-content">
           <strong>Preferred Roommate Gender:</strong><br> {{profile.preferences.gender}}
           </div>
         </li><!-- </div> -->
 
-        <li class="item"><!--<div class="card">-->
+        <li class="item item-text-wrap"><!--<div class="card">-->
           <div class="profile-content">
           <strong>A few words of description:</strong><br> {{profile.aboutMeWords}}
           </div>
@@ -63,32 +63,32 @@
        <!-- /////////////////For users who are not hosts ///////////////////////-->
 
        <div ng-if="profile===User && profile.location.host===false">
-        <li class="item"><!--<div class="card">-->
+        <li class="item item-text-wrap"><!--<div class="card">-->
           <div class="profile-content">
             <strong>Ideal Rent:</strong> <br>{{profile.location.desiredPlace.rent | currency}}
           </div>
         </li><!-- </div> -->
 
-        <li class="item"><!--<div class="card">-->
+        <li class="item item-text-wrap"><!--<div class="card">-->
           <div class="profile-content">
             <strong>Ideal Zip Code:</strong><br>{{profile.location.desiredPlace.zipCode}}
           </div>
         </li><!-- </div> -->
 
-        <li class="item"><!--<div class="card">-->
+        <li class="item item-text-wrap"><!--<div class="card">-->
           <div class="profile-content">
             <strong>Choice Ionicons:</strong><br>
             <div class="profile-icons"><span class="ion-android-bar"></span><span class="ion-social-github"></span><span class="ion-social-freebsd-devil"></span></div>
           </div>
         </li><!-- </div> -->
 
-        <li class="item"><!--<div class="card">-->
+        <li class="item item-text-wrap"><!--<div class="card">-->
           <div class="profile-content">
           <strong>Preferred Roommate Gender:</strong><br> {{profile.people.gender}}
           </div>
         </li><!-- </div> -->
 
-        <li class="item"><!--<div class="card">-->
+        <li class="item item-text-wrap"><!--<div class="card">-->
           <div class="profile-content">
           <strong>A few words of description:</strong><br> <div ng-repeat="keyword in profile.userInfo.keywords"> {{keyword}}</div>
           </div>
@@ -99,32 +99,32 @@
       <!-- ////////////////For Users who are hosts////////////////// -->
       <div ng-if="profile===User && profile.location.host === true;">
         <h2><strong>I have a place, I just need a Roommate</strong>
-        <li class="item"><!--<div class="card">-->
+        <li class="item item-text-wrap"><!--<div class="card">-->
           <div class="profile-content">
             <strong>Rent:</strong> <br>{{profile.location.myPlace.rent | currency}}
           </div>
         </li><!-- </div> -->
 
-        <li class="item"><!--<div class="card">-->
+        <li class="item item-text-wrap"><!--<div class="card">-->
           <div class="profile-content">
             <strong>Zip Code:</strong><br>{{profile.location.myPlace.zipCode}}
           </div>
         </li><!-- </div> -->
 
-        <li class="item"><!--<div class="card">-->
+        <li class="item item-text-wrap"><!--<div class="card">-->
           <div class="profile-content">
             <strong>Choice Ionicons:</strong><br>
             <div class="profile-icons"><span class="ion-android-bar"></span><span class="ion-social-github"></span><span class="ion-social-freebsd-devil"></span></div>
           </div>
         </li><!-- </div> -->
 
-        <li class="item"><!--<div class="card">-->
+        <li class="item item-text-wrap"><!--<div class="card">-->
           <div class="profile-content">
           <strong>Preferred Roommate Gender:</strong><br> {{profile.people.gender}}
           </div>
         </li><!-- </div> -->
 
-        <li class="item"><!--<div class="card">-->
+        <li class="item item-text-wrap"><!--<div class="card">-->
           <div class="profile-content">
           <strong>A few words of description:</strong><br> <div ng-repeat="keyword in profile.userInfo.keywords"> {{keyword}}</div>
           </div>
@@ -132,7 +132,7 @@
       </div>
 
       <!-- only display like/dislike buttons if not matched -->
-      <li class="item"><!-- <div class="card" ng-if="!profile.matched"> -->
+      <li class="item item-text-wrap"><!-- <div class="card" ng-if="!profile.matched"> -->
         <div class="profile-content">
           <like-dislike ng-if="profile.type==='swipe'"></like-dislike>
           <contact-info ng-if="profile.type==='matches'"></contact-info>
