@@ -2,6 +2,22 @@
 
 div .profile-content {
   text-align: center;
+
+
+}
+
+.match{
+  background-color:#387EF5;
+}
+
+.no-match{
+  background-color:#EF473A;
+}
+
+#h4 {
+  font-size: 18px; 
+  font-weight: bold;
+  color:#ffffff;
 }
 
 .swipe-page {
@@ -67,11 +83,4 @@ div .profile-content {
   height:1px;
   width:1px;
   opacity:0.01;
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> added css
-=======
->>>>>>> added css
-=======
->>>>>>> 6e62b12d184a710185d8229da9c829396d62b2d8
 }
