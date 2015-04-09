@@ -1,4 +1,5 @@
 <ion-view view-title="Account-Profile" >
+
   <ion-content>
       <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap">
         <img ng-src="//graph.facebook.com/{{fbId}}/picture">
@@ -108,6 +109,10 @@
           <!-- <button class="button button-small button-assertive" type="submit">Save Keywords</button> -->
         </div>
       </ion-list>
+   
+      <ion-item ng-if="profile.host !== null"> 
+        <a  class="button icon-right ion-chevron-right button-calm" ng-href="#/tab/settings/preferences">Set Search Preferences</a>
+      </ion-item>
       
       <ion-item ng-if="profile.host !== null">
         <button class="button button-block button-positive col col-50 col-offset-25 col-center" ng-click="saveProfile()">
@@ -115,9 +120,6 @@
         </button>
       </ion-item>
       
-      <ion-item ng-if="profile.host !== null"> 
-        <a  class="button icon-right ion-chevron-right button-calm" ng-href="#/tab/settings/preferences">Set Search Preferences</a>
-      </ion-item>
 
       <ion-item>
         <button class="button button-block button-assertive col col-50 col-offset-25 col-center" ng-click="fbLogout()">

@@ -30,11 +30,13 @@ angular.module('starter', [
   return function(input, start, end) {    
     start = parseInt(start);
     end = parseInt(end);
+    // console.log("range filter start ", start);
     var direction = (start <= end) ? 1 : -1;
     while (start != end) {
         input.push(start);
         start += direction;
     }
+    // console.log("range filter input ", input)
     return input;
   };
 })
