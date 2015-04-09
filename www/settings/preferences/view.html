@@ -1,4 +1,7 @@
 <ion-view view-title="Account-Preferences">
+  <div class="bar bar-header bar-positive">
+    <button class"button">Set Search Preferences</button>
+  </div>
   <ion-content>
       <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap">
         <img ng-src="//graph.facebook.com/{{fbId}}/picture">
@@ -7,9 +10,9 @@
      
       <ion-list>
         <h2><strong>What I Want</strong></h2>
-        <h2 ng-if="preferences.host === false">The Place I Want</h2>
-        <ion-item ng-if="preferences.host !== null">
-          <h2 ng-if="!preferences.host"><strong>Desired Monthly Rent:</strong>  {{preferences.rent | currency}}</h2>
+        <h2 ng-if="!profile.host">The Place I Want</h2>
+        <ion-item ng-if="!profile.host">
+          <h2><strong>Desired Monthly Rent:</strong>  {{preferences.rent | currency}}</h2>
           <br>
           <div class="range">
             <i class="ion-social-usd"></i>
@@ -17,11 +20,9 @@
           </div>
         </ion-item>
 
-        <label class="item item-input item-stacked-label" ng-if="preferences.host !== null;">
-          <span class="input-label" ng-if="!preferences.host"><h2><strong>Desired Zip Code:</strong></h2></span>
-          <span class="input-lable" ng-if="preferences.host"><h2><strong>Zip Code:</strong></h2></span>
-          <input type="text" ng-if="!preferences.host" placeholder="Please enter your desired zip code" ng-model="preferences.zipCode">
-          <input type="text" ng-if="preferences.host" placeholder="Please enter your zip code" ng-model="preferences.zipCode">
+        <label class="item item-input item-stacked-label" ng-if="!profile.host">
+          <span class="input-label" ng-if="!profile.host"><h2><strong>Desired Zip Code:</strong></h2></span>
+          <input type="text" ng-if="!profile.host" placeholder="Please enter your desired zip code" ng-model="preferences.zipCode">
         </label>
 
         <ion-item ng-if="preferences.host === false">
@@ -49,7 +50,7 @@
       </ion-list>
 
       <ion-item ng-if="preferences.host !== null">
-        <button class="button button-block button-positive col col-50 col-offset-25 col-center" ng-click="save()">
+        <button class="button button-block button-positive col col-50 col-offset-25 col-center" ng-click="savePreferences()">
           Save Preferences
         </button>
       </ion-item>

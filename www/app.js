@@ -18,7 +18,8 @@ angular.module('starter', [
   'profile.controllers',
   'profile.directives',
   //'profile.services',
-  'settings.controllers',
+  'userProfile.controllers',
+  'preferences.controllers',
   //'preferences.services',
   'swipe.controllers',
   //'swipe.services',
@@ -29,11 +30,13 @@ angular.module('starter', [
   return function(input, start, end) {    
     start = parseInt(start);
     end = parseInt(end);
+    // console.log("range filter start ", start);
     var direction = (start <= end) ? 1 : -1;
     while (start != end) {
         input.push(start);
         start += direction;
     }
+    // console.log("range filter input ", input)
     return input;
   };
 })
@@ -116,7 +119,7 @@ angular.module('starter', [
     views: {
       'tab-preferences': {
         templateUrl: 'settings/userProfile/view.html',
-        controller: 'SettingsCtrl'
+        controller: 'UserProfileCtrl'
       }
     }
   })
@@ -127,7 +130,7 @@ angular.module('starter', [
       'tab-preferences': {
         //templateUrl: 'preferences/view.html',
         templateUrl: 'settings/preferences/view.html',
-        controller: 'SettingsCtrl'
+        controller: 'PreferencesCtrl'
       }
     }
   })

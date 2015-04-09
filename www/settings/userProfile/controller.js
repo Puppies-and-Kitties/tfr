@@ -1,6 +1,6 @@
-angular.module('settings.controllers', [])
+angular.module('userProfile.controllers', [])
 
-.controller('SettingsCtrl', function($scope, $state, User){
+.controller('UserProfileCtrl', function($scope, $state, User, ProfileFactory){
   $scope.fbId = User.id;
   $scope.username = User.first_name;
 
@@ -12,21 +12,17 @@ angular.module('settings.controllers', [])
       rent: 1000,
       zipCode: null
     },
-    gender: null,
+    gender: User.gender,
     age: null,
     keywords: ['','','','','']
   };
-  $scope.preferences = {
-    rent: 1000,
-    gender: null
-  };
+  
   // $scope.mockKeywords = {
   //   keywords: ['Reading', 'Night-Owl', 'Beer', 'Cooking', 'Hiking']
   // };
     
   
   ////////////////////////
-  $scope.firstChoice = null;
 
   $scope.toggleHost = function(status, input) {
     if(status === null) {
@@ -38,11 +34,13 @@ angular.module('settings.controllers', [])
   }
   ///////////////////////
 
-  $scope.save = function(){
+  $scope.saveProfile = function(){
     // Will need to call PreferencesFactory.update and do a PUT/POST request to
     // the server
+    ProfileFactory.initialize($scope.profile);
     console.log('preferences - ', $scope.preferences);
     console.log('profile - ', $scope.profile);
+    console.log('User- ', User)
   }
 
 
