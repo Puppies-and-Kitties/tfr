@@ -10,7 +10,7 @@ angular.module('profile.controllers', [])
     case 'matches':
       $scope.profile = MatchesFactory.get($stateParams.id);
       break;
-    default:
+    case 'user':
       $scope.profile = User.profile;
       break;
   }
@@ -20,9 +20,7 @@ angular.module('profile.controllers', [])
       $ionicHistory.goBack();
   };
 
-
   $scope.profile.type = $stateParams.type;
-
   $scope.profile.matched = true;
 
   //Need to tell the profile which sub-template - "edit my profile" 
