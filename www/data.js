@@ -158,7 +158,17 @@ angular.module('data', [])
 
 .factory('ProfileFactory', function(){
 
-  var profile = {};
+  var profile = {
+    myPlace: {
+      peopleCount: 2,
+      genders: null,
+      rent: 1000,
+      zipCode: null
+    },
+    gender: null,
+    age: null,
+    keywords: ['','','','','']
+  };
 
    //How best to remove the redundancy in lines 86-99 and lines 107-120?
   return {
@@ -180,8 +190,25 @@ angular.module('data', [])
 })
 
 .factory('PlaceFactory', function(){
-
-  var location = {};
+   
+  var location = { 
+    host: null,
+    myPlace: {
+      rent: 1000,
+      zipCode: null,
+      genders: null,
+      openRooms: null,
+      roomType: null,
+      occupants: 0,
+      zipCode: null
+    },
+    desiredPlace:{
+      rent: 1000,
+      zipCode: null,
+      radius: 2,
+      roomType: null,
+    }
+  };
 
   //How best to remove the redundancy in lines 86-99 and lines 107-120?
   return {
@@ -203,7 +230,11 @@ angular.module('data', [])
 
 .factory('RoommateFactory', function(){
 
-  var roommatePreferences = {};
+  var roommatePreferences = {
+    gender: null,
+    ageMin: null,
+    ageMax: null
+  };
 
   //How best to remove the redundancy in lines 86-99 and lines 107-120?
   return {

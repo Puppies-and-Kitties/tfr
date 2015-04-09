@@ -17,13 +17,13 @@ angular.module('profile.controllers', [])
       break;
     default:
       $scope.profile = User;
+      $scope.profile.location = PlaceFactory.all();
+      $scope.profile.people = RoommateFactory.all();
+      $scope.profile.userInfo = ProfileFactory.all();
       break;
   }
   
   // get stored location info
-  $scope.profile.location = PlaceFactory.all();
-  $scope.profile.people = RoommateFactory.all();
-  $scope.profile.userInfo = ProfileFactory.all();
 
   $scope.myGoBack = function() {
       $ionicHistory.goBack();

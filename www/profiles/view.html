@@ -126,7 +126,7 @@
 
         <li class="item"><!--<div class="card">-->
           <div class="profile-content">
-          <strong>A few words of description:</strong><br> {{profile.aboutMeWords}}
+          <strong>A few words of description:</strong><br> <div ng-repeat="keyword in profile.userInfo.keywords"> {{keyword}}</div>
           </div>
         </li><!-- </div> -->
       </div>

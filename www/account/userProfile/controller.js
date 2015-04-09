@@ -4,18 +4,7 @@ angular.module('userProfile.controllers', [])
   $scope.fbId = User.id;
   $scope.username = User.first_name;
 
-  $scope.profile = {
-    host: null,
-    myPlace: {
-      peopleCount: 2,
-      genders: null,
-      rent: 1000,
-      zipCode: null
-    },
-    gender: User.gender,
-    age: null,
-    keywords: ['','','','','']
-  };
+  $scope.profile = ProfileFactory.all();
   
   // $scope.mockKeywords = {
   //   keywords: ['Reading', 'Night-Owl', 'Beer', 'Cooking', 'Hiking']
@@ -38,9 +27,9 @@ angular.module('userProfile.controllers', [])
     // Will need to call PreferencesFactory.update and do a PUT/POST request to
     // the server
     ProfileFactory.initialize($scope.profile);
-    console.log('preferences - ', $scope.preferences);
+    $state.go('tab.account');
     console.log('profile - ', $scope.profile);
-    console.log('User- ', User)
+   
   }
 
 

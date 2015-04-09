@@ -6,11 +6,7 @@ angular.module('people.controllers', [])
 
   // $scope.profile = ProfileFactory.all();
   
-  $scope.people ={
-    gender: null,
-    ageMin: null,
-    ageMax: null
-  };
+  $scope.people = RoommateFactory.all();
 
   $scope.savePeople = function(){
     // Will need to call PreferencesFactory.update and do a PUT/POST request to

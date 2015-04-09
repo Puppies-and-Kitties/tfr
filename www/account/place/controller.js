@@ -5,27 +5,11 @@ angular.module('preferences.controllers', [])
   $scope.username = User.first_name;
 
   // $scope.profile = ProfileFactory.all();
+  $scope.notHost = {"checked": true}
   
-  $scope.location ={
-    host: null,
-    myPlace: {
-      rent: 1000,
-      zipCode: null,
-      genders: null,
-      openRooms: null,
-      roomType: null,
-      occupants: 0,
-      zipCode: null
-    },
-    desiredPlace:{
-      rent: 1000,
-      zipCode: null,
-      radius: 2,
-      roomType: null,
-    }
-  };
-  
-   $scope.toggleHost = function(status, input) {
+  $scope.location = PlaceFactory.all();
+
+  $scope.toggleHost = function(status, input) {
     if(status === null) {
       $scope.location.host = input;
     } else {
