@@ -22,7 +22,7 @@ angular.module('profile.directives', [])
     };
   })
   .directive('likeDislike', function() {
-    var bottomBox = '<div><button class="button-large button button-assertive icon-left ion-close" ng-click="pass(profile)">Skip</button><button class="button-large button button-positive icon-left ion-android-happy" ng-click="like(profile)">Like</button></div>';
+    var bottomBox = '<div><button class="button-large button button-assertive icon-left ion-close" ng-click="candidateSwipe(false)">Skip</button><button class="button-large button button-positive icon-left ion-android-happy" ng-click="candidateSwipe(true)">Like</button></div>';
     return {
       replace:true,
       template: bottomBox

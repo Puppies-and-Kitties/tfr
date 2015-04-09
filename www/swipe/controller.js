@@ -6,10 +6,19 @@ angular.module('swipe.controllers', [])
 
   $scope.currentCandidate = angular.copy($scope.candidates[0]);
 
+  $scope.$watch(
+    function () { 
+      return CandidatesFactory.getFirst();
+    }, 
+    function (firstCandidate) {
+      $scope.currentCandidate = firstCandidate;
+    }
+  );
+
   //I don't like all the side effects here...
   $scope.candidateSwipe =  function (match){
 
-    CandidatesFactory.removeFirst();
+    
 
     if (match) {
       $scope.currentCandidate.matched = true;
@@ -24,7 +33,8 @@ angular.module('swipe.controllers', [])
     $scope.currentCandidate.hide = true;
 
     $timeout(function(){
-      $scope.currentCandidate = angular.copy($scope.candidates[0]);
+      CandidatesFactory.removeFirst();
+      //$scope.currentCandidate = angular.copy($scope.candidates[0]);     
     }, 250);
 
   };

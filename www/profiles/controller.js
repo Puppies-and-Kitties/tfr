@@ -1,8 +1,12 @@
 angular.module('profile.controllers', [])
 
-.controller('ProfileCtrl', function($scope, $stateParams, $state, $ionicHistory, User, CandidatesFactory, MatchesFactory) {
+.controller('ProfileCtrl', function($scope, $stateParams, $state, $ionicHistory, User, CandidatesFactory, MatchesFactory, SkippedFactory) {
   $scope.User = User;
-  console.log($stateParams);
+
+  console.log(CandidatesFactory.all());
+  $scope.candidates = CandidatesFactory.all();
+  $scope.currentCandidate = angular.copy($scope.candidates[0]);
+
   switch($stateParams.type){
     case 'swipe':
       $scope.profile = CandidatesFactory.getFirst();
@@ -22,13 +26,9 @@ angular.module('profile.controllers', [])
   $scope.profile.type = $stateParams.type;
   $scope.profile.matched = true;
 
-  //Need to tell the profile which sub-template - "edit my profile" 
-  //"like or skip" "contact info" - to render within the profile
-
   $scope.candidateSwipe =  function (match){
-
-    CandidatesFactory.remove();   
-
+    console.log(match,'ALL',CandidatesFactory.all());
+    CandidatesFactory.removeFirst();   
     if (match) {
       //Once server is up, this will be a POST request to the server
       MatchesFactory.add($scope.currentCandidate);
@@ -36,7 +36,8 @@ angular.module('profile.controllers', [])
       //Perhaps we just need to do a PUT request to the server here?
       SkippedFactory.add($scope.currentCandidate);
     }
-
+    $scope.currentCandidate = angular.copy($scope.candidates[0]);
+    console.log('ALL',CandidatesFactory.all(),'FIRST',CandidatesFactory.getFirst());
     $state.go('tab.swipe');
 
   };
