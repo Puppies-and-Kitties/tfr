@@ -15,8 +15,7 @@ angular.module('profile.controllers', [])
       break;
   }
 
-
-  $scope.myGoBack = function() {
+  $scope.myGoBack = function()ye {
       $ionicHistory.goBack();
   };
 
