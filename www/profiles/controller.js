@@ -2,6 +2,7 @@ angular.module('profile.controllers', [])
 
 .controller('ProfileCtrl', function($scope, $stateParams, $state, $ionicHistory, User, CandidatesFactory, MatchesFactory, SkippedFactory) {
   $scope.User = User;
+  $scope.id = User.id;
 
   console.log(CandidatesFactory.all());
   $scope.candidates = CandidatesFactory.all();
@@ -15,9 +16,14 @@ angular.module('profile.controllers', [])
       $scope.profile = MatchesFactory.get($stateParams.id);
       break;
     default:
-      $scope.profile = User.profile;
+      $scope.profile = User;
       break;
   }
+  
+  // get stored location info
+  $scope.profile.location = PlaceFactory.all();
+  $scope.profile.people = RoommateFactory.all();
+  $scope.profile.userInfo = ProfileFactory.all();
 
   $scope.myGoBack = function() {
       $ionicHistory.goBack();

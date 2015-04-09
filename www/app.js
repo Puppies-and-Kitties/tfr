@@ -145,7 +145,15 @@ angular.module('starter', [
     }
   })
 
-
+  .state('tab.account-editProfile', {
+    url: '/account/profile/edit',
+    views: {
+      'tab-account': {
+        templateUrl: 'account/userProfile/view.html',
+        controller: 'UserProfileCtrl'
+      }
+    }
+  })
 
 
   // .state('tab.settings-profile', {

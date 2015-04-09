@@ -15,7 +15,7 @@ angular.module('profile.directives', [])
     };
   })
   .directive('userTopBox', function() {
-    var topBox = '<div><p id="h4">Your profile</p><p><i id="h4" class="icon ion-help"></p></div>';
+    var topBox = '<div><p id="h4">Your profile</p><p><i id="h4" class="icon ion-star"></p></div>';
     return {
       replace:true,
       template: topBox
@@ -36,7 +36,7 @@ angular.module('profile.directives', [])
     };
   })
   .directive('editProfile', function() {
-    var bottomBox = '<div><button class="button-large button button-positive icon-left ion-compose" href="#/tab/account">Edit</button></div>';
+    var bottomBox = '<div><a class="button-large button button-positive icon-left ion-compose" ng-href="#/tab/account/profile/edit">Edit</a></div>';
     return {
       replace:true,
       template: bottomBox
