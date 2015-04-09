@@ -2,7 +2,7 @@ angular.module('profile.controllers', [])
 
 .controller('ProfileCtrl', function($scope, $stateParams, $state, $ionicHistory, User, CandidatesFactory, MatchesFactory) {
   $scope.User = User;
-
+  console.log($stateParams);
   switch($stateParams.type){
     case 'swipe':
       $scope.profile = CandidatesFactory.getFirst();
@@ -10,15 +10,17 @@ angular.module('profile.controllers', [])
     case 'matches':
       $scope.profile = MatchesFactory.get($stateParams.id);
       break;
-    default:
+    case 'user':
       $scope.profile = User.profile;
       break;
   }
+
 
   $scope.myGoBack = function() {
       $ionicHistory.goBack();
   };
 
+  $scope.profile.type = $stateParams.type;
   $scope.profile.matched = true;
 
   //Need to tell the profile which sub-template - "edit my profile" 
@@ -39,7 +41,7 @@ angular.module('profile.controllers', [])
     $state.go('tab.swipe');
 
   };
-})
+});
 
 
 
