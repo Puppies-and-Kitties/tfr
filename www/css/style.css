@@ -2,8 +2,11 @@
 
 div .profile-content {
   text-align: center;
+}
 
-
+.profile-image {
+  max-width: 100%;
+  height: auto;
 }
 
 .match{
@@ -19,6 +22,7 @@ div .profile-content {
   font-weight: bold;
   color:#ffffff;
 }
+
 
 .swipe-page {
 
