@@ -30,8 +30,8 @@ div .profile-content {
   transform: scale(1);
   opacity: 1;
 
-  -webkit-transition:all cubic-bezier(0.420, 0.000, 1.000, 1.000) 0.1s;
-  transition:all cubic-bezier(0.420, 0.000, 1.000, 1.000) 0.1s;
+  -webkit-transition:all cubic-bezier(0.420, 0.000, 1.000, 1.000) 0.25s;
+  transition:all cubic-bezier(0.420, 0.000, 1.000, 1.000) 0.25s;
 }
 
 .swipe-page .current-candidate .item-image {
