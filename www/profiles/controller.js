@@ -10,7 +10,7 @@ angular.module('profile.controllers', [])
     case 'matches':
       $scope.profile = MatchesFactory.get($stateParams.id);
       break;
-    case 'user':
+    default:
       $scope.profile = User.profile;
       break;
   }
