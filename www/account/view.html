@@ -1,0 +1,27 @@
+<ion-view view-title="Account">
+  <ion-content>
+    <ion-list>
+    <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap">
+      <img ng-src="//graph.facebook.com/{{fbId}}/picture">
+      <h2>Welcome, {{username}}</h2>
+    </ion-item>
+    <ion-item class="account-buttons">
+      <a ng-href="#/tab/account/profile" class="button icon-right button-block ion-chevron-right button-outline button-dark">My Profile</a>
+    </ion-item>
+
+    <ion-item class="account-buttons">
+      <a ng-href="#/tab/account/place" class="button icon-right button-block ion-chevron-right button-outline button-dark">The Place</a>
+    </ion-item>
+
+    <ion-item class="account-buttons">
+      <a ng-href="" class="button icon-right button-block ion-chevron-right button-outline button-dark">The People</a>
+    </ion-item>
+
+    <ion-item>
+      <button class="button button-block button-assertive col col-50 col-offset-25 col-center" ng-click="fbLogout()">
+        Logout
+      </button>
+    </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

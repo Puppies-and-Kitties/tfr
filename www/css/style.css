@@ -97,5 +97,10 @@ div .profile-content {
   min-width: 100px;
   min-height: 43px;
   font-size: 18px;
-  line-height: 42px; }
+  line-height: 42px; 
+}
+
+/*.account-buttons {
+  text-align: center;
+}*/
 

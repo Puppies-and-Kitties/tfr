@@ -179,7 +179,7 @@ angular.module('data', [])
 
 })
 
-.factory('PreferencesFactory', function(){
+.factory('PlaceFactory', function(){
 
   var preferences = {};
 

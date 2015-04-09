@@ -1,0 +1,118 @@
+<ion-view view-title="Account-Place">
+  <ion-content>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap">
+        <img ng-src="//graph.facebook.com/{{fbId}}/picture">
+        <h2>Welcome, {{username}}</h2>
+      </ion-item>
+
+       <ion-form ng-model="location.host">
+         <ion-checkbox ng-if="location.host === true || location.host === null;" ng-click="toggleHost(location.host, true)">I already have a place, just need a roommate</ion-checkbox>
+         <ion-checkbox ng-if="!location.host" ng-click="toggleHost(location.host, false)">I have nothing!</ion-checkbox>
+       </ion-form>
+     
+      <ion-list ng-if="location.host !== null">
+         <!-- For location.host -->
+        <div ng-if="location.host">
+          <h2 ng-if="location.host">My Place</h2>
+          <ion-item>
+            <h2 ng-if="location.host"><strong>Rent: </strong></h2> {{location.myPlace.rent | currency}}
+            <div class="range">
+              <i class="ion-social-usd"></i>
+              <input ng-if="location.host" type="range" name="volume" ng-model="location.myPlace.rent" min="0" max="5000" step="10">
+            </div>
+          </ion-item>
+          <ion-item>
+            <div class="item item-input item-select">
+              <span class="input-label"><h2>Rooms Available</h2></span>
+              <select ng-model="location.myPlace.openRooms">
+                <option ng-repeat="n in [] | range:1:10"> {{n}} </option>
+              </select>
+            </div>
+            <div class="item item-input item-select">
+              <span class="input-label"><h2>Room Type</h2></span>
+              <select ng-model="location.myPlace.roomType">
+                <option><h2>Private</h2></option>
+                <option><h2>Shared</h2></option>
+              </select>
+            </div>
+          </ion-item>
+          <span class="input-label"><h4>Current Occupants</h4></span>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label"><h2>Number: {{location.myPlace.occupants}}</h2></span>
+            <div class="range">
+              <i class="ion-person-stalker"></i>
+              <input type="range" name="volume" ng-model="location.myPlace.occupants" min="0" max="10">
+            </div>
+            <div class="item item-input item-select">
+              <span class="input-label"><h2>Genders</h2></span>
+              <select ng-model="location.myPlace.genders">
+                <option><h2>Mixed</h2></option>
+                <option><h2>Male</h2></option>
+                <option><h2>Female</h2></option>
+              </select>
+            </div>
+          </label>
+        </div>
+            <!-- not location.host -->
+        <div ng-if="!location.host">
+          <h2 ng-if="!location.host">The Place I want</h2>
+          <ion-item>
+            <h2 ng-if="!location.host"><strong>Desired Rent: </strong></h2> {{location.desiredPlace.rent | currency}}
+            <div class="range">
+              <i class="ion-social-usd"></i>
+              <input ng-if="!location.host" type="range" name="volume" ng-model="location.desiredPlace.rent" min="0" max="5000" step="10">
+            </div>
+          </ion-item>
+        </div>
+
+
+        <label class="item item-input item-stacked-label">
+            <!-- location.host -->
+          <div ng-if="location.host">
+            <span class="input-label"><h2><strong>Zip Code:</strong></h2></span>
+            <input type="text" placeholder="Please enter your desired zip code" ng-model="location.myPlace.zipCode">
+          </div>
+          <!-- not location.host -->
+          <div ng-if="!location.host">
+            <span class="input-label"><h2><strong>Desired Zip Code:</strong></h2></span>
+            <input type="text" placeholder="Please enter your desired zip code" ng-model="location.desiredPlace.zipCode">
+          </div>
+        </label>
+
+        <ion-item ng-if="location.host === false">
+          <h2><strong>Search radius:</strong>  {{location.desiredPlace.radius}} miles</h2> <br>
+          <div class="range">
+            <i class="ion-earth"></i>
+            <input type="range" name="volume" ng-model="location.desiredPlace.radius" min="0" max="15" >
+          </div>
+        </ion-item>
+
+      </ion-list>
+
+     <!--  <ion-list ng-if="location.host !== null;">  
+        <h2><strong>The Roommate (s?)</strong></h2>
+        <label class="item item-input item-select">
+          <div class="input-label">
+            <h2><strong>Preferred Roommate Gender:</strong></h2>
+          </div>
+          <select ng-model="preferences.gender">
+            <option><h2>Either</h2></option>
+            <option><h2>Female</h2></option>
+            <option><h2>Male</h2></option>
+          </select>
+        </label>
+      </ion-list>
+ -->
+      <ion-item ng-if="location.host !== null">
+        <button class="button button-block button-positive col col-50 col-offset-25 col-center" ng-click="savePreferences()">
+          Save Preferences
+        </button>
+      </ion-item>
+
+      <ion-item>
+        <button class="button button-block button-assertive col col-50 col-offset-25 col-center" ng-click="fbLogout()">
+          Logout
+        </button>
+      </ion-item>
+  </ion-content>
+</ion-view>
