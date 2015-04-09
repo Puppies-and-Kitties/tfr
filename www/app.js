@@ -16,6 +16,7 @@ angular.module('starter', [
   'matches.controllers',
   //'matchProfile.controllers',
   'profile.controllers',
+  'profile.directives',
   //'profile.services',
   'preferences.controllers',
   //'preferences.services',
