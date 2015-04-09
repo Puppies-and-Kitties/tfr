@@ -22,7 +22,7 @@ angular.module('profile.directives', [])
     };
   })
   .directive('likeDislike', function() {
-    var bottomBox = '<div><button class="button-large button button-assertive icon-left ion-heart-broken" ng-click="pass(profile)">Pass</button><button class="button-large button button-positive icon-left ion-heart" ng-click="like(profile)">Like</button></div>';
+    var bottomBox = '<div><button class="button-large button button-assertive icon-left ion-close" ng-click="pass(profile)">Skip</button><button class="button-large button button-positive icon-left ion-android-happy" ng-click="like(profile)">Like</button></div>';
     return {
       replace:true,
       template: bottomBox
@@ -36,7 +36,7 @@ angular.module('profile.directives', [])
     };
   })
   .directive('editProfile', function() {
-    var bottomBox = '<div><button class="button-large button button-positive icon-left ion-compose" href="#/tab/account">Pass</button></div>';
+    var bottomBox = '<div><button class="button-large button button-positive icon-left ion-compose" href="#/tab/account">Edit</button></div>';
     return {
       replace:true,
       template: bottomBox

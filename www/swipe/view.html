@@ -19,14 +19,18 @@
       </div>
 
       <div class="item tabs tabs-secondary tabs-icon-left">
-        <a class="tab-item" ng-click="candidateSwipe(false)">
+        <div>
+          <button class="button-medium button button-assertive icon-left ion-close" ng-click="candidateSwipe(false)">Skip</button>
+          <button class="button-medium button button-positive icon-left icon ion-android-happy" ng-click="candidateSwipe(true)">Like</button>
+        </div>
+        <!-- <a class="tab-item" ng-click="candidateSwipe(false)">
           <i class="icon ion-close"></i>
           Skip
         </a>
         <a class="tab-item" ng-click="candidateSwipe(true)">
           <i class="icon ion-android-happy"></i>
-          Match
-        </a>
+          Like
+        </a> -->
       </div>
 
     </div>
