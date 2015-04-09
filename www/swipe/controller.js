@@ -25,7 +25,7 @@ angular.module('swipe.controllers', [])
 
     $timeout(function(){
       $scope.currentCandidate = angular.copy($scope.candidates[0]);
-    }, 300);
+    }, 250);
 
   };
 
