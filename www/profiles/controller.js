@@ -14,12 +14,15 @@ angular.module('profile.controllers', [])
       $scope.profile = User.profile;
       break;
   }
+<<<<<<< HEAD:www/profiles/controller.js
 
 
   $scope.myGoBack = function() {
       $ionicHistory.goBack();
   };
 
+=======
+>>>>>>> e1c8422e633585ad908ee393fbfb14be525a7b9d:www/profiles/profiles-controller.js
   $scope.profile.type = $stateParams.type;
   $scope.profile.matched = true;
 
