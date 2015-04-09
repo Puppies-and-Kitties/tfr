@@ -27,112 +27,14 @@ angular.module('data', [])
       return null;
     },
     add: function(match){
-      matches.push(match);
+      if(match.likeCurrentUser){
+        matches.push(match);
+      }
     }
   };
 
 })
 
-.factory('CandidatesFactory', function(){
-
-  //Dummy data for now, eventually will be initialized in tab state resolve
-  var candidates = [{
-      id: 0,
-      name: 'Ben Sparrow',
-      aboutMeWords: 'Dogs, Night-Owl, Meditator, Coffee',
-      face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png',
-      matched: false,
-      likeCurrentUser: true,
-      email: 'bensparrow@test.com',
-      preferences: {
-        radius: 7,
-        zipCode: 95991,
-        lookingForRoommateOnly: false,
-        rent: 250,
-        gender: 'either'
-      }
-    }, {
-      id: 1,
-      name: 'Max Lynx',
-      aboutMeWords: 'Fitness, football, work-from-home, house-plants',
-      face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460',
-      matched: false,
-      likeCurrentUser: true,
-      email: 'maxlynx@test.com',
-      preferences: {
-        radius: 7,
-        zipCode: 53011,
-        lookingForRoommateOnly: false,
-        rent: 400,
-        gender: 'male'
-      }
-    }, {
-      id: 2,
-      name: 'Andrew Jostlin',
-      aboutMeWords: 'Partyer, Christian, often-travelling, cats',
-      face: 'https://pbs.twimg.com/profile_images/491274378181488640/Tti0fFVJ.jpeg',
-      matched: false,
-      likeCurrentUser: true,
-      email: 'andrewjostlin@test.com',
-      preferences: {
-        radius: 7,
-        zipCode: 94720,
-        lookingForRoommateOnly: false,
-        rent: 700,
-        gender: 'either'
-      }
-    }, {
-      id: 3,
-      name: 'Adam Bradleyson',
-      aboutMeWords: 'Beer, barbeques, books, big-screen tv',
-      face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg',
-      matched: false,
-      likeCurrentUser: true,
-      email: 'adambradleyson@test.com',
-      preferences: {
-        radius: 7,
-        zipCode: 53017,
-        lookingForRoommateOnly: false,
-        rent: 1300,
-        gender: 'female'
-      }
-    }, {
-      id: 4,
-      name: 'Perry Governor',
-      aboutMeWords: 'Recycling, chef, works nights, Coffee',
-      face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg',
-      matched: false,
-      likeCurrentUser: true,
-      email: 'perrygovernor@test.com',
-      preferences: {
-        radius: 7,
-        zipCode: 94604,
-        lookingForRoommateOnly: false,
-        rent: 1000,
-        gender: 'male'
-      }
-    }];
-
-  //Possibly too much repetition/redundancy with MatchesFactory
-  return {
-    initialize: function(usersCandidates){
-      candidates = usersCandidates;
-    },
-    all: function() {
-     return candidates;
-    },
-    removeFirst: function() {
-      candidates.splice(0, 1);
-    },
-    getFirst: function() {
-      return candidates[0];
-    },
-    add: function(candidate){
-      candidates.push(candidate);
-    }
-  };
-
-})
 
 //Outstanding question: Should be just handle those 'skipped' ('disliked') on 
 //the backend?
@@ -250,6 +152,337 @@ angular.module('data', [])
     getProperty: function(property) {
       return roommatePreferences.property;
     },
+  };
+
+})
+
+
+
+.factory('CandidatesFactory', function(){
+
+  //Dummy data for now, eventually will be initialized in tab state resolve
+  var candidates = [{
+      id: 0,
+      name: 'Ben Sparrow',
+      aboutMeWords: 'Dogs, Night-Owl, Meditator, Coffee',
+      face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png',
+      matched: false,
+      likeCurrentUser: true,
+      email: 'bensparrow@test.com',
+      preferences: {
+        radius: 7,
+        zipCode: 95991,
+        lookingForRoommateOnly: false,
+        rent: 250,
+        gender: 'either'
+      }
+    }, {
+      id: 1,
+      name: 'Max Lynx',
+      aboutMeWords: 'Fitness, football, work-from-home, house-plants',
+      face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460',
+      matched: false,
+      likeCurrentUser: false,
+      email: 'maxlynx@test.com',
+      preferences: {
+        radius: 7,
+        zipCode: 53011,
+        lookingForRoommateOnly: false,
+        rent: 400,
+        gender: 'male'
+      }
+    }, {
+      id: 2,
+      name: 'Andrew Jostlin',
+      aboutMeWords: 'Partyer, Christian, often-travelling, cats',
+      face: 'https://pbs.twimg.com/profile_images/491274378181488640/Tti0fFVJ.jpeg',
+      matched: false,
+      likeCurrentUser: true,
+      email: 'andrewjostlin@test.com',
+      preferences: {
+        radius: 7,
+        zipCode: 94720,
+        lookingForRoommateOnly: false,
+        rent: 700,
+        gender: 'either'
+      }
+    }, {
+      id: 3,
+      name: 'Adam Bradleyson',
+      aboutMeWords: 'Beer, barbeques, books, big-screen tv',
+      face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg',
+      matched: false,
+      likeCurrentUser: true,
+      email: 'adambradleyson@test.com',
+      preferences: {
+        radius: 7,
+        zipCode: 53017,
+        lookingForRoommateOnly: false,
+        rent: 1300,
+        gender: 'female'
+      }
+    }, {
+      id: 4,
+      name: 'Perry Governor',
+      aboutMeWords: 'Recycling, chef, works nights, Coffee',
+      face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg',
+      matched: false,
+      likeCurrentUser: true,
+      email: 'perrygovernor@test.com',
+      preferences: {
+        radius: 7,
+        zipCode: 94604,
+        lookingForRoommateOnly: false,
+        rent: 1000,
+        gender: 'male'
+      }
+    },
+    {
+      id: 5,
+      name: 'Marshawn Lynch',
+      aboutMeWords: 'Beast Mode.',
+      face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png',
+      matched: false,
+      likeCurrentUser: true,
+      email: 'bensparrow@test.com',
+      preferences: {
+        radius: 7,
+        zipCode: 94123,
+        lookingForRoommateOnly: false,
+        rent: 400,
+        gender: 'either'
+      }
+    }, {
+      id: 6,
+      name: 'Tom Brady',
+      aboutMeWords: 'Fitness, football, Model-Wife, Model-Life',
+      face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460',
+      matched: false,
+      likeCurrentUser: true,
+      email: 'maxlynx@test.com',
+      preferences: {
+        radius: 7,
+        zipCode: 95992,
+        lookingForRoommateOnly: false,
+        rent: 400,
+        gender: 'male'
+      }
+    }, {
+      id: 7,
+      name: 'Aaron Rodgers',
+      aboutMeWords: 'Partyer, GOAT, Cal Bear',
+      face: 'https://pbs.twimg.com/profile_images/491274378181488640/Tti0fFVJ.jpeg',
+      matched: false,
+      likeCurrentUser: true,
+      email: 'andrewjostlin@test.com',
+      preferences: {
+        radius: 7,
+        zipCode: 94720,
+        lookingForRoommateOnly: false,
+        rent: 700,
+        gender: 'either'
+      }
+    }, {
+      id: 8,
+      name: 'Jimmy Dean',
+      aboutMeWords: 'Sausages and Breakfast Sandwiches',
+      face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg',
+      matched: false,
+      likeCurrentUser: false,
+      email: 'adambradleyson@test.com',
+      preferences: {
+        radius: 7,
+        zipCode: 94604,
+        lookingForRoommateOnly: false,
+        rent: 1300,
+        gender: 'female'
+      }
+    }, {
+      id: 9,
+      name: 'James Dean',
+      aboutMeWords: 'Too Young, Too Fast, Rebel, Eden',
+      face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg',
+      matched: false,
+      likeCurrentUser: true,
+      email: 'perrygovernor@test.com',
+      preferences: {
+        radius: 7,
+        zipCode: 94604,
+        lookingForRoommateOnly: false,
+        rent: 1000,
+        gender: 'male'
+      }
+    },
+{
+      id: 10,
+      name: 'Jeff Goldblum',
+      aboutMeWords: 'Independence Day',
+      face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png',
+      matched: false,
+      likeCurrentUser: true,
+      email: 'bensparrow@test.com',
+      preferences: {
+        radius: 7,
+        zipCode: 94123,
+        lookingForRoommateOnly: false,
+        rent: 250,
+        gender: 'either'
+      }
+    }, {
+      id: 11,
+      name: 'Demarco Murray',
+      aboutMeWords: 'Fitness, football, football, fitness',
+      face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460',
+      matched: false,
+      likeCurrentUser: true,
+      email: 'maxlynx@test.com',
+      preferences: {
+        radius: 7,
+        zipCode: 53011,
+        lookingForRoommateOnly: false,
+        rent: 400,
+        gender: 'male'
+      }
+    }, {
+      id: 12,
+      name: 'Mike Johnson',
+      aboutMeWords: 'Runner, Chiller',
+      face: 'https://pbs.twimg.com/profile_images/491274378181488640/Tti0fFVJ.jpeg',
+      matched: false,
+      likeCurrentUser: true,
+      email: 'andrewjostlin@test.com',
+      preferences: {
+        radius: 7,
+        zipCode: 94720,
+        lookingForRoommateOnly: false,
+        rent: 700,
+        gender: 'either'
+      }
+    }, {
+      id: 13,
+      name: 'Mike Jackson',
+      aboutMeWords: 'Dancer, Singer, Star, Legend',
+      face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg',
+      matched: false,
+      likeCurrentUser: true,
+      email: 'adambradleyson@test.com',
+      preferences: {
+        radius: 7,
+        zipCode: 53017,
+        lookingForRoommateOnly: false,
+        rent: 1300,
+        gender: 'female'
+      }
+    }, {
+      id: 14,
+      name: 'Reginald Cumberbatch',
+      aboutMeWords: 'Reginald Cumberbatch',
+      face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg',
+      matched: false,
+      likeCurrentUser: true,
+      email: 'perrygovernor@test.com',
+      preferences: {
+        radius: 7,
+        zipCode: 94604,
+        lookingForRoommateOnly: false,
+        rent: 1000,
+        gender: 'male'
+      }
+    },
+    {
+      id: 15,
+      name: 'Wellington Jones',
+      aboutMeWords: 'Crumpets, Tea, Beef Wellington',
+      face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png',
+      matched: false,
+      likeCurrentUser: true,
+      email: 'bensparrow@test.com',
+      preferences: {
+        radius: 7,
+        zipCode: 95991,
+        lookingForRoommateOnly: false,
+        rent: 250,
+        gender: 'either'
+      }
+    }, {
+      id: 16,
+      name: 'Sterling Bates',
+      aboutMeWords: 'Spy Movies, Gadgets, Bein Brash',
+      face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460',
+      matched: false,
+      likeCurrentUser: true,
+      email: 'maxlynx@test.com',
+      preferences: {
+        radius: 7,
+        zipCode: 53011,
+        lookingForRoommateOnly: false,
+        rent: 400,
+        gender: 'male'
+      }
+    }, {
+      id: 17,
+      name: 'Ricky Pick',
+      aboutMeWords: 'Animal-Lover, Farmer',
+      face: 'https://pbs.twimg.com/profile_images/491274378181488640/Tti0fFVJ.jpeg',
+      matched: false,
+      likeCurrentUser: true,
+      email: 'andrewjostlin@test.com',
+      preferences: {
+        radius: 7,
+        zipCode: 94720,
+        lookingForRoommateOnly: false,
+        rent: 700,
+        gender: 'either'
+      }
+    }, {
+      id: 18,
+      name: 'Grant Solomon',
+      aboutMeWords: 'Messiah Complex',
+      face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg',
+      matched: false,
+      likeCurrentUser: true,
+      email: 'adambradleyson@test.com',
+      preferences: {
+        radius: 7,
+        zipCode: 53017,
+        lookingForRoommateOnly: false,
+        rent: 1300,
+        gender: 'female'
+      }
+    }, {
+      id: 19,
+      name: 'Dean Ford',
+      aboutMeWords: 'Cars, Money',
+      face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg',
+      matched: false,
+      likeCurrentUser: true,
+      email: 'perrygovernor@test.com',
+      preferences: {
+        radius: 7,
+        zipCode: 94604,
+        lookingForRoommateOnly: false,
+        rent: 1000,
+        gender: 'male'
+      }
+    }];
+
+  //Possibly too much repetition/redundancy with MatchesFactory
+  return {
+    initialize: function(usersCandidates){
+      candidates = usersCandidates;
+    },
+    all: function() {
+     return candidates;
+    },
+    removeFirst: function() {
+      candidates.splice(0, 1);
+    },
+    getFirst: function() {
+      return candidates[0];
+    },
+    add: function(candidate){
+      candidates.push(candidate);
+    }
   };
 
 })
