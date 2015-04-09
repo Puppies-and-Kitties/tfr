@@ -38,8 +38,7 @@ angular.module('preferences.controllers', [])
     // Will need to call PreferencesFactory.update and do a PUT/POST request to
     // the server
     console.log('location - ', $scope.location);
-   
-    
+    PlaceFactory.intialize($scope.location);
   }
 
 

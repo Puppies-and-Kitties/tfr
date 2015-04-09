@@ -20,6 +20,7 @@ angular.module('starter', [
   //'profile.services',
   'userProfile.controllers',
   'preferences.controllers',
+  'people.controllers',
   //'preferences.services',
   'swipe.controllers',
   //'swipe.services',
@@ -138,8 +139,8 @@ angular.module('starter', [
     url: '/account/people',
     views: {
       'tab-account': {
-        templateUrl: '',
-        controller: ''
+        templateUrl: 'account/people/view.html',
+        controller: 'PeopleCtrl'
       }
     }
   })

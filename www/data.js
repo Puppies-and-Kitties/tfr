@@ -181,22 +181,44 @@ angular.module('data', [])
 
 .factory('PlaceFactory', function(){
 
-  var preferences = {};
+  var location = {};
 
   //How best to remove the redundancy in lines 86-99 and lines 107-120?
   return {
-    initialize: function(userPreferences){
-      preferences = userPreferences;
+    initialize: function(userLocation){
+      location = userLocation;
     },
     all: function() {
-     return preferences;
+     return location;
     },
     update: function(property,newValue) {
-      preferences.property = newValue;
+      location.property = newValue;
     },
     getProperty: function(property) {
-      return preferences.property;
+      return location.property;
     },
   };
 
-});
+})
+
+.factory('RoommateFactory', function(){
+
+  var roommatePreferences = {};
+
+  //How best to remove the redundancy in lines 86-99 and lines 107-120?
+  return {
+    initialize: function(preference){
+      roommatePreferences = preference;
+    },
+    all: function() {
+     return roommatePreferences;
+    },
+    update: function(property,newValue) {
+      roommatePreferences.property = newValue;
+    },
+    getProperty: function(property) {
+      return roommatePreferences.property;
+    },
+  };
+
+})
