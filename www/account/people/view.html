@@ -1,0 +1,38 @@
+<ion-view view-title="Account-People" >
+
+  <ion-content>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap">
+        <img ng-src="//graph.facebook.com/{{fbId}}/picture">
+        <h2>{{username}}</h2>
+      </ion-item>
+     
+      <ion-list>
+      <h2><strong>Who Do You Want to Live With?</strong></h2>
+        <ion-item>
+          <div class="item item-input item-select">
+            <span class="input-label"><h2>Gender</h2></span>
+            <select ng-model="people.gender">
+              <option><h2>Either/Both</h2></option>
+              <option><h2>Male</h2></option>
+              <option><h2>Female</h2></option>
+            </select>
+          </div>
+          <div class="list list-inset">
+          <h2>Age Range</h2>
+            <label class="item item-input">
+              <input type="number" ng-model="people.ageMin" min="18" max="100" placeholder="Minimum Age">
+            </label>
+            <label class="item item-input">
+              <input type="number" ng-model="people.ageMax" min="18" max="100" placeholder="Maximum Age">
+            </label>
+          </div>
+        </ion-item>
+      
+      <ion-item>
+        <button class="button button-block button-positive col col-50 col-offset-25 col-center" ng-click="savePeople()">
+          Save People Preferences
+        </button>
+      </ion-item>
+      
+  </ion-content>
+</ion-view>

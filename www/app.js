@@ -20,6 +20,7 @@ angular.module('starter', [
   //'profile.services',
   'userProfile.controllers',
   'preferences.controllers',
+  'people.controllers',
   //'preferences.services',
   'swipe.controllers',
   //'swipe.services',
@@ -108,32 +109,73 @@ angular.module('starter', [
     url: '/account',
     views: {
       'tab-account': {
-        templateUrl: 'templates/tab-account.html',
+        templateUrl: 'account/view.html',
         controller: 'AccountCtrl'
       }
     }
   })
 
-  .state('tab.settings-profile', {
-    url: '/settings/userProfile',
+  .state('tab.account-profile', {
+    url: '/account/profile',
     views: {
-      'tab-preferences': {
-        templateUrl: 'settings/userProfile/view.html',
+      'tab-account': {
+        templateUrl: 'profiles/view.html',
+        controller: 'ProfileCtrl'
+      }
+    }
+  })
+
+  .state('tab.account-place', {
+    url: '/account/place',
+    views: {
+      'tab-account': {
+        templateUrl: 'account/place/view.html',
+        controller: 'PlaceCtrl'
+      }
+    }
+  })
+
+  .state('tab.account-people', {
+    url: '/account/people',
+    views: {
+      'tab-account': {
+        templateUrl: 'account/people/view.html',
+        controller: 'PeopleCtrl'
+      }
+    }
+  })
+
+  .state('tab.account-editProfile', {
+    url: '/account/profile/edit',
+    views: {
+      'tab-account': {
+        templateUrl: 'account/userProfile/view.html',
         controller: 'UserProfileCtrl'
       }
     }
   })
 
-  .state('tab.settings-preferences', {
-    url: '/settings/preferences',
-    views: {
-      'tab-preferences': {
-        //templateUrl: 'preferences/view.html',
-        templateUrl: 'settings/preferences/view.html',
-        controller: 'PreferencesCtrl'
-      }
-    }
-  })
+
+  // .state('tab.settings-profile', {
+  //   url: '/settings/userProfile',
+  //   views: {
+  //     'tab-preferences': {
+  //       templateUrl: 'settings/userProfile/view.html',
+  //       controller: 'UserProfileCtrl'
+  //     }
+  //   }
+  // })
+
+  // .state('tab.settings-preferences', {
+  //   url: '/settings/preferences',
+  //   views: {
+  //     'tab-preferences': {
+  //       //templateUrl: 'preferences/view.html',
+  //       templateUrl: 'settings/preferences/view.html',
+  //       controller: 'PreferencesCtrl'
+  //     }
+  //   }
+  // })
 
   // all matches state view
   .state('tab.matches', {
