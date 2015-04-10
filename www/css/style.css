@@ -122,11 +122,10 @@ div .profile-content {
 #panel {
   position: absolute;
   top: 5px;
-  left: 50%;
+  left: 57%;
   margin-left: -180px;
   border-radius: 10px;
   z-index: 5;
-  /*background-color: #fff;*/
   background-color: black;
   padding: 7px;
 }
