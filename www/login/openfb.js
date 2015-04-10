@@ -35,8 +35,8 @@ var openFB = (function () {
         // Used in the exit event handler to identify if the login has already been processed elsewhere (in the oauthCallback function)
         loginProcessed;
 
-    console.log(oauthRedirectURL);
-    console.log(logoutRedirectURL);
+    // console.log(oauthRedirectURL);
+    // console.log(logoutRedirectURL);
 
     document.addEventListener("deviceready", function () {
         runningInCordova = true;

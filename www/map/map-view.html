@@ -1,0 +1,11 @@
+<ion-view view-title="Map">
+  <ion-content>
+    <div class="item item-input-inset" id="panel">
+      <label class="item-input-wrapper">
+        <input ng-model="input.address" type="text" placeholder="Where to look">
+      </label>
+      <button ng-click="codeIt()" class="button button-small button-positive">Search</button>
+    </div>
+    <div id="map" data-tap-disabled="true"></div>
+  </ion-content>
+</ion-view>

@@ -110,3 +110,24 @@ div .profile-content {
   text-align: center;
 }*/
 
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+.scroll {
+  height: 100%;
+}
+
+#panel {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  margin-left: -180px;
+  border-radius: 10px;
+  z-index: 5;
+  /*background-color: #fff;*/
+  background-color: black;
+  padding: 7px;
+}
+
