@@ -1,42 +1,24 @@
 angular.module('map.controllers', [])
 
-// .controller('MapCtrl', function($scope){
-//   var geocoder;
-//   var map;
-//   function initialize() {
-//     geocoder = new google.maps.Geocoder();
-//     var latlng = new google.maps.LatLng(-34.397, 150.644);
-//     var mapOptions = {
-//       zoom: 8,
-//       center: latlng
-//     }
-//     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-//   }
-
-//   function codeAddress() {
-//     var address = document.getElementById('address').value;
-//     geocoder.geocode( { 'address': address}, function(results, status) {
-//       if (status == google.maps.GeocoderStatus.OK) {
-//         map.setCenter(results[0].geometry.location);
-//         var marker = new google.maps.Marker({
-//             map: map,
-//             position: results[0].geometry.location
-//         });
-//       } else {
-//         alert('Geocode was not successful for the following reason: ' + status);
-//       }
-//     });
-//   }
-
-//   google.maps.event.addDomListener(window, 'load', initialize);
-// })
-
 .controller('MapCtrl', function($scope, $ionicLoading){
   var map, marker, markersArray = [];
+
+  $scope.searchLocation = {
+    latitude: null,
+    longitude: null
+  }
 
   $scope.input = {
     address: null
   };
+
+  $scope.saveLocation = function(){
+    var lastIndex = markersArray.length -1
+
+    $scope.searchLocation.latitude = markersArray[lastIndex].position.k
+    $scope.searchLocation.longitude = markersArray[lastIndex].position.D
+    console.log('Search Epicenter - ', $scope.searchLocation);
+  }
 
   $scope.initialize = function() {
     var myLatlng = new google.maps.LatLng(37.3000, -120.4833);
@@ -49,9 +31,21 @@ angular.module('map.controllers', [])
 
     map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
+    // Put Google all over Australia
+    map.data.loadGeoJson('https://storage.googleapis.com/maps-devrel/google.json');
+    map.data.setStyle({fillColor: 'purple', strokeColor: 'yellow'})
+
     google.maps.event.addListener(map, "click", function(event){
       // place a marker
       placeMarker(event.latLng);
+
+      // event.latLng.k --> latitude
+      $scope.searchLocation.latitude = event.latLng.k
+      console.log('latitude - ', event.latLng.k);
+      // event.latLng.D --> longitude
+      $scope.searchLocation.longitude = event.latLng.D
+      console.log('longitude - ', event.latLng.D);
+
     });
 
     // Set the maps center to user's current position
