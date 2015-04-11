@@ -1,6 +1,6 @@
 angular.module('map.controllers', [])
 
-.controller('MapCtrl', function($scope, $ionicLoading){
+.controller('MapCtrl', function($scope, $ionicLoading, MapFactory){
   var map, marker, markersArray = [];
 
   $scope.searchLocation = {
@@ -21,10 +21,10 @@ angular.module('map.controllers', [])
   }
 
   $scope.initialize = function() {
-    var myLatlng = new google.maps.LatLng(37.3000, -120.4833);
+    // var myLatlng = new google.maps.LatLng(55.3000, -120.4833);
 
     var mapOptions = {
-        center: myLatlng,
+        // center: myLatlng,
         zoom: 13,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };

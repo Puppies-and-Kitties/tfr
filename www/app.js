@@ -25,7 +25,8 @@ angular.module('starter', [
   'swipe.controllers',
   //'swipe.services',
   'data',
-  'map.controllers'
+  'map.controllers',
+  'map.services'
   ])
 
 .filter('range', function() {
