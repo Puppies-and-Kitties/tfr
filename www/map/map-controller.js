@@ -10,7 +10,8 @@ angular.module('map.controllers', [])
 
   $scope.input = {
     address: null,
-    radius: 1
+    radius: 1,
+    toggleRadius: true
   };
 
   $scope.saveLocation = function(){
@@ -49,6 +50,7 @@ angular.module('map.controllers', [])
     google.maps.event.addListener(map, "click", function(event){
       // place a marker
       placeMarker(event.latLng);
+      placeCircle(event.latLng);
 
       // event.latLng.k --> latitude
       $scope.searchLocation.latitude = event.latLng.k
@@ -77,17 +79,46 @@ angular.module('map.controllers', [])
         console.log('OK Status - ', results);
         map.setCenter(results[0].geometry.location);
         placeMarker(results[0].geometry.location);
+        placeCircle(results[0].geometry.location);
       } 
       else {
         alert('Geocode was not successful for the following reason: ' + status);
       }
     });
+  };
 
+  $scope.placeCircle = function(){
+    deleteCircle();
+    placeCircle();
+  };
+
+  $scope.toggleRadius = function(){
+    if($scope.input.toggleRadius){
+      deleteCircle();
+      placeCircle();
+    }
+    else {
+      deleteCircle();
+    }
   }
 
+  var placeCircle = function(){
+    if($scope.input.toggleRadius){
+      circle = new google.maps.Circle({
+        map: map,
+        radius: 1693 * $scope.input.radius,    // 10 miles in metres
+        fillColor: 'blue',
+        strokeColor: 'gold'
+      });
+      circle.bindTo('center', marker, 'position');
+      
+      circlesArray.push(circle);
+    }
+  }
 
   var placeMarker = function(location) {
     // first remove all markers if there are any
+    console.log('toggle - ', $scope.input.toggleRadius)
     deleteOverlays();
     deleteCircle();
 
@@ -95,17 +126,8 @@ angular.module('map.controllers', [])
         position: location, 
         map: map
     });
-
-    circle = new google.maps.Circle({
-      map: map,
-      radius: 1693 * $scope.input.radius,    // 10 miles in metres
-      fillColor: 'blue',
-      strokeColor: 'gold'
-    });
-    circle.bindTo('center', marker, 'position');
     // add marker in markers array
     markersArray.push(marker);
-    circlesArray.push(circle);
   }
 
   // Deletes all markers in the array by removing references to them
@@ -126,14 +148,8 @@ angular.module('map.controllers', [])
       circlesArray.length = 0;
     }
   }
-
   google.maps.event.addDomListener(window, 'load', $scope.initialize());
 })
-
-
-
-
-
 
 
 
