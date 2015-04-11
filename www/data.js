@@ -53,7 +53,10 @@ angular.module('data', [])
     },
     add: function(skip){
       skipped.push(skip);
-    }
+    },
+    getFirst: function() {
+      return skipped[0];
+    } 
   };
 
 })
