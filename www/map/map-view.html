@@ -9,6 +9,14 @@
     <div id="map" data-tap-disabled="true"></div>
 
     <ion-item>
+      <h2><strong>Search radius:</strong>  {{input.radius}} miles</h2> <br>
+      <div class="range">
+        <i class="ion-earth"></i>
+        <input type="range" ng-model="input.radius" min="0" max="15" step="0.1">
+      </div>
+    </ion-item>
+
+    <ion-item>
       <button ng-click="saveLocation()" class="button button-block button-positive col col-50 col-offset-25 col-center">
         Save Search Location
       </button>

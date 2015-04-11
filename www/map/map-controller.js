@@ -1,7 +1,7 @@
 angular.module('map.controllers', [])
 
 .controller('MapCtrl', function($scope, $ionicLoading, MapFactory){
-  var map, marker, markersArray = [];
+  var map, marker, circle, markersArray = [], circlesArray = [];
 
   $scope.searchLocation = {
     latitude: null,
@@ -9,7 +9,8 @@ angular.module('map.controllers', [])
   }
 
   $scope.input = {
-    address: null
+    address: null,
+    radius: 1
   };
 
   $scope.saveLocation = function(){
@@ -18,6 +19,16 @@ angular.module('map.controllers', [])
     $scope.searchLocation.latitude = markersArray[lastIndex].position.k
     $scope.searchLocation.longitude = markersArray[lastIndex].position.D
     console.log('Search Epicenter - ', $scope.searchLocation);
+
+    deleteCircle();
+    circle = new google.maps.Circle({
+      map: map,
+      radius: 1693 * $scope.input.radius,    // 10 miles in metres
+      fillColor: 'blue',
+      strokeColor: 'gold'
+    });
+    circle.bindTo('center', marker, 'position');
+    circlesArray.push(circle);
   }
 
   $scope.initialize = function() {
@@ -74,26 +85,45 @@ angular.module('map.controllers', [])
 
   }
 
+
   var placeMarker = function(location) {
     // first remove all markers if there are any
     deleteOverlays();
+    deleteCircle();
 
-    var marker = new google.maps.Marker({
+    marker = new google.maps.Marker({
         position: location, 
         map: map
     });
 
+    circle = new google.maps.Circle({
+      map: map,
+      radius: 1693 * $scope.input.radius,    // 10 miles in metres
+      fillColor: 'blue',
+      strokeColor: 'gold'
+    });
+    circle.bindTo('center', marker, 'position');
     // add marker in markers array
     markersArray.push(marker);
+    circlesArray.push(circle);
   }
 
   // Deletes all markers in the array by removing references to them
   var deleteOverlays = function() {
-    if (markersArray) {
-        for (i in markersArray) {
-            markersArray[i].setMap(null);
+    if(markersArray) {
+        for(i in markersArray) {
+          markersArray[i].setMap(null);
         }
     markersArray.length = 0;
+    }
+  }
+
+  var deleteCircle = function(){
+    if(circlesArray){
+      for(i in circlesArray){
+        circlesArray[i].setMap(null);
+      }
+      circlesArray.length = 0;
     }
   }
 
