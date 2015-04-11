@@ -1,35 +1,24 @@
 angular.module('map.controllers', [])
 
-.controller('MapCtrl', function($scope, $ionicLoading, MapFactory){
+.controller('MapCtrl', function($scope, $ionicLoading, MapFactory, PlaceFactory){
   var map, marker, circle, markersArray = [], circlesArray = [];
 
-  $scope.searchLocation = {
-    latitude: null,
-    longitude: null
-  }
+  $scope.searchLocation = PlaceFactory.all();
 
   $scope.input = {
     address: null,
     radius: 1,
     toggleRadius: true
   };
-
   $scope.saveLocation = function(){
     var lastIndex = markersArray.length -1
 
-    $scope.searchLocation.latitude = markersArray[lastIndex].position.k
-    $scope.searchLocation.longitude = markersArray[lastIndex].position.D
-    console.log('Search Epicenter - ', $scope.searchLocation);
+    $scope.searchLocation.desiredPlace.latitude = markersArray[lastIndex].position.k
+    $scope.searchLocation.desiredPlace.longitude = markersArray[lastIndex].position.D
+    $scope.searchLocation.desiredPlace.radius = $scope.input.radius;
+    PlaceFactory.initialize($scope.searchLocation);
+    console.log('User Location Object ', $scope.searchLocation);
 
-    deleteCircle();
-    circle = new google.maps.Circle({
-      map: map,
-      radius: 1693 * $scope.input.radius,    // 10 miles in metres
-      fillColor: 'blue',
-      strokeColor: 'gold'
-    });
-    circle.bindTo('center', marker, 'position');
-    circlesArray.push(circle);
   }
 
   $scope.initialize = function() {
