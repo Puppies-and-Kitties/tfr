@@ -1,6 +1,6 @@
 angular.module('map.controllers', [])
 
-.controller('MapCtrl', function($scope, $ionicLoading, MapFactory, PlaceFactory){
+.controller('MapCtrl', function($scope, $ionicLoading, PlaceFactory){
   var map, marker, circle, markersArray = [], circlesArray = [];
 
   $scope.searchLocation = PlaceFactory.all();
@@ -15,56 +15,46 @@ angular.module('map.controllers', [])
 
     $scope.searchLocation.desiredPlace.latitude = markersArray[lastIndex].position.k
     $scope.searchLocation.desiredPlace.longitude = markersArray[lastIndex].position.D
-    $scope.searchLocation.desiredPlace.radius = $scope.input.radius;
-    PlaceFactory.initialize($scope.searchLocation);
+    $scope.searchLocation.desiredPlace.radius = parseFloat($scope.input.radius);
     console.log('User Location Object ', $scope.searchLocation);
 
+    PlaceFactory.initialize($scope.searchLocation);
   }
 
   $scope.initialize = function() {
-    // var myLatlng = new google.maps.LatLng(55.3000, -120.4833);
+    var myLatlng = new google.maps.LatLng(37.867044, -122.250559);
 
     var mapOptions = {
-        // center: myLatlng,
+        center: myLatlng,
         zoom: 13,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
     map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
-    // Put Google all over Australia
-    map.data.loadGeoJson('https://storage.googleapis.com/maps-devrel/google.json');
-    map.data.setStyle({fillColor: 'purple', strokeColor: 'yellow'})
-
     google.maps.event.addListener(map, "click", function(event){
       // place a marker
       placeMarker(event.latLng);
       placeCircle(event.latLng);
 
-      // event.latLng.k --> latitude
-      $scope.searchLocation.latitude = event.latLng.k
-      console.log('latitude - ', event.latLng.k);
-      // event.latLng.D --> longitude
-      $scope.searchLocation.longitude = event.latLng.D
-      console.log('longitude - ', event.latLng.D);
+      $scope.searchLocation.desiredPlace.latitude = event.latLng.k
+      $scope.searchLocation.desiredPlace.longitude = event.latLng.D
 
     });
 
     // Set the maps center to user's current position
-    navigator.geolocation.getCurrentPosition(function(pos) {
-        map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-    });
+    // navigator.geolocation.getCurrentPosition(function(pos) {
+    //     map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+    // });
 
-    $scope.map = map;
   };
 
   $scope.codeIt = function(){
     var geocoder = new google.maps.Geocoder();
-
     var address = $scope.input.address;
 
     geocoder.geocode( { 'address': address}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
+      if (status === google.maps.GeocoderStatus.OK) {
         console.log('OK Status - ', results);
         map.setCenter(results[0].geometry.location);
         placeMarker(results[0].geometry.location);
@@ -95,7 +85,7 @@ angular.module('map.controllers', [])
     if($scope.input.toggleRadius){
       circle = new google.maps.Circle({
         map: map,
-        radius: 1693 * $scope.input.radius,    // 10 miles in metres
+        radius: 1693 * $scope.input.radius,
         fillColor: 'blue',
         strokeColor: 'gold'
       });
@@ -107,7 +97,6 @@ angular.module('map.controllers', [])
 
   var placeMarker = function(location) {
     // first remove all markers if there are any
-    console.log('toggle - ', $scope.input.toggleRadius)
     deleteOverlays();
     deleteCircle();
 
@@ -129,6 +118,7 @@ angular.module('map.controllers', [])
     }
   }
 
+  // Deletes all circles in the array by removing references to them
   var deleteCircle = function(){
     if(circlesArray){
       for(i in circlesArray){
@@ -137,6 +127,7 @@ angular.module('map.controllers', [])
       circlesArray.length = 0;
     }
   }
+
   google.maps.event.addDomListener(window, 'load', $scope.initialize());
 })
 
