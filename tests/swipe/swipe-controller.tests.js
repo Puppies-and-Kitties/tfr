@@ -5,14 +5,19 @@ describe('controllers: swipe', function() {
   //load controller's module and other necessary modules
   beforeEach(module('swipe.controllers','data','ui.router'));
 
-  beforeEach(inject(function($rootScope, $controller,$injector/*, _User_*/) {
+  beforeEach(inject(function($rootScope, $controller,$injector) {
     scope = $rootScope.$new();
     controller = $controller('SwipeController', { $scope: scope});
     CandidatesFactory = $injector.get('CandidatesFactory');
     MatchesFactory = $injector.get('MatchesFactory');
     SkippedFactory = $injector.get('SkippedFactory');
-    //User = _User_;
   }));
+
+  afterEach(function(){
+    CandidatesFactory.initialize([]);
+    MatchesFactory.initialize([]);
+    SkippedFactory.initialize([]);
+  });
 
   //tests start here
   describe('SwipeController', function() {
