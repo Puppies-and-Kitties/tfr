@@ -10,7 +10,7 @@ angular.module('data', [])
   //Possibly too much repetition/redundancy with CandidatesFactory
   return {
     initialize: function(usersMatches){
-      var matches = usersMatches;
+      matches = usersMatches;
     },
     all: function() {
      return matches;
@@ -49,17 +49,24 @@ angular.module('data', [])
       skipped = usersSkipped;
     },
     all: function() {
-     return skipped;
+      return skipped;
     },
     add: function(skip){
       skipped.push(skip);
-    }
+    },
+    getFirst: function() {
+      return skipped[0];
+    } 
   };
 
 })
 
 .factory('ProfileFactory', function(){
 
+  //???Should we make myPlace a separate object accessed through a separate factory?
+  //???Or should we make myPlace properties direct properties of profile?
+  //???Current approach means we have to update the whole object to update any myPlace property?
+  //???But maybe we would only ever update all properties at once?
   var profile = {
     myPlace: {
       peopleCount: 2,
@@ -72,27 +79,28 @@ angular.module('data', [])
     keywords: ['','','','','']
   };
 
-   //How best to remove the redundancy in lines 86-99 and lines 107-120?
+   //???How best to remove the redundancy in lines 86-99 and lines 107-120?
   return {
     initialize: function(usersProfile){
+      //console.log("!",usersProfile);
       profile = usersProfile;
     },
     all: function() {
-      console.log("in all ")
       return profile;
     },
     update: function(property,newValue) {
-      profile.property = newValue;
+      profile[property] = newValue;
     },
     getProperty: function(property) {
-      return profile.property;
+      return profile[property];
     },
   };
 
 })
 
 .factory('PlaceFactory', function(){
-   
+  
+  //???What is the difference between myplace here and myplace in profile factory?
   var location = { 
     host: null,
     myPlace: {
@@ -102,7 +110,7 @@ angular.module('data', [])
       openRooms: null,
       roomType: null,
       occupants: 0,
-      zipCode: null
+      //zipCode: null
     },
     desiredPlace:{
       rent: 1000,
@@ -121,10 +129,10 @@ angular.module('data', [])
      return location;
     },
     update: function(property,newValue) {
-      location.property = newValue;
+      location[property] = newValue;
     },
     getProperty: function(property) {
-      return location.property;
+      return location[property];
     },
   };
 
@@ -144,13 +152,13 @@ angular.module('data', [])
       roommatePreferences = preference;
     },
     all: function() {
-     return roommatePreferences;
+      return roommatePreferences;
     },
     update: function(property,newValue) {
-      roommatePreferences.property = newValue;
+      roommatePreferences[property] = newValue;
     },
     getProperty: function(property) {
-      return roommatePreferences.property;
+      return roommatePreferences[property];
     },
   };
 

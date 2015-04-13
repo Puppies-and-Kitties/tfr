@@ -33,6 +33,7 @@ angular.module('swipe.controllers', [])
     $scope.currentCandidate.hide = true;
 
     $timeout(function(){
+      console.log("!!!!");
       CandidatesFactory.removeFirst();
       //$scope.currentCandidate = angular.copy($scope.candidates[0]);     
     }, 250);
