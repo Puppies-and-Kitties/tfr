@@ -13,6 +13,7 @@ resources/
 node_modules/
 platforms/
 plugins/
+hooks/
 
 ### node etc ###
 

@@ -24,7 +24,9 @@ angular.module('starter', [
   //'preferences.services',
   'swipe.controllers',
   //'swipe.services',
-  'data'
+  'data',
+  'map.controllers',
+  'map.services'
   ])
 
 .filter('range', function() {
@@ -155,27 +157,15 @@ angular.module('starter', [
     }
   })
 
-
-  // .state('tab.settings-profile', {
-  //   url: '/settings/userProfile',
-  //   views: {
-  //     'tab-preferences': {
-  //       templateUrl: 'settings/userProfile/view.html',
-  //       controller: 'UserProfileCtrl'
-  //     }
-  //   }
-  // })
-
-  // .state('tab.settings-preferences', {
-  //   url: '/settings/preferences',
-  //   views: {
-  //     'tab-preferences': {
-  //       //templateUrl: 'preferences/view.html',
-  //       templateUrl: 'settings/preferences/view.html',
-  //       controller: 'PreferencesCtrl'
-  //     }
-  //   }
-  // })
+  .state('tab.account-map', {
+    url: '/account/map',
+    views: {
+      'tab-account': {
+        templateUrl: 'map/map-view.html',
+        controller: 'MapCtrl'
+      }
+    }
+  })
 
   // all matches state view
   .state('tab.matches', {

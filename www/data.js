@@ -117,7 +117,10 @@ angular.module('data', [])
       zipCode: null,
       radius: 2,
       roomType: null,
+      latitude: null,
+      longitude: null
     }
+
   };
 
   //How best to remove the redundancy in lines 86-99 and lines 107-120?

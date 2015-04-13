@@ -1,0 +1,38 @@
+<ion-view view-title="Map">
+  <ion-content>
+
+    <div id="map" data-tap-disabled="true"></div>
+
+    <div class="item item-input">
+      <label class="item-input-wrapper">
+        <input ng-model="input.address" type="text" placeholder="Where to look">
+      </label>
+      <button ng-click="codeIt()" class="button button-positive">Search</button>
+    </div>
+
+    <ion-item>
+      <strong>Search radius:</strong> {{input.radius}} miles
+      <div class="range">
+        <i class="ion-earth"></i>
+        <!-- <input type="range" ng-change="placeCircle();" ng-model="input.radius" min="0" max="15" step="0.1"> -->
+        <input type="range" ng-mouseup="placeCircle();" ng-model="input.radius" min="0" max="15" step="0.1">
+      </div>
+    </ion-item>
+
+    <ion-item class="item item-toggle">
+      Toggle Radius
+      <label class="toggle">
+         <input type="checkbox" ng-change="toggleRadius()" ng-model="input.toggleRadius">
+         <div class="track">
+           <div class="handle"></div>
+         </div>
+      </label>
+    </ion-item>
+
+    <ion-item>
+      <button ng-click="saveLocation()" class="button button-block button-positive col col-50 col-offset-25 col-center">
+        Save Location
+      </button>
+    </ion-item>
+  </ion-content>
+</ion-view>
