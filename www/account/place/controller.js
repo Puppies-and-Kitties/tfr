@@ -23,6 +23,7 @@ angular.module('preferences.controllers', [])
     // the server
     console.log('location - ', $scope.location);
     PlaceFactory.initialize($scope.location);
+    $state.go('tab.account');
   }
 
 

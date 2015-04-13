@@ -13,6 +13,7 @@ angular.module('people.controllers', [])
     // the server
     console.log('people - ', $scope.people);
     RoommateFactory.initialize($scope.people);
+    $state.go('tab.account');
   };
 
 });
