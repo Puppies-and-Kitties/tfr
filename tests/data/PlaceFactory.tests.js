@@ -24,6 +24,8 @@ describe('controllers: swipe', function() {
         zipCode: 77776,
         radius: 3,
         roomType: 'awesome',
+        latitude: null,
+        longitude: null
       }
     };
   }));
@@ -35,7 +37,7 @@ describe('controllers: swipe', function() {
       var place = PlaceFactory.all();
       expect(place.myPlace.rent).toEqual(1000);
       expect(place.myPlace.genders).toBeNull();
-      expect(Object.keys(place.desiredPlace).length).toEqual(4);
+      expect(Object.keys(place.desiredPlace).length).toEqual(6);
     });
 
     describe('initialize', function() {
@@ -58,7 +60,7 @@ describe('controllers: swipe', function() {
         var place = PlaceFactory.all();
         expect(Object.keys(place).length).toEqual(3);
         expect(Object.keys(place.myPlace).length).toEqual(6);
-        expect(Object.keys(place.desiredPlace).length).toEqual(4);
+        expect(Object.keys(place.desiredPlace).length).toEqual(6);
       });
 
     });
