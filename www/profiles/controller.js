@@ -4,7 +4,7 @@ angular.module('profile.controllers', [])
   $scope.User = User;
   $scope.id = User.id;
 
-  console.log(CandidatesFactory.all());
+  //console.log(CandidatesFactory.all());
   $scope.candidates = CandidatesFactory.all();
   $scope.currentCandidate = angular.copy($scope.candidates[0]);
 
@@ -24,7 +24,7 @@ angular.module('profile.controllers', [])
   }
   
   // get stored location info
-
+  // ??? is this being used anymore? (Daniel: Apr 12)
   $scope.myGoBack = function() {
       $ionicHistory.goBack();
   };
@@ -33,7 +33,7 @@ angular.module('profile.controllers', [])
   $scope.profile.matched = true;
 
   $scope.candidateSwipe =  function (match){
-    console.log(match,'ALL',CandidatesFactory.all());
+    //console.log(match,'ALL',CandidatesFactory.all());
     CandidatesFactory.removeFirst();   
     if (match) {
       //Once server is up, this will be a POST request to the server
@@ -43,7 +43,7 @@ angular.module('profile.controllers', [])
       SkippedFactory.add($scope.currentCandidate);
     }
     $scope.currentCandidate = angular.copy($scope.candidates[0]);
-    console.log('ALL',CandidatesFactory.all(),'FIRST',CandidatesFactory.getFirst());
+    //console.log('ALL',CandidatesFactory.all(),'FIRST',CandidatesFactory.getFirst());
     $state.go('tab.swipe');
 
   };
