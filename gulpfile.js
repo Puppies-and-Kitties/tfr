@@ -7,6 +7,7 @@ var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
 var karma = require('karma').server;
+var nodemon = require('gulp-nodemon');
 
 //add condition for Travis
 var isTravis = process.env.TRAVIS || false;
@@ -60,4 +61,8 @@ gulp.task('git-check', function(done) {
     process.exit(1);
   }
   done();
+});
+
+gulp.task('serve', function() {
+  nodemon({script: 'index.js'})
 });
