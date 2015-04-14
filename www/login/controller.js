@@ -10,10 +10,4 @@ angular.module('login.controllers', [])
     userSession.auth.$login(provider);
   }
 
-  userSession.auth=$firebaseSimpleLogin(new Firebase(FIREBASE_REF));
-
-  $scope.login = function(provider){
-    userSession.auth.$login(provider);
-  }
-
 });
