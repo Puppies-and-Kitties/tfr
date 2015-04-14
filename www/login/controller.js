@@ -1,6 +1,6 @@
 angular.module('login.controllers', [])
 
-.controller('LoginCtrl', function($scope, $state, FIREBASE_REF, $firebaseSimpleLogin, userSession){
+.controller('LoginCtrl', function($scope, $state, $firebaseSimpleLogin, FIREBASE_REF, userSession){
   
   // {scope: 'email, publish_actions, public_profile'});
 

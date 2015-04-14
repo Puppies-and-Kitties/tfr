@@ -34,6 +34,5 @@ angular.module('login.services', [])
   }
 })
 
-// .value('FIREBASE_REF','https://social-auth.firebaseio.com')
 .value('FIREBASE_REF','https://tinderforroomies.firebaseio.com')
 .value('userSession',{});
