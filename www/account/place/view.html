@@ -66,29 +66,34 @@
         </div>
 
 
-        <label class="item item-input item-stacked-label">
+        <!-- <label class="item item-input item-stacked-label"> -->
 
             <!-- location.host -->
 
-          <div ng-if="location.host">
+       <!--    <div ng-if="location.host">
             <span class="input-label"><h2><strong>Zip Code:</strong></h2></span>
             <input type="text" placeholder="Please enter your desired zip code" ng-model="location.myPlace.zipCode">
-          </div>
+          </div> -->
 
           <!-- not location.host -->
 
-          <div ng-if="!location.host">
+ <!--          <div ng-if="!location.host">
             <span class="input-label"><h2><strong>Desired Zip Code:</strong></h2></span>
             <input type="text" placeholder="Please enter your desired zip code" ng-model="location.desiredPlace.zipCode">
           </div>
-        </label>
-
+        </label> -->
+        
+<!-- 
         <ion-item ng-if="location.host === false">
           <h2><strong>Search radius:</strong>  {{location.desiredPlace.radius}} miles</h2> <br>
           <div class="range">
             <i class="ion-earth"></i>
             <input type="range" name="volume" ng-model="location.desiredPlace.radius" min="0" max="15" >
           </div>
+        </ion-item> -->
+
+        <ion-item class="account-buttons">
+          <a ng-href="#/tab/account/map" class="button icon-right button-block ion-chevron-right button-outline button-dark">Location</a>
         </ion-item>
 
       </ion-list>
