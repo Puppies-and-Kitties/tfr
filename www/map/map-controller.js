@@ -27,7 +27,7 @@ angular.module('map.controllers', [])
     $scope.reverseCodeIt();
     PlaceFactory.initialize($scope.searchLocation);
 
-    $state.go('tab.account-place')
+    $state.go('tab.account-place');
   }
 
   $scope.initialize = function() {
