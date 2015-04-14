@@ -10,6 +10,7 @@ angular.module('preferences.controllers', [])
   $scope.location = PlaceFactory.all();
 
   $scope.toggleHost = function(status, input) {
+    console.log("user ", User)
     if(status === null) {
       $scope.location.host = input;
     } else {
