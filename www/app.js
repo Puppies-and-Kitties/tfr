@@ -8,8 +8,9 @@
 angular.module('starter', [
   'ionic', 
   'ngResource',
-  'starter.controllers', 
-  'starter.services', 
+  // 'starter.controllers', 
+  // 'starter.services', 
+  'account.controller',
   'login.controllers', 
   'login.services', 
   //'matches.services', 
@@ -58,7 +59,7 @@ angular.module('starter', [
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   // Initializes the openFB library with the appId, which enables oAuth.
   openFB.init({appId: 1631486397070306})
 
@@ -79,8 +80,14 @@ angular.module('starter', [
       User: function(LoginFact){
         return LoginFact.getFbInfo()
           .then(function(data){
-            return data
-          });
+            // console.log("data ", data)
+            // return data
+            return LoginFact.saveUser(data)
+              .then(function(data){
+                console.log("DATA", data)
+                return data.data;
+              })
+          })
       }
     }
   })
@@ -196,5 +203,8 @@ angular.module('starter', [
 
   // if none of the above states are matched, redirect to the login tab
   $urlRouterProvider.otherwise('/login');
+
+  $httpProvider.defaults.useXDomain = true;
+  delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
 });
