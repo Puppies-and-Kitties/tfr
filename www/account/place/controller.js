@@ -1,6 +1,6 @@
 angular.module('preferences.controllers', [])
 
-.controller('PlaceCtrl', function($scope, $state, User, PlaceFactory, ProfileFactory){
+.controller('PlaceCtrl', function($scope, $state, User, PlaceFactory, ProfileFactory, userSession){
   $scope.fbId = User.id;
   $scope.username = User.first_name;
 
@@ -28,10 +28,7 @@ angular.module('preferences.controllers', [])
   }
 
 
-  $scope.fbLogout = function(arg){
-    // Call logout function from openFB
-    openFB.logout();
-    // redirect to login page 
-    $state.go('login')
-  };
+  $scope.logout=function(){
+      userSession.auth.$logout();
+  }
 });

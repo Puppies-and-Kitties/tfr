@@ -110,7 +110,8 @@ angular.module('data', [])
       openRooms: null,
       roomType: null,
       occupants: 0,
-      //zipCode: null
+      city: null,
+      state: null
     },
     desiredPlace:{
       rent: 1000,
@@ -118,7 +119,9 @@ angular.module('data', [])
       radius: 2,
       roomType: null,
       latitude: null,
-      longitude: null
+      longitude: null,
+      city: null,
+      state: null
     }
 
   };

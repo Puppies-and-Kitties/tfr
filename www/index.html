@@ -12,11 +12,16 @@
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
 
-    <!-- Google Maps Testing -->
-
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <script src="lib/angular-resource/angular-resource.min.js"></script>
+
+    <!-- Firebase -->
+    <script src="lib/firebase/firebase.js"></script>
+    <!-- Firebase Simple Login -->
+    <script src="lib/firebase/firebase-simple-login.js"></script>
+    <!-- AngularFire -->
+    <script src="lib/firebase/angularfire.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
@@ -28,23 +33,19 @@
     <script src="account/controller.js"></script>    
     <script src="login/controller.js"></script>
     <script src="login/services.js"></script>
-    <script src="login/openfb.js"></script>
     <script src="matches/controller.js"></script>
-    <!--<script src="matches/matches-factory.js"></script>-->
-    <!--<script src="matches/match-profile/match-profile-controller.js"></script>-->
     <script src="profiles/controller.js"></script>
-    <!--<script src="profiles/profiles-factory.js"></script>-->
     <script src="account/userProfile/controller.js"></script>
     <script src="account/place/controller.js"></script>
     <script src="account/people/controller.js"></script>
-    <!--<script src="preferences/preferences-factory.js"></script>-->
+    <script src="account/controller.js"></script>
     <script src="swipe/controller.js"></script>
-    <!--<script src="swipe/services.js"></script>-->
     <script src="data.js"></script>
     <script src="profiles/directives.js"></script>
     <script src="map/map-controller.js"></script>
     <script src="map/map-factory.js"></script>
   </head>
+  
   <body ng-app="starter">
     <!--
       The nav bar that will be updated as we navigate between views.
@@ -59,6 +60,8 @@
       have templates inline in this html file if you'd like).
     -->
     <ion-nav-view></ion-nav-view>
+
+    <!-- Google Maps Api Script -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgHYqr6i-pSb5JjPvgOAvLLWvVdjbgdWU&sensor=true"></script>
   </body>
 </html>

@@ -16,6 +16,9 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
         '../www/lib/angular/angular.js',
+        '../www/lib/firebase/firebase.js',
+        '../www/lib/firebase/firebase-simple-login.js',
+        '../www/lib/firebase/angularfire.js',
         '../www/lib/angular-ui-router/**/*.js',
         '../www/lib/angular-resource/angular-resource.min.js',
         '../www/js/*.js',
