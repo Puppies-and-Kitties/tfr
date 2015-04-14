@@ -20,7 +20,8 @@
 angular.module('account.controllers', [])
 
 .controller('AccountCtrl', function($scope, userSession, User){
-  $scope.fbId = User.id;
+  $scope.fbId = User.fbid;
+  $scope.username = User.first_name;
 
   $scope.logout = function(){
     console.log('sanity')
