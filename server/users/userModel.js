@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var UserSchema = new mongoose.Schema({
-  id: Number,
+  fbid: Number,
   // profile: {
     // myPlace: {
     //   peopleCount: Number,

@@ -15,10 +15,15 @@ angular.module('login.services', [])
     var baseUrl = 'http://localhost:8888'
     return $http({
       method: 'POST',
-      url: baseUrl + '/user/' + user.id
+      url: baseUrl + '/user/' + user.id,
+      data: {
+        name: user.name
+      }
     })
     .then(function(data) {
+
       console.log("datazzz ", data)
+      return data;
     })
   }
 

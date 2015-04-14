@@ -8,8 +8,9 @@
 angular.module('starter', [
   'ionic', 
   'ngResource',
-  'starter.controllers', 
-  'starter.services', 
+  // 'starter.controllers', 
+  // 'starter.services', 
+  'account.controller',
   'login.controllers', 
   'login.services', 
   //'matches.services', 
@@ -80,7 +81,12 @@ angular.module('starter', [
         return LoginFact.getFbInfo()
           .then(function(data){
             // console.log("data ", data)
-            return LoginFact.saveUser(data);
+            // return data
+            return LoginFact.saveUser(data)
+              .then(function(data){
+                console.log("DATA", data)
+                return data.data;
+              })
           })
       }
     }

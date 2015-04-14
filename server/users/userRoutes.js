@@ -11,7 +11,7 @@ module.exports = function(app) {
     .post(function(req, res) {
       console.log("in post")
       console.log("params ", req.params)
-      Users.findOneAndUpdate({id: req.params.id}, {$setOnInsert: {id: req.params.id}}, {upsert: true}, function(err, user) {
+      Users.findOneAndUpdate({fbid: req.params.id}, {$setOnInsert: {fbid: req.params.id, name: req.params.name}}, {upsert: true}, function(err, user) {
         console.log("userin post ", user)
         res.send(user);
       })
