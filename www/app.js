@@ -8,9 +8,9 @@
 angular.module('starter', [
   'ionic', 
   'ngResource',
-  // 'starter.controllers', 
-  // 'starter.services', 
-  'account.controller',
+  'firebase',
+  'starter.controllers', 
+  'starter.services', 
   'login.controllers', 
   'login.services', 
   //'matches.services', 
@@ -27,7 +27,8 @@ angular.module('starter', [
   //'swipe.services',
   'data',
   'map.controllers',
-  'map.services'
+  'map.services',
+  'account.controllers'
   ])
 
 .filter('range', function() {
@@ -45,7 +46,7 @@ angular.module('starter', [
   };
 })
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope, $state, userSession) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -57,11 +58,26 @@ angular.module('starter', [
       StatusBar.styleDefault();
     }
   });
+
+  $rootScope.$on('$firebaseSimpleLogin:login', function(event, user) {
+       userSession.user = user;
+       console.log('success - ', userSession)
+       $state.go('tab.swipe');
+   });
+
+   $rootScope.$on('$firebaseSimpleLogin:error', function(event, error) {
+        console.log('Error logging user in: ', error);
+   });
+
+   $rootScope.$on('$firebaseSimpleLogin:logout', function(event) {
+    console.log('logged out')
+    $state.go('login');
+   });
 })
 
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   // Initializes the openFB library with the appId, which enables oAuth.
-  openFB.init({appId: 1631486397070306})
+  // openFB.init({appId: 1631486397070306})
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -74,20 +90,11 @@ angular.module('starter', [
     url: "/tab",
     abstract: true,
     templateUrl: "templates/tabs.html",
-    // Sets the User object to the user data fb returns
+    // Sets the User object to the user data firebase returns from fb
     // To access this data, simply inject User into the controller
     resolve: {
-      User: function(LoginFact){
-        return LoginFact.getFbInfo()
-          .then(function(data){
-            // console.log("data ", data)
-            // return data
-            return LoginFact.saveUser(data)
-              .then(function(data){
-                console.log("DATA", data)
-                return data.data;
-              })
-          })
+      User: function(userSession){
+        return userSession.user.thirdPartyUserData;
       }
     }
   })

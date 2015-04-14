@@ -33,3 +33,7 @@ angular.module('login.services', [])
     getFbInfo: getFbInfo
   }
 })
+
+// .value('FIREBASE_REF','https://social-auth.firebaseio.com')
+.value('FIREBASE_REF','https://tinderforroomies.firebaseio.com')
+.value('userSession',{});
