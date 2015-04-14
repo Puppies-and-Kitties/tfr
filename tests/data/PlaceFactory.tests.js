@@ -25,7 +25,9 @@ describe('controllers: swipe', function() {
         radius: 3,
         roomType: 'awesome',
         latitude: null,
-        longitude: null
+        longitude: null,
+        city: null,
+        state: null
       }
     };
   }));
@@ -37,7 +39,7 @@ describe('controllers: swipe', function() {
       var place = PlaceFactory.all();
       expect(place.myPlace.rent).toEqual(1000);
       expect(place.myPlace.genders).toBeNull();
-      expect(Object.keys(place.desiredPlace).length).toEqual(6);
+      expect(Object.keys(place.desiredPlace).length).toEqual(8);
     });
 
     describe('initialize', function() {
@@ -60,7 +62,7 @@ describe('controllers: swipe', function() {
         var place = PlaceFactory.all();
         expect(Object.keys(place).length).toEqual(3);
         expect(Object.keys(place.myPlace).length).toEqual(6);
-        expect(Object.keys(place.desiredPlace).length).toEqual(6);
+        expect(Object.keys(place.desiredPlace).length).toEqual(8);
       });
 
     });

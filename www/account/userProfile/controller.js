@@ -5,7 +5,7 @@ angular.module('userProfile.controllers', [])
   $scope.username = User.first_name;
 
   $scope.profile = ProfileFactory.all();
-  
+
   // $scope.mockKeywords = {
   //   keywords: ['Reading', 'Night-Owl', 'Beer', 'Cooking', 'Hiking']
   // };

@@ -69,11 +69,13 @@
           </div>
         </li><!-- </div> -->
 
-        <li class="item item-text-wrap"><!--<div class="card">-->
+        <li class="item item-text-wrap">
           <div class="profile-content">
-            <strong>Ideal Zip Code:</strong><br>{{profile.location.desiredPlace.zipCode}}
+            <strong>Location:</strong><br>{{profile.location.desiredPlace.city}}, {{profile.location.desiredPlace.state}}
           </div>
-        </li><!-- </div> -->
+        </li>
+
+        <!-- </div> -->
 
         <li class="item item-text-wrap"><!--<div class="card">-->
           <div class="profile-content">
@@ -90,7 +92,7 @@
 
         <li class="item item-text-wrap"><!--<div class="card">-->
           <div class="profile-content">
-          <strong>A few words of description:</strong><br> <div ng-repeat="keyword in profile.userInfo.keywords"> {{keyword}}</div>
+          <!-- <strong>A few words of description:</strong><br> <div ng-repeat="keyword in profile.userInfo.keywords"> {{keyword}}</div> -->
           </div>
         </li><!-- </div> -->
       </div>
@@ -107,7 +109,7 @@
 
         <li class="item item-text-wrap"><!--<div class="card">-->
           <div class="profile-content">
-            <strong>Zip Code:</strong><br>{{profile.location.myPlace.zipCode}}
+            <strong>Location:</strong><br>{{profile.location.myPlace.city}}, {{profile.location.myPlace.state}}
           </div>
         </li><!-- </div> -->
 
@@ -126,7 +128,7 @@
 
         <li class="item item-text-wrap"><!--<div class="card">-->
           <div class="profile-content">
-          <strong>A few words of description:</strong><br> <div ng-repeat="keyword in profile.userInfo.keywords"> {{keyword}}</div>
+          <!-- <strong>A few words of description:</strong><br> <div ng-repeat="keyword in profile.userInfo.keywords"> {{keyword}}</div> -->
           </div>
         </li><!-- </div> -->
       </div>

@@ -118,7 +118,9 @@ angular.module('data', [])
       radius: 2,
       roomType: null,
       latitude: null,
-      longitude: null
+      longitude: null,
+      city: null,
+      state: null
     }
 
   };
