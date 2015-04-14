@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 
 var UserSchema = new mongoose.Schema({
   fbid: Number,
+  name: String,
   // profile: {
     // myPlace: {
     //   peopleCount: Number,
