@@ -32,11 +32,4 @@ angular.module('userProfile.controllers', [])
    
   }
 
-
-  $scope.fbLogout = function(arg){
-    // Call logout function from openFB
-    openFB.logout();
-    // redirect to login page 
-    $state.go('login')
-  };
 });

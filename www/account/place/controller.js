@@ -27,15 +27,4 @@ angular.module('preferences.controllers', [])
     $state.go('tab.account');
   }
 
-
-  $scope.fbLogout = function(arg){
-    // Call logout function from openFB
-    openFB.logout();
-    // redirect to login page 
-    $state.go('login')
-  };
-
-  $scope.logout=function(){
-      userSession.auth.$logout();
-  }
 });
