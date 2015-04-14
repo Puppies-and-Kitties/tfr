@@ -13,13 +13,12 @@ db.once('open', function() {
   console.log('Mongodb connection open');
 });
 
-app.options(/\.*/, function (req, res, next) {
-  console.log("in options")
+app.all('/*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
-  res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT, OPTIONS');
-  res.send(200);
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header("Access-Control-Allow-Methods", "GET, POST","PUT");
   next();
+ 
 });
 
 

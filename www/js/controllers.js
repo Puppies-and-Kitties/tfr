@@ -21,12 +21,12 @@ angular.module('starter.controllers', [])
 })
 
 .controller('AccountCtrl', function($scope, $state, User) {
-  $scope.fbId = User.id;
-  $scope.username = User.first_name;
+  // $scope.fbId = User.id;
+  // $scope.username = User.first_name;
 
-  $scope.settings = {
-    enableFriends: true
-  };
+  // $scope.settings = {
+  //   enableFriends: true
+  // };
   
   $scope.fbLogout = function(arg){
     // Call logout function from openFB
