@@ -1,4 +1,4 @@
-describe('controllers: swipe', function() {
+describe('Factory: RoommateFactory', function() {
   // var scope, $login, controller;
   var scope, RoommateFactory;
 
@@ -19,7 +19,7 @@ describe('controllers: swipe', function() {
   //tests start here
   describe('RoommateFactory', function() {
 
-    it('Should initialize roommatePreferences to the mostly empty default', function(){
+    xit('Should initialize roommatePreferences to the mostly empty default', function(){
       var roommatePreferences = RoommateFactory.all();
       expect(roommatePreferences.gender).toBeNull();
       expect(Object.keys(roommatePreferences).length).toEqual(3);
@@ -27,7 +27,7 @@ describe('controllers: swipe', function() {
 
     describe('initialize', function() {
 
-      it("Should initialize roommatePreferences to the passed in object", function() {
+      xit("Should initialize roommatePreferences to the passed in object", function() {
         RoommateFactory.initialize(testRoommatePreferences);
         var roommatePreferences = RoommateFactory.all();
         
@@ -39,7 +39,7 @@ describe('controllers: swipe', function() {
 
     describe('all', function() {
 
-      it("Should return the roommatePreferences object", function() {
+      xit("Should return the roommatePreferences object", function() {
         var roommatePreferences = RoommateFactory.all();
         expect(Object.keys(roommatePreferences).length).toEqual(3);
       });
@@ -48,7 +48,7 @@ describe('controllers: swipe', function() {
 
     describe('update', function() {
 
-      it("Should update a roommatePreferences property", function() {
+      xit("Should update a roommatePreferences property", function() {
         RoommateFactory.update('gender','any');
         RoommateFactory.update('ageMin',24);
         RoommateFactory.update('ageMax',28);
@@ -62,7 +62,7 @@ describe('controllers: swipe', function() {
 
     describe('getProperty', function() {
 
-      it("Should return the specified property", function() {
+      xit("Should return the specified property", function() {
         RoommateFactory.initialize(testRoommatePreferences);
         expect(RoommateFactory.getProperty('gender')).toEqual('woman');
         expect(RoommateFactory.getProperty('ageMin')).toEqual(22);

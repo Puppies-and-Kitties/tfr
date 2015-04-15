@@ -1,4 +1,4 @@
-describe('controllers: swipe', function() {
+describe('Factory: Candidates', function() {
   // var scope, $login, controller;
   var scope, CandidatesFactory;
 
