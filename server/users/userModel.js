@@ -22,13 +22,21 @@ var UserSchema = new mongoose.Schema({
       openRooms: Number,
       roomType: String,
       occupants: Number,
-      zipCode: Number
+      zipCode: Number,
+      city: String,
+      state: String,
+      latitude: Number,
+      longitude: Number
     },
     desiredPlace: {
       rent: Number,
       zipCode: Number,
       radius: Number,
-      roomType: String
+      roomType: String,
+      city: String,
+      state: String,
+      latitude: Number,
+      longitude: Number
     }
   },
   roommatePreferences: {

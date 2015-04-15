@@ -68,12 +68,12 @@ angular.module('data', [])
   //???Current approach means we have to update the whole object to update any myPlace property?
   //???But maybe we would only ever update all properties at once?
   var profile = {
-    myPlace: {
-      peopleCount: 2,
-      genders: null,
-      rent: 1000,
-      zipCode: null
-    },
+    // myPlace: {
+    //   peopleCount: 2,
+    //   genders: null,
+    //   rent: 1000,
+    //   zipCode: null
+    // },
     gender: null,
     age: null,
     keywords: ['','','','','']
@@ -98,7 +98,7 @@ angular.module('data', [])
 
 })
 
-.factory('PlaceFactory', function(){
+.factory('PlaceFactory', function($http){
   
   //???What is the difference between myplace here and myplace in profile factory?
   var location = { 
@@ -126,13 +126,34 @@ angular.module('data', [])
 
   };
 
+  var baseUrl = 'http://localhost:8888'
+
   //How best to remove the redundancy in lines 86-99 and lines 107-120?
   return {
-    initialize: function(userLocation){
-      location = userLocation;
+    initialize: function(userLocation, User){
+      // location = userLocation;
+      return $http({
+        method: 'PUT',
+        url: baseUrl + '/user/' + User.fbid + '/location',
+        data: {
+          location: userLocation
+        }
+      })
+      .then(function(data) {
+        console.log('PlaceFactory Data - ', data);
+        // return data;
+      })    
     },
     all: function() {
-     return location;
+      return location;
+      // return $http({
+      //   method: 'GET',
+      //   url: baseUrl + '/user/' + User.fbid + '/location'
+      // })
+      // .then(function(data){
+      //   console.log('data in placefactory get - ', data);
+      //   return data;
+      // })
     },
     update: function(property,newValue) {
       location[property] = newValue;

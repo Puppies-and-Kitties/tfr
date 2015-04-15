@@ -2,15 +2,14 @@ angular.module('preferences.controllers', [])
 
 .controller('PlaceCtrl', function($scope, $state, User, PlaceFactory, ProfileFactory, userSession){
   $scope.fbId = User.id;
+  // $scope.fbId = User.fbid;
   $scope.username = User.first_name;
-
   // $scope.profile = ProfileFactory.all();
   $scope.notHost = {"checked": true}
   
   $scope.location = PlaceFactory.all();
 
   $scope.toggleHost = function(status, input) {
-    console.log("user ", User)
     if(status === null) {
       $scope.location.host = input;
     } else {
@@ -23,7 +22,7 @@ angular.module('preferences.controllers', [])
     // Will need to call PreferencesFactory.update and do a PUT/POST request to
     // the server
     console.log('location - ', $scope.location);
-    PlaceFactory.initialize($scope.location);
+    PlaceFactory.initialize($scope.location, User);
     $state.go('tab.account');
   }
 
