@@ -61,29 +61,36 @@ angular.module('data', [])
 
 })
 
-.factory('ProfileFactory', function(){
+.factory('ProfileFactory', function($http){
 
   //???Should we make myPlace a separate object accessed through a separate factory?
   //???Or should we make myPlace properties direct properties of profile?
   //???Current approach means we have to update the whole object to update any myPlace property?
   //???But maybe we would only ever update all properties at once?
   var profile = {
-    // myPlace: {
-    //   peopleCount: 2,
-    //   genders: null,
-    //   rent: 1000,
-    //   zipCode: null
-    // },
     gender: null,
     age: null,
     keywords: ['','','','','']
   };
 
+  var baseUrl = 'http://localhost:8888';
+
    //???How best to remove the redundancy in lines 86-99 and lines 107-120?
   return {
-    initialize: function(usersProfile){
+    initialize: function(usersProfile, User){
       //console.log("!",usersProfile);
-      profile = usersProfile;
+      // profile = usersProfile;
+      return $http({
+        method: 'PUT',
+        url: baseUrl + '/user/' + User.fbid + '/profile',
+        data: {
+          profile: usersProfile
+        }
+      })
+      .then(function(data) {
+        console.log('Profile Factory Data - ', data);
+        // return data;
+      })    
     },
     all: function() {
       return profile;
@@ -165,7 +172,9 @@ angular.module('data', [])
 
 })
 
-.factory('RoommateFactory', function(){
+.factory('RoommateFactory', function($http){
+
+  var baseUrl = 'http://localhost:8888'
 
   var roommatePreferences = {
     gender: null,
@@ -175,8 +184,19 @@ angular.module('data', [])
 
   //How best to remove the redundancy in lines 86-99 and lines 107-120?
   return {
-    initialize: function(preference){
-      roommatePreferences = preference;
+    initialize: function(preference, User){
+      // roommatePreferences = preference;
+      return $http({
+        method: 'PUT',
+        url: baseUrl + '/user/' + User.fbid + '/roommatePreferences',
+        data: {
+          roommatePreferences: preference
+        }
+      })
+      .then(function(data) {
+        console.log('Roommate Factory Data - ', data);
+        // return data;
+      })    
     },
     all: function() {
       return roommatePreferences;

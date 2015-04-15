@@ -2,7 +2,7 @@ angular.module('profile.controllers', [])
 
 .controller('ProfileCtrl', function($scope, $stateParams, $state, $ionicHistory, User, CandidatesFactory, MatchesFactory, SkippedFactory, PlaceFactory, RoommateFactory, ProfileFactory) {
   $scope.User = User;
-  $scope.id = User.id;
+  $scope.fbId = User.fbid;
 
   //console.log(CandidatesFactory.all());
   $scope.candidates = CandidatesFactory.all();

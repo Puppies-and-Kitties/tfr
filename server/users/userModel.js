@@ -10,9 +10,11 @@ var UserSchema = new mongoose.Schema({
     //   rent: Number,
     //   zipCode: Number
     // },
-  gender: String,
-  age: Number,
-  keywords: [],
+  profile: {
+    gender: String,
+    age: Number,
+    keywords: []
+  },
   location: {
     host: Boolean,
     myPlace: {

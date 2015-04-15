@@ -56,4 +56,31 @@ module.exports = function(app) {
       )
 
     })
+  app.route('/:id/roommatePreferences')
+    .put(function(req, res) {
+      console.log("in roomamtePreferences put");
+      console.log('req params id check - ', req.params);
+      findOrCreate(
+        {fbid: req.params.id }, 
+        {$set: {roommatePreferences: req.body.roommatePreferences}},
+        {upsert: true, new: true}
+      )
+      .then(function(user){
+        res.send(user);
+      });
+    })
+
+  app.route('/:id/profile')
+    .put(function(req, res) {
+      console.log("in profile put");
+      console.log('req params id check - ', req.params);
+      findOrCreate(
+        {fbid: req.params.id }, 
+        {$set: {profile: req.body.profile}},
+        {upsert: true, new: true}
+      )
+      .then(function(user){
+        res.send(user);
+      });
+    })
 }

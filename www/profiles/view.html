@@ -9,9 +9,9 @@
 
     <div class="card">
       <div class="profile-content">
-        <!-- <img class="profile-content-pic" ng-src="//graph.facebook.com/{{User.id}}/picture?type=large"> -->
-        <img ng-if="profile.id !== User.id" class="profile-image" ng-src="{{profile.face}}">
-        <img ng-if="profile.id === User.id" class="profile-content-pic" ng-src="//graph.facebook.com/{{User.id}}/picture?type=large">
+        <!-- <img class="profile-content-pic" ng-src="//graph.facebook.com/{{fbId}}/picture?type=large"> -->
+        <img ng-if="profile.id !== fbId" class="profile-image" ng-src="{{profile.face}}">
+        <img ng-if="profile.fbid === fbId" class="profile-content-pic" ng-src="//graph.facebook.com/{{fbId}}/picture?type=large">
       </div>
     </div>
 
