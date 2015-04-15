@@ -93,12 +93,28 @@ angular.module('starter', [
     // Sets the User object to the user data firebase returns from fb
     // To access this data, simply inject User into the controller
     resolve: {
-      User: function(userSession){
-        return userSession.user.thirdPartyUserData;
+      User: function(userSession, LoginFact){
+        var user = userSession.user.thirdPartyUserData;
+        return LoginFact.saveUser(user)
+          .then(function(data){
+            console.log("DATA", data)
+            return data.data;
+          })
       }
     }
   })
-
+  // User: function(LoginFact){
+  //   return LoginFact.getFbInfo()
+  //     .then(function(data){
+  //       // console.log("data ", data)
+  //       // return data
+  //       return LoginFact.saveUser(data)
+  //         .then(function(data){
+  //           console.log("DATA", data)
+  //           return data.data;
+  //         })
+  //     })
+  // }
   // Each tab has its own nav history stack:
 
   .state('tab.swipe', {

@@ -1,4 +1,4 @@
-describe('controllers: swipe', function() {
+describe('Factory: Profile', function() {
   // var scope, $login, controller;
   var scope, ProfileFactory;
 
@@ -25,7 +25,7 @@ describe('controllers: swipe', function() {
   //tests start here
   describe('ProfileFactory', function() {
 
-    it('Should initialize profile to the mostly empty default', function(){
+    xit('Should initialize profile to the mostly empty default', function(){
       var profile = ProfileFactory.all();
       expect(profile.myPlace.peopleCount).toEqual(2);
       expect(profile.gender).toBeNull();
@@ -34,7 +34,7 @@ describe('controllers: swipe', function() {
 
     describe('initialize', function() {
 
-      it("Should initialize profile to the passed in object", function() {
+      xit("Should initialize profile to the passed in object", function() {
         ProfileFactory.initialize(testProfile);
         var profile = ProfileFactory.all();
         
@@ -47,7 +47,7 @@ describe('controllers: swipe', function() {
 
     describe('all', function() {
 
-      it("Should return the profile object", function() {
+      xit("Should return the profile object", function() {
         var profile = ProfileFactory.all();
         expect(Object.keys(profile).length).toEqual(4);
         expect(Object.keys(profile.myPlace).length).toEqual(4);
@@ -57,7 +57,7 @@ describe('controllers: swipe', function() {
 
     describe('update', function() {
 
-      it("Should update a profile property", function() {
+      xit("Should update a profile property", function() {
         ProfileFactory.update('age',35);
         ProfileFactory.update('keywords',['Jogging','tea','teacher']);
         var newPlace = {
@@ -78,7 +78,7 @@ describe('controllers: swipe', function() {
 
     describe('getProperty', function() {
 
-      it("Should return the specified property", function() {
+      xit("Should return the specified property", function() {
         ProfileFactory.initialize(testProfile);
         expect(ProfileFactory.getProperty('age')).toEqual(25);
         expect(ProfileFactory.getProperty('gender')).toEqual('woman');

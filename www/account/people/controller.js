@@ -1,18 +1,22 @@
 angular.module('people.controllers', [])
 
 .controller('PeopleCtrl', function($scope, $state, User, PlaceFactory, RoommateFactory){
-  $scope.fbId = User.id;
-  $scope.username = User.first_name;
+  $scope.fbId = User.fbid;
+  $scope.username = User.name;
 
   // $scope.profile = ProfileFactory.all();
   
-  $scope.people = RoommateFactory.all();
+  $scope.people = User.roommatePreferences || RoommateFactory.all();
 
   $scope.savePeople = function(){
     // Will need to call PreferencesFactory.update and do a PUT/POST request to
     // the server
-    console.log('people - ', $scope.people);
-    RoommateFactory.initialize($scope.people);
+    
+    RoommateFactory.initialize($scope.people, User)
+      .then(function(res) {
+        console.log("muddaflippin roommatePreferences response ", res);
+        User.roommatePreferences = res
+      })
     $state.go('tab.account');
   };
 

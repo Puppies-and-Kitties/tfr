@@ -11,7 +11,7 @@ angular.module('login.services', [])
   }
   
   var saveUser = function(user) {
-    console.log("in Save User")
+    // console.log("in save user")
     var baseUrl = 'http://localhost:8888'
     return $http({
       method: 'POST',
@@ -21,8 +21,6 @@ angular.module('login.services', [])
       }
     })
     .then(function(data) {
-
-      console.log("datazzz ", data)
       return data;
     })
   }

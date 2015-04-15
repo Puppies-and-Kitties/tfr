@@ -9,9 +9,9 @@
 
     <div class="card">
       <div class="profile-content">
-        <!-- <img class="profile-content-pic" ng-src="//graph.facebook.com/{{User.id}}/picture?type=large"> -->
-        <img ng-if="profile.id !== User.id" class="profile-image" ng-src="{{profile.face}}">
-        <img ng-if="profile.id === User.id" class="profile-content-pic" ng-src="//graph.facebook.com/{{User.id}}/picture?type=large">
+        <!-- <img class="profile-content-pic" ng-src="//graph.facebook.com/{{fbId}}/picture?type=large"> -->
+        <img ng-if="profile.id !== fbId" class="profile-image" ng-src="{{profile.face}}">
+        <img ng-if="profile.fbid === fbId" class="profile-content-pic" ng-src="//graph.facebook.com/{{fbId}}/picture?type=large">
       </div>
     </div>
 
@@ -86,7 +86,7 @@
 
         <li class="item item-text-wrap"><!--<div class="card">-->
           <div class="profile-content">
-          <strong>Preferred Roommate Gender:</strong><br> {{profile.people.gender}}
+          <strong>Preferred Roommate Gender:</strong><br> {{profile.roommatePreferences.gender}}
           </div>
         </li><!-- </div> -->
 
@@ -122,13 +122,13 @@
 
         <li class="item item-text-wrap"><!--<div class="card">-->
           <div class="profile-content">
-          <strong>Preferred Roommate Gender:</strong><br> {{profile.people.gender}}
+          <strong>Preferred Roommate Gender:</strong><br> {{profile | json}}
           </div>
         </li><!-- </div> -->
 
         <li class="item item-text-wrap"><!--<div class="card">-->
           <div class="profile-content">
-          <!-- <strong>A few words of description:</strong><br> <div ng-repeat="keyword in profile.userInfo.keywords"> {{keyword}}</div> -->
+          <strong>A few words of description:</strong><br> <div ng-repeat="keyword in profile.userInfo.keywords"> {{keyword}}</div>
           </div>
         </li><!-- </div> -->
       </div>

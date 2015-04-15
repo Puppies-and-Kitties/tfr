@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 
 var UserSchema = new mongoose.Schema({
   fbid: Number,
+  name: String,
   // profile: {
     // myPlace: {
     //   peopleCount: Number,
@@ -9,9 +10,11 @@ var UserSchema = new mongoose.Schema({
     //   rent: Number,
     //   zipCode: Number
     // },
-  gender: String,
-  age: Number,
-  keywords: [],
+  profile: {
+    gender: String,
+    age: Number,
+    keywords: []
+  },
   location: {
     host: Boolean,
     myPlace: {
@@ -21,13 +24,21 @@ var UserSchema = new mongoose.Schema({
       openRooms: Number,
       roomType: String,
       occupants: Number,
-      zipCode: Number
+      zipCode: Number,
+      city: String,
+      state: String,
+      latitude: Number,
+      longitude: Number
     },
     desiredPlace: {
       rent: Number,
       zipCode: Number,
       radius: Number,
-      roomType: String
+      roomType: String,
+      city: String,
+      state: String,
+      latitude: Number,
+      longitude: Number
     }
   },
   roommatePreferences: {
