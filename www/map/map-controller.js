@@ -1,6 +1,6 @@
 angular.module('map.controllers', [])
 
-.controller('MapCtrl', function($scope, $ionicLoading, PlaceFactory, $state){
+.controller('MapCtrl', function($scope, $ionicLoading, PlaceFactory, $state, User){
   var map, marker, circle, markersArray = [], circlesArray = [];
 
   $scope.searchLocation = PlaceFactory.all();
@@ -25,7 +25,7 @@ angular.module('map.controllers', [])
     }
 
     $scope.reverseCodeIt();
-    PlaceFactory.initialize($scope.searchLocation);
+    PlaceFactory.initialize($scope.searchLocation, User);
 
     $state.go('tab.account-place');
   }

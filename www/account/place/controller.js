@@ -22,6 +22,7 @@ angular.module('preferences.controllers', [])
     // Will need to call PreferencesFactory.update and do a PUT/POST request to
     // the server
     console.log('location - ', $scope.location);
+    console.log('User in place ctrl - ', User);
     PlaceFactory.initialize($scope.location, User);
     $state.go('tab.account');
   }
