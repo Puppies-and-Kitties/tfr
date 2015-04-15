@@ -37,13 +37,15 @@ module.exports = function(app) {
   app.route('/:id/location')
     .put(function(req, res) {
       console.log("in location put");
-      console.log('req params id check - ', req.params);
+      console.log('req params for location - ', req.params);
+      console.log('req body for location - ', req.body)
       findOrCreate(
         {fbid: req.params.id }, 
         {$set: {location: req.body.location}},
         {upsert: true, new: true}
       )
       .then(function(user){
+        console.log("user coming back from location put request ", user)
         res.send(user);
       });
     })

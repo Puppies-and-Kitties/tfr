@@ -87,9 +87,9 @@ angular.module('data', [])
           profile: usersProfile
         }
       })
-      .then(function(data) {
-        console.log('Profile Factory Data - ', data);
-        // return data;
+      .then(function(res) {
+        console.log('Profile Factory Data - ', res);
+        return res.data.profile;
       })    
     },
     all: function() {
@@ -111,19 +111,21 @@ angular.module('data', [])
   var location = { 
     host: null,
     myPlace: {
-      rent: 1000,
+      rent: null,
       zipCode: null,
       genders: null,
       openRooms: null,
       roomType: null,
-      occupants: 0,
+      occupants: null,
       city: null,
-      state: null
+      state: null,
+      latitude: null,
+      longitude: null
     },
     desiredPlace:{
-      rent: 1000,
+      rent: null,
       zipCode: null,
-      radius: 2,
+      radius: null,
       roomType: null,
       latitude: null,
       longitude: null,
@@ -146,10 +148,9 @@ angular.module('data', [])
           location: userLocation
         }
       })
-      .then(function(data) {
-        console.log('PlaceFactory Data - ', data);
-        // return data;
-      })    
+      .then(function(res){
+        return res.data.location;
+      })
     },
     all: function() {
       return location;
@@ -193,9 +194,9 @@ angular.module('data', [])
           roommatePreferences: preference
         }
       })
-      .then(function(data) {
-        console.log('Roommate Factory Data - ', data);
-        // return data;
+      .then(function(res) {
+        console.log('Roommate Factory Data - ', res);
+        return res.data.roommatePreferences;
       })    
     },
     all: function() {

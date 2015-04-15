@@ -3,7 +3,7 @@ angular.module('map.controllers', [])
 .controller('MapCtrl', function($scope, $ionicLoading, PlaceFactory, $state, User){
   var map, marker, circle, markersArray = [], circlesArray = [];
 
-  $scope.searchLocation = PlaceFactory.all();
+  $scope.searchLocation = User.location || PlaceFactory.all();
   var host = $scope.searchLocation.host;
 
   $scope.input = {

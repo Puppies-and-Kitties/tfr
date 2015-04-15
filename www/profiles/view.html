@@ -86,7 +86,7 @@
 
         <li class="item item-text-wrap"><!--<div class="card">-->
           <div class="profile-content">
-          <strong>Preferred Roommate Gender:</strong><br> {{profile.people.gender}}
+          <strong>Preferred Roommate Gender:</strong><br> {{profile.roommatePreferences.gender}}
           </div>
         </li><!-- </div> -->
 
@@ -122,13 +122,13 @@
 
         <li class="item item-text-wrap"><!--<div class="card">-->
           <div class="profile-content">
-          <strong>Preferred Roommate Gender:</strong><br> {{profile.people.gender}}
+          <strong>Preferred Roommate Gender:</strong><br> {{profile | json}}
           </div>
         </li><!-- </div> -->
 
         <li class="item item-text-wrap"><!--<div class="card">-->
           <div class="profile-content">
-          <!-- <strong>A few words of description:</strong><br> <div ng-repeat="keyword in profile.userInfo.keywords"> {{keyword}}</div> -->
+          <strong>A few words of description:</strong><br> <div ng-repeat="keyword in profile.userInfo.keywords"> {{keyword}}</div>
           </div>
         </li><!-- </div> -->
       </div>

@@ -20,7 +20,7 @@
 angular.module('account.controllers', [])
 
 .controller('AccountCtrl', function($scope, userSession, User){
-  $scope.username = User.first_name;
+  $scope.username = User.name;
 
   $scope.fbId = User.fbid;
 

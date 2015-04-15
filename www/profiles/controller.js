@@ -17,12 +17,12 @@ angular.module('profile.controllers', [])
       break;
     default:
       $scope.profile = User;
-      $scope.profile.location = PlaceFactory.all();
-      $scope.profile.people = RoommateFactory.all();
-      $scope.profile.userInfo = ProfileFactory.all();
+      // $scope.profile.location = PlaceFactory.all();
+      // $scope.profile.people = RoommateFactory.all();
+      // $scope.profile.userInfo = ProfileFactory.all();
       break;
   }
-  
+  console.log("user in profile view ", User)
   // get stored location info
   // ??? is this being used anymore? (Daniel: Apr 12)
   $scope.myGoBack = function() {

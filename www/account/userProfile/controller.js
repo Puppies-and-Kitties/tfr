@@ -26,9 +26,12 @@ angular.module('userProfile.controllers', [])
   $scope.saveProfile = function(){
     // Will need to call PreferencesFactory.update and do a PUT/POST request to
     // the server
-    ProfileFactory.initialize($scope.profile, User);
+    ProfileFactory.initialize($scope.profile, User)
+      .then(function(res) {
+        console.log("dat der profile data ", res);
+        User.profile = res;
+      })
     $state.go('tab.account');
-    console.log('profile - ', $scope.profile);
    
   }
 
