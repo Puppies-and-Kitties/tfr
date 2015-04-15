@@ -139,7 +139,6 @@ angular.module('data', [])
       city: null,
       state: null
     }
-
   };
 
   var baseUrl = 'http://localhost:8888'
@@ -156,6 +155,7 @@ angular.module('data', [])
         }
       })
       .then(function(res){
+        console.log("place factory res from db ", res)
         return res.data.location;
       })
     },
@@ -221,10 +221,53 @@ angular.module('data', [])
 
 
 
-.factory('CandidatesFactory', function(){
+.factory('CandidatesFactory', function($http){
+
+  var baseUrl = 'http://localhost:8888'
 
   //Dummy data for now, eventually will be initialized in tab state resolve
-  var candidates = [{
+  var candidates = [
+  // {
+  //     id: 0,
+  //     name: null,
+  //     location: { 
+  //       host: null,
+  //       myPlace: {
+  //         rent: null,
+  //         zipCode: null,
+  //         genders: null,
+  //         openRooms: null,
+  //         roomType: null,
+  //         occupants: null,
+  //         city: null,
+  //         state: null,
+  //         latitude: null,
+  //         longitude: null
+  //       },
+  //       desiredPlace:{
+  //         rent: null,
+  //         zipCode: null,
+  //         radius: null,
+  //         roomType: null,
+  //         latitude: null,
+  //         longitude: null,
+  //         city: null,
+  //         state: null
+  //       }
+  //     },
+  //     roommatePreferences: {
+  //       gender: null,
+  //       ageMin: null,
+  //       ageMax: null
+  //     },
+  //     profile: {
+  //       gender: null,
+  //       age: null,
+  //       keywords: ['','','','','']
+  //     },
+  //     liked: []
+  //   }, 
+    {
       id: 0,
       name: 'Ben Sparrow',
       aboutMeWords: 'Dogs, Night-Owl, Meditator, Coffee',
@@ -556,6 +599,19 @@ angular.module('data', [])
     },
     add: function(candidate){
       candidates.push(candidate);
+    },
+    mock: function(){
+      return $http({
+        method: 'POST',
+        url: baseUrl + '/user/mock',
+        data: {
+          candidates: candidates
+        }
+      })
+      .then(function(res){
+        console.log("place factory res from db ", res)
+        return res.data.location;
+      })
     }
   };
 

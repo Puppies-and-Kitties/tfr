@@ -23,4 +23,8 @@ angular.module('map.services', [])
     return Math.sqrt(x*x + y*y) * R;
   };
 
+
+  return {
+    distanceBetween: distanceBetween
+  }
 })

@@ -64,7 +64,7 @@ angular.module('starter', [
 
   $rootScope.$on('$firebaseSimpleLogin:login', function(event, user) {
        userSession.user = user;
-       console.log('success - ', userSession)
+       console.log('success - ', userSession);
        $state.go('tab.account');
    });
 

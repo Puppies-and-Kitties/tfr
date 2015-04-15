@@ -14,18 +14,22 @@ angular.module('map.controllers', [])
   $scope.saveLocation = function(){
     var lastIndex = markersArray.length -1
     if(host){
-      $scope.searchLocation.desiredPlace.latitude = markersArray[lastIndex].position.k
-      $scope.searchLocation.desiredPlace.longitude = markersArray[lastIndex].position.D
-      $scope.searchLocation.desiredPlace.radius = parseFloat($scope.input.radius);
+      $scope.searchLocation.myPlace.latitude = markersArray[lastIndex].position.k
+      $scope.searchLocation.myPlace.longitude = markersArray[lastIndex].position.D
+      $scope.searchLocation.myPlace.radius = parseFloat($scope.input.radius);
     }
     else {
       $scope.searchLocation.desiredPlace.latitude = markersArray[lastIndex].position.k
       $scope.searchLocation.desiredPlace.longitude = markersArray[lastIndex].position.D
       $scope.searchLocation.desiredPlace.radius = parseFloat($scope.input.radius);
     }
+    
 
     $scope.reverseCodeIt();
-    PlaceFactory.initialize($scope.searchLocation, User);
+    PlaceFactory.initialize($scope.searchLocation, User)
+      .then(function(res) {
+        console.log("response from db in MAPCONTROLLER ", res)
+      })
 
     $state.go('tab.account-place');
   }
@@ -40,6 +44,11 @@ angular.module('map.controllers', [])
     };
 
     map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+    // 
+    // if location already saved, place a marker and center the map on those coordinates
+    // if(host === true && $scope.searchLocation.myPlace.latitude !== null || host === false && $scope.searchLocation.desiredPlace.latitude !== null)
+    // 
 
     google.maps.event.addListener(map, "click", function(event){
       console.log('event - ', event);

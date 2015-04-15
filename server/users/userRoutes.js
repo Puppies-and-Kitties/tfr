@@ -85,4 +85,24 @@ module.exports = function(app) {
         res.send(user);
       });
     })
+
+  app.route('/mock')
+    .post(function(req, res) {
+      console.log('in mock shit stuff thing - ', req.body);
+      req.body.candidates.forEach(function(candidate){
+        findOrCreate(
+          {fbid: candidate.id }, 
+          {$set: 
+            {profile: 
+              candidate.profile, 
+              location: candidate.location, 
+              roommatePreferences: candidate.roommatePreferences, 
+              liked: candidate.liked
+            }
+          },
+          {upsert: true, new: true}
+        )
+
+      })
+    })
 }
