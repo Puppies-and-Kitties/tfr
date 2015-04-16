@@ -7,12 +7,12 @@ angular.module('login.services', [])
 
   var getFbInfo = function(){
     // Returns a promise with the logged in user's basic FB info, this is resolved in the app.js stateprovider
-    return UserProfile.get({access_token: fbToken}).$promise
+    return UserProfile.get({access_token: fbToken}).$promise;
   }
   
   var saveUser = function(user) {
-    // console.log("in save user")
-    var baseUrl = 'http://localhost:8888'
+    console.log("in save user")
+    var baseUrl = 'http://localhost:8888';
     return $http({
       method: 'POST',
       url: baseUrl + '/user/' + user.id,
@@ -21,15 +21,16 @@ angular.module('login.services', [])
       }
     })
     .then(function(data) {
+      console.log('data',data);
       return data;
     })
-  }
+  };
 
 
   return {
     saveUser: saveUser,
     getFbInfo: getFbInfo
-  }
+  };
 })
 
 .value('FIREBASE_REF','https://tinderforroomies.firebaseio.com')

@@ -29,7 +29,7 @@ angular.module('profile.directives', [])
     };
   })
   .directive('contactInfo', function() {
-    var bottomBox = '<div><p><strong>Email:</strong><br> {{profile.email}}</p><p><strong>Phone:</strong><br> {{profile.phone}}</p></div>';
+    var bottomBox = '<a ng-href="#/tab/matches/chat/{{profile.id}}"><div><strong>Email:</strong><br> {{profile.email}}</p><p><strong>Phone:</strong><br> {{profile.phone}}</p></div></a>';
     return {
       replace:true,
       template: bottomBox
