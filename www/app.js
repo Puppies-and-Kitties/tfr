@@ -28,7 +28,9 @@ angular.module('starter', [
   'data',
   'map.controllers',
   'map.services',
-  'account.controllers'
+  'account.controllers',
+  'chats.services',
+  'chats.controllers'
   ])
 
 .filter('range', function() {
@@ -94,7 +96,9 @@ angular.module('starter', [
     // To access this data, simply inject User into the controller
     resolve: {
       User: function(userSession, LoginFact){
-        var user = userSession.user.thirdPartyUserData;
+        console.log("userSession",userSession);
+        var user = userSession.user.cachedUserProfile;
+
         return LoginFact.saveUser(user)
           .then(function(data){
             console.log("DATA", data)
@@ -214,6 +218,16 @@ angular.module('starter', [
       'tab-matches': {
         templateUrl: 'profiles/view.html',
         controller: 'ProfileCtrl'
+      }
+    }
+  })
+
+  .state('tab.matches-chat', {
+    url: '/matches/chat/:matchId',
+    views: {
+      'tab-matches': {
+        templateUrl: 'chats/view.html',
+        controller: 'ChatsCtrl'
       }
     }
   })
