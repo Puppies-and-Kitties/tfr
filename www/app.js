@@ -49,7 +49,7 @@ angular.module('starter', [
   };
 })
 
-.run(function($ionicPlatform, $rootScope, $state, userSession) {
+.run(function($ionicPlatform, $rootScope, $state, userSession, CandidatesFactory) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -76,6 +76,13 @@ angular.module('starter', [
     console.log('logged out')
     $state.go('login');
    });
+
+
+   $rootScope.$on('userRetrieved', function(event, data){
+    console.log('testing testing - ', data);
+    CandidatesFactory.initialize(data);
+   });
+
 })
 
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -102,7 +109,7 @@ angular.module('starter', [
 
         return LoginFact.saveUser(user)
           .then(function(data){
-            console.log("DATA", data)
+            console.log("DATA", data);
             return data.data;
           })
       }

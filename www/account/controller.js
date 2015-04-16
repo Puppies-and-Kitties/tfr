@@ -19,7 +19,7 @@
 // });
 angular.module('account.controllers', [])
 
-.controller('AccountCtrl', function($scope, userSession, User){
+.controller('AccountCtrl', function($scope, userSession, User, $rootScope, CandidatesFactory){
   $scope.username = User.name;
 
   $scope.fbId = User.fbid;
@@ -28,5 +28,7 @@ angular.module('account.controllers', [])
     console.log('sanity')
     userSession.auth.$unauth();
   }
+
+
 
 })
