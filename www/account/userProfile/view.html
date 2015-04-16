@@ -27,15 +27,16 @@
         </label>
         <ion-item >
           <span class="input-label"><h1>Custom Icons</h1></span>
-          <div id="listIcons" class="profile-icons"><span id="listIcons" ng-repeat="icon in profile.selectedIcons" class="{{icon}}"></span></div>
+          <div id="listIcons" class="profile-icons"><span id="listIcons" ng-repeat="selectIcon in profile.selectedIcons" class="{{selectIcon}}" ng-click="removeFromSelected(selectIcon)"> </span></div>
           <p id="ionicon-text">Start typing words that represent you to select icons</p>
           <label class="item item-input" id="ionicon-input">
-            <input ng-model="search" type="text">
+            <input type="text" ng-model="search" /> 
           </label>
+          <div id="listIcons" class="user-profile-icons"><span id="listIcons" ng-repeat="icon in getIonicons(search)" class="{{icon}}" ng-click="addToSelected(icon)"> </span></div>
         </ion-item>
-        <ion-item>
-          <div id="listIcons" class="profile-icons"><span id="listIcons" ng-repeat="icon in ionicons" class="{{icon}}"></span></div>
-        </ion-item>
+        <!-- <ion-item>
+          <div id="listIcons" class="profile-icons"><span id="listIcons" ng-repeat="icon in getIonicons(search)" class="{{icon}}"></span></div>
+        </ion-item> -->
         <!-- <div class="list list-inset"> -->
           <!-- <label class="item item-input" ng-if="profile.keywords.length" ng-repeat="keyword in profile.keywords">
             <input type="text" value="{{keyword}}"> 

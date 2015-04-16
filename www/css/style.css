@@ -33,6 +33,14 @@ div .profile-content {
   text-align:center;
 }
 
+.user-profile-icons {
+  text-align:center;
+  float:left;
+  overflow: visible;
+  white-space: normal;
+  margin-top:10px;
+}
+
 .swipe-page {
 
 }

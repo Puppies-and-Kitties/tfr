@@ -30,7 +30,8 @@ angular.module('starter', [
   'map.services',
   'account.controllers',
   'chats.services',
-  'chats.controllers'
+  'chats.controllers',
+  'userProfile.services'
   ])
 
 .filter('range', function() {
