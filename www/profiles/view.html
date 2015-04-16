@@ -29,14 +29,20 @@
 
       <div ng-if="profile!==User"
         <li class="item item-text-wrap"><!--<div class="card">-->
-          <div class="profile-content">
-            <strong>Ideal Rent:</strong> <br>{{profile.preferences.rent | currency}}
+          <div class="profile-content" ng-if="profile.location.host !==true">
+            <strong>Ideal Rent:</strong> <br>{{profile.location.desiredPlace.rent | currency}}
+          </div>
+          <div class="profile-content" ng-if="profile.location.host ===true">
+            <strong>Rent:</strong> <br>{{profile.location.myPlace.rent | currency}}
           </div>
         </li><!-- </div> -->
 
         <li class="item item-text-wrap"><!--<div class="card">-->
-          <div class="profile-content">
-            <strong>Ideal Zip Code:</strong><br>{{profile.preferences.zipCode}}
+          <div class="profile-content" ng-if="profile.location.host !==true">
+            <strong>Location:</strong><br>{{profile.location.desiredPlace.city}}, {{profile.location.desiredPlace.state}}
+          </div>
+          <div class="profile-content" ng-if="profile.location.host ===true">
+            <strong>Location:</strong><br>{{profile.location.myPlace.city}}, {{profile.location.myPlace.state}}
           </div>
         </li><!-- </div> -->
 
@@ -49,13 +55,13 @@
 
         <li class="item item-text-wrap"><!--<div class="card">-->
           <div class="profile-content">
-          <strong>Preferred Roommate Gender:</strong><br> {{profile.preferences.gender}}
+          <strong>Preferred Roommate Gender:</strong><br> {{profile.roommatePreferences.gender}}
           </div>
         </li><!-- </div> -->
 
         <li class="item item-text-wrap"><!--<div class="card">-->
           <div class="profile-content">
-          <strong>A few words of description:</strong><br> {{profile.aboutMeWords}}
+          <strong>A few words of description:</strong><br> {{keywords}}
           </div>
         </li><!-- </div> -->
       </div>

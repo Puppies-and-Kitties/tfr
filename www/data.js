@@ -19,8 +19,10 @@ angular.module('data', [])
       matches.splice(matches.indexOf(match), 1);
     },
     get: function(matchId) {
+      console.log("matches in matchfact.get ", matches)
+      console.log("matchId in matches fact ", matchId)
       for (var i = 0; i < matches.length; i++) {
-        if (matches[i].id === parseInt(matchId)) {
+        if (matches[i].fbid === parseInt(matchId)) {
           return matches[i];
         }
       }
@@ -34,7 +36,9 @@ angular.module('data', [])
       }
     },
     add: function(match){
-      if(match.likeCurrentUser){
+      console.log("Match in matchfact add ", match)
+      if(match.likedCurrentUser){
+        console.log("and match.likecurrentuser")
         matches.push(match);
       }
     }
@@ -229,9 +233,12 @@ angular.module('data', [])
   //Dummy data for now, eventually will be initialized in tab state resolve
   // var candidates = [
   // {
-  //     fbid: 10153290310337999,
+  //     fbid: 0,
   //     name: 'Daniel Miller',
   //     face: 'img/faceDaniel.png',
+  //     email: 'djmiller@gmail.com',
+  //     match: false,
+  //     likedCurrentUser: true,
   //     location: { 
   //       host: true,
   //       myPlace: {
@@ -272,6 +279,9 @@ angular.module('data', [])
   //     fbid: 1,
   //     name: 'Dick Rogers',
   //     face: 'img/face1.png',
+  //     email: 'dickrodgers@test.com',
+  //     match: false,
+  //     likedCurrentUser: false,
   //     location: { 
   //       host: true,
   //       myPlace: {
@@ -312,6 +322,9 @@ angular.module('data', [])
   //     fbid: 2,
   //     name: 'Thick McStevens',
   //     face: 'img/face2.png',
+  //     email: 'thicksteve@test.com',
+  //     match: false,
+  //     likedCurrentUser: true,
   //     location: { 
   //       host: false,
   //       myPlace: {
@@ -348,12 +361,14 @@ angular.module('data', [])
   //       keywords: ['peaceful','cake','beer','wine','cheese']
   //     },
   //     liked: []
-  //   }, 
 
   // }, {
   //     fbid: 3,
   //     name: 'Jim Carrey',
   //     face: 'img/face3.jpeg',
+  //     email: 'jimcarrey@test.com',
+  //     match: false,
+  //     likedCurrentUser: true,
   //     location: { 
   //       host: true,
   //       myPlace: {
@@ -394,6 +409,9 @@ angular.module('data', [])
   //     fbid: 4,
   //     name: 'Max Howser',
   //     face: 'img/face5.jpeg',
+  //     email: 'maxhowser@test.com',
+  //     match: false,
+  //     likedCurrentUser: true,
   //     location: { 
   //       host: true,
   //       myPlace: {
@@ -431,9 +449,12 @@ angular.module('data', [])
   //     },
   //     liked: ["552eabd2a2d7560782cabdef"]
   // }, {
-  //     id: 5,
+  //     fbid: 5,
   //     name: 'Zack Thompson',
   //     face: 'img/face4.jpeg',
+  //     email: 'zackthompson@test.com',
+  //     match: false,
+  //     likedCurrentUser: true,
   //     location: { 
   //       host: true,
   //       myPlace: {
