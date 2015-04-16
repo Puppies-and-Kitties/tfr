@@ -18,9 +18,11 @@ angular.module('chats.services', ['firebase'])
     //   }
     //   return null;
     // },
-    set: function(userId,matchId){
-      var currentMatchChats = new Firebase("https://ionictestchat.firebaseio.com/"+userId+matchId);
-      console.log('currentMatchChats',currentMatchChats);
+    matchChatURL: function(userId,matchId,existingChatUrl){
+      return existingChatUrl||"https://ionictestchat.firebaseio.com/"+userId+matchId;
+    },
+    set: function(matchChatURL){
+      var currentMatchChats = new Firebase(matchChatURL);
       return $firebaseArray(currentMatchChats);
     },
     add: function(firebaseArr,from,message,fbId){

@@ -26,6 +26,13 @@ angular.module('data', [])
       }
       return null;
     },
+    update: function(matchId,property,newValue){
+      for (var i = 0; i < matches.length; i++) {
+        if (matches[i].id === parseInt(matchId)) {
+          matches[i][property] = newValue;
+        }
+      }
+    },
     add: function(match){
       if(match.likeCurrentUser){
         matches.push(match);
@@ -295,6 +302,7 @@ angular.module('data', [])
       matched: false,
       likeCurrentUser: true,
       email: 'perrygovernor@test.com',
+      chatURL: 'https://ionictestchat.firebaseio.com/10155475481120094499',
       preferences: {
         radius: 7,
         zipCode: 94604,
