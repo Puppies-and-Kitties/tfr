@@ -25,15 +25,25 @@
             </select>
           </div>
         </label>
-        <span class="input-label"><h2>Keywords</h2></span>
-        <div class="list list-inset">
+        <ion-item >
+          <span class="input-label"><h1>Custom Icons</h1></span>
+          <div id="listIcons" class="profile-icons"><span id="listIcons" ng-repeat="icon in profile.selectedIcons" class="{{icon}}"></span></div>
+          <p id="ionicon-text">Start typing words that represent you to select icons</p>
+          <label class="item item-input" id="ionicon-input">
+            <input ng-model="search" type="text">
+          </label>
+        </ion-item>
+        <ion-item>
+          <div id="listIcons" class="profile-icons"><span id="listIcons" ng-repeat="icon in ionicons" class="{{icon}}"></span></div>
+        </ion-item>
+        <!-- <div class="list list-inset"> -->
           <!-- <label class="item item-input" ng-if="profile.keywords.length" ng-repeat="keyword in profile.keywords">
             <input type="text" value="{{keyword}}"> 
           </label>
           <label class="item item-input" ng-if="!profile.keywords.length" ng-repeat="keyword in mockKeywords.keywords">
             <input type="text" placeholder="ex. {{keyword}}">
           </label> -->
-          <label class="item item-input">
+          <!-- <label class="item item-input">
             <input type="text" ng-model="profile.keywords[0]" placeholder="ex. Reading">
           </label>
           <label class="item item-input">
@@ -47,9 +57,9 @@
           </label>
           <label class="item item-input">
             <input type="text" ng-model="profile.keywords[4]" placeholder="ex. Cooking">
-          </label>
+          </label> -->
           <!-- <button class="button button-small button-assertive" type="submit">Save Keywords</button> -->
-        </div>
+        <!-- </div> -->
       </ion-list>
       
       <ion-item>

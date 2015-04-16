@@ -24,11 +24,14 @@ div .profile-content {
 }
 
 #listIcons{
-  font-size: 24px; 
+  font-size: 36px; 
   font-weight: bold;
   color:#000000;
 }
 
+.profile-icons {
+  text-align:center;
+}
 
 .swipe-page {
 
@@ -128,5 +131,24 @@ div .profile-content {
   z-index: 5;
   background-color: black;
   padding: 7px;
+}
+
+#ionicon-button {
+  top:-1px;
+  float:left;
+}
+
+#ionicon-input {
+  width:100%;
+  line-height:12px;
+  padding:0px;
+  float:left;
+  font-size:12px;
+}
+
+#ionicon-text {
+  overflow: visible;
+  white-space: normal;
+  margin-top:10px;
 }
 

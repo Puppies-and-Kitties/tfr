@@ -5,6 +5,9 @@ angular.module('userProfile.controllers', [])
   $scope.username = User.name;
 
   $scope.profile = User.profile || ProfileFactory.all();
+  $scope.profile.selectedIcons = ["ion-android-bar","ion-social-github","ion-social-freebsd-devil"];
+
+  $scope.ionicons = [];
 
   // $scope.mockKeywords = {
   //   keywords: ['Reading', 'Night-Owl', 'Beer', 'Cooking', 'Hiking']
