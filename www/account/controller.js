@@ -26,7 +26,7 @@ angular.module('account.controllers', [])
 
   $scope.logout = function(){
     console.log('sanity')
-    userSession.auth.$logout();
+    userSession.auth.$unauth();
   }
 
 })
