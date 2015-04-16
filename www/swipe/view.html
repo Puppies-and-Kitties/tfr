@@ -13,9 +13,9 @@
         </a>
       </div>
 
-      <div class="item item-text-wrap">
-        <h2>{{ currentCandidate.name }}</h2>
-        <p>{{ currentCandidate.aboutMeWords }}</p>
+      <div class="item item-text-wrap profile-content">
+        <h2 id="h2">{{ currentCandidate.name }}</h2>
+        <div id="listIcons" class="profile-icons"><span id="listIcons" ng-repeat="icon in currentCandidate.icons" class="{{icon}}">  </span></div>
       </div>
 
       <div class="item tabs tabs-secondary tabs-icon-left">

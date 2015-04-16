@@ -17,6 +17,11 @@ div .profile-content {
   background-color:#EF473A;
 }
 
+#h2 {
+  font-size: 24px; 
+  font-weight: bold;
+}
+
 #h4 {
   font-size: 18px; 
   font-weight: bold;
