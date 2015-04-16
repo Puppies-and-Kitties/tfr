@@ -19,7 +19,7 @@ angular.module('profile.controllers', [])
       break;
     default:
       $scope.profile = User;
-      // $scope.profile.location = PlaceFactory.all();
+      // $scope.profile.profile = PlaceFactory.all();
       // $scope.profile.people = RoommateFactory.all();
       // $scope.profile.userInfo = ProfileFactory.all();
       break;
@@ -29,8 +29,9 @@ angular.module('profile.controllers', [])
   $scope.myGoBack = function() {
       $ionicHistory.goBack();
   };
-  
-  $scope.keywords = $scope.profile.profile.keywords.join(", ");
+  if ($scope.profile.profile) {
+   $scope.keywords = $scope.profile.profile.keywords.join(", ");
+  }
   $scope.profile.type = $stateParams.type;
   $scope.profile.match = true;
 
