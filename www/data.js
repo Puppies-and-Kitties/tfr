@@ -19,8 +19,10 @@ angular.module('data', [])
       matches.splice(matches.indexOf(match), 1);
     },
     get: function(matchId) {
+      console.log("matches in matchfact.get ", matches)
+      console.log("matchId in matches fact ", matchId)
       for (var i = 0; i < matches.length; i++) {
-        if (matches[i].id === parseInt(matchId)) {
+        if (matches[i].fbid === parseInt(matchId)) {
           return matches[i];
         }
       }
@@ -34,7 +36,9 @@ angular.module('data', [])
       }
     },
     add: function(match){
-      if(match.likeCurrentUser){
+      console.log("Match in matchfact add ", match)
+      if(match.likedCurrentUser){
+        console.log("and match.likecurrentuser")
         matches.push(match);
       }
     }
@@ -139,7 +143,6 @@ angular.module('data', [])
       city: null,
       state: null
     }
-
   };
 
   var baseUrl = 'http://localhost:8888'
@@ -156,6 +159,7 @@ angular.module('data', [])
         }
       })
       .then(function(res){
+        console.log("place factory res from db ", res)
         return res.data.location;
       })
     },
@@ -220,334 +224,311 @@ angular.module('data', [])
 })
 
 
+// https://Fauth.firebase.com%2Fv2%2Ftinderforroomies%2Fauth%2Ffacebook%2Fcallback
+.factory('CandidatesFactory', function($http, $rootScope){
 
-.factory('CandidatesFactory', function(){
+  var baseUrl = 'http://localhost:8888'
+
 
   //Dummy data for now, eventually will be initialized in tab state resolve
-  var candidates = [{
-      id: 0,
-      name: 'Ben Sparrow',
-      aboutMeWords: 'Dogs, Night-Owl, Meditator, Coffee',
-      // face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png',
-      face: './img/face1.png',
-      icons:['ion-ios-paw','ion-ios-moon', 'ion-aperture', 'ion-coffee'],
-      matched: false,
-      likeCurrentUser: true,
-      email: 'bensparrow@test.com',
-      preferences: {
-        radius: 7,
-        zipCode: 95991,
-        lookingForRoommateOnly: false,
-        rent: 250,
-        gender: 'either'
-      }
-    }, {
-      id: 1,
-      name: 'Max Lynx',
-      aboutMeWords: 'Fitness, football, work-from-home, house-plants',
-      // face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460',
-      face: 'img/face2.png',
-      icons:['ion-android-bicycle','ion-ios-americanfootball', 'ion-home', 'ion-leaf'],
-      matched: false,
-      likeCurrentUser: false,
-      email: 'maxlynx@test.com',
-      preferences: {
-        radius: 7,
-        zipCode: 53011,
-        lookingForRoommateOnly: false,
-        rent: 400,
-        gender: 'male'
-      }
-    }, {
-      id: 2,
-      name: 'Andrew Jostlin',
-      aboutMeWords: 'Partyer, Christian, often-travelling, cats',
-      // face: 'https://pbs.twimg.com/profile_images/491274378181488640/Tti0fFVJ.jpeg',
-      face: 'img/face3.jpeg',
-      icons:['ion-ios-wineglass','ion-android-sunny', 'ion-earth', 'ion-ios-paw'],
-      matched: false,
-      likeCurrentUser: true,
-      email: 'andrewjostlin@test.com',
-      preferences: {
-        radius: 7,
-        zipCode: 94720,
-        lookingForRoommateOnly: false,
-        rent: 700,
-        gender: 'either'
-      }
-    }, {
-      id: 3,
-      name: 'Adam Bradleyson',
-      aboutMeWords: 'Beer, barbeques, books, big-screen tv',
-      // face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg',
-      face: 'img/face4.jpeg',
-      icons:['ion-beer','ion-knife', 'ion-ios-book', 'ion-ios-monitor'],
-      matched: false,
-      likeCurrentUser: true,
-      email: 'adambradleyson@test.com',
-      preferences: {
-        radius: 7,
-        zipCode: 53017,
-        lookingForRoommateOnly: false,
-        rent: 1300,
-        gender: 'female'
-      }
-    }, {
-      id: 4,
-      name: 'Perry Governor',
-      aboutMeWords: 'Recycling, chef, works nights, Coffee',
-      // face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg',
-      face: 'img/face5.jpeg',
-      icons:['ion-leaf','ion-fork', 'ion-ios-cloudy-night', 'ion-coffee'],
-      matched: false,
-      likeCurrentUser: true,
-      email: 'perrygovernor@test.com',
-      chatURL: 'https://ionictestchat.firebaseio.com/10155475481120094499',
-      preferences: {
-        radius: 7,
-        zipCode: 94604,
-        lookingForRoommateOnly: false,
-        rent: 1000,
-        gender: 'male'
-      }
-    },
-    {
-      id: 5,
-      name: 'Marshawn Lynch',
-      aboutMeWords: 'Beast Mode.',
-      face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png',
-      matched: false,
-      likeCurrentUser: true,
-      email: 'bensparrow@test.com',
-      preferences: {
-        radius: 7,
-        zipCode: 94123,
-        lookingForRoommateOnly: false,
-        rent: 400,
-        gender: 'either'
-      }
-    }, {
-      id: 6,
-      name: 'Tom Brady',
-      aboutMeWords: 'Fitness, football, Model-Wife, Model-Life',
-      face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460',
-      matched: false,
-      likeCurrentUser: true,
-      email: 'maxlynx@test.com',
-      preferences: {
-        radius: 7,
-        zipCode: 95992,
-        lookingForRoommateOnly: false,
-        rent: 400,
-        gender: 'male'
-      }
-    }, {
-      id: 7,
-      name: 'Aaron Rodgers',
-      aboutMeWords: 'Partyer, GOAT, Cal Bear',
-      face: 'https://pbs.twimg.com/profile_images/491274378181488640/Tti0fFVJ.jpeg',
-      matched: false,
-      likeCurrentUser: true,
-      email: 'andrewjostlin@test.com',
-      preferences: {
-        radius: 7,
-        zipCode: 94720,
-        lookingForRoommateOnly: false,
-        rent: 700,
-        gender: 'either'
-      }
-    }, {
-      id: 8,
-      name: 'Jimmy Dean',
-      aboutMeWords: 'Sausages and Breakfast Sandwiches',
-      face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg',
-      matched: false,
-      likeCurrentUser: false,
-      email: 'adambradleyson@test.com',
-      preferences: {
-        radius: 7,
-        zipCode: 94604,
-        lookingForRoommateOnly: false,
-        rent: 1300,
-        gender: 'female'
-      }
-    }, {
-      id: 9,
-      name: 'James Dean',
-      aboutMeWords: 'Too Young, Too Fast, Rebel, Eden',
-      face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg',
-      matched: false,
-      likeCurrentUser: true,
-      email: 'perrygovernor@test.com',
-      preferences: {
-        radius: 7,
-        zipCode: 94604,
-        lookingForRoommateOnly: false,
-        rent: 1000,
-        gender: 'male'
-      }
-    },
-{
-      id: 10,
-      name: 'Jeff Goldblum',
-      aboutMeWords: 'Independence Day',
-      face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png',
-      matched: false,
-      likeCurrentUser: true,
-      email: 'bensparrow@test.com',
-      preferences: {
-        radius: 7,
-        zipCode: 94123,
-        lookingForRoommateOnly: false,
-        rent: 250,
-        gender: 'either'
-      }
-    }, {
-      id: 11,
-      name: 'Demarco Murray',
-      aboutMeWords: 'Fitness, football, football, fitness',
-      face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460',
-      matched: false,
-      likeCurrentUser: true,
-      email: 'maxlynx@test.com',
-      preferences: {
-        radius: 7,
-        zipCode: 53011,
-        lookingForRoommateOnly: false,
-        rent: 400,
-        gender: 'male'
-      }
-    }, {
-      id: 12,
-      name: 'Mike Johnson',
-      aboutMeWords: 'Runner, Chiller',
-      face: 'https://pbs.twimg.com/profile_images/491274378181488640/Tti0fFVJ.jpeg',
-      matched: false,
-      likeCurrentUser: true,
-      email: 'andrewjostlin@test.com',
-      preferences: {
-        radius: 7,
-        zipCode: 94720,
-        lookingForRoommateOnly: false,
-        rent: 700,
-        gender: 'either'
-      }
-    }, {
-      id: 13,
-      name: 'Mike Jackson',
-      aboutMeWords: 'Dancer, Singer, Star, Legend',
-      face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg',
-      matched: false,
-      likeCurrentUser: true,
-      email: 'adambradleyson@test.com',
-      preferences: {
-        radius: 7,
-        zipCode: 53017,
-        lookingForRoommateOnly: false,
-        rent: 1300,
-        gender: 'female'
-      }
-    }, {
-      id: 14,
-      name: 'Reginald Cumberbatch',
-      aboutMeWords: 'Reginald Cumberbatch',
-      face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg',
-      matched: false,
-      likeCurrentUser: true,
-      email: 'perrygovernor@test.com',
-      preferences: {
-        radius: 7,
-        zipCode: 94604,
-        lookingForRoommateOnly: false,
-        rent: 1000,
-        gender: 'male'
-      }
-    },
-    {
-      id: 15,
-      name: 'Wellington Jones',
-      aboutMeWords: 'Crumpets, Tea, Beef Wellington',
-      face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png',
-      matched: false,
-      likeCurrentUser: true,
-      email: 'bensparrow@test.com',
-      preferences: {
-        radius: 7,
-        zipCode: 95991,
-        lookingForRoommateOnly: false,
-        rent: 250,
-        gender: 'either'
-      }
-    }, {
-      id: 16,
-      name: 'Sterling Bates',
-      aboutMeWords: 'Spy Movies, Gadgets, Bein Brash',
-      face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460',
-      matched: false,
-      likeCurrentUser: true,
-      email: 'maxlynx@test.com',
-      preferences: {
-        radius: 7,
-        zipCode: 53011,
-        lookingForRoommateOnly: false,
-        rent: 400,
-        gender: 'male'
-      }
-    }, {
-      id: 17,
-      name: 'Ricky Pick',
-      aboutMeWords: 'Animal-Lover, Farmer',
-      face: 'https://pbs.twimg.com/profile_images/491274378181488640/Tti0fFVJ.jpeg',
-      matched: false,
-      likeCurrentUser: true,
-      email: 'andrewjostlin@test.com',
-      preferences: {
-        radius: 7,
-        zipCode: 94720,
-        lookingForRoommateOnly: false,
-        rent: 700,
-        gender: 'either'
-      }
-    }, {
-      id: 18,
-      name: 'Grant Solomon',
-      aboutMeWords: 'Messiah Complex',
-      face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg',
-      matched: false,
-      likeCurrentUser: true,
-      email: 'adambradleyson@test.com',
-      preferences: {
-        radius: 7,
-        zipCode: 53017,
-        lookingForRoommateOnly: false,
-        rent: 1300,
-        gender: 'female'
-      }
-    }, {
-      id: 19,
-      name: 'Dean Ford',
-      aboutMeWords: 'Cars, Money',
-      face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg',
-      matched: false,
-      likeCurrentUser: true,
-      email: 'perrygovernor@test.com',
-      preferences: {
-        radius: 7,
-        zipCode: 94604,
-        lookingForRoommateOnly: false,
-        rent: 1000,
-        gender: 'male'
-      }
-    }];
+  // var candidates = [
+  // {
+  //     fbid: 0,
+  //     name: 'Daniel Miller',
+  //     face: 'img/faceDaniel.png',
+  //     email: 'djmiller@gmail.com',
+  //     chatURL: 'https://ionictestchat.firebaseio.com/10155475481120094499',
+  //     match: false,
+  //     likedCurrentUser: true,
+  //     location: { 
+  //       host: true,
+  //       myPlace: {
+  //         rent: 750,
+  //         zipCode: null,
+  //         genders: 'both',
+  //         openRooms: 1,
+  //         roomType: 'private',
+  //         occupants: 3,
+  //         city: 'Berkeley',
+  //         state: 'CA',
+  //         latitude: 37.867044,
+  //         longitude: -122.250559
+  //       },
+  //       desiredPlace:{
+  //         rent: null,
+  //         zipCode: null,
+  //         radius: null,
+  //         roomType: null,
+  //         latitude: null,
+  //         longitude: null,
+  //         city: null,
+  //         state: null
+  //       }
+  //     },
+  //     roommatePreferences: {
+  //       gender: 'male',
+  //       ageMin: 21,
+  //       ageMax: 30
+  //     },
+  //     profile: {
+  //       gender: 'male',
+  //       age: 27,
+  //       keywords: ['peaceful','cake','beer','wine','cheese']
+  //     },
+  //     liked: ["552eabd2a2d7560782cabdef"]
+  // }, 
 
-  //Possibly too much repetition/redundancy with MatchesFactory
+  // {
+  //     fbid: 1,
+  //     name: 'Dick Rogers',
+  //     face: 'img/face1.png',
+  //     email: 'dickrodgers@test.com',
+  //     match: false,
+  //     likedCurrentUser: false,
+  //     location: { 
+  //       host: true,
+  //       myPlace: {
+  //         rent: 775,
+  //         zipCode: null,
+  //         genders: 'both',
+  //         openRooms: 1,
+  //         roomType: 'private',
+  //         occupants: 3,
+  //         city: 'Berkeley',
+  //         state: 'CA',
+  //         latitude: 37.86618078529668,
+  //         longitude: -122.25912094116211
+  //       },
+  //       desiredPlace:{
+  //         rent: null,
+  //         zipCode: null,
+  //         radius: null,
+  //         roomType: null,
+  //         latitude: null,
+  //         longitude: null,
+  //         city: null,
+  //         state: null
+  //       }
+  //     },
+  //     roommatePreferences: {
+  //       gender: 'male',
+  //       ageMin: 21,
+  //       ageMax: 30
+  //     },
+  //     profile: {
+  //       gender: 'male',
+  //       age: 27,
+  //       keywords: ['rowdy','beer','cookies','football','cheese whiz']
+  //     },
+  //     liked: ["552eabd2a2d7560782cabdef"]
+  // }, {
+  //     fbid: 2,
+  //     name: 'Thick McStevens',
+  //     face: 'img/face2.png',
+  //     email: 'thicksteve@test.com',
+  //     match: false,
+  //     likedCurrentUser: true,
+  //     location: { 
+  //       host: false,
+  //       myPlace: {
+  //         rent: 750,
+  //         zipCode: null,
+  //         genders: 'both',
+  //         openRooms: 1,
+  //         roomType: 'private',
+  //         occupants: 3,
+  //         city: 'Berkeley',
+  //         state: 'CA',
+  //         latitude: 37.867044,
+  //         longitude: -122.250559
+  //       },
+  //       desiredPlace:{
+  //         rent: 250,
+  //         zipCode: null,
+  //         radius: 5,
+  //         roomType: null,
+  //         latitude: 37.867045,
+  //         longitude: -122.250560,
+  //         city: 'Berkeley',
+  //         state: 'CA'
+  //       }
+  //     },
+  //     roommatePreferences: {
+  //       gender: 'male',
+  //       ageMin: 21,
+  //       ageMax: 30
+  //     },
+  //     profile: {
+  //       gender: 'male',
+  //       age: 27,
+  //       keywords: ['peaceful','cake','beer','wine','cheese']
+  //     },
+  //     liked: []
+
+  // }, {
+  //     fbid: 3,
+  //     name: 'Jim Carrey',
+  //     face: 'img/face3.jpeg',
+  //     email: 'jimcarrey@test.com',
+  //     match: false,
+  //     likedCurrentUser: true,
+  //     location: { 
+  //       host: true,
+  //       myPlace: {
+  //         rent: 750,
+  //         zipCode: null,
+  //         genders: 'both',
+  //         openRooms: 1,
+  //         roomType: 'private',
+  //         occupants: 3,
+  //         city: 'Berkeley',
+  //         state: 'CA',
+  //         latitude: 37.867044,
+  //         longitude: -122.250559
+  //       },
+  //       desiredPlace:{
+  //         rent: null,
+  //         zipCode: null,
+  //         radius: null,
+  //         roomType: null,
+  //         latitude: null,
+  //         longitude: null,
+  //         city: null,
+  //         state: null
+  //       }
+  //     },
+  //     roommatePreferences: {
+  //       gender: 'male',
+  //       ageMin: 21,
+  //       ageMax: 30
+  //     },
+  //     profile: {
+  //       gender: 'male',
+  //       age: 27,
+  //       keywords: ['Chiller','Smoker','beer','wine','cheese']
+  //     },
+  //     liked: ["552eabd2a2d7560782cabdef"]
+  // }, {
+  //     fbid: 4,
+  //     name: 'Max Howser',
+  //     face: 'img/face5.jpeg',
+  //     email: 'maxhowser@test.com',
+  //     match: false,
+  //     likedCurrentUser: true,
+  //     location: { 
+  //       host: true,
+  //       myPlace: {
+  //         rent: 750,
+  //         zipCode: null,
+  //         genders: 'both',
+  //         openRooms: 1,
+  //         roomType: 'private',
+  //         occupants: 3,
+  //         city: 'Reno',
+  //         state: 'NV',
+  //         latitude: 39.49556336059472,
+  //         longitude: -119.805908203125
+  //       },
+  //       desiredPlace:{
+  //         rent: null,
+  //         zipCode: null,
+  //         radius: null,
+  //         roomType: null,
+  //         latitude: null,
+  //         longitude: null,
+  //         city: null,
+  //         state: null
+  //       }
+  //     },
+  //     roommatePreferences: {
+  //       gender: 'male',
+  //       ageMin: 21,
+  //       ageMax: 30
+  //     },
+  //     profile: {
+  //       gender: 'male',
+  //       age: 27,
+  //       keywords: ['Nuts','Crazy','Wild','Hateful','Bad']
+  //     },
+  //     liked: ["552eabd2a2d7560782cabdef"]
+  // }, {
+  //     fbid: 5,
+  //     name: 'Zack Thompson',
+  //     face: 'img/face4.jpeg',
+  //     email: 'zackthompson@test.com',
+  //     match: false,
+  //     likedCurrentUser: true,
+  //     location: { 
+  //       host: true,
+  //       myPlace: {
+  //         rent: 750,
+  //         zipCode: null,
+  //         genders: 'both',
+  //         openRooms: 1,
+  //         roomType: 'private',
+  //         occupants: 3,
+  //         city: 'Berkeley',
+  //         state: 'CA',
+  //         latitude: 37.86509663749013,
+  //         longitude: -122.2639274597168
+  //       },
+  //       desiredPlace:{
+  //         rent: null,
+  //         zipCode: null,
+  //         radius: null,
+  //         roomType: null,
+  //         latitude: null,
+  //         longitude: null,
+  //         city: null,
+  //         state: null
+  //       }
+  //     },
+  //     roommatePreferences: {
+  //       gender: 'male',
+  //       ageMin: 21,
+  //       ageMax: 30
+  //     },
+  //     profile: {
+  //       gender: 'female',
+  //       age: 24,
+  //       keywords: ['Books','Dogs','Fitness','Fun','Nature']
+  //     },
+  //     liked: ["552eabd2a2d7560782cabdef"]
+  // }
+  // ];
+  var candidates;
+  // //Possibly too much repetition/redundancy with MatchesFactory
   return {
-    initialize: function(usersCandidates){
-      candidates = usersCandidates;
+    initialize: function(req){
+      console.log('Candidates All - ', req);
+      if (req.data.location.host) {
+        return $http({
+          method: 'GET',
+          url: baseUrl + '/user/' + req.data.fbid + '/' + req.data.location.myPlace.city
+        })
+        .then(function(res) {
+          console.log("candidates that match location ", res)
+          candidates = res.data;
+        })
+      } else {
+        return $http({
+          method: 'GET',
+          url: baseUrl + '/user/' + req.data.fbid + '/' + req.data.location.desiredPlace.city
+        })
+        .then(function(res) {
+          console.log("candidates that match location ", res)
+          candidates = res.data;
+        })
+      }
     },
+
     all: function() {
-     return candidates;
+      return candidates;
     },
+
+
+      // console.log('You called candidate factory\'s all method');
+     // return candidates
     removeFirst: function() {
       candidates.splice(0, 1);
     },
@@ -556,6 +537,22 @@ angular.module('data', [])
     },
     add: function(candidate){
       candidates.push(candidate);
+    },
+    mock: function(){
+      // candidates.forEach(function(candidate){
+        // console.log('mock candidate being sent to server ', candidate)
+        return $http({
+          method: 'PUT',
+          url: baseUrl + '/user/' + candidates[1].id,
+          data: {
+            candidate: candidates[1],
+          }
+        })
+        .then(function(res){
+          console.log("place factory res from db ", res)
+          return res.data.location;
+        })
+    
     }
   };
 

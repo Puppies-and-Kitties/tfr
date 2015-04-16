@@ -8,6 +8,7 @@ angular.module('preferences.controllers', [])
   $scope.notHost = {"checked": true}
   
   $scope.location = User.location || PlaceFactory.all();
+  console.log("initial location ", $scope.location)
 
   $scope.toggleHost = function(status, input) {
     console.log("status pre click ", status);

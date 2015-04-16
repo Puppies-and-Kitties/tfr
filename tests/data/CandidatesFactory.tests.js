@@ -31,7 +31,7 @@ describe('Factory: Candidates', function() {
   //tests start here
   describe('CandidatesFactory', function() {
 
-    it('Should initialize candidates to the default', function(){
+    xit('Should initialize candidates to the default', function(){
       var candidates = CandidatesFactory.all();
       expect(candidates[1].name).toEqual('Max Lynx');
       expect(candidates[0].preferences.rent).toEqual(250);
@@ -40,7 +40,7 @@ describe('Factory: Candidates', function() {
 
     describe('initialize', function() {
 
-      it("Should initialize skipped to the passed in array", function() {
+      xit("Should initialize skipped to the passed in array", function() {
         var newCandidates = CandidatesFactory.all();
         expect(newCandidates.length).toEqual(20);
         newCandidates = newCandidates.slice(10);
@@ -53,7 +53,7 @@ describe('Factory: Candidates', function() {
 
     describe('all', function() {
 
-      it("Should return all objects", function() {
+      xit("Should return all objects", function() {
         expect(CandidatesFactory.all().length).toEqual(20);
       });
 
@@ -61,7 +61,7 @@ describe('Factory: Candidates', function() {
 
     describe('add', function() {
 
-      it("Should add a canidate to CandidatesFactory", function() {
+      xit("Should add a canidate to CandidatesFactory", function() {
         CandidatesFactory.add(testCandidate);
         expect(CandidatesFactory.all().length).toEqual(21);
         expect(CandidatesFactory.all()[20].name).toEqual('Jen Sparrow');
@@ -71,7 +71,7 @@ describe('Factory: Candidates', function() {
 
     describe('getFirst', function() {
 
-      it("Should return the first candidate in CandidatesFactory", function() {
+      xit("Should return the first candidate in CandidatesFactory", function() {
         var getName = CandidatesFactory.getFirst().name;
         expect(getName).toEqual("Ben Sparrow");
       });

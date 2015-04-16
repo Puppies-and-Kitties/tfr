@@ -13,7 +13,7 @@
       <label class="item item-input" id="chat-input">
         <input ng-model="message" type="text">
       </label>
-      <button class="button button-positive" id="chat-button" ng-click="add(message)">Send</button>
+      <button class="button button-positive" id="chat-button" ng-click="add(message); message = '';">Send</button>
     </ion-item>
 
   </ion-content>

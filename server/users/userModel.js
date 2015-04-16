@@ -3,6 +3,11 @@ var mongoose = require('mongoose');
 var UserSchema = new mongoose.Schema({
   fbid: Number,
   name: String,
+  face: String,
+  email: String,
+  chatURL: String,
+  match: Boolean,
+  likedCurrentUser: Boolean,
   // profile: {
     // myPlace: {
     //   peopleCount: Number,

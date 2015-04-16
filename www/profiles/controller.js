@@ -13,24 +13,27 @@ angular.module('profile.controllers', [])
       $scope.profile = CandidatesFactory.getFirst();
       break;
     case 'matches':
+      console.log("state.params ", $stateParams);
       $scope.profile = MatchesFactory.get($stateParams.id);
+      console.log('scope profile in matches profile ', $scope.profile)
       break;
     default:
       $scope.profile = User;
-      // $scope.profile.location = PlaceFactory.all();
+      // $scope.profile.profile = PlaceFactory.all();
       // $scope.profile.people = RoommateFactory.all();
       // $scope.profile.userInfo = ProfileFactory.all();
       break;
   }
-  console.log("user in profile view ", User)
   // get stored location info
   // ??? is this being used anymore? (Daniel: Apr 12)
   $scope.myGoBack = function() {
       $ionicHistory.goBack();
   };
-
+  if ($scope.profile.profile) {
+   $scope.keywords = $scope.profile.profile.keywords.join(", ");
+  }
   $scope.profile.type = $stateParams.type;
-  $scope.profile.matched = true;
+  $scope.profile.match = true;
 
   $scope.candidateSwipe =  function (match){
     //console.log(match,'ALL',CandidatesFactory.all());

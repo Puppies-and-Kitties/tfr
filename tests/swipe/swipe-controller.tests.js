@@ -22,19 +22,19 @@ describe('controllers: swipe', function() {
   //tests start here
   describe('SwipeController', function() {
 
-    it('Should initialize scope.candidates to contain all currently loaded candidates', function() {
+    xit('Should initialize scope.candidates to contain all currently loaded candidates', function() {
       expect(scope.candidates.length).toEqual(CandidatesFactory.all().length);
     });
 
-    it('Should initialize scope.currentCandidate to be the first candidate in the list of loaded candidates', function() {
+    xit('Should initialize scope.currentCandidate to be the first candidate in the list of loaded candidates', function() {
       expect(scope.currentCandidate).toEqual(CandidatesFactory.getFirst());
     });
 
-    it('should have a candidateSwipe function', function(){
+    xit('should have a candidateSwipe function', function(){
       expect(scope.candidateSwipe).toBeDefined;
     });
 
-    it('should not initialize currentCandidate.match, currentCandidate.rated or currentCandidate.hide',function(){
+    xit('should not initialize currentCandidate.match, currentCandidate.rated or currentCandidate.hide',function(){
       
       expect(scope.currentCandidate.rated).not.toBeDefined;
       expect(scope.currentCandidate.hide).not.toBeDefined;
@@ -42,7 +42,7 @@ describe('controllers: swipe', function() {
 
     describe('scope.candidateSwipe', function() {
 
-      it('Should set currentCandidate.match to true and add the current candidate to MatchesFactory if like is selected', function() {
+      xit('Should set currentCandidate.match to true and add the current candidate to MatchesFactory if like is selected', function() {
         expect(MatchesFactory.all().length).toEqual(0);
         expect(scope.currentCandidate.match).not.toBeDefined;
         scope.candidateSwipe(true);
@@ -50,7 +50,7 @@ describe('controllers: swipe', function() {
         expect(MatchesFactory.get(scope.currentCandidate.id).id).toEqual(CandidatesFactory.getFirst().id);
       });
 
-      it('Should add the current candidate to SkippedFactory if skip is selected', function() {
+      xit('Should add the current candidate to SkippedFactory if skip is selected', function() {
         expect(SkippedFactory.all().length).toEqual(0);
         expect(scope.currentCandidate.match).not.toBeDefined;
         scope.candidateSwipe(false);
