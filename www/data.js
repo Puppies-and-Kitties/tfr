@@ -237,6 +237,7 @@ angular.module('data', [])
   //     name: 'Daniel Miller',
   //     face: 'img/faceDaniel.png',
   //     email: 'djmiller@gmail.com',
+  //     chatURL: 'https://ionictestchat.firebaseio.com/10155475481120094499',
   //     match: false,
   //     likedCurrentUser: true,
   //     location: { 
@@ -275,7 +276,9 @@ angular.module('data', [])
   //       keywords: ['peaceful','cake','beer','wine','cheese']
   //     },
   //     liked: ["552eabd2a2d7560782cabdef"]
-  // }, {
+  // }, 
+
+  // {
   //     fbid: 1,
   //     name: 'Dick Rogers',
   //     face: 'img/face1.png',

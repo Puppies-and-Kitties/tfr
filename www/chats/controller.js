@@ -10,8 +10,11 @@ angular.module('chats.controllers', [])
     // will only need to take one parameter: the url for the firebase chat
 
   var matchId = $stateParams.matchId;
-
-  $scope.existingChatURL = MatchesFactory.get(matchId).chatURL;
+  console.log('match id in chats controller - ', $stateParams)
+  
+  $scope.match = MatchesFactory.get(matchId);
+  $scope.existingChatURL = $scope.match.chatURL;
+  // $scope.existingChatURL = "https://ionictestchat.firebaseio.com/10155475481120094499"
   $scope.matchChatURL = Chats.matchChatURL(userSession.user.id,matchId,$scope.existingChatURL);
   MatchesFactory.update(matchId,'chatURL',$scope.matchChatURL);
   console.log('$scope.matchChatURL',$scope.matchChatURL);

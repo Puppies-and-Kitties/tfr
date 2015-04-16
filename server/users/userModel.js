@@ -5,6 +5,7 @@ var UserSchema = new mongoose.Schema({
   name: String,
   face: String,
   email: String,
+  chatURL: String,
   match: Boolean,
   likedCurrentUser: Boolean,
   // profile: {
