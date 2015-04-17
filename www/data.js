@@ -229,14 +229,11 @@ angular.module('data', [])
 
   var baseUrl = 'http://localhost:8888'
 
-  var candidates;
+  var candidates = [];
   // //Possibly too much repetition/redundancy with MatchesFactory
   return {
     initialize: function(req){
-      // console.log('Candidatesfactory GET req - ', req);
       if (req.data.location.host) {
-        var url = baseUrl + '/user/' + req.data.fbid + '/' + req.data.location.myPlace.city;
-        console.log("url ", url);
         return $http({
           method: 'GET',
           url: baseUrl + '/user/' + req.data.fbid + '/' + req.data.location.myPlace.city
@@ -244,11 +241,9 @@ angular.module('data', [])
         .then(function(res) {
           console.log("candidates that match location ", res)
           candidates = res.data;
-          return candidates;
+          // return candidates;
         })
       } else {
-        var url = baseUrl + '/user/' + req.data.fbid + '/' + req.data.location.desiredPlace.city;
-        console.log("url ", url);
         return $http({
           method: 'GET',
           url: baseUrl + '/user/' + req.data.fbid + '/' + req.data.location.desiredPlace.city
@@ -256,7 +251,7 @@ angular.module('data', [])
         .then(function(res) {
           console.log("candidates that match location ", res)
           candidates = res.data;
-          return candidates;
+          // return candidates;
         })
       }
     },

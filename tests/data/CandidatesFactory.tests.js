@@ -1,9 +1,96 @@
-describe('Factory: Candidates', function() {
+describe('Factory: Candidates: ', function() {
   // var scope, $login, controller;
   var scope, CandidatesFactory, httpBackend;
 
-  var testCandidates = [{
-    fbid: 6,
+  //load controller's module and other necessary modules
+  beforeEach(module('data'/*,'ui.router'*/));
+
+  beforeEach(inject(function(_CandidatesFactory_, $httpBackend) {
+    httpBackend = $httpBackend;
+    CandidatesFactory = _CandidatesFactory_;
+  }));
+
+  afterEach(function() {
+    httpBackend.verifyNoOutstandingExpectation();
+    httpBackend.verifyNoOutstandingRequest();
+  })
+
+  //tests start here
+  describe('Initialize and All', function() {
+
+    it('Should initialize candidates with get request and return them with all', function(){
+      httpBackend.whenGET("http://localhost:8888/user/1234/Berkeley")
+        .respond(testCandidates);
+      CandidatesFactory.initialize({
+        data:{
+          fbid: 1234, 
+          location:{
+            host: true, 
+            myPlace:{
+              city: "Berkeley"
+            }
+          }
+        }
+      })
+      .then(function(candidates){
+        expect(CandidatesFactory.all().length).toEqual(6);
+      })
+      httpBackend.flush();
+    });
+  });
+    ////////////////////// Does not apply right now ////////////////////////
+    describe('initialize', function() {
+
+      xit("Should initialize skipped to the passed in array", function() {
+        var newCandidates = CandidatesFactory.all();
+        expect(newCandidates.length).toEqual(20);
+        newCandidates = newCandidates.slice(10);
+        CandidatesFactory.initialize(newCandidates);
+        expect(CandidatesFactory.all().length).toEqual(10);
+        expect(CandidatesFactory.all()[1].name).toEqual('Demarco Murray');
+      });
+
+    });
+    //////////////////////////////////////////////////////////////////////
+
+    describe('add', function() {
+
+      it("Should add candidates to candidates array", function() {
+        CandidatesFactory.add(testCandidate);
+        expect(CandidatesFactory.all().length).toEqual(1);
+        expect(CandidatesFactory.all()[0].name).toEqual('Jen Sparrow');
+      });
+
+    });
+
+    describe('getFirst', function() {
+
+      it("Should return the first candidate in CandidatesFactory", function() {
+        httpBackend.whenGET("http://localhost:8888/user/1234/Berkeley")
+          .respond(testCandidates);
+        CandidatesFactory.initialize({
+          data:{
+            fbid: 1234, 
+            location:{
+              host: true, 
+              myPlace:{
+                city: "Berkeley"
+              }
+            }
+          }
+        })
+        .then(function(candidates){
+          var getName = CandidatesFactory.getFirst().name;
+          expect(getName).toEqual("Daniel Miller");
+        })
+        httpBackend.flush();
+      });
+
+    });
+
+  
+var testCandidate = {
+  fbid: 6,
     name: 'Jen Sparrow',
     face: 'img/faceDaniel.png',
     email: 'jensparrow@test.com',
@@ -45,7 +132,10 @@ describe('Factory: Candidates', function() {
       choiceIonicons: []
     },
     liked: []
-  },  {
+  }
+
+
+var testCandidates = [{
     fbid: 0,
     name: 'Daniel Miller',
     face: 'img/faceDaniel.png',
@@ -305,93 +395,5 @@ describe('Factory: Candidates', function() {
     },
     liked: ["552eabd2a2d7560782cabdef"]
   }];
-
-  //load controller's module and other necessary modules
-  beforeEach(module('data'/*,'ui.router'*/));
-
-  beforeEach(inject(function(_CandidatesFactory_, $httpBackend) {
-    httpBackend = $httpBackend;
-    // scope = $rootScope.$new();
-    CandidatesFactory = _CandidatesFactory_;
-  }));
-
-  afterEach(function() {
-    httpBackend.verifyNoOutstandingExpectation();
-    httpBackend.verifyNoOutstandingRequest();
-  })
-
-  //tests start here
-  describe('CandidatesFactory', function() {
-
-    fit('Should initialize candidates with get request', function(){
-      console.log("test candidates ", testCandidates)
-      httpBackend.whenGET("http://localhost:8888/user/1234/Berkeley")
-        .respond(testCandidates);
-      CandidatesFactory.initialize({
-        data:{
-          fbid: 1234, 
-          location:{
-            host: true, 
-            myPlace:{
-              city: "Berkeley"
-            }
-          }
-        }
-      })
-      .then(function(candidates){
-        for (var i = 0; i < candidates.length; i++) {
-          console.log("candidates ", candidates[i].fbid)
-        }
-        expect(candidates.length).toEqual(7);
-      })
-      // expect(CandidatesFactory.candidates.length).toEqual(6)
-      httpBackend.flush();
-      // var candidates = CandidatesFactory.all();
-      // expect(candidates[1].name).toEqual('Max Lynx');
-      // expect(candidates[0].preferences.rent).toEqual(250);
-      // expect(candidates.length).toEqual(20);
-    });
-
-    describe('initialize', function() {
-
-      xit("Should initialize skipped to the passed in array", function() {d
-        var newCandidates = CandidatesFactory.all();
-        expect(newCandidates.length).toEqual(20);
-        newCandidates = newCandidates.slice(10);
-        CandidatesFactory.initialize(newCandidates);
-        expect(CandidatesFactory.all().length).toEqual(10);
-        expect(CandidatesFactory.all()[1].name).toEqual('Demarco Murray');
-      });
-
-    });
-
-    describe('all', function() {
-
-      xit("Should return all objects", function() {
-        expect(CandidatesFactory.all().length).toEqual(20);
-      });
-
-    });
-
-    describe('add', function() {
-
-      xit("Should add a canidate to CandidatesFactory", function() {
-        CandidatesFactory.add(testCandidate);
-        expect(CandidatesFactory.all().length).toEqual(1);
-        expect(CandidatesFactory.all()[20].name).toEqual('Jen Sparrow');
-      });
-
-    });
-
-    describe('getFirst', function() {
-
-      xit("Should return the first candidate in CandidatesFactory", function() {
-        var getName = CandidatesFactory.getFirst().name;
-        expect(getName).toEqual("Ben Sparrow");
-      });
-
-    });
-
-  });
   
 });
