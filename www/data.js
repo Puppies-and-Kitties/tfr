@@ -145,6 +145,8 @@ angular.module('data', [])
     }
   };
 
+
+
   var baseUrl = 'http://localhost:8888'
 
   //How best to remove the redundancy in lines 86-99 and lines 107-120?
@@ -160,7 +162,8 @@ angular.module('data', [])
       })
       .then(function(res){
         console.log("place factory res from db ", res)
-        return res.data.location;
+        location = res.data;
+        return res.data;
       })
     },
     all: function() {

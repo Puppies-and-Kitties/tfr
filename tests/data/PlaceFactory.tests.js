@@ -1,16 +1,16 @@
 describe('Factory: PlaceFactory', function() {
   // var scope, $login, controller;
-  var scope, PlaceFactory;
+  var scope, PlaceFactory, httpBackend;
 
   var testPlace;
   //load controller's module and other necessary modules
   beforeEach(module('data'/*,'ui.router'*/));
 
-  beforeEach(inject(function($rootScope, $injector) {
-    scope = $rootScope.$new();
-    PlaceFactory = $injector.get('PlaceFactory');
+  beforeEach(inject(function(_PlaceFactory_, $httpBackend) {
+    PlaceFactory = _PlaceFactory_;
+    httpBackend = $httpBackend;
     testPlace = { 
-      host: 'Jane',
+      host: true,
       myPlace: {
         rent: 1000,
         zipCode: 77777,
@@ -37,7 +37,7 @@ describe('Factory: PlaceFactory', function() {
   //tests start here
   describe('PlaceFactory', function() {
 
-    it('Should initialize place to the mostly empty default', function(){
+    it('Should initialize place to the empty default', function(){
       var place = PlaceFactory.all();
       expect(place.myPlace.rent).toBeNull();
       expect(place.myPlace.genders).toBeNull();
@@ -46,29 +46,34 @@ describe('Factory: PlaceFactory', function() {
 
     describe('initialize', function() {
 
-      xit("Should initialize place to the passed in object", function() {
-        PlaceFactory.initialize(testPlace);
-        var place = PlaceFactory.all();
-        
-        expect(place.myPlace.zipCode).toEqual(77777);
-        expect(place.myPlace.genders).toEqual('any');
-        expect(place.desiredPlace.radius).toEqual(3);
-        expect(place.desiredPlace.roomType).toEqual('awesome');
+      it("Should initialize place to the passed in object", function() {
+        httpBackend.whenPUT('http://localhost:8888/user/1234/location')
+          .respond(testPlace)
+        PlaceFactory.initialize(testPlace, {fbid: 1234})
+          .then(function(newLocation) {
+            console.log("new location ", newLocation)
+            expect(newLocation.myPlace.rent).toEqual(1000);
+          });
+        httpBackend.flush();
       });
 
     });
 
     describe('all', function() {
 
-      xit("Should return the place object", function() {
-        var place = PlaceFactory.all();
-        expect(Object.keys(place).length).toEqual(3);
-        expect(Object.keys(place.myPlace).length).toEqual(8);
-        expect(Object.keys(place.desiredPlace).length).toEqual(8);
+      it("Should return the place object", function() {
+        httpBackend.whenPUT('http://localhost:8888/user/1234/location')
+          .respond(testPlace)
+        PlaceFactory.initialize(testPlace, {fbid: 1234})
+          .then(function(newLocation) {
+            console.log("all ", PlaceFactory.all())
+            expect(PlaceFactory.all().myPlace.rent).toEqual(1000);
+          });
+        httpBackend.flush();
       });
 
     });
-
+    /////////////////////////Not Using these right now////////////////////
     describe('update', function() {
 
       xit("Should update a place property", function() {
@@ -110,6 +115,7 @@ describe('Factory: PlaceFactory', function() {
       });
 
     });
+    ///////////////////////////////////////////////////////////////
 
   });
   
