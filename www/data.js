@@ -229,6 +229,73 @@ angular.module('data', [])
 
   var baseUrl = 'http://localhost:8888'
 
+  var candidates;
+  // //Possibly too much repetition/redundancy with MatchesFactory
+  return {
+    initialize: function(req){
+      // console.log('Candidatesfactory GET req - ', req);
+      if (req.data.location.host) {
+        var url = baseUrl + '/user/' + req.data.fbid + '/' + req.data.location.myPlace.city;
+        console.log("url ", url);
+        return $http({
+          method: 'GET',
+          url: baseUrl + '/user/' + req.data.fbid + '/' + req.data.location.myPlace.city
+        })
+        .then(function(res) {
+          console.log("candidates that match location ", res)
+          candidates = res.data;
+          return candidates;
+        })
+      } else {
+        var url = baseUrl + '/user/' + req.data.fbid + '/' + req.data.location.desiredPlace.city;
+        console.log("url ", url);
+        return $http({
+          method: 'GET',
+          url: baseUrl + '/user/' + req.data.fbid + '/' + req.data.location.desiredPlace.city
+        })
+        .then(function(res) {
+          console.log("candidates that match location ", res)
+          candidates = res.data;
+          return candidates;
+        })
+      }
+    },
+
+    all: function() {
+      return candidates;
+    },
+
+
+      // console.log('You called candidate factory\'s all method');
+     // return candidates
+    removeFirst: function() {
+      candidates.splice(0, 1);
+    },
+    getFirst: function() {
+      return candidates[0];
+    },
+    add: function(candidate){
+      candidates.push(candidate);
+    },
+    mock: function(){
+      // candidates.forEach(function(candidate){
+        // console.log('mock candidate being sent to server ', candidate)
+        return $http({
+          method: 'PUT',
+          url: baseUrl + '/user/' + candidates[1].id,
+          data: {
+            candidate: candidates[1],
+          }
+        })
+        .then(function(res){
+          console.log("place factory res from db ", res)
+          return res.data.location;
+        })
+    
+    }
+  };
+
+})
 
   //Dummy data for now, eventually will be initialized in tab state resolve
   // var candidates = [
@@ -496,64 +563,3 @@ angular.module('data', [])
   //     liked: ["552eabd2a2d7560782cabdef"]
   // }
   // ];
-  var candidates;
-  // //Possibly too much repetition/redundancy with MatchesFactory
-  return {
-    initialize: function(req){
-      console.log('Candidates All - ', req);
-      if (req.data.location.host) {
-        return $http({
-          method: 'GET',
-          url: baseUrl + '/user/' + req.data.fbid + '/' + req.data.location.myPlace.city
-        })
-        .then(function(res) {
-          console.log("candidates that match location ", res)
-          candidates = res.data;
-        })
-      } else {
-        return $http({
-          method: 'GET',
-          url: baseUrl + '/user/' + req.data.fbid + '/' + req.data.location.desiredPlace.city
-        })
-        .then(function(res) {
-          console.log("candidates that match location ", res)
-          candidates = res.data;
-        })
-      }
-    },
-
-    all: function() {
-      return candidates;
-    },
-
-
-      // console.log('You called candidate factory\'s all method');
-     // return candidates
-    removeFirst: function() {
-      candidates.splice(0, 1);
-    },
-    getFirst: function() {
-      return candidates[0];
-    },
-    add: function(candidate){
-      candidates.push(candidate);
-    },
-    mock: function(){
-      // candidates.forEach(function(candidate){
-        // console.log('mock candidate being sent to server ', candidate)
-        return $http({
-          method: 'PUT',
-          url: baseUrl + '/user/' + candidates[1].id,
-          data: {
-            candidate: candidates[1],
-          }
-        })
-        .then(function(res){
-          console.log("place factory res from db ", res)
-          return res.data.location;
-        })
-    
-    }
-  };
-
-})

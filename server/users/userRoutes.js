@@ -2,7 +2,7 @@ var Users = require('./userModel.js');
 var q = require('q');
 
 module.exports = function(app) {
-  console.log("in user router");
+  // console.log("in user router");
   var findOrCreate = q.nbind(Users.findOneAndUpdate, Users);
   var findUser = q.nbind(Users.find, Users);
   
@@ -19,7 +19,7 @@ module.exports = function(app) {
         }]
       })
       .then(function(data){
-        console.log("response data for candidates ", data)
+        // console.log("response data for candidates ", data)
         res.send(data);
       })
     })
@@ -45,14 +45,14 @@ module.exports = function(app) {
         {upsert: true, new: true}
       )
       .then(function(user) {
-        console.log("user from db in post ", user)
+        // console.log("user from db in post ", user)
         res.send(user);
       });
     })
 
     .put(function(req, res) {
-      console.log("PUT params ", req.params)
-      console.log("PUTbody ", req.body)
+      // console.log("PUT params ", req.params)
+      // console.log("PUTbody ", req.body)
 
       findOrCreate(
         {fbid: req.params.id}, 
@@ -69,29 +69,29 @@ module.exports = function(app) {
         {upsert: true, new: true}
       )
       .then(function(user) {
-        console.log("user from db in PUT ", user)
+        // console.log("user from db in PUT ", user)
         res.send(user);
       });
     })
 
   app.route('/:id/location')
     .put(function(req, res) {
-      console.log("in location put");
-      console.log('req params for location - ', req.params);
-      console.log('req body for location - ', req.body)
+      // console.log("in location put");
+      // console.log('req params for location - ', req.params);
+      // console.log('req body for location - ', req.body)
       findOrCreate(
         {fbid: req.params.id }, 
         {$set: {location: req.body.location}},
         {upsert: true, new: true}
       )
       .then(function(user){
-        console.log("user coming back from location put request ", user)
+        // console.log("user coming back from location put request ", user)
         res.send(user);
       });
     })
     .get(function(req, res) {
-      console.log('in location get');
-      console.log('req params fuck shit get - ', req.params);
+      // console.log('in location get');
+      // console.log('req params fuck shit get - ', req.params);
 
       findUser(
         {fbid: req.params.id}
@@ -100,8 +100,8 @@ module.exports = function(app) {
     })
   app.route('/:id/roommatePreferences')
     .put(function(req, res) {
-      console.log("in roommatePreferences put");
-      console.log('req params id check - ', req.params);
+      // console.log("in roommatePreferences put");
+      // console.log('req params id check - ', req.params);
       findOrCreate(
         {fbid: req.params.id }, 
         {$set: {roommatePreferences: req.body.roommatePreferences}},
@@ -114,8 +114,8 @@ module.exports = function(app) {
 
   app.route('/:id/profile')
     .put(function(req, res) {
-      console.log("in profile put");
-      console.log('req params id check - ', req.params);
+      // console.log("in profile put");
+      // console.log('req params id check - ', req.params);
       findOrCreate(
         {fbid: req.params.id }, 
         {$set: {profile: req.body.profile}},
