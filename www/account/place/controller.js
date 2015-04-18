@@ -1,6 +1,6 @@
 angular.module('preferences.controllers', [])
 
-.controller('PlaceCtrl', function($scope, $state, User, PlaceFactory, ProfileFactory, userSession){
+.controller('PlaceCtrl', function($scope, $state, User, PlaceFactory, ProfileFactory, userSession, CandidatesFactory){
   // $scope.fbId = User.id;
   $scope.fbId = User.fbid;
   $scope.username = User.name;
@@ -28,6 +28,7 @@ angular.module('preferences.controllers', [])
       .then(function(res) {
         console.log("muddafuckin place dataaa ", res)
         User.location = res;
+        CandidatesFactory.initialize(User);
       })
     $state.go('tab.account');
   }

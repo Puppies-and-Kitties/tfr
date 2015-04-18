@@ -94,7 +94,7 @@ angular.module('map.services', [])
       // })
     return searchLocation;
 
-    $state.go('tab.account-place');
+    // $state.go('tab.account-place');
   };
 
   var codeIt = function(address, radius){
