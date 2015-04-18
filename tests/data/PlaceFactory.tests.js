@@ -40,7 +40,6 @@ describe('Factory: PlaceFactory', function() {
   });
 
   //tests start here
-  describe('PlaceFactory', function() {
 
     it('Should initialize place to the empty default', function(){
       var place = PlaceFactory.all();
@@ -122,6 +121,5 @@ describe('Factory: PlaceFactory', function() {
     });
     ///////////////////////////////////////////////////////////////
 
-  });
   
 });

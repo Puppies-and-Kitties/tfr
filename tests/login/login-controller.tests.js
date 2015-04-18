@@ -1,4 +1,4 @@
-describe('controller: login', function() {
+describe('Controller: Login', function() {
   // var scope, $login, controller;
   var scope, createController;
 

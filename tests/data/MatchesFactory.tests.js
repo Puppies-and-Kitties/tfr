@@ -1,4 +1,4 @@
-describe('controllers: swipe', function() {
+describe('Factory: MatchesFactory', function() {
   // var scope, $login, controller;
   var scope, MatchesFactory;
 
@@ -18,7 +18,6 @@ describe('controllers: swipe', function() {
   
 
   //tests start here
-  describe('MatchesFactory', function() {
 
     describe('initialize', function() {
 
@@ -79,7 +78,5 @@ describe('controllers: swipe', function() {
       });
 
     });
-
-  });
   
 });

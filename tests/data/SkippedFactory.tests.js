@@ -1,4 +1,4 @@
-describe('controllers: swipe', function() {
+describe('Factory: SkippedFactory: ', function() {
   // var scope, $login, controller;
   var scope, SkippedFactory;
 
@@ -17,7 +17,6 @@ describe('controllers: swipe', function() {
   }));
 
   //tests start here
-  describe('SkippedFactory', function() {
 
     describe('initialize', function() {
 
@@ -65,7 +64,5 @@ describe('controllers: swipe', function() {
       });
 
     });
-
-  });
   
 });

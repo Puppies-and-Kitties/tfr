@@ -23,7 +23,6 @@ describe('Factory: RoommateFactory', function() {
   });
 
   //tests start here
-  describe('RoommateFactory', function() {
 
     it('Should initialize roommatePreferences to the empty default', function(){
       var roommatePreferences = RoommateFactory.all();
@@ -83,7 +82,5 @@ describe('Factory: RoommateFactory', function() {
       });
 
     });
-
-  });
   
 });
