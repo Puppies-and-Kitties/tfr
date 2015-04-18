@@ -19,13 +19,7 @@ describe('Controllers: SwipeCtrl', function() {
     CandidatesFactory = _CandidatesFactory_;
     MatchesFactory = _MatchesFactory_;
     SkippedFactory = _SkippedFactory_;
-    httpBackend = $httpBackend;
   }));
-
-  afterEach(function(){
-    httpBackend.verifyNoOutstandingExpectation();
-    httpBackend.verifyNoOutstandingRequest();
-  });
 
   //tests start here
   describe('SwipeController', function() {
