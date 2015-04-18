@@ -9,10 +9,12 @@ describe('Factory: Profile', function() {
   beforeEach(inject(function($httpBackend, _ProfileFactory_) {
     ProfileFactory = _ProfileFactory_;
     httpBackend = $httpBackend;
-    testProfile = {
-      gender: 'female',
-      age: 25,
-      keywords: ['Running','Coffee','Student','Vegetarian']
+    testUser = {
+      profile: {
+        gender: 'female',
+        age: 25,
+        keywords: ['Running','Coffee','Student','Vegetarian']
+      }
     };
   }));
 
@@ -34,8 +36,8 @@ describe('Factory: Profile', function() {
 
       it("Should initialize profile to the passed in object", function() {
         httpBackend.whenPUT('http://localhost:8888/user/1234/profile')
-          .respond(testProfile)
-        ProfileFactory.initialize(testProfile, {fbid: 1234})
+          .respond(testUser)
+        ProfileFactory.initialize(testUser.profile, {fbid: 1234})
           .then(function(newProfile) {
             console.log("new location ", newProfile)
             expect(newProfile.age).toEqual(25);
@@ -49,8 +51,8 @@ describe('Factory: Profile', function() {
 
       it("Should return the profile object", function() {
         httpBackend.whenPUT('http://localhost:8888/user/1234/profile')
-          .respond(testProfile)
-        ProfileFactory.initialize(testProfile, {fbid: 1234})
+          .respond(testUser)
+        ProfileFactory.initialize(testUser.profile, {fbid: 1234})
           .then(function(newProfile) {
             expect(ProfileFactory.all().gender).toEqual('female');
           });
@@ -84,8 +86,8 @@ describe('Factory: Profile', function() {
 
       it("Should return the specified property", function() {
         httpBackend.whenPUT('http://localhost:8888/user/1234/profile')
-          .respond(testProfile)
-        ProfileFactory.initialize(testProfile, {fbid: 1234})
+          .respond(testUser)
+        ProfileFactory.initialize(testUser.profile, {fbid: 1234})
           .then(function(newProfile) {
             expect(ProfileFactory.getProperty('age')).toEqual(25);
             expect(ProfileFactory.getProperty('gender')).toEqual('female');

@@ -10,10 +10,12 @@ describe('Factory: RoommateFactory', function() {
     RoommateFactory = _RoommateFactory_;
     httpBackend = $httpBackend;
 
-    testRoommatePreferences = {
-      gender: 'female',
-      ageMin: 22,
-      ageMax: 26
+    testUser = {
+      roommatePreferences: {
+        gender: 'female',
+        ageMin: 22,
+        ageMax: 26
+      }
     };
   }));
 
@@ -34,8 +36,8 @@ describe('Factory: RoommateFactory', function() {
 
       it("Should initialize roommatePreferences to the passed in object", function() {
         httpBackend.whenPUT('http://localhost:8888/user/1234/roommatePreferences')
-          .respond(testRoommatePreferences)
-        RoommateFactory.initialize(testRoommatePreferences, {fbid: 1234})
+          .respond(testUser)
+        RoommateFactory.initialize(testUser.roommatePreferences, {fbid: 1234})
           .then(function(prefs){
             expect(prefs.ageMin).toEqual(22);
           })
@@ -71,8 +73,8 @@ describe('Factory: RoommateFactory', function() {
 
       it("Should return the specified property", function() {
         httpBackend.whenPUT('http://localhost:8888/user/1234/roommatePreferences')
-          .respond(testRoommatePreferences)
-        RoommateFactory.initialize(testRoommatePreferences, {fbid: 1234})
+          .respond(testUser)
+        RoommateFactory.initialize(testUser.roommatePreferences, {fbid: 1234})
           .then(function(prefs){
             expect(RoommateFactory.getProperty('gender')).toEqual('female');
             expect(RoommateFactory.getProperty('ageMin')).toEqual(22);
