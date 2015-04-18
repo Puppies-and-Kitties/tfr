@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 
 var app = express();
 
-var mongoURI = process.env.MONGO || 'mongodb://localhost/roome';
+var mongoURI = process.env.PROD_MONGODB || 'mongodb://localhost/roome';
 
 mongoose.connect(mongoURI);
 var db = mongoose.connection;
