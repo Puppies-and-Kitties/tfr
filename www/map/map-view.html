@@ -7,14 +7,14 @@
       <label class="item-input-wrapper">
         <input ng-model="input.address" type="text" placeholder="Where to look">
       </label>
-      <button ng-click="codeIt()" class="button button-positive">Search</button>
+      <button ng-click="search()" class="button button-positive">Search</button>
     </div>
 
     <div class="item item-input" ng-hide="!searchLocation.host">
       <label class="item-input-wrapper">
         <input ng-model="input.address" type="text" placeholder="Where's your place?">
       </label>
-      <button ng-click="codeIt()" class="button button-positive">Search</button>
+      <button ng-click="search()" class="button button-positive">Search</button>
     </div>
 
     <ion-item ng-hide="searchLocation.host">

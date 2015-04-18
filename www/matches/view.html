@@ -1,8 +1,6 @@
 <ion-view view-title="Matches">
   <ion-content>
     <ion-list>
-      <!-- for use with profile tab -->
-      <!-- <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="match in matches" type="item-text-wrap" href="#/tab/profiles/matches{{match.id}}"> -->
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="match in matches" type="item-text-wrap" href="#/tab/matches/profiles/matches/{{match.fbid}}">
         <img ng-src="{{match.face}}">
         <h2>{{match.name}}</h2>
@@ -12,5 +10,12 @@
         </ion-option-button>
       </ion-item>
     </ion-list>
+
+    <div ng-if="!matches.length" class="item item-text-wrap profile-content no-more-candidates">
+      <ion-item>
+        <h2>You don't have any matches, better get to swiping!</h2>
+      </ion-item>
+    </div>
+
   </ion-content>
 </ion-view>
