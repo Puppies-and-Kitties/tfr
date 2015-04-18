@@ -261,6 +261,7 @@ angular.module('data', [])
     },
 
     all: function() {
+      console.log("calling from test")
       return candidates;
     },
 
@@ -290,8 +291,8 @@ angular.module('data', [])
           console.log("place factory res from db ", res)
           return res.data.location;
         })
-    
-    }
+    },
+    candidates: candidates
   };
 
 })
