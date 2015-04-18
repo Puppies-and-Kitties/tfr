@@ -9,27 +9,29 @@ describe('Factory: PlaceFactory', function() {
   beforeEach(inject(function(_PlaceFactory_, $httpBackend) {
     PlaceFactory = _PlaceFactory_;
     httpBackend = $httpBackend;
-    testPlace = { 
-      host: true,
-      myPlace: {
-        rent: 1000,
-        zipCode: 77777,
-        genders: 'any',
-        openRooms: 2,
-        roomType: 'awesome',
-        occupants: 1,
-        city: null,
-        state: null
-      },
-      desiredPlace:{
-        rent: 1000,
-        zipCode: 77776,
-        radius: 3,
-        roomType: 'awesome',
-        latitude: null,
-        longitude: null,
-        city: null,
-        state: null
+    testUser = { 
+      location: {
+        host: true,
+        myPlace: {
+          rent: 1000,
+          zipCode: 77777,
+          genders: 'any',
+          openRooms: 2,
+          roomType: 'awesome',
+          occupants: 1,
+          city: null,
+          state: null
+        },
+        desiredPlace:{
+          rent: 1000,
+          zipCode: 77776,
+          radius: 3,
+          roomType: 'awesome',
+          latitude: null,
+          longitude: null,
+          city: null,
+          state: null
+        }
       }
     };
   }));
@@ -52,9 +54,10 @@ describe('Factory: PlaceFactory', function() {
 
       it("Should initialize place to the passed in object", function() {
         httpBackend.whenPUT('http://localhost:8888/user/1234/location')
-          .respond(testPlace)
-        PlaceFactory.initialize(testPlace, {fbid: 1234})
+          .respond(testUser)
+        PlaceFactory.initialize(testUser.location, {fbid: 1234})
           .then(function(newLocation) {
+            console.log("new location ", newLocation)
             expect(newLocation.myPlace.rent).toEqual(1000);
           });
         httpBackend.flush();
@@ -66,8 +69,8 @@ describe('Factory: PlaceFactory', function() {
 
       it("Should return the place object", function() {
         httpBackend.whenPUT('http://localhost:8888/user/1234/location')
-          .respond(testPlace)
-        PlaceFactory.initialize(testPlace, {fbid: 1234})
+          .respond(testUser)
+        PlaceFactory.initialize(testUser.location, {fbid: 1234})
           .then(function(newLocation) {
             console.log("all ", PlaceFactory.all())
             expect(PlaceFactory.all().myPlace.rent).toEqual(1000);
@@ -111,8 +114,8 @@ describe('Factory: PlaceFactory', function() {
 
       it("Should return the specified property", function() {
         httpBackend.whenPUT('http://localhost:8888/user/1234/location')
-          .respond(testPlace)
-        PlaceFactory.initialize(testPlace, {fbid: 1234})
+          .respond(testUser)
+        PlaceFactory.initialize(testUser.location, {fbid: 1234})
           .then(function(newLocation) {
             expect(PlaceFactory.getProperty('host')).toEqual(true);
             var myPlace = PlaceFactory.getProperty('myPlace');

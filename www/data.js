@@ -100,8 +100,8 @@ angular.module('data', [])
       })
       .then(function(res) {
         console.log('Profile Factory Data - ', res);
-        profile = res.data;
-        return res.data;
+        profile = res.data.profile;
+        return res.data.profile;
       })    
     },
     all: function() {
@@ -163,8 +163,8 @@ angular.module('data', [])
       })
       .then(function(res){
         console.log("place factory res from db ", res)
-        location = res.data;
-        return res.data;
+        location = res.data.location;
+        return res.data.location;
       })
     },
     all: function() {
@@ -211,8 +211,8 @@ angular.module('data', [])
       })
       .then(function(res) {
         console.log('Roommate Factory Data - ', res);
-        roommatePreferences = res.data;
-        return res.data;
+        roommatePreferences = res.data.roommatePreferences;
+        return res.data.roommatePreferences;
       })    
     },
     all: function() {
