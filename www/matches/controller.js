@@ -4,8 +4,8 @@ angular.module('matches.controllers', [])
   $scope.fbId = User.fbId;
   
   $scope.matches = MatchesFactory.all();
-  console.log("MATCHES: ", $scope.matches)
-
+  console.log("MATCHES: ", $scope.matches);
+  
   $scope.remove = function(match){
     MatchesFactory.remove(match);
     //Will also need to do a PUT request here

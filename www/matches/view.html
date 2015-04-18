@@ -1,8 +1,6 @@
 <ion-view view-title="Matches">
   <ion-content>
     <ion-list>
-      <!-- for use with profile tab -->
-      <!-- <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="match in matches" type="item-text-wrap" href="#/tab/profiles/matches{{match.id}}"> -->
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="match in matches" type="item-text-wrap" href="#/tab/matches/profiles/matches/{{match.fbid}}">
         <img ng-src="{{match.face}}">
         <h2>{{match.name}}</h2>
