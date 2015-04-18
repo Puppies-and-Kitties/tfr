@@ -31,7 +31,8 @@ angular.module('starter', [
   'account.controllers',
   'chats.services',
   'chats.controllers',
-  'userProfile.services'
+  'userProfile.services',
+  'ionic.contrib.ui.tinderCards'
   ])
 
 .filter('range', function() {

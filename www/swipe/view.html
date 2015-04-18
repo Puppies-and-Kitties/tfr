@@ -2,7 +2,7 @@
   <ion-content scroll="false">
 
 
-    <div class="list card current-candidate" 
+<!--     <div class="list card current-candidate" 
       ng-class="{skipped: currentCandidate.rated == false,
                  favorited: currentCandidate.rated == true}"
       ng-show="currentCandidate && !currentCandidate.hide">
@@ -23,18 +23,36 @@
           <button class="button-medium button button-assertive icon-left ion-close" ng-click="candidateSwipe(false)">Skip</button>
           <button class="button-medium button button-positive icon-left icon ion-android-happy" ng-click="candidateSwipe(true)">Like</button>
         </div>
-        <!-- <a class="tab-item" ng-click="candidateSwipe(false)">
-          <i class="icon ion-close"></i>
-          Skip
-        </a>
-        <a class="tab-item" ng-click="candidateSwipe(true)">
-          <i class="icon ion-android-happy"></i>
-          Like
-        </a> -->
       </div>
 
+    </div> -->
+
+<td-cards>
+  <td-card ng-repeat="candidate in candidates" on-swipe-right="candidateSwipe(true)" on-swipe-left="candidateSwipe(false)">
+    <div class="card">
+
+      <div class="item item-image">
+        <a href="#/tab/swipe/profiles/{{candidate.id}}">
+           <img ng-src="{{ candidate.face }}">        
+        </a>
+      </div>
+
+      <div class="item item-text-wrap profile-content">
+        <h2 id="h2">{{ candidate.name }}</h2>
+        <div id="listIcons" class="profile-icons"><span id="listIcons" ng-repeat="icon in candidate.icons" class="{{icon}}">  </span></div>
+      </div>
+
+      <div class="item tabs tabs-secondary tabs-icon-left">
+        <div>
+          <button class="button-medium button button-assertive icon-left ion-close" ng-click="candidateSwipe(false)">Skip</button>
+          <button class="button-medium button button-positive icon-left icon ion-android-happy" ng-click="candidateSwipe(true)">Like</button>
+        </div>
+      </div>
     </div>
 
+  </td-card>
+</td-cards>
 
   </ion-content>
+
 </ion-view>
