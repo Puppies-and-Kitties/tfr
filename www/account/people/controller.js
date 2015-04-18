@@ -15,7 +15,8 @@ angular.module('people.controllers', [])
     RoommateFactory.initialize($scope.people, User)
       .then(function(res) {
         console.log("muddaflippin roommatePreferences response ", res);
-        User.roommatePreferences = res
+        User.roommatePreferences = res;
+        console.log("User after roommate update ", User)
       })
     $state.go('tab.account');
   };
