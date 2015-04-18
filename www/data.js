@@ -100,7 +100,8 @@ angular.module('data', [])
       })
       .then(function(res) {
         console.log('Profile Factory Data - ', res);
-        return res.data.profile;
+        profile = res.data;
+        return res.data;
       })    
     },
     all: function() {

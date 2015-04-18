@@ -55,7 +55,6 @@ describe('Factory: PlaceFactory', function() {
           .respond(testPlace)
         PlaceFactory.initialize(testPlace, {fbid: 1234})
           .then(function(newLocation) {
-            console.log("new location ", newLocation)
             expect(newLocation.myPlace.rent).toEqual(1000);
           });
         httpBackend.flush();
