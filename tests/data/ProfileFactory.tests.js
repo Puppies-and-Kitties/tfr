@@ -1,63 +1,67 @@
 describe('Factory: Profile', function() {
   // var scope, $login, controller;
-  var scope, ProfileFactory;
+  var scope, ProfileFactory, httpBackend;
 
   var testProfile;
   //load controller's module and other necessary modules
   beforeEach(module('data'/*,'ui.router'*/));
 
-  beforeEach(inject(function($rootScope, $injector) {
-    scope = $rootScope.$new();
-    ProfileFactory = $injector.get('ProfileFactory');
+  beforeEach(inject(function($httpBackend, _ProfileFactory_) {
+    ProfileFactory = _ProfileFactory_;
+    httpBackend = $httpBackend;
     testProfile = {
-      myPlace: {
-        peopleCount: 3,
-        genders: 'any',
-        rent: 1200,
-        zipCode: 55555
-      },
-      gender: 'woman',
+      gender: 'female',
       age: 25,
       keywords: ['Running','Coffee','Student','Vegetarian']
     };
   }));
 
+  afterEach(function() {
+    httpBackend.verifyNoOutstandingExpectation();
+    httpBackend.verifyNoOutstandingRequest();
+  });
+
   //tests start here
   describe('ProfileFactory', function() {
 
-    xit('Should initialize profile to the mostly empty default', function(){
+    it('Should initialize profile to empty default', function(){
       var profile = ProfileFactory.all();
-      expect(profile.myPlace.peopleCount).toEqual(2);
       expect(profile.gender).toBeNull();
       expect(profile.keywords.length).toEqual(5);
     });
 
     describe('initialize', function() {
 
-      xit("Should initialize profile to the passed in object", function() {
-        ProfileFactory.initialize(testProfile);
-        var profile = ProfileFactory.all();
-        
-        expect(profile.myPlace.peopleCount).toEqual(3);
-        expect(profile.gender).toEqual('woman');
-        expect(profile.keywords[1]).toEqual('Coffee');
+      it("Should initialize profile to the passed in object", function() {
+        httpBackend.whenPUT('http://localhost:8888/user/1234/profile')
+          .respond(testProfile)
+        ProfileFactory.initialize(testProfile, {fbid: 1234})
+          .then(function(newProfile) {
+            console.log("new location ", newProfile)
+            expect(newProfile.age).toEqual(25);
+          });
+        httpBackend.flush();
       });
 
     });
 
     describe('all', function() {
 
-      xit("Should return the profile object", function() {
-        var profile = ProfileFactory.all();
-        expect(Object.keys(profile).length).toEqual(4);
-        expect(Object.keys(profile.myPlace).length).toEqual(4);
+      it("Should return the profile object", function() {
+        httpBackend.whenPUT('http://localhost:8888/user/1234/profile')
+          .respond(testProfile)
+        ProfileFactory.initialize(testProfile, {fbid: 1234})
+          .then(function(newProfile) {
+            expect(ProfileFactory.all().gender).toEqual('female');
+          });
+        httpBackend.flush();
       });
 
     });
 
     describe('update', function() {
 
-      xit("Should update a profile property", function() {
+      it("Should update a profile property", function() {
         ProfileFactory.update('age',35);
         ProfileFactory.update('keywords',['Jogging','tea','teacher']);
         var newPlace = {
@@ -78,13 +82,15 @@ describe('Factory: Profile', function() {
 
     describe('getProperty', function() {
 
-      xit("Should return the specified property", function() {
-        ProfileFactory.initialize(testProfile);
-        expect(ProfileFactory.getProperty('age')).toEqual(25);
-        expect(ProfileFactory.getProperty('gender')).toEqual('woman');
-        var myPlace = ProfileFactory.getProperty('myPlace');
-        expect(myPlace.rent).toEqual(1200);
-        expect(myPlace.zipCode).toEqual(55555);
+      it("Should return the specified property", function() {
+        httpBackend.whenPUT('http://localhost:8888/user/1234/profile')
+          .respond(testProfile)
+        ProfileFactory.initialize(testProfile, {fbid: 1234})
+          .then(function(newProfile) {
+            expect(ProfileFactory.getProperty('age')).toEqual(25);
+            expect(ProfileFactory.getProperty('gender')).toEqual('female');
+          });
+        httpBackend.flush();
       });
 
     });

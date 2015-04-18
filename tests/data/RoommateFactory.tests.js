@@ -1,25 +1,30 @@
 describe('Factory: RoommateFactory', function() {
   // var scope, $login, controller;
-  var scope, RoommateFactory;
+  var scope, RoommateFactory, httpBackend;
 
   var testRoommatePreferences;
   //load controller's module and other necessary modules
   beforeEach(module('data'/*,'ui.router'*/));
 
-  beforeEach(inject(function($rootScope, $injector) {
-    scope = $rootScope.$new();
-    RoommateFactory = $injector.get('RoommateFactory');
+  beforeEach(inject(function(_RoommateFactory_, $httpBackend) {
+    RoommateFactory = _RoommateFactory_;
+    httpBackend = $httpBackend;
+
     testRoommatePreferences = {
-      gender: 'woman',
+      gender: 'female',
       ageMin: 22,
       ageMax: 26
     };
   }));
 
-  //tests start here
-  describe('RoommateFactory', function() {
+  afterEach(function() {
+    httpBackend.verifyNoOutstandingExpectation();
+    httpBackend.verifyNoOutstandingRequest();
+  });
 
-    xit('Should initialize roommatePreferences to the mostly empty default', function(){
+  //tests start here
+
+    it('Should initialize roommatePreferences to the empty default', function(){
       var roommatePreferences = RoommateFactory.all();
       expect(roommatePreferences.gender).toBeNull();
       expect(Object.keys(roommatePreferences).length).toEqual(3);
@@ -27,19 +32,21 @@ describe('Factory: RoommateFactory', function() {
 
     describe('initialize', function() {
 
-      xit("Should initialize roommatePreferences to the passed in object", function() {
-        RoommateFactory.initialize(testRoommatePreferences);
-        var roommatePreferences = RoommateFactory.all();
-        
-        expect(roommatePreferences.gender).toEqual('woman');
-        expect(roommatePreferences.ageMin).toEqual(22);
+      it("Should initialize roommatePreferences to the passed in object", function() {
+        httpBackend.whenPUT('http://localhost:8888/user/1234/roommatePreferences')
+          .respond(testRoommatePreferences)
+        RoommateFactory.initialize(testRoommatePreferences, {fbid: 1234})
+          .then(function(prefs){
+            expect(prefs.ageMin).toEqual(22);
+          })
+        httpBackend.flush();
       });
 
     });
 
     describe('all', function() {
 
-      xit("Should return the roommatePreferences object", function() {
+      it("Should return the roommatePreferences object", function() {
         var roommatePreferences = RoommateFactory.all();
         expect(Object.keys(roommatePreferences).length).toEqual(3);
       });
@@ -48,7 +55,7 @@ describe('Factory: RoommateFactory', function() {
 
     describe('update', function() {
 
-      xit("Should update a roommatePreferences property", function() {
+      it("Should update a roommatePreferences property", function() {
         RoommateFactory.update('gender','any');
         RoommateFactory.update('ageMin',24);
         RoommateFactory.update('ageMax',28);
@@ -62,15 +69,18 @@ describe('Factory: RoommateFactory', function() {
 
     describe('getProperty', function() {
 
-      xit("Should return the specified property", function() {
-        RoommateFactory.initialize(testRoommatePreferences);
-        expect(RoommateFactory.getProperty('gender')).toEqual('woman');
-        expect(RoommateFactory.getProperty('ageMin')).toEqual(22);
-        expect(RoommateFactory.getProperty('ageMax')).toEqual(26);
+      it("Should return the specified property", function() {
+        httpBackend.whenPUT('http://localhost:8888/user/1234/roommatePreferences')
+          .respond(testRoommatePreferences)
+        RoommateFactory.initialize(testRoommatePreferences, {fbid: 1234})
+          .then(function(prefs){
+            expect(RoommateFactory.getProperty('gender')).toEqual('female');
+            expect(RoommateFactory.getProperty('ageMin')).toEqual(22);
+            expect(RoommateFactory.getProperty('ageMax')).toEqual(26);
+          })
+        httpBackend.flush();
       });
 
     });
-
-  });
   
 });

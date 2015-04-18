@@ -1,16 +1,16 @@
 describe('Factory: PlaceFactory', function() {
   // var scope, $login, controller;
-  var scope, PlaceFactory;
+  var scope, PlaceFactory, httpBackend;
 
   var testPlace;
   //load controller's module and other necessary modules
   beforeEach(module('data'/*,'ui.router'*/));
 
-  beforeEach(inject(function($rootScope, $injector) {
-    scope = $rootScope.$new();
-    PlaceFactory = $injector.get('PlaceFactory');
+  beforeEach(inject(function(_PlaceFactory_, $httpBackend) {
+    PlaceFactory = _PlaceFactory_;
+    httpBackend = $httpBackend;
     testPlace = { 
-      host: 'Jane',
+      host: true,
       myPlace: {
         rent: 1000,
         zipCode: 77777,
@@ -33,11 +33,15 @@ describe('Factory: PlaceFactory', function() {
       }
     };
   }));
+  
+  afterEach(function() {
+    httpBackend.verifyNoOutstandingExpectation();
+    httpBackend.verifyNoOutstandingRequest();
+  });
 
   //tests start here
-  describe('PlaceFactory', function() {
 
-    it('Should initialize place to the mostly empty default', function(){
+    it('Should initialize place to the empty default', function(){
       var place = PlaceFactory.all();
       expect(place.myPlace.rent).toBeNull();
       expect(place.myPlace.genders).toBeNull();
@@ -46,33 +50,37 @@ describe('Factory: PlaceFactory', function() {
 
     describe('initialize', function() {
 
-      xit("Should initialize place to the passed in object", function() {
-        PlaceFactory.initialize(testPlace);
-        var place = PlaceFactory.all();
-        
-        expect(place.myPlace.zipCode).toEqual(77777);
-        expect(place.myPlace.genders).toEqual('any');
-        expect(place.desiredPlace.radius).toEqual(3);
-        expect(place.desiredPlace.roomType).toEqual('awesome');
+      it("Should initialize place to the passed in object", function() {
+        httpBackend.whenPUT('http://localhost:8888/user/1234/location')
+          .respond(testPlace)
+        PlaceFactory.initialize(testPlace, {fbid: 1234})
+          .then(function(newLocation) {
+            expect(newLocation.myPlace.rent).toEqual(1000);
+          });
+        httpBackend.flush();
       });
 
     });
 
     describe('all', function() {
 
-      xit("Should return the place object", function() {
-        var place = PlaceFactory.all();
-        expect(Object.keys(place).length).toEqual(3);
-        expect(Object.keys(place.myPlace).length).toEqual(8);
-        expect(Object.keys(place.desiredPlace).length).toEqual(8);
+      it("Should return the place object", function() {
+        httpBackend.whenPUT('http://localhost:8888/user/1234/location')
+          .respond(testPlace)
+        PlaceFactory.initialize(testPlace, {fbid: 1234})
+          .then(function(newLocation) {
+            console.log("all ", PlaceFactory.all())
+            expect(PlaceFactory.all().myPlace.rent).toEqual(1000);
+          });
+        httpBackend.flush();
       });
 
     });
-
+    /////////////////////////Not Using these right now////////////////////
     describe('update', function() {
 
-      xit("Should update a place property", function() {
-        PlaceFactory.update('host','Jo');
+      it("Should update a place property", function() {
+        PlaceFactory.update('host',false);
         var myPlace = {
           rent: 2000,
           zipCode: 88888,
@@ -90,7 +98,7 @@ describe('Factory: PlaceFactory', function() {
         PlaceFactory.update('myPlace',myPlace);
         PlaceFactory.update('desiredPlace',desiredPlace);
         var place = PlaceFactory.all();
-        expect(place.host).toEqual('Jo');
+        expect(place.host).toEqual(false);
         expect(place.myPlace.zipCode).toEqual(88888);
         expect(place.myPlace.roomType).toEqual('nice');
         expect(place.desiredPlace.zipCode).toEqual(99999);
@@ -101,16 +109,21 @@ describe('Factory: PlaceFactory', function() {
 
     describe('getProperty', function() {
 
-      xit("Should return the specified property", function() {
-        PlaceFactory.initialize(testPlace);
-        expect(PlaceFactory.getProperty('host')).toEqual('Jane');
-        var myPlace = PlaceFactory.getProperty('myPlace');
-        expect(myPlace.genders).toEqual('any');
-        expect(myPlace.zipCode).toEqual(77777);
+      it("Should return the specified property", function() {
+        httpBackend.whenPUT('http://localhost:8888/user/1234/location')
+          .respond(testPlace)
+        PlaceFactory.initialize(testPlace, {fbid: 1234})
+          .then(function(newLocation) {
+            expect(PlaceFactory.getProperty('host')).toEqual(true);
+            var myPlace = PlaceFactory.getProperty('myPlace');
+            expect(myPlace.genders).toEqual('any');
+            expect(myPlace.zipCode).toEqual(77777);
+          });
+        httpBackend.flush();
       });
 
     });
+    ///////////////////////////////////////////////////////////////
 
-  });
   
 });

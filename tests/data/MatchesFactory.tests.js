@@ -1,4 +1,4 @@
-describe('controllers: swipe', function() {
+describe('Factory: MatchesFactory', function() {
   // var scope, $login, controller;
   var scope, MatchesFactory;
 
@@ -10,15 +10,14 @@ describe('controllers: swipe', function() {
     scope = $rootScope.$new();
     MatchesFactory = $injector.get('MatchesFactory');
     testMatches = [
-      {id:123,name:"Test Name"},
-      {id:456,name:"Hello World"},
-      {id:789,name:"Another Test"}
+      {fbid:123,name:"Test Name"},
+      {fbid:456,name:"Hello World"},
+      {fbid:789,name:"Another Test"}
     ];
   }));
   
 
   //tests start here
-  describe('MatchesFactory', function() {
 
     describe('initialize', function() {
 
@@ -36,9 +35,9 @@ describe('controllers: swipe', function() {
         expect(MatchesFactory.all().length).toEqual(0);
       });
 
-      xit("Should return all added objects array after initialization and adding", function() {
+      it("Should return all added objects array after initialization and adding", function() {
         MatchesFactory.initialize(testMatches);
-        MatchesFactory.add({id:0,name:"Zero",likeCurrentUser:true});
+        MatchesFactory.add({id:0,name:"Zero",likedCurrentUser:true});
         expect(MatchesFactory.all().length).toEqual(4);
       });
 
@@ -59,12 +58,12 @@ describe('controllers: swipe', function() {
 
     describe('add', function() {
 
-      xit("Should add a match to MatchesFactory", function() {
+      it("Should add a match to MatchesFactory", function() {
         MatchesFactory.initialize(testMatches);
-        MatchesFactory.add({id:0,name:"Zero",likeCurrentUser:true});
+        MatchesFactory.add({id:0,name:"Zero",likedCurrentUser:true});
         expect(MatchesFactory.all().length).toEqual(4);
-        MatchesFactory.add({id:1,name:"One",likeCurrentUser:true});
-        MatchesFactory.add({id:2,name:"Two",likeCurrentUser:true});
+        MatchesFactory.add({id:1,name:"One",likedCurrentUser:true});
+        MatchesFactory.add({id:2,name:"Two",likedCurrentUser:true});
         expect(MatchesFactory.all().length).toEqual(6);
       });
 
@@ -72,14 +71,12 @@ describe('controllers: swipe', function() {
 
     describe('get', function() {
 
-      xit("Should return a match with the specified id from MatchesFactory", function() {
+      it("Should return a match with the specified id from MatchesFactory", function() {
         MatchesFactory.initialize(testMatches);
         var getName = MatchesFactory.get(456).name;
         expect(getName).toEqual("Hello World");
       });
 
     });
-
-  });
   
 });
