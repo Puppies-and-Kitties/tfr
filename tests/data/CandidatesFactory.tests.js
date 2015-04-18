@@ -39,18 +39,33 @@ describe('Factory: Candidates: ', function() {
     });
   });
     ////////////////////// Does not apply right now ////////////////////////
-    describe('initialize', function() {
+    // describe('initialize', function() {
 
-      xit("Should initialize skipped to the passed in array", function() {
-        var newCandidates = CandidatesFactory.all();
-        expect(newCandidates.length).toEqual(20);
-        newCandidates = newCandidates.slice(10);
-        CandidatesFactory.initialize(newCandidates);
-        expect(CandidatesFactory.all().length).toEqual(10);
-        expect(CandidatesFactory.all()[1].name).toEqual('Demarco Murray');
-      });
+    //   xit("Should initialize skipped to the passed in array", function() {
+    //     httpBackend.whenGET("http://localhost:8888/user/1234/Berkeley")
+    //       .respond(testCandidates);
+    //     CandidatesFactory.initialize({
+    //       data:{
+    //         fbid: 1234, 
+    //         location:{
+    //           host: true, 
+    //           myPlace:{
+    //             city: "Berkeley"
+    //           }
+    //         }
+    //       }
+    //     })
+    //     .then(function(candidates){
+    //       expect(CandidatesFactory.all().length).toEqual(6);
+    //       newCandidates = CandidatesFactory.all().slice(3);
+    //       CandidatesFactory.initialize(newCandidates);
+    //       expect(CandidatesFactory.all().length).toEqual(10);
+    //       expect(CandidatesFactory.all()[1].name).toEqual('Demarco Murray');
+    //     })
+    //     httpBackend.flush();
+    //   });
 
-    });
+    // });
     //////////////////////////////////////////////////////////////////////
 
     describe('add', function() {

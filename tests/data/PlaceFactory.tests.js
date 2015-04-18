@@ -79,8 +79,8 @@ describe('Factory: PlaceFactory', function() {
     /////////////////////////Not Using these right now////////////////////
     describe('update', function() {
 
-      xit("Should update a place property", function() {
-        PlaceFactory.update('host','Jo');
+      it("Should update a place property", function() {
+        PlaceFactory.update('host',false);
         var myPlace = {
           rent: 2000,
           zipCode: 88888,
@@ -98,7 +98,7 @@ describe('Factory: PlaceFactory', function() {
         PlaceFactory.update('myPlace',myPlace);
         PlaceFactory.update('desiredPlace',desiredPlace);
         var place = PlaceFactory.all();
-        expect(place.host).toEqual('Jo');
+        expect(place.host).toEqual(false);
         expect(place.myPlace.zipCode).toEqual(88888);
         expect(place.myPlace.roomType).toEqual('nice');
         expect(place.desiredPlace.zipCode).toEqual(99999);
@@ -109,12 +109,17 @@ describe('Factory: PlaceFactory', function() {
 
     describe('getProperty', function() {
 
-      xit("Should return the specified property", function() {
-        PlaceFactory.initialize(testPlace);
-        expect(PlaceFactory.getProperty('host')).toEqual('Jane');
-        var myPlace = PlaceFactory.getProperty('myPlace');
-        expect(myPlace.genders).toEqual('any');
-        expect(myPlace.zipCode).toEqual(77777);
+      it("Should return the specified property", function() {
+        httpBackend.whenPUT('http://localhost:8888/user/1234/location')
+          .respond(testPlace)
+        PlaceFactory.initialize(testPlace, {fbid: 1234})
+          .then(function(newLocation) {
+            expect(PlaceFactory.getProperty('host')).toEqual(true);
+            var myPlace = PlaceFactory.getProperty('myPlace');
+            expect(myPlace.genders).toEqual('any');
+            expect(myPlace.zipCode).toEqual(77777);
+          });
+        httpBackend.flush();
       });
 
     });

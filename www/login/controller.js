@@ -1,4 +1,4 @@
-angular.module('login.controllers', ['firebase'])
+angular.module('login.controllers', ['firebase', 'ui.router'])
 
 .controller('LoginCtrl', function($scope, $state, $firebaseAuth, FIREBASE_REF, userSession){
   
