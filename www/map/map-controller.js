@@ -1,16 +1,26 @@
 angular.module('map.controllers', [])
 
 .controller('MapCtrl', function($scope, $ionicLoading, PlaceFactory, $state, User){
-  var map, marker, circle, markersArray = [], circlesArray = [];
+  var map, marker, circle, markersArray = [], circlesArray = [], lat, lng;
 
   $scope.searchLocation = User.location || PlaceFactory.all();
   var host = $scope.searchLocation.host;
+  
+  if(host && $scope.searchLocation.myPlace.latitude !== null){
+    lat = $scope.searchLocation.myPlace.latitude;
+    lng = $scope.searchLocation.myPlace.longitude;
+  }
+  if(!host && $scope.searchLocation.desiredPlace.latitude !== null){
+    lat = $scope.searchLocation.desiredPlace.latitude;
+    lng = $scope.searchLocation.desiredPlace.longitude;
+  }
 
   $scope.input = {
     address: null,
     radius: 1,
     toggleRadius: true
   };
+
   $scope.saveLocation = function(){
     var lastIndex = markersArray.length -1
     if(host){
@@ -23,9 +33,9 @@ angular.module('map.controllers', [])
       $scope.searchLocation.desiredPlace.longitude = markersArray[lastIndex].position.D
       $scope.searchLocation.desiredPlace.radius = parseFloat($scope.input.radius);
     }
-    
 
     $scope.reverseCodeIt();
+
     PlaceFactory.initialize($scope.searchLocation, User)
       .then(function(res) {
         console.log("response from db in MAPCONTROLLER ", res)
@@ -35,7 +45,9 @@ angular.module('map.controllers', [])
   }
 
   $scope.initialize = function() {
-    var myLatlng = new google.maps.LatLng(37.867044, -122.250559);
+    var myLatlng;
+
+    myLatlng = new google.maps.LatLng(37.867044, -122.250559);
 
     var mapOptions = {
         center: myLatlng,
@@ -45,16 +57,27 @@ angular.module('map.controllers', [])
 
     map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
-    // 
     // if location already saved, place a marker and center the map on those coordinates
-    // if(host === true && $scope.searchLocation.myPlace.latitude !== null || host === false && $scope.searchLocation.desiredPlace.latitude !== null)
-    // 
+    if(host && $scope.searchLocation.myPlace.latitude !== null){
+      myLatlng = new google.maps.LatLng(lat, lng);
+      map.setCenter(myLatlng);
+      placeMarker(myLatlng);
+      placeCircle(0);
+    }
+
+    if(!host && $scope.searchLocation.desiredPlace.latitude !== null){
+      myLatlng = new google.maps.LatLng(lat, lng);
+      map.setCenter(myLatlng);    
+      placeMarker(myLatlng);
+      placeCircle($scope.searchLocation.desiredPlace.radius);
+    }
+    
 
     google.maps.event.addListener(map, "click", function(event){
       console.log('event - ', event);
       // place a marker
       placeMarker(event.latLng);
-      placeCircle(event.latLng);
+      placeCircle();
     });
 
   };
@@ -130,11 +153,13 @@ angular.module('map.controllers', [])
     }
   };
 
-  var placeCircle = function(){
+  var placeCircle = function(radius){
+    radius = radius || $scope.input.radius;
+
     if($scope.input.toggleRadius){
       circle = new google.maps.Circle({
         map: map,
-        radius: 1693 * $scope.input.radius,
+        radius: 1693 * radius,
         fillColor: 'blue',
         strokeColor: 'gold'
       });
