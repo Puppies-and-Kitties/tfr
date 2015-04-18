@@ -33,6 +33,11 @@ describe('Factory: PlaceFactory', function() {
       }
     };
   }));
+  
+  afterEach(function() {
+    httpBackend.verifyNoOutstandingExpectation();
+    httpBackend.verifyNoOutstandingRequest();
+  });
 
   //tests start here
   describe('PlaceFactory', function() {

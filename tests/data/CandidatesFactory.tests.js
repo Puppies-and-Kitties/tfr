@@ -13,7 +13,7 @@ describe('Factory: Candidates: ', function() {
   afterEach(function() {
     httpBackend.verifyNoOutstandingExpectation();
     httpBackend.verifyNoOutstandingRequest();
-  })
+  });
 
   //tests start here
   describe('Initialize and All', function() {

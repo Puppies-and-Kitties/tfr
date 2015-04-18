@@ -10,17 +10,16 @@ describe('Factory: Profile', function() {
     scope = $rootScope.$new();
     ProfileFactory = $injector.get('ProfileFactory');
     testProfile = {
-      myPlace: {
-        peopleCount: 3,
-        genders: 'any',
-        rent: 1200,
-        zipCode: 55555
-      },
       gender: 'woman',
       age: 25,
       keywords: ['Running','Coffee','Student','Vegetarian']
     };
   }));
+
+  afterEach(function() {
+    httpBackend.verifyNoOutstandingExpectation();
+    httpBackend.verifyNoOutstandingRequest();
+  });
 
   //tests start here
   describe('ProfileFactory', function() {
