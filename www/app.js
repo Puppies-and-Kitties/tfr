@@ -80,7 +80,7 @@ angular.module('starter', [
 
 
    $rootScope.$on('userRetrieved', function(event, data){
-    CandidatesFactory.initialize(data);
+    CandidatesFactory.initialize(data.data);
    });
 
 })
