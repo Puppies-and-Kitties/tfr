@@ -11,7 +11,9 @@ angular.module('map.controllers', [])
 
 
   $scope.saveLocation = function(){
-    MapFactory.saveLocation(User);
+    User.location = MapFactory.saveLocation(User);
+    console.log("User after saving location ", User);
+    $state.go('tab.account-place');
   }
 
   $scope.initialize = function() {

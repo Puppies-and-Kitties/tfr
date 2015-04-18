@@ -88,10 +88,11 @@ angular.module('map.services', [])
     });
     console.log('about to init place factory location with - ', searchLocation);
 
-    PlaceFactory.initialize(searchLocation, User)
+    // PlaceFactory.initialize(searchLocation, User)
       // .then(function(res) {
         // console.log("response from db in MAPCONTROLLER ", res)
       // })
+    return searchLocation;
 
     $state.go('tab.account-place');
   };
