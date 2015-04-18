@@ -10,5 +10,12 @@
         </ion-option-button>
       </ion-item>
     </ion-list>
+
+    <div ng-if="!matches.length" class="item item-text-wrap profile-content no-more-candidates">
+      <ion-item>
+        <h2>You don't have any matches, better get to swiping!</h2>
+      </ion-item>
+    </div>
+
   </ion-content>
 </ion-view>
