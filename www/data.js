@@ -517,15 +517,15 @@ angular.module('data', [])
           url: baseUrl + '/user/' + req.data.fbid + '/' + req.data.location.desiredPlace.city
         })
         .then(function(res) {
-          console.log("candidates that match location ", res)
+          console.log("candidates that match location ", res.data)
           candidates = res.data;
-          // return candidates;
+          // return candidates;  
         })
       }
     },
 
     all: function() {
-      console.log("calling from test")
+      console.log("Candidates: getting all candidates")
       return candidates;
     },
 

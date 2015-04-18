@@ -64,13 +64,13 @@ angular.module('starter', [
   });
 
   $rootScope.$on('$firebaseSimpleLogin:login', function(event, user) {
-       userSession.user = user;
-       console.log('success - ', userSession);
-       $state.go('tab.account');
+     userSession.user = user;
+     console.log('success - ', userSession);
+     $state.go('tab.account');
    });
 
    $rootScope.$on('$firebaseSimpleLogin:error', function(event, error) {
-        console.log('Error logging user in: ', error);
+      console.log('Error logging user in: ', error);
    });
 
    $rootScope.$on('$firebaseSimpleLogin:logout', function(event) {
@@ -80,7 +80,6 @@ angular.module('starter', [
 
 
    $rootScope.$on('userRetrieved', function(event, data){
-    console.log('testing testing - ', data);
     CandidatesFactory.initialize(data);
    });
 
@@ -109,7 +108,7 @@ angular.module('starter', [
 
         return LoginFact.saveUser(user)
           .then(function(data){
-            console.log("DATA", data);
+            console.log("DATA for resolved USER", data);
             return data.data;
           })
       }

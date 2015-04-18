@@ -11,7 +11,6 @@ angular.module('login.services', ['ngResource'])
   }
   
   var saveUser = function(user) {
-    console.log("in save user")
     var baseUrl = 'http://localhost:8888';
     return $http({
       method: 'POST',
@@ -21,7 +20,7 @@ angular.module('login.services', ['ngResource'])
       }
     })
     .then(function(data) {
-      console.log('data',data);
+      console.log('saveUser returned data',data);
       $rootScope.$emit('userRetrieved', data);
       return data;
     })

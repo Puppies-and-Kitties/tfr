@@ -57,7 +57,8 @@
 
     <div ng-if="!candidates.length" class="item item-text-wrap profile-content no-more-candidates">
       <ion-item>
-        <h2>You don't have any more potentials, please come back later!</h2>
+        <h2 ng-if="user.location !== null">You don't have any more candidates, please come back later!</h2>
+        <h2 ng-if="user.location === null"> Please set your search preferences! </h2>
       </ion-item>
     </div>
 

@@ -9,8 +9,8 @@ angular.module('login.controllers', ['firebase', 'ui.router'])
 
   ref.onAuth(function(authData){
     if(authData){
-      console.log('onAuth',authData);
-      console.log('$state',$state);
+      console.log('onAuth auth data',authData);
+      // console.log('$state',$state);
       userSession.user = authData.facebook;
       $state.go('tab.account');
     } else {
