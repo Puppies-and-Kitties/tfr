@@ -1,6 +1,43 @@
 angular.module('map.services', [])
 
 .factory('MapFactory', function(){
+  var markersArray = [];
+
+  var placeMarker = function(location, map){
+    // first remove all markers if there are any
+    deleteOverlays();
+    // deleteCircle();
+
+    marker = new google.maps.Marker({
+        position: location, 
+        map: map
+    });
+    // add marker in markers array
+    markersArray.push(marker);
+  }
+
+
+  // Deletes all markers in the array by removing references to them
+  var deleteOverlays = function() {
+    if(markersArray) {
+        for(i in markersArray) {
+          markersArray[i].setMap(null);
+        }
+    markersArray.length = 0;
+    }
+  };
+
+  // Deletes all circles in the array by removing references to them
+  var deleteCircle = function(){
+    if(circlesArray){
+      for(i in circlesArray){
+        circlesArray[i].setMap(null);
+      }
+      circlesArray.length = 0;
+    }
+  };
+
+
 
 
 
@@ -25,6 +62,7 @@ angular.module('map.services', [])
 
 
   return {
-    distanceBetween: distanceBetween
+    distanceBetween: distanceBetween,
+    placeMarker: placeMarker
   }
 })
