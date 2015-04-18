@@ -1,8 +1,11 @@
 angular.module('swipe.controllers', [])
 
-.controller('SwipeController', function($scope, $timeout, CandidatesFactory, MatchesFactory, SkippedFactory) {
+.controller('SwipeController', function($scope, $timeout, CandidatesFactory, MatchesFactory, SkippedFactory, User) {
 
   $scope.candidates = CandidatesFactory.all();
+
+  $scope.user = User
+  console.log("user in swipe controller ", $scope.user)
 
   $scope.currentCandidate = angular.copy($scope.candidates[0]);
 

@@ -501,10 +501,12 @@ angular.module('data', [])
       // if(candidates.length>0){
       //   return;
       // }
-      if (req.data.location.host) {
+      if (!req.location) {
+        console.log("not grabbing candidates yet! need to set search prefs")
+      } else if (req.location.host) {
         return $http({
           method: 'GET',
-          url: baseUrl + '/user/' + req.data.fbid + '/' + req.data.location.myPlace.city
+          url: baseUrl + '/user/' + req.fbid + '/' + req.location.myPlace.city
         })
         .then(function(res) {
           console.log("candidates that match location ", res)
@@ -514,18 +516,18 @@ angular.module('data', [])
       } else {
         return $http({
           method: 'GET',
-          url: baseUrl + '/user/' + req.data.fbid + '/' + req.data.location.desiredPlace.city
+          url: baseUrl + '/user/' + req.fbid + '/' + req.location.desiredPlace.city
         })
         .then(function(res) {
-          console.log("candidates that match location ", res)
+          console.log("candidates that match location ", res.data)
           candidates = res.data;
-          // return candidates;
+          // return candidates;  
         })
       }
     },
 
     all: function() {
-      console.log("calling from test")
+      console.log("Candidates: getting all candidates")
       return candidates;
     },
 

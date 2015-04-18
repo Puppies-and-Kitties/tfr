@@ -1,6 +1,6 @@
 describe('Controllers: SwipeCtrl', function() {
   // var scope, $login, controller;
-  var scope, controllerSwipe, CandidatesFactory, MatchesFactory, SkippedFactory, httpBackend, createController;
+  var User, scope, controllerSwipe, CandidatesFactory, MatchesFactory, SkippedFactory, httpBackend, createController;
 
   //load controller's module and other necessary modules
   beforeEach(module('swipe.controllers','data','ui.router'));
@@ -14,7 +14,7 @@ describe('Controllers: SwipeCtrl', function() {
   beforeEach(inject(function($rootScope, $httpBackend, $controller, _CandidatesFactory_, _MatchesFactory_, _SkippedFactory_) {
     scope = $rootScope.$new();
     createController = function() {
-      return $controller('SwipeController', {$scope: scope});
+      return $controller('SwipeController', {$scope: scope, User: User});
     }
     CandidatesFactory = _CandidatesFactory_;
     MatchesFactory = _MatchesFactory_;

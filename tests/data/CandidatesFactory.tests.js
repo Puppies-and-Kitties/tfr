@@ -22,7 +22,6 @@ describe('Factory: Candidates: ', function() {
       httpBackend.whenGET("http://localhost:8888/user/1234/Berkeley")
         .respond(testCandidates);
       CandidatesFactory.initialize({
-        data:{
           fbid: 1234, 
           location:{
             host: true, 
@@ -30,7 +29,6 @@ describe('Factory: Candidates: ', function() {
               city: "Berkeley"
             }
           }
-        }
       })
       .then(function(candidates){
         expect(CandidatesFactory.all().length).toEqual(6);
@@ -84,7 +82,6 @@ describe('Factory: Candidates: ', function() {
         httpBackend.whenGET("http://localhost:8888/user/1234/Berkeley")
           .respond(testCandidates);
         CandidatesFactory.initialize({
-          data:{
             fbid: 1234, 
             location:{
               host: true, 
@@ -92,7 +89,6 @@ describe('Factory: Candidates: ', function() {
                 city: "Berkeley"
               }
             }
-          }
         })
         .then(function(candidates){
           var getName = CandidatesFactory.getFirst().name;
