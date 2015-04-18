@@ -86,12 +86,12 @@ angular.module('map.services', [])
         alert('Geocoder failed due to: ', status);
       }
     });
-    console.log('about to init place factory location - ', searchLocation);
-    console.log('about to init place factory user - ', User);
+    console.log('about to init place factory location with - ', searchLocation);
+
     PlaceFactory.initialize(searchLocation, User)
-      .then(function(res) {
-        console.log("response from db in MAPCONTROLLER ", res)
-      })
+      // .then(function(res) {
+        // console.log("response from db in MAPCONTROLLER ", res)
+      // })
 
     $state.go('tab.account-place');
   };

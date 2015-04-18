@@ -153,7 +153,7 @@ angular.module('data', [])
   //How best to remove the redundancy in lines 86-99 and lines 107-120?
   return {
     initialize: function(userLocation, User){
-      // location = userLocation;
+      console.log('How the hell can this not get to the server - ', userLocation);
       return $http({
         method: 'PUT',
         url: baseUrl + '/user/' + User.fbid + '/location',
