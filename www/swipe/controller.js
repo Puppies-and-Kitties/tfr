@@ -26,6 +26,7 @@ angular.module('swipe.controllers', [])
       SkippedFactory.add($scope.currentCandidate);
     }
 
+    $scope.currentCandidate.hide = true;
     CandidatesFactory.removeFirst();
 
   };
