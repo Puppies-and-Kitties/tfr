@@ -1,0 +1,42 @@
+
+{
+  "fbid": "{{counter()}}",
+  "name": "{{chance.name()}}",
+  "face": "{{faker.Image.avatar()}}",
+  "email": "{{chance.email()}}",
+  "profile": {
+    "gender": "String",
+    "age": "Number",
+    "keywords": "{{ faker.random.catch_phrase_noun() }}"
+  },
+  "location": {
+    "host": "{{chance.bool()}}",
+    "myPlace": {
+      "rent": "{{chance.integer({min:500, max:3000})}}",
+      "genders": "{{chance.gender()}}",
+      "openRooms": "{{chance.integer({min:1, max:5})}}",
+      "roomType": "{{util.sample(['Shared', 'Private'])}}",
+      "occupants": "{{chance.integer({min:1, max:5})}}",
+      "zipCode": "{{faker.Address.zipCode()}}",
+      "city": "{{faker.Address.city()}}",
+      "state": "{{faker.Address.usState()}}",
+      "latitude": "{{faker.Address.latitude()}}",
+      "longitude": "{{faker.Address.longitude()}}"
+    },
+    "desiredPlace": {
+      "rent": "{{chance.integer({min:500, max:3000})}}",
+      "zipCode": "{{faker.Address.zipCode()}}",
+      "radius": "{{chance.integer({min:1, max:25})}}",
+      "roomType": "{{util.sample(['Shared', 'Private'])}}",
+      "city": "{{faker.Address.city()}}",
+      "state": "{{faker.Address.usState()}}",
+      "latitude": "{{faker.Address.latitude()}}",
+      "longitude": "{{faker.Address.longitude()}}"
+    }
+  },
+  "roommatePreferences": {
+    "gender": "{{chance.gender()}}",
+    "ageMin": "{{chance.integer({min:18, max:25})}}",
+    "ageMax": "{{chance.integer({min:25, max:45})}}"
+  } 
+}
