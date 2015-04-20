@@ -13,12 +13,21 @@ angular.module('chats.controllers', [])
   console.log('match id in chats controller - ', $stateParams)
   
   $scope.match = MatchesFactory.get(matchId);
-  $scope.existingChatURL = $scope.match.chatURL;
-  // $scope.existingChatURL = "https://ionictestchat.firebaseio.com/10155475481120094499"
-  $scope.matchChatURL = Chats.matchChatURL(userSession.user.id,matchId,$scope.existingChatURL);
-  MatchesFactory.update(matchId,'chatURL',$scope.matchChatURL);
-  console.log('$scope.matchChatURL',$scope.matchChatURL);
-  $scope.chats = Chats.set($scope.matchChatURL);
+  
+  var existingChatURL = $scope.match.chatURL; // $scope.existingChatURL = "https://ionictestchat.firebaseio.com/10155475481120094499"
+  var chatURLName = userSession.user.id + matchId;
+
+  var matchChatURL = Chats.matchChatURL(chatURLName,existingChatURL);
+  
+  MatchesFactory.update(matchId,'chatURL',matchChatURL);
+  console.log('matchChatURL',matchChatURL);
+  
+  $scope.chats = Chats.setChats(matchChatURL);
+
+  if(!existingChatURL){
+    Chats.setUserAccess(chatURLName,userSession.user.id,matchId);
+  }
+
 
   $scope.remove = function(chat) {
     Chats.remove(chat);
