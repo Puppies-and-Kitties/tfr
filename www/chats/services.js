@@ -1,6 +1,6 @@
 angular.module('chats.services', ['firebase'])
 
-.factory('Chats', function($firebaseArray,userSession,$stateParams) {
+.factory('Chats', function($firebaseArray,$firebaseObject,FIREBASE_REF,userSession,$stateParams) {
 
   return {
     // Currently not being used
@@ -18,12 +18,19 @@ angular.module('chats.services', ['firebase'])
     //   }
     //   return null;
     // },
-    matchChatURL: function(userId,matchId,existingChatUrl){
-      return existingChatUrl||"https://ionictestchat.firebaseio.com/"+userId+matchId;
+    // matchChatURL: function(chatURLName,existingChatUrl){
+    //   return existingChatUrl||"https://ionictestchat.firebaseio.com/"+chatURLName;
+    // },
+    setChats: function(chatURL){
+      var ref = new Firebase(FIREBASE_REF+"/chats");
+      return $firebaseArray(ref.child(chatURL));
     },
-    set: function(matchChatURL){
-      var currentMatchChats = new Firebase(matchChatURL);
-      return $firebaseArray(currentMatchChats);
+    setUserAccess: function(chatURL,userId,matchId){
+      var ref = new Firebase(FIREBASE_REF+"/chatAccessIDs");
+      ref.child(chatURL).set({
+        user1:"facebook:"+userId,
+        user2:"facebook:"+matchId
+      });
     },
     add: function(firebaseArr,from,message,fbId){
       var photoUri = "//graph.facebook.com/"+fbId+"/picture";
