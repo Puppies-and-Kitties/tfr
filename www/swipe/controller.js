@@ -18,12 +18,12 @@ angular.module('swipe.controllers', [])
     }
   );
 
-  $scope.candidateSwipe =  function (match){
+  $scope.candidateSwipe =  function (match, User){
     console.log('candidateSwipe',match);
     if (match) {
       $scope.currentCandidate.match = true;
       //Once server is up, this will be a POST request to the server
-      MatchesFactory.add($scope.currentCandidate);
+      MatchesFactory.add($scope.currentCandidate, $scope.user);
     } else {
       //Perhaps we only need to do a PUT request to the server here?
       SkippedFactory.add($scope.currentCandidate);

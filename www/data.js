@@ -47,12 +47,30 @@ angular.module('data', [])
         }
       }
     },
-    add: function(match){
-      console.log("Match in matchfact add ", match)
-      if(match.likedCurrentUser){
-        console.log("and match.likecurrentuser")
-        matches.push(match);
+    add: function(match, User){
+      console.log("Match in matchfact add ", match._id)
+      console.log("matchfactory: add: current match array: ", matches)
+      console.log("MatchFactory: add: User ", User)
+      var liked = match.liked
+      var length = match.liked.length
+      var matchesIds = {}
+      for (var j = 0; j < matches.length; j++) {
+        matchesIds[matches[j]._id] = true;
       }
+      for (var i = length; i >= 0; i--) {
+        if (liked[i] === User._id && !matchesIds[match._id]) {
+          match.matched.push(User._id);
+          match.liked.splice(i, 1);
+          console.log("match after splicing liked ", match)
+          matches.push(match);
+          console.log("matches after adding ", matches)
+
+        }
+      }
+      // if(match.likedCurrentUser){
+      //   console.log("and match.likecurrentuser")
+      //   matches.push(match);
+      // }
     }
   };
 

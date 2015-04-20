@@ -40,7 +40,7 @@ angular.module('profile.controllers', [])
     CandidatesFactory.removeFirst();   
     if (match) {
       //Once server is up, this will be a POST request to the server
-      MatchesFactory.add($scope.currentCandidate);
+      MatchesFactory.add($scope.currentCandidate, $scope.User);
     } else {
       //Perhaps we just need to do a PUT request to the server here?
       SkippedFactory.add($scope.currentCandidate);
