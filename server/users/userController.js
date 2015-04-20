@@ -21,7 +21,6 @@ module.exports = {
     findCandidates({
       loc: {$nearSphere: [latitude,longitude],$maxDistance: radius},
       fbid: {$ne: ""+req.params.id}})
-
     .then(function(data){
       //console.log('getCandidates:',data);
       res.send(data);
