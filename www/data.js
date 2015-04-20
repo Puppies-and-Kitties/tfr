@@ -19,6 +19,7 @@ angular.module('data', [])
 
   //Possibly too much repetition/redundancy with CandidatesFactory
   return {
+
     initialize: function(req){
       console.log("MatchFactory: user obj sent to initialize ", req.matched.length)
       if(req.matched.length) {
@@ -29,7 +30,6 @@ angular.module('data', [])
         .then(function(matchedUsers){
           console.log("MatchFactory: initialize: matches returned from db ", matchedUsers.data);
           matches = matchedUsers.data;
-          matchIds();
         })
       }
       //matches = usersMatches;

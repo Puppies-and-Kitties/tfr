@@ -23,6 +23,7 @@ module.exports = function(app) {
   
   app.route('/:id/:location')
     .get(userController.getCandidates)
+
 }
     ////////////////FOR MOCK DATA///////////////
     // .put(function(req, res) {

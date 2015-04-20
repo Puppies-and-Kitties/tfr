@@ -48,7 +48,6 @@ module.exports = {
   //     })
   //   })
   addOrFindCurrentUser: function(req, res) {
-<<<<<<< HEAD
     var findOrCreate = Q.nbind(Users.findOneAndUpdate, Users);
     if(req.body.location){
       var latitude = req.body.location.desiredPlace.latitude;
@@ -58,11 +57,6 @@ module.exports = {
       var longitude = 0;
     }
     console.log("id:",req.params.id);
-||||||| merged common ancestors
-    var findOrCreate = Q.nbind(Users.findOneAndUpdate, Users);
-=======
-    // var findOrCreate = Q.nbind(Users.findOneAndUpdate, Users);
->>>>>>> (feature) Server: add candidateRoute and Controller, Client: Set up methods for sending updated User with matches and Updated matched candidates
     findOrCreate(
       {fbid: req.params.id}, 
       {$setOnInsert: {
@@ -96,15 +90,9 @@ module.exports = {
   }, 
 
   updateLocation: function(req, res) {
-<<<<<<< HEAD
     var findOrCreate = Q.nbind(Users.findOneAndUpdate, Users);
     var latitude = req.body.location.desiredPlace.latitude;
     var longitude = req.body.location.desiredPlace.longitude;
-||||||| merged common ancestors
-    var findOrCreate = Q.nbind(Users.findOneAndUpdate, Users);
-=======
-    // var findOrCreate = Q.nbind(Users.findOneAndUpdate, Users);
->>>>>>> (feature) Server: add candidateRoute and Controller, Client: Set up methods for sending updated User with matches and Updated matched candidates
     findOrCreate(
       {fbid: req.params.id }, 
       {$set: {loc:[latitude,longitude],location: req.body.location}},
@@ -155,27 +143,9 @@ module.exports = {
       res.send(user);
     })
 
+
   }
 
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
