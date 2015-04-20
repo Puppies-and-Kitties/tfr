@@ -8,15 +8,36 @@ module.exports = {
     var latitude = req.param('lat');
     var longitude = req.param('longt');
     var radius = req.param('radi')*1.6/6370;
+    var findUser = Q.nbind(Users.findOne, Users);
     findCandidates({
       loc: {$nearSphere: [latitude,longitude],$maxDistance: radius},
       fbid: {$ne: ""+req.params.id}})
+
     .then(function(data){
       //console.log('getCandidates:',data);
       res.send(data);
     })
   },
 
+  /////////////////HAVING TROUBLE WITH FINDING OBJECT IDS//////////
+  ///////////////TRYING TO USE THIS CODE IN THE ABOVE FUNCTION////////
+  // findUser({fbid: req.params.id})
+  //   .then(function(user) {
+  //     console.log("user found when getting candidates ", user)
+  //     findCandidates({
+  //       $and: [{
+  //         $or: [{"location.myPlace.city": req.params.location}, {"location.desiredPlace.city": req.params.location}]
+  //       }, {
+  //         _id: {$ne: {$in: user.matched}}
+  //       }, {
+  //         _id: {$ne: user.id}
+  //       }]
+  //     })
+  //     .then(function(data){
+  //       console.log("candidates ", data)
+  //       res.send(data);
+  //     })
+  //   })
   addOrFindCurrentUser: function(req, res) {
     var findOrCreate = Q.nbind(Users.findOneAndUpdate, Users);
     if(req.body.location){
