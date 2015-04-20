@@ -8,8 +8,8 @@ module.exports = function(app, express) {
 
   app.use(morgan('dev'));
   app.use(bodyParser.json());
-  app.use(express.static(__dirname + '../www'));
-
+  app.use(express.static('www'));
+  // app.use(express.static('www'));
   app.get('/', function(req, res) {
     res.sendFile('index.html');
   });
