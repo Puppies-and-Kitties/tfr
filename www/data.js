@@ -3,14 +3,26 @@
 
 angular.module('data', [])
 
-.factory('MatchesFactory', function(){
+.factory('MatchesFactory', function($http){
 
+  var baseUrl = 'http://localhost:8888';
   var matches = [];
 
   //Possibly too much repetition/redundancy with CandidatesFactory
   return {
-    initialize: function(usersMatches){
-      matches = usersMatches;
+    initialize: function(req){
+      console.log("MatchFactory: user obj sent to initialize ", req.matched.length)
+      if(req.matched.length) {
+        return $http({
+          method: 'GET',
+          url: baseUrl + '/user/' + req.fbid + '/matches'
+        })
+        .then(function(matchedUsers){
+          console.log("MatchFactory: initialize: matches returned from db ", matchedUsers.data);
+          matches = matchedUsers.data;
+        })
+      }
+      //matches = usersMatches;
     },
     all: function() {
      return matches;

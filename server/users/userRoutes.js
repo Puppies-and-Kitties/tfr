@@ -16,6 +16,12 @@ module.exports = function(app) {
     
   app.route('/:id/profile')
     .put(userController.updateProfile)
+
+  app.route('/:id/matches')
+    .get(userController.getMatches)
+  
+  app.route('/:id/:location')
+    .get(userController.getCandidates)
 }
     ////////////////FOR MOCK DATA///////////////
     // .put(function(req, res) {

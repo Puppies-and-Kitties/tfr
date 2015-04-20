@@ -4,7 +4,6 @@ var Q = require('q');
 module.exports = {
   
   getCandidates: function(req, res) {
-    console.log("in the pretty new getCandidates function")
     var findCandidates = Q.nbind(Users.find, Users);
     var latitude = req.param('lat');
     var longitude = req.param('longt');
@@ -85,5 +84,41 @@ module.exports = {
       .then(function(user){
         res.send(user);
       });
+  },
+
+  getMatches: function(req, res) {
+    console.log("request to getMatches ", req.params)
+    var findUser = Q.nbind(Users.findOne, Users);
+    var findMatches = Q.nbind(Users.find, Users);
+    
+    findUser({fbid: req.params.id})
+      .then(function(user){
+        findMatches({_id: {$in: user.matched}})
+          .then(function(matches) {
+            console.log("matches", matches)
+            res.send(matches);
+      })
+    })
   }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
