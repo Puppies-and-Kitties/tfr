@@ -59,12 +59,13 @@ angular.module('data', [])
     },
 
     saveAllMatches: function(User) {
-      console.log("saveAllMatches: User.matched ")
+      console.log("saveAllMatches: User.matched ", User)
       return $http ({
         method: 'PUT',
         url: baseUrl + '/user/' + User.fbid + '/matches',
         data: {
-          matchesIds: User.matched
+          matchesIds: User.matched,
+          likedIds: User.liked
         }
       })
       .then(function(res) {
@@ -72,7 +73,7 @@ angular.module('data', [])
       })
     },
 
-    updateMatchedUsers: function(matches) {
+    updateMatchedUsers: function() {
       return $http({
         method: 'Put',
         url: baseUrl + '/candidates/matches',

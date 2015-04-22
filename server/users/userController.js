@@ -145,7 +145,7 @@ module.exports = {
 
   updateUserMatches: function(req, res) {
     updateMatchObjects(req, res);
-    console.log("updateMatches request body ", req.body)
+    console.log("/user: updateMatches request body ", req.body)
     var findAndUpdate = Q.nbind(Users.findOneAndUpdate, Users);
     // findAndUpdate({fbid: req.params.id},
     //   {$addToSet: {matched: req.body.matchesIds}},

@@ -2,7 +2,7 @@ var candidateController = require('./candidateController.js')
 
 module.exports = function(app) {
 
-app.route('/')
+app.route('/matches')
   .put(candidateController.updateCandidates)
 };
 //   console.log("in user router")

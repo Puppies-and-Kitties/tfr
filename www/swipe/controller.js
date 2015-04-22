@@ -25,6 +25,7 @@ angular.module('swipe.controllers', [])
       //Once server is up, this will be a POST request to the server
       User = MatchesFactory.add($scope.currentCandidate, $scope.user);
       MatchesFactory.saveAllMatches(User);
+      MatchesFactory.updateMatchedUsers();
     } else {
       //Perhaps we only need to do a PUT request to the server here?
       SkippedFactory.add($scope.currentCandidate);
