@@ -54,7 +54,7 @@ var UserSchema = new mongoose.Schema({
     ageMax: Number
   },
   candidates: [{type: mongoose.Schema.Types.ObjectId}],
-  liked: [],
+  liked: [{type: mongoose.Schema.Types.ObjectId}],
   skipped: [],
   matched: []
 })

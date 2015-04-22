@@ -5,9 +5,9 @@ angular.module('swipe.controllers', [])
   $scope.candidates = CandidatesFactory.all();
 
   $scope.user = User
-  console.log("user in swipe controller ", $scope.user)
 
   $scope.currentCandidate = angular.copy($scope.candidates[0]);
+  console.log("currentCandidate in swipe controller ", $scope.currentCandidate)
 
   $scope.$watch(
     function () { 

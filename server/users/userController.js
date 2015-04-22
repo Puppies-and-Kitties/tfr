@@ -71,8 +71,7 @@ module.exports = {
         name: req.body.name,
         profile: req.body.profile,
         location: req.body.location,
-        roommatePreferences: req.body.roommatePreferences,
-        liked: req.body.liked
+        roommatePreferences: req.body.roommatePreferences
         }
       },
       {upsert: true, new: true}
@@ -146,15 +145,15 @@ module.exports = {
   updateUserMatches: function(req, res) {
     updateMatchObjects(req, res);
     console.log("/user: updateMatches request body ", req.body)
-    var findAndUpdate = Q.nbind(Users.findOneAndUpdate, Users);
-    // findAndUpdate({fbid: req.params.id},
-    //   {$addToSet: {matched: req.body.matchesIds}},
-    //   {new: true}
-    // )
-    // .then(function(user) {
-    //   console.log("user after updating matched ", user)
-
-    // })
+    // var findAndUpdate = Q.nbind(Users.findOneAndUpdate, Users);
+    findAndUpdate({fbid: req.params.id},
+      {$set: {matched: req.body.matchesIds, liked: req.body.likedIds}},
+      {new: true}
+    )
+    .then(function(user) {
+      console.log("user after updating matched ", user)
+      res.send(user);
+    })
 
   }
 

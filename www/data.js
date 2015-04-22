@@ -74,21 +74,25 @@ angular.module('data', [])
     },
 
     updateMatchedUsers: function() {
+      var thisMatchedUser = matches[matches.length-1]
+      console.log("this matched user ", thisMatchedUser)
       return $http({
         method: 'Put',
-        url: baseUrl + '/candidates/matches',
+        url: baseUrl + '/user/' + thisMatchedUser.fbid + '/matches',
         data: {
-          matchedUsers: matches
+          matchesIds: thisMatchedUser.matched,
+          likedIds: thisMatchedUser.liked
         }
       })
       .then(function(res) {
-        console.log("updated matched users' profiles ", res)
+        console.log("match factory: updated matched users' profiles ", res)
       })
     },
 
     add: function(match, User){
       var matchlikes = match.liked;
       var length = match.liked.length;
+      var count = 0;
       for (var i = length; i >= 0; i--) {
         if (matchlikes[i] === User._id && !matchesIds[match._id]) {
           match.matched.push(User._id);
@@ -96,11 +100,14 @@ angular.module('data', [])
           matches.push(match);
           matchesIds[match._id] = true;
           User.matched.push(match._id);
+          count ++;
           return User;
         }
       }
-      User.liked.push(match._id)
-      return User;
+      if (count === 0) {
+        User.liked.push(match._id);
+        return User;
+      }
       
       // if(match.likedCurrentUser){
       //   console.log("and match.likecurrentuser")
