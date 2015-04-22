@@ -50,7 +50,7 @@ describe('Controllers: SwipeCtrl', function() {
 
     describe('scope.candidateSwipe', function() {
 
-      fit('Should set currentCandidate.match to true and add the current candidate to MatchesFactory if like is selected', function() {
+      xit('Should set currentCandidate.match to true and add the current candidate to MatchesFactory if like is selected', function() {
         spyOn(CandidatesFactory, 'all').and.returnValue(testCandidates);
         spyOn(MatchesFactory, 'add').and.returnValue({fbid: 1234, matched:[2222]});
         spyOn(MatchesFactory, 'saveAllMatches').and.returnValue({fbid: 1234, matched:[2222]});
