@@ -6,7 +6,16 @@ angular.module('data', [])
 .factory('MatchesFactory', function($http){
 
   var baseUrl = 'http://localhost:8888';
+  var liked = [];
   var matches = [];
+  var matchesIds = {};
+  var matchIds = function() {
+    var matchLength = matches.length
+    for (var i = 0; i < matchLength; i++) {
+      matchesIds[matches[i]._id] = true;
+    }
+    return matchesIds;
+  };
 
   //Possibly too much repetition/redundancy with CandidatesFactory
   return {
@@ -20,6 +29,7 @@ angular.module('data', [])
         .then(function(matchedUsers){
           console.log("MatchFactory: initialize: matches returned from db ", matchedUsers.data);
           matches = matchedUsers.data;
+          matchIds();
         })
       }
       //matches = usersMatches;
@@ -47,26 +57,50 @@ angular.module('data', [])
         }
       }
     },
+
+    saveAllMatches: function(User) {
+      console.log("saveAllMatches: User.matched ")
+      return $http ({
+        method: 'PUT',
+        url: baseUrl + '/user/' + User.fbid + '/matches',
+        data: {
+          matchesIds: User.matched
+        }
+      })
+      .then(function(res) {
+        console.log("matches factory: response for saveAllMatches ", res)
+      })
+    },
+
+    updateMatchedUsers: function(matches) {
+      return $http({
+        method: 'Put',
+        url: baseUrl + '/candidates/matches',
+        data: {
+          matchedUsers: matches
+        }
+      })
+      .then(function(res) {
+        console.log("updated matched users' profiles ", res)
+      })
+    },
+
     add: function(match, User){
-      console.log("Match in matchfact add ", match._id)
-      console.log("matchfactory: add: current match array: ", matches)
-      console.log("MatchFactory: add: User ", User)
-      var liked = match.liked
-      var length = match.liked.length
-      var matchesIds = {}
-      for (var j = 0; j < matches.length; j++) {
-        matchesIds[matches[j]._id] = true;
-      }
+      var matchlikes = match.liked;
+      var length = match.liked.length;
       for (var i = length; i >= 0; i--) {
-        if (liked[i] === User._id && !matchesIds[match._id]) {
+        if (matchlikes[i] === User._id && !matchesIds[match._id]) {
           match.matched.push(User._id);
           match.liked.splice(i, 1);
-          console.log("match after splicing liked ", match)
           matches.push(match);
-          console.log("matches after adding ", matches)
-
+          matchesIds[match._id] = true;
+          User.matched.push(match._id);
+          return User;
         }
       }
+      User.liked.push(match._id)
+      return User;
+      
       // if(match.likedCurrentUser){
       //   console.log("and match.likecurrentuser")
       //   matches.push(match);
@@ -570,7 +604,6 @@ angular.module('data', [])
       console.log("Candidates: getting all candidates")
       return candidates;
     },
-
 
       // console.log('You called candidate factory\'s all method');
      // return candidates

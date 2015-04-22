@@ -1,6 +1,15 @@
 var Users = require('./userModel.js');
 var Q = require('q');
 
+var updateMatchObjects = function(req, res) {
+  console.log("in update match objects. req: ", req.body)
+};
+
+var findUsers = Q.nbind(Users.find, Users);
+var findUser = Q.nbind(Users.findOne, Users);
+var findOrCreate = Q.nbind(Users.findOneAndUpdate, Users);
+var findAndUpdate = Q.nbind(Users.findOneAndUpdate, Users);
+
 module.exports = {
   
   getCandidates: function(req, res) {
@@ -39,6 +48,7 @@ module.exports = {
   //     })
   //   })
   addOrFindCurrentUser: function(req, res) {
+<<<<<<< HEAD
     var findOrCreate = Q.nbind(Users.findOneAndUpdate, Users);
     if(req.body.location){
       var latitude = req.body.location.desiredPlace.latitude;
@@ -48,6 +58,11 @@ module.exports = {
       var longitude = 0;
     }
     console.log("id:",req.params.id);
+||||||| merged common ancestors
+    var findOrCreate = Q.nbind(Users.findOneAndUpdate, Users);
+=======
+    // var findOrCreate = Q.nbind(Users.findOneAndUpdate, Users);
+>>>>>>> (feature) Server: add candidateRoute and Controller, Client: Set up methods for sending updated User with matches and Updated matched candidates
     findOrCreate(
       {fbid: req.params.id}, 
       {$setOnInsert: {
@@ -69,7 +84,7 @@ module.exports = {
   },
 
   updateProfile: function(req, res) {
-    var findOrCreate = Q.nbind(Users.findOneAndUpdate, Users);
+    // var findOrCreate = Q.nbind(Users.findOneAndUpdate, Users);
     console.log("params in updateProperty ", req.params)
     findOrCreate(
       {fbid: req.params.id }, 
@@ -82,9 +97,15 @@ module.exports = {
   }, 
 
   updateLocation: function(req, res) {
+<<<<<<< HEAD
     var findOrCreate = Q.nbind(Users.findOneAndUpdate, Users);
     var latitude = req.body.location.desiredPlace.latitude;
     var longitude = req.body.location.desiredPlace.longitude;
+||||||| merged common ancestors
+    var findOrCreate = Q.nbind(Users.findOneAndUpdate, Users);
+=======
+    // var findOrCreate = Q.nbind(Users.findOneAndUpdate, Users);
+>>>>>>> (feature) Server: add candidateRoute and Controller, Client: Set up methods for sending updated User with matches and Updated matched candidates
     findOrCreate(
       {fbid: req.params.id }, 
       {$set: {loc:[latitude,longitude],location: req.body.location}},
@@ -96,7 +117,7 @@ module.exports = {
   },
 
   updateRoommatePreferences: function(req, res) {
-    var findOrCreate = Q.nbind(Users.findOneAndUpdate, Users);
+    // var findOrCreate = Q.nbind(Users.findOneAndUpdate, Users);
       findOrCreate(
         {fbid: req.params.id }, 
         {$set: {roommatePreferences: req.body.roommatePreferences}},
@@ -109,18 +130,34 @@ module.exports = {
 
   getMatches: function(req, res) {
     console.log("request to getMatches ", req.params)
-    var findUser = Q.nbind(Users.findOne, Users);
-    var findMatches = Q.nbind(Users.find, Users);
+    // var findUser = Q.nbind(Users.findOne, Users);
+    // var findMatches = Q.nbind(Users.find, Users);
     
     findUser({fbid: req.params.id})
       .then(function(user){
-        findMatches({_id: {$in: user.matched}})
+        findUsers({_id: {$in: user.matched}})
           .then(function(matches) {
             console.log("matches", matches)
             res.send(matches);
       })
     })
+  }, 
+
+  updateUserMatches: function(req, res) {
+    updateMatchObjects(req, res);
+    console.log("updateMatches request body ", req.body)
+    var findAndUpdate = Q.nbind(Users.findOneAndUpdate, Users);
+    // findAndUpdate({fbid: req.params.id},
+    //   {$addToSet: {matched: req.body.matchesIds}},
+    //   {new: true}
+    // )
+    // .then(function(user) {
+    //   console.log("user after updating matched ", user)
+
+    // })
+
   }
+
 };
 
 

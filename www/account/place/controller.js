@@ -26,7 +26,7 @@ angular.module('preferences.controllers', [])
 
     PlaceFactory.initialize($scope.location, User)
       .then(function(res) {
-        console.log("muddafuckin place dataaa ", res)
+        console.log("Account: Place: response from database after saving ", res)
         User.location = res;
         CandidatesFactory.initialize(User);
       })

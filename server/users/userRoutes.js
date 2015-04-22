@@ -19,6 +19,7 @@ module.exports = function(app) {
 
   app.route('/:id/matches')
     .get(userController.getMatches)
+    .put(userController.updateUserMatches)
   
   app.route('/:id/:location')
     .get(userController.getCandidates)
