@@ -13,14 +13,14 @@ var findAndUpdate = Q.nbind(Users.findOneAndUpdate, Users);
 module.exports = {
   
   getCandidates: function(req, res) {
-    var findCandidates = Q.nbind(Users.find, Users);
     var latitude = req.param('lat');
     var longitude = req.param('longt');
     var radius = req.param('radi')*1.6/6370;
-    var findUser = Q.nbind(Users.findOne, Users);
-    findCandidates({
+    findUsers({
       loc: {$nearSphere: [latitude,longitude],$maxDistance: radius},
       fbid: {$ne: ""+req.params.id}})
+    // var findCandidates = Q.nbind(Users.find, Users);
+    // var findUser = Q.nbind(Users.findOne, Users);
     .then(function(data){
       //console.log('getCandidates:',data);
       res.send(data);
@@ -47,7 +47,6 @@ module.exports = {
   //     })
   //   })
   addOrFindCurrentUser: function(req, res) {
-    var findOrCreate = Q.nbind(Users.findOneAndUpdate, Users);
     if(req.body.location){
       var latitude = req.body.location.desiredPlace.latitude;
       var longitude = req.body.location.desiredPlace.longitude;
@@ -89,7 +88,6 @@ module.exports = {
   }, 
 
   updateLocation: function(req, res) {
-    var findOrCreate = Q.nbind(Users.findOneAndUpdate, Users);
     var latitude = req.body.location.desiredPlace.latitude;
     var longitude = req.body.location.desiredPlace.longitude;
     findOrCreate(
@@ -127,7 +125,9 @@ module.exports = {
             res.send(matches);
       })
     })
+
   }, 
+
 
   updateUserMatches: function(req, res) {
     updateMatchObjects(req, res);

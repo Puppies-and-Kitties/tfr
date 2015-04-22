@@ -30,6 +30,7 @@ angular.module('data', [])
         .then(function(matchedUsers){
           console.log("MatchFactory: initialize: matches returned from db ", matchedUsers.data);
           matches = matchedUsers.data;
+          matchIds();
         })
       }
       //matches = usersMatches;
@@ -91,10 +92,20 @@ angular.module('data', [])
       })
     },
 
+
     add: function(match, User){
       var matchlikes = match.liked;
       var length = match.liked.length;
       var count = 0;
+      console.log("Match in matchfact add ", match._id)
+      console.log("matchfactory: add: current match array: ", matches)
+      console.log("MatchFactory: add: User ", User)
+      var liked = match.liked
+      var length = match.liked.length
+      var matchesIds = {}
+      for (var j = 0; j < matches.length; j++) {
+        matchesIds[matches[j]._id] = true;
+      }
       for (var i = length; i >= 0; i--) {
         if (matchlikes[i] === User._id && !matchesIds[match._id]) {
           match.matched.push(User._id);
@@ -104,7 +115,6 @@ angular.module('data', [])
           User.matched.push(match._id);
           count ++;
           return User;
-        }
       }
       if (count === 0) {
         User.liked.push(match._id);
