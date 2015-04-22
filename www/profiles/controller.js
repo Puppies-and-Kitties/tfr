@@ -41,7 +41,8 @@ angular.module('profile.controllers', [])
     if (match) {
       //Once server is up, this will be a POST request to the server
       User = MatchesFactory.add($scope.currentCandidate, $scope.User);
-      MatchesFactory.saveAllMatches(User)
+      MatchesFactory.saveAllMatches(User);
+      MatchesFactory.updateMatchedUsers();
     } else {
       //Perhaps we just need to do a PUT request to the server here?
       SkippedFactory.add($scope.currentCandidate);
