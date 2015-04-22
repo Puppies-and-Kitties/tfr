@@ -70,6 +70,7 @@ angular.module('data', [])
       })
       .then(function(res) {
         console.log("matches factory: response for saveAllMatches ", res)
+        return res.data;
       })
     },
 
@@ -86,6 +87,7 @@ angular.module('data', [])
       })
       .then(function(res) {
         console.log("match factory: updated matched users' profiles ", res)
+        return res.data;
       })
     },
 
