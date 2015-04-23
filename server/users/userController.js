@@ -6,10 +6,12 @@ module.exports = {
   getCandidates: function(req, res) {
     console.log("in the pretty new getCandidates function")
     var findCandidates = Q.nbind(Users.find, Users);
+    var latitude = req.body.location.myPlace.latitude;
+    var longitude = req.body.location.myPlace.longitude;
     findCandidates({
-      $and: [{
-        $or: [{"location.myPlace.city": req.params.location}, {"location.desiredPlace.city": req.params.location}]
-      }, {
+      $and: [
+        {loc: { $nearSphere: [latitude,longitude], $maxDistance: 0.0157 }}
+      , {
         fbid: {$ne: req.params.id}
       }]
     })
@@ -20,9 +22,12 @@ module.exports = {
 
   addOrFindCurrentUser: function(req, res) {
     var findOrCreate = Q.nbind(Users.findOneAndUpdate, Users);
+    var latitude = req.body.location.myPlace.latitude;
+    var longitude = req.body.location.myPlace.longitude;
     findOrCreate(
       {fbid: req.params.id}, 
       {$setOnInsert: {
+        loc: { $nearSphere: [latitude,longitude], $maxDistance: 0.0157},
         fbid: req.params.id, 
         name: req.body.name,
         profile: req.body.profile,
