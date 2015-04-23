@@ -6,23 +6,32 @@ module.exports = {
   getCandidates: function(req, res) {
     console.log("in the pretty new getCandidates function")
     var findCandidates = Q.nbind(Users.find, Users);
+    var latitude = req.param('lat');
+    var longitude = req.param('longt');
+    var radius = req.param('radi')*1.6/6370;
     findCandidates({
-      $and: [{
-        $or: [{"location.myPlace.city": req.params.location}, {"location.desiredPlace.city": req.params.location}]
-      }, {
-        fbid: {$ne: req.params.id}
-      }]
-    })
+      loc: {$nearSphere: [latitude,longitude],$maxDistance: radius},
+      fbid: {$ne: ""+req.params.id}})
     .then(function(data){
+      //console.log('getCandidates:',data);
       res.send(data);
     })
   },
 
   addOrFindCurrentUser: function(req, res) {
     var findOrCreate = Q.nbind(Users.findOneAndUpdate, Users);
+    if(req.body.location){
+      var latitude = req.body.location.desiredPlace.latitude;
+      var longitude = req.body.location.desiredPlace.longitude;
+    } else {
+      var latitude = 0;
+      var longitude = 0;
+    }
+    console.log("id:",req.params.id);
     findOrCreate(
       {fbid: req.params.id}, 
       {$setOnInsert: {
+        loc: [latitude,longitude],
         fbid: req.params.id, 
         name: req.body.name,
         profile: req.body.profile,
@@ -34,7 +43,7 @@ module.exports = {
       {upsert: true, new: true}
     )
     .then(function(user) {
-      // console.log("user from db in post ", user)
+      console.log("user from db in post ", user)
       res.send(user);
     });
   },
@@ -54,9 +63,11 @@ module.exports = {
 
   updateLocation: function(req, res) {
     var findOrCreate = Q.nbind(Users.findOneAndUpdate, Users);
+    var latitude = req.body.location.desiredPlace.latitude;
+    var longitude = req.body.location.desiredPlace.longitude;
     findOrCreate(
       {fbid: req.params.id }, 
-      {$set: {location: req.body.location}},
+      {$set: {loc:[latitude,longitude],location: req.body.location}},
       {upsert: true, new: true}
     )
     .then(function(user){

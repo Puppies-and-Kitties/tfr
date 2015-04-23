@@ -514,9 +514,13 @@ angular.module('data', [])
           // return candidates;
         })
       } else {
+        var lat = req.location.desiredPlace.latitude;
+        var longt = req.location.desiredPlace.longitude;
+        var radi = req.location.desiredPlace.radius
         return $http({
           method: 'GET',
-          url: baseUrl + '/user/' + req.fbid + '/' + req.location.desiredPlace.city
+          url: baseUrl + '/user/' + req.fbid + 
+              '/location?lat=' + lat + '&longt=' + longt + '&radi=' + radi
         })
         .then(function(res) {
           console.log("candidates that match location ", res.data)
