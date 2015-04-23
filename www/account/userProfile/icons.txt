@@ -1,10 +1,10 @@
-['ion-ionic','ion-ios-minus-outline','ion-ios-chatboxes','ion-beaker','ion-woman']
-['ion-ios-compose','ion-social-euro','ion-ios-email','ion-card','ion-leaf']
-['ion-card','ion-compose','ion-ios-bell','ion-wifi','ion-trash-a']
-['ion-ios-paw','ion-social-yen','ion-social-apple','ion-ionic','ion-ios-minus-empty']
-['ion-ios-reload','ion-umbrella','ion-thumbsdown','ion-tshirt-outline','ion-email']
-['ion-ios-color-wand-outline','ion-planet','ion-android-bar','ion-record','ion-ios-personadd-outline']
-['ion-ios-time','ion-coffee','ion-erlenmeyer-flask','ion-ios-glasses','ion-lightbulb']
-['ion-music-note','ion-minus','ion-home','ion-alert','ion-ios-rainy']
-['ion-ios-telephone-outline','ion-ios-rose','ion-calculator','ion-leaf','ion-ipad']
-['ion-ios-timer','ion-speakerphone','ion-ionic','ion-share','ion-help-buoy']
+icons: ["ion-thumbsdown","ion-bowtie","ion-tshirt-outline","ion-play","ion-ios-box"],
+icons: ["ion-shuffle","ion-ios-musical-notes","ion-usb","ion-aperture","ion-pound"],
+icons: ["ion-compose","ion-fork-repo","ion-social-reddit-outline","ion-bowtie","ion-soup-can-outline"],
+icons: ["ion-ios-rose-outline","ion-egg","ion-ios-cart","ion-model-s","ion-ios-game-controller-a"],
+icons: ["ion-ios-pint","ion-asterisk","ion-bag","ion-model-s","ion-ios-world"],
+icons: ["ion-happy-outline","ion-social-yen","ion-ios-pricetag","ion-chevron-up","ion-model-s"],
+icons: ["ion-android-chat","ion-ios-albums","ion-android-bicycle","ion-social-javascript-outline","ion-ios-list"],
+icons: ["ion-calendar","ion-social-pinterest","ion-social-github-outline","ion-social-html5-outline","ion-ios-glasses"],
+icons: ["ion-ios-undo","ion-university","ion-social-css3","ion-ios-photos-outline","ion-model-s"],
+icons: ["ion-hammer","ion-ribbon-a","ion-iphone","ion-pricetags","ion-laptop"],

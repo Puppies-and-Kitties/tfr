@@ -5,7 +5,7 @@ angular.module('userProfile.controllers', [])
   $scope.username = User.name;
 
   $scope.profile = User.profile || ProfileFactory.all();
-  $scope.profile.selectedIcons = [];
+  $scope.profile.icons = [];
 
   $scope.ionicons = [];
 

@@ -19,6 +19,7 @@ var UserSchema = new mongoose.Schema({
   profile: {
     gender: String,
     age: Number,
+    icons: [],
     keywords: []
   },
   location: {

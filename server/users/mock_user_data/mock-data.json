@@ -7,6 +7,7 @@
   "profile": {
     "gender": "String",
     "age": "Number",
+    "icons": ["ion-thumbsdown","ion-bowtie","ion-tshirt-outline","ion-play","ion-ios-box"],
     "keywords": "model"
   },
   "location": {
@@ -49,6 +50,7 @@
   "profile": {
     "gender": "String",
     "age": "Number",
+    "icons": ["ion-shuffle","ion-ios-musical-notes","ion-usb","ion-aperture","ion-pound"],
     "keywords": "help-desk"
   },
   "location": {
@@ -91,6 +93,7 @@
   "profile": {
     "gender": "String",
     "age": "Number",
+    "icons": ["ion-compose","ion-fork-repo","ion-social-reddit-outline","ion-bowtie","ion-soup-can-outline"],
     "keywords": "algorithm"
   },
   "location": {
@@ -133,6 +136,7 @@
   "profile": {
     "gender": "String",
     "age": "Number",
+    "icons": ["ion-ios-rose-outline","ion-egg","ion-ios-cart","ion-model-s","ion-ios-game-controller-a"],
     "keywords": "forecast"
   },
   "location": {
@@ -175,6 +179,7 @@
   "profile": {
     "gender": "String",
     "age": "Number",
+    "icons": ["ion-ios-pint","ion-asterisk","ion-bag","ion-model-s","ion-ios-world"],
     "keywords": "archive"
   },
   "location": {
@@ -217,6 +222,7 @@
   "profile": {
     "gender": "String",
     "age": "Number",
+    "icons": ["ion-ios-pint","ion-asterisk","ion-bag","ion-model-s","ion-ios-world"],
     "keywords": "emulation"
   },
   "location": {
@@ -259,6 +265,7 @@
   "profile": {
     "gender": "String",
     "age": "Number",
+    "icons": ["ion-happy-outline","ion-social-yen","ion-ios-pricetag","ion-chevron-up","ion-model-s"],
     "keywords": "emulation"
   },
   "location": {
@@ -301,6 +308,7 @@
   "profile": {
     "gender": "String",
     "age": "Number",
+    "icons": ["ion-android-chat","ion-ios-albums","ion-android-bicycle","ion-social-javascript-outline","ion-ios-list"],
     "keywords": "info-mediaries"
   },
   "location": {
@@ -343,6 +351,7 @@
   "profile": {
     "gender": "String",
     "age": "Number",
+    "icons": ["ion-ios-undo","ion-university","ion-social-css3","ion-ios-photos-outline","ion-model-s"],
     "keywords": "definition"
   },
   "location": {
@@ -385,6 +394,7 @@
   "profile": {
     "gender": "String",
     "age": "Number",
+    "icons": ["ion-ios-undo","ion-university","ion-social-css3","ion-ios-photos-outline","ion-model-s"],
     "keywords": "conglomeration"
   },
   "location": {

@@ -466,7 +466,7 @@ var iconListGenerator = function(numberOfLists,numberOfIcons){
       var randomList = iconsArray[Math.floor(listCount*Math.random())];
 
       var randomIcon = randomList[Math.floor((randomList.length-1)*Math.random())];
-      newList.push("'"+randomIcon+"'");
+      newList.push('"'+randomIcon+'"');
     }
     console.log("["+newList.toString()+"]");
   }
