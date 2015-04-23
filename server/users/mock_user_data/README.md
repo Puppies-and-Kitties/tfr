@@ -1,7 +1,11 @@
 Use instructions: 
   first make sure you have mongodb-datasets and the mongodb client installed
-    it's listed in the package.json, so just run:
+    From the mongodb-datasets readme: 
+    "To use the `mongodb-datasets` command, install mongodb-datasets globally:
+    $ npm install -g mongodb-datasets"
+    To use the Javascript API, just run:
       npm install
+    And mongodb-datasets will be installed via package.json
       
   cd into this file's directory and run the following command
     mongodb-datasets mock-user-schema.json -n 10 -o mock-data.json --pretty
