@@ -2,7 +2,7 @@ var userController = require('./userController.js');
 
 module.exports = function(app) {
 
-  app.route('/:id/:location')
+  app.route('/:id/location')
     .get(userController.getCandidates)
 
   app.route('/:id')
