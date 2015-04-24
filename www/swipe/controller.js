@@ -19,6 +19,7 @@ angular.module('swipe.controllers', [])
   );
 
   $scope.candidateSwipe =  function (match, User){
+    
     if (match) {
       MatchesFactory.add($scope.currentCandidate, $scope.user, function(userMatch){
         console.log("userMatch ", userMatch)
