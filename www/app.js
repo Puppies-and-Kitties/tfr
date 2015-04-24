@@ -84,19 +84,19 @@ angular.module('starter', [
   $stateProvider
   // setup an abstract state for the tabs directive
   .state('tab', {
-    url: "/tab",
+    url: '/tab',
     abstract: true,
-    templateUrl: "tabs.html",
+    templateUrl: 'tabs.html',
     // Sets the User object to the user data firebase returns from fb
     // To access this data, simply inject User into the controller
     resolve: {
       User: function(userSession, LoginFact){
-        console.log("userSession",userSession);
+        console.log('userSession: ', userSession);
         var user = userSession.user.cachedUserProfile;
 
         return LoginFact.saveUser(user)
           .then(function(data){
-            console.log("DATA for resolved USER", data);
+            console.log('DATA for resolved USER', data);
             return data.data;
           })
       }

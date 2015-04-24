@@ -8,14 +8,14 @@ angular.module('data', [])
   
   return {
     initialize: function(req){
-      console.log("MatchFactory: user obj sent to initialize ", req.matched)
+      console.log('MatchFactory: user obj sent to initialize ', req.matched);
       if(req.matched) {
         return $http({
           method: 'GET',
           url: baseUrl + '/user/' + req.fbid + '/matches'
         })
         .then(function(matchedUsers){
-          console.log("MatchFactory: initialize: matches returned from db ", matchedUsers.data);
+          console.log('MatchFactory: initialize: matches returned from db ', matchedUsers.data);
           matches = matchedUsers.data;
         })
       }
@@ -27,29 +27,29 @@ angular.module('data', [])
       matches.splice(matches.indexOf(match), 1);
     },
     get: function(matchId) {
-      console.log("matches in matchfact.get ", matches)
-      console.log("matchId in matches fact ", matchId)
+      console.log('matches in matchfact.get ', matches);
+      console.log('matchId in matches fact ', matchId);
       for (var i = 0; i < matches.length; i++) {
         if (matches[i].fbid === matchId) {
-          console.log("matches[i] ", matches[i])
+          console.log('matches[i] ', matches[i]);
           return matches[i];
         }
       }
       return null;
     },
     updateChatURL: function(matchId,property,newValue, cb){
-      console.log("in update: matchId, property, newValue ", matchId, property, newValue)
+      console.log('in update: matchId, property, newValue ', matchId, property, newValue)
       for (var i = 0; i < matches.length; i++) {
         if (matches[i].fbid === matchId) {
           matches[i].matched[property] = newValue;
-          console.log("Match with new chat url: ", matches[i]);
+          console.log('Match with new chat url: ', matches[i]);
           cb(matches[i]);
         }
       }
     },
 
     saveAllMatches: function(User) {
-      console.log("saveAllMatches: User", User)
+      console.log('saveAllMatches: User', User)
       return $http ({
         method: 'PUT',
         url: baseUrl + '/user/' + User.fbid + '/matches',
@@ -59,14 +59,14 @@ angular.module('data', [])
         }
       })
       .then(function(res) {
-        console.log("matches factory: response for saveAllMatches ", res)
+        console.log('matches factory: response for saveAllMatches ', res);
         return res.data;
       })
     },
 
     updateMatchedUsers: function(newMatch) {
       var thisMatchedUser = matches[matches.length-1]
-      console.log("update matched user: this matched user ", thisMatchedUser)
+      console.log('update matched user: this matched user ', thisMatchedUser);
       return $http({
         method: 'Put',
         url: baseUrl + '/user/' + newMatch.fbid + '/matches',
@@ -76,7 +76,7 @@ angular.module('data', [])
         }
       })
       .then(function(res) {
-        console.log("match factory: updated matched users' profiles ", res)
+        console.log('match factory: updated matched users\' profiles ', res);
         return res.data;
       })
     },
@@ -88,10 +88,10 @@ angular.module('data', [])
       var userIdString = User._id;
       var matchIdString = match._id;
       var result = [];
-      console.log("matchFact: add: stringed user id ", userIdString);
-      console.log("matchFact: add: stringed match id ", matchIdString);
-      console.log("match name ", match.name);
-      console.log("match.liked ", match.liked);
+      console.log('matchFact: add: stringed user id ', userIdString);
+      console.log('matchFact: add: stringed match id ', matchIdString);
+      console.log('match name ', match.name);
+      console.log('match.liked ', match.liked);
       if (match.liked.indexOf(User._id) >= 0 ) {
         if (!match.matched) {
           match.matched = {};
@@ -105,7 +105,7 @@ angular.module('data', [])
         User.matched[matchIdString] = false;
         count ++;
         result.push(User, match);
-        console.log("matchFact: add: result ", result)
+        console.log('matchFact: add: result ', result);
         cb(result);
       } 
       else {
@@ -221,7 +221,7 @@ angular.module('data', [])
         }
       })
       .then(function(res){
-        console.log("place factory res from db ", res)
+        console.log('place factory res from db ', res)
         location = res.data.location;
         return res.data.location;
       })
@@ -286,7 +286,7 @@ angular.module('data', [])
   return {
     initialize: function(req){
       if (!req.location) {
-        console.log("not grabbing candidates yet! need to set search prefs")
+        console.log('not grabbing candidates yet! need to set search prefs');
       } 
       else if (req.location.host) {
         return $http({
@@ -294,28 +294,28 @@ angular.module('data', [])
           url: baseUrl + '/user/' + req.fbid + '/' + req.location.myPlace.city
         })
         .then(function(res) {
-          console.log("candidates that match location ", res)
+          console.log('candidates that match location ', res);
           candidates = res.data;
         })
       } 
       else {
         var lat = req.location.desiredPlace.latitude;
         var longt = req.location.desiredPlace.longitude;
-        var radi = req.location.desiredPlace.radius
+        var radi = req.location.desiredPlace.radius;
         return $http({
           method: 'GET',
           url: baseUrl + '/user/' + req.fbid + 
               '/location?lat=' + lat + '&longt=' + longt + '&radi=' + radi
         })
         .then(function(res) {
-          console.log("candidates that match location ", res.data)
+          console.log('candidates that match location ', res.data);
           candidates = res.data;
         })
       }
     },
 
     all: function() {
-      console.log("Candidates: getting all candidates")
+      console.log('Candidates: getting all candidates');
       return candidates;
     },
     removeFirst: function() {
@@ -336,7 +336,7 @@ angular.module('data', [])
         }
       })
       .then(function(res){
-        console.log("place factory res from db ", res)
+        console.log('place factory res from db ', res);
         return res.data.location;
       })
     },

@@ -1,6 +1,7 @@
 angular.module('userProfile.controllers', [])
 
 .controller('UserProfileCtrl', function($scope, $state, User, ProfileFactory, IoniconsFact){
+  
   $scope.fbId = User.fbid;
   $scope.username = User.name;
 
@@ -21,7 +22,7 @@ angular.module('userProfile.controllers', [])
   $scope.saveProfile = function(){
     ProfileFactory.initialize($scope.profile, User)
       .then(function(res) {
-        console.log("Profile Data in userProfileCtrl saveProfile: ", res);
+        console.log('Profile Data in userProfileCtrl saveProfile: ', res);
         User.profile = res;
       })
     $state.go('tab.account');

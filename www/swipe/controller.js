@@ -3,11 +3,11 @@ angular.module('swipe.controllers', [])
 .controller('SwipeController', function($scope, $timeout, CandidatesFactory, MatchesFactory, SkippedFactory, User) {
 
   $scope.candidates = CandidatesFactory.all();
-  console.log("swipectrl: candidates ", $scope.candidates)
-  $scope.user = User
+  console.log('swipectrl: candidates ', $scope.candidates);
+  $scope.user = User;
 
   $scope.currentCandidate = angular.copy($scope.candidates[0]);
-  console.log("currentCandidate in swipe controller ", $scope.currentCandidate)
+  console.log('currentCandidate in swipe controller ', $scope.currentCandidate);
 
   $scope.$watch(
     function () { 
@@ -22,20 +22,22 @@ angular.module('swipe.controllers', [])
     
     if (match) {
       MatchesFactory.add($scope.currentCandidate, $scope.user, function(userMatch){
-        console.log("userMatch ", userMatch)
+        console.log('userMatch ', userMatch);
         User = userMatch[0];
         var candidate = userMatch[1];
+
         MatchesFactory.saveAllMatches(User)
           .then(function(res){
-            console.log("SwipeCtrl: res: current user res from saveAllMatches", res);
+            console.log('SwipeCtrl: res: current user res from saveAllMatches', res);
             $scope.user = User = res;
           });
         MatchesFactory.updateMatchedUsers(candidate)
           .then(function(res) {
-            console.log("SwipeCtrl: res: last candidate from updateMatchedUsers ", res)
+            console.log('SwipeCtrl: res: last candidate from updateMatchedUsers ', res);
           })
       });
-    } else {
+    } 
+    else {
       SkippedFactory.add($scope.currentCandidate);
     }
 
@@ -43,7 +45,6 @@ angular.module('swipe.controllers', [])
     CandidatesFactory.removeFirst();
     $scope.candidates = CandidatesFactory.all();
     $scope.currentCandidate = angular.copy($scope.candidates[0]);
-
   };
-})
 
+});
