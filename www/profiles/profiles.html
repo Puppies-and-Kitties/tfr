@@ -4,13 +4,12 @@
     <div class="card">
       <div class="profile-content">
         <img ng-src="{{profile.face}}">
-        <!-- <img class="profile-content-pic" ng-src="//graph.facebook.com/{{User.id}}/picture?type=large"> -->
       </div>
     </div>
 
     <ion-list>
 
-      <li class="item match"><!--<div class="card">-->
+      <li class="item match">
         <div class="profile-content">
           <candidate-top-box ng-if="profile.type==='swipe'"></candidate-top-box>
           <match-top-box ng-if="profile.type==='matches'"></match-top-box>
@@ -18,45 +17,45 @@
         </div>
       </li>
 
-      <li class="item"><!--<div class="card">-->
+      <li class="item">
         <div class="profile-content">
           <strong>Ideal Rent:</strong> <br>{{profile.preferences.rent | currency}}
         </div>
-      </li><!-- </div> -->
+      </li>
 
-      <li class="item"><!--<div class="card">-->
+      <li class="item">
         <div class="profile-content">
           <strong>Ideal Zip Code:</strong><br>{{profile.preferences.zipCode}}
         </div>
-      </li><!-- </div> -->
+      </li>
 
-      <li class="item"><!--<div class="card">-->
+      <li class="item">
         <div class="profile-content">
           <strong>Choice Ionicons:</strong><br>
           <div class="profile-icons"><span class="ion-android-bar"></span><span class="ion-social-github"></span><span class="ion-social-freebsd-devil"></span></div>
         </div>
-      </li><!-- </div> -->
+      </li>
 
-      <li class="item"><!--<div class="card">-->
+      <li class="item">
         <div class="profile-content">
         <strong>Preferred Roommate Gender:</strong><br> {{profile.preferences.gender}}
         </div>
-      </li><!-- </div> -->
+      </li>
 
-      <li class="item"><!--<div class="card">-->
+      <li class="item">
         <div class="profile-content">
         <strong>A few words of description:</strong><br> {{profile.aboutMeWords}}
         </div>
-      </li><!-- </div> -->
+      </li>
 
       <!-- only display like/dislike buttons if not matched -->
-      <li class="item"><!-- <div class="card" ng-if="!profile.matched"> -->
+      <li class="item">
         <div class="profile-content">
           <like-dislike ng-if="profile.type==='swipe'"></like-dislike>
           <contact-info ng-if="profile.type==='matches'"></contact-info>
           <edit-profile ng-if="profile.type==='user'"></edit-profile>
         </div>
-      </li><!-- </div> -->
+      </li>
 
     </ion-list>
   </ion-content>
