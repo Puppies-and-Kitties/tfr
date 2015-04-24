@@ -98,7 +98,7 @@ angular.module('starter', [
   .state('tab', {
     url: "/tab",
     abstract: true,
-    templateUrl: "templates/tabs.html",
+    templateUrl: "tabs.html",
     // Sets the User object to the user data firebase returns from fb
     // To access this data, simply inject User into the controller
     resolve: {
