@@ -21,8 +21,7 @@
       <strong>Search radius:</strong> {{input.radius}} miles
       <div class="range">
         <i class="ion-earth"></i>
-        <!-- <input type="range" ng-change="placeCircle();" ng-model="input.radius" min="0" max="15" step="0.1"> -->
-        <input type="range" ng-mouseup="placeCircle();" ng-model="input.radius" min="0" max="15" step="0.1">
+        <input type="range" ng-mouseup="placeCircle(input.toggleRadius);" ng-model="input.radius" min="0" max="15" step="0.1">
       </div>
     </ion-item>
 
