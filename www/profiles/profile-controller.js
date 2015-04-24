@@ -7,7 +7,9 @@ angular.module('profile.controllers', [])
   $scope.candidates = CandidatesFactory.all();
   $scope.currentCandidate = angular.copy($scope.candidates[0]);
 
-  switch($stateParams.type){
+  var profileType = $stateParams.type;
+
+  switch(profileType){
     case 'swipe':
       $scope.profile = CandidatesFactory.getFirst();
       break;
@@ -17,6 +19,7 @@ angular.module('profile.controllers', [])
       console.log('scope profile in matches profile ', $scope.profile);
       break;
     default:
+      profileType = 'user'
       $scope.profile = User;
       break;
   }
@@ -29,10 +32,10 @@ angular.module('profile.controllers', [])
    $scope.keywords = $scope.profile.profile.keywords.join(', ');
   }
 
-  $scope.topBoxType = {'type':$stateParams.type+'Top'};
-  $scope.bottomBoxType = {'type':$stateParams.type+'Bottom'};
+  $scope.topBoxType = {'type':profileType+'Top'};
+  $scope.bottomBoxType = {'type':profileType+'Bottom'};
 
-  $scope.profile.type = $stateParams.type;
+  $scope.profile.type = profileType;
   $scope.profile.match = true;
 
   $scope.candidateSwipe =  function (match){
