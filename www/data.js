@@ -47,7 +47,7 @@ angular.module('data', [])
     updateChatURL: function(matchId,property,newValue, cb){
       console.log("in update: matchId, property, newValue ", matchId, property, newValue)
       for (var i = 0; i < matches.length; i++) {
-        if (matches[i].fbid === parseInt(matchId)) {
+        if (matches[i].fbid === matchId) {
           matches[i].matched[property] = newValue;
           console.log("Match with new chat url: ", matches[i]);
           cb(matches[i]);
