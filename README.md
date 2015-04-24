@@ -8,7 +8,7 @@ RooMe, it's Tinder for Roomies!
 
   - __Product Owner__: David Blanchard
   - __Scrum Master__: Jack Peterson
-  - __Development Team Members__: Daniel Miller
+  - __Lead Developer__: Daniel Miller
 
 ## Table of Contents
 
