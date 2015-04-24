@@ -109,6 +109,9 @@ angular.module('data', [])
         cb(result);
       } 
       else {
+        if (!User.liked.length) {
+          User.liked = [];
+        }
         User.liked.push(match._id);
         result.push(User, match);
         return result;
