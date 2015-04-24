@@ -4,7 +4,7 @@
 With RooMe, you can toss all those cares away. Just sign-up, start swiping, and you'll have a new roommate before you finish breakfast.<br><br>
 RooMe, it's Tinder for Roomies!
 
-## [Team](http://roome.azurewebsites.net/#team)
+## [The Team](http://roome.azurewebsites.net/#team)
 
   - __Product Owner__: David Blanchard
   - __Scrum Master__: Jack Peterson
