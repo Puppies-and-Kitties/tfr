@@ -12,9 +12,9 @@ angular.module('profile.controllers', [])
       $scope.profile = CandidatesFactory.getFirst();
       break;
     case 'matches':
-      console.log("state.params ", $stateParams);
+      console.log('state.params ', $stateParams);
       $scope.profile = MatchesFactory.get($stateParams.id);
-      console.log('scope profile in matches profile ', $scope.profile)
+      console.log('scope profile in matches profile ', $scope.profile);
       break;
     default:
       $scope.profile = User;
@@ -26,7 +26,7 @@ angular.module('profile.controllers', [])
   };
 
   if ($scope.profile.profile) {
-   $scope.keywords = $scope.profile.profile.keywords.join(", ");
+   $scope.keywords = $scope.profile.profile.keywords.join(', ');
   }
 
   $scope.topBoxType = {'type':$stateParams.type+'Top'};
@@ -40,17 +40,17 @@ angular.module('profile.controllers', [])
     CandidatesFactory.removeFirst();   
     if (match) {
       MatchesFactory.add($scope.currentCandidate, $scope.User, function(userMatch){
-        console.log("userMatch ", userMatch)
+        console.log('userMatch ', userMatch);
         User = userMatch[0];
         var candidate = userMatch[1];
         MatchesFactory.saveAllMatches(User)
           .then(function(res){
-            console.log("SwipeCtrl: res: current user res from saveAllMatches", res);
+            console.log('SwipeCtrl: res: current user res from saveAllMatches', res);
             $scope.user = User = res;
           });
         MatchesFactory.updateMatchedUsers(candidate)
           .then(function(res) {
-            console.log("SwipeCtrl: res: last candidate from updateMatchedUsers ", res)
+            console.log('SwipeCtrl: res: last candidate from updateMatchedUsers ', res);
           })
       });
     } 
@@ -61,4 +61,5 @@ angular.module('profile.controllers', [])
     $state.go('tab.swipe');
 
   };
+  
 });

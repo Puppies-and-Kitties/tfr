@@ -5,11 +5,12 @@ angular.module('login.controllers', ['firebase', 'ui.router'])
   var ref = new Firebase(FIREBASE_REF);
 
   ref.onAuth(function(authData){
-    if(authData){
+    if (authData) {
       console.log('onAuth auth data',authData);
       userSession.user = authData.facebook;
       $state.go('tab.account');
-    } else {
+    } 
+    else {
       $state.go('login');
     }
   });
@@ -17,12 +18,14 @@ angular.module('login.controllers', ['firebase', 'ui.router'])
   userSession.auth = $firebaseAuth(ref);
 
   $scope.login = function(provider){
-    userSession.auth.$authWithOAuthPopup("facebook", function(error, authData) {
+    userSession.auth.$authWithOAuthPopup('facebook', function(error, authData) {
       if (error) {
-        console.log("Login Failed!", error);
-      } else {
-        console.log("Authenticated successfully with payload:", authData);
+        console.log('Login Failed!', error);
+      } 
+      else {
+        console.log('Authenticated successfully with payload:', authData);
       }
     });
-  }
+  };
+  
 });

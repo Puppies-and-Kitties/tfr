@@ -10,9 +10,9 @@ angular.module('map.controllers', [])
   // Save the user's location settings to the database and redirect to the account-place view
   $scope.saveLocation = function(){
     User.location = MapFactory.saveLocation(User);
-    console.log("User after saving location ", User);
+    console.log('User after saving location ', User);
     $state.go('tab.account-place');
-  }
+  };
 
   // Initializes the map, centering it on the user's search location
     // if the user has yet to set a search location, it defaults to Delta Upsilon, Berkeley, Ca
@@ -31,7 +31,7 @@ angular.module('map.controllers', [])
     if(toggled){
       MapFactory.placeCircle($scope.input.radius);
     }
-  }
+  };
 
   // hides/shows the search radius
   $scope.toggleRadius = function(){
@@ -40,11 +40,5 @@ angular.module('map.controllers', [])
 
   // invokes the initialize function once the window has loaded
   google.maps.event.addDomListener(window, 'load', $scope.initialize());
-})
 
-
-
-
-
-
-
+});
