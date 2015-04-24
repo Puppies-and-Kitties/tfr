@@ -32,7 +32,7 @@ angular.module('map.controllers', [])
 
   // hides/shows the search radius
   $scope.toggleRadius = function(){
-    MapFactory.toggleRadius($scope.input.toggleRadius);    
+    MapFactory.toggleRadius($scope.input.radius, $scope.input.toggleRadius);    
   };
 
   // invokes the initialize function once the window has loaded
