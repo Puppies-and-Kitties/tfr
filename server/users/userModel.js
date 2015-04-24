@@ -56,7 +56,7 @@ var UserSchema = new mongoose.Schema({
   candidates: [{type: mongoose.Schema.Types.ObjectId}],
   liked: [{type: mongoose.Schema.Types.ObjectId}],
   skipped: [],
-  matched: []
+  matched: {}
 })
 
 var User = mongoose.model('User', UserSchema)
