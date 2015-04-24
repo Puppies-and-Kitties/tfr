@@ -2,15 +2,11 @@ angular.module('login.controllers', ['firebase', 'ui.router'])
 
 .controller('LoginCtrl', function($scope, $state, $firebaseAuth, FIREBASE_REF, userSession){
   
-  // {scope: 'email, publish_actions, public_profile'});
-
   var ref = new Firebase(FIREBASE_REF);
-  
 
   ref.onAuth(function(authData){
     if(authData){
       console.log('onAuth auth data',authData);
-      // console.log('$state',$state);
       userSession.user = authData.facebook;
       $state.go('tab.account');
     } else {
