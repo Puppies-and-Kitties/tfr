@@ -40,7 +40,7 @@ angular.module('profile.controllers', [])
     CandidatesFactory.removeFirst();   
     if (match) {
       //Once server is up, this will be a POST request to the server
-      MatchesFactory.add($scope.currentCandidate, $scope.user, function(userMatch){
+      MatchesFactory.add($scope.currentCandidate, $scope.User, function(userMatch){
         console.log("userMatch ", userMatch)
         User = userMatch[0];
         var candidate = userMatch[1];
