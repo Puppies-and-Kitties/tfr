@@ -8,7 +8,7 @@ Use instructions:
     And mongodb-datasets will be installed via package.json
       
   cd into this file's directory and run the following command
-    mongodb-datasets mock-user-schema.json -n 10 -o mock-data.json --pretty
+    mongodb-datasets mockUser.schema.json -n 10 -o mockData.json --pretty
       -Note that running this command will overwrite all the previous data in the mock-data.json file
     The command breaks down like so:
       mongodb-datasets 

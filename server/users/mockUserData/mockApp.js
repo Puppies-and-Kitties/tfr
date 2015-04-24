@@ -1,6 +1,6 @@
 var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert');
-var mockData = require('./mock-data.json');
+var mockData = require('./mockData.json');
 
 // Connection URL
 var url = 'mongodb://localhost:27017/roome';
