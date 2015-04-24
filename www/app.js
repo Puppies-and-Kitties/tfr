@@ -107,7 +107,7 @@ angular.module('starter', [
     url: '/swipe',
     views: {
       'tab-swipe': {
-        templateUrl: 'swipe/swipe-view.html',
+        templateUrl: 'swipe/swipe.html',
         controller: 'SwipeController'
       }
     }
@@ -117,7 +117,7 @@ angular.module('starter', [
     url: '/:type/profiles/:id',
     views: {
       'tab-swipe': {
-        templateUrl: 'profiles/profile-view.html',
+        templateUrl: 'profiles/profile.html',
         controller: 'ProfileCtrl'
       }
     }
@@ -127,7 +127,7 @@ angular.module('starter', [
     url: '/account',
     views: {
       'tab-account': {
-        templateUrl: 'account/account-view.html',
+        templateUrl: 'account/account.html',
         controller: 'AccountCtrl'
       }
     }
@@ -137,7 +137,7 @@ angular.module('starter', [
     url: '/account/profile',
     views: {
       'tab-account': {
-        templateUrl: 'profiles/profile-view.html',
+        templateUrl: 'profiles/profile.html',
         controller: 'ProfileCtrl'
       }
     }
@@ -147,7 +147,7 @@ angular.module('starter', [
     url: '/account/place',
     views: {
       'tab-account': {
-        templateUrl: 'account/place/place-view.html',
+        templateUrl: 'account/place/place.html',
         controller: 'PlaceCtrl'
       }
     }
@@ -157,7 +157,7 @@ angular.module('starter', [
     url: '/account/people',
     views: {
       'tab-account': {
-        templateUrl: 'account/people/people-view.html',
+        templateUrl: 'account/people/people.html',
         controller: 'PeopleCtrl'
       }
     }
@@ -167,7 +167,7 @@ angular.module('starter', [
     url: '/account/profile/edit',
     views: {
       'tab-account': {
-        templateUrl: 'account/userProfile/user-profile-view.html',
+        templateUrl: 'account/userProfile/userProfile.html',
         controller: 'UserProfileCtrl'
       }
     }
@@ -177,7 +177,7 @@ angular.module('starter', [
     url: '/account/map',
     views: {
       'tab-account': {
-        templateUrl: 'map/map-view.html',
+        templateUrl: 'map/map.html',
         controller: 'MapCtrl'
       }
     }
@@ -188,7 +188,7 @@ angular.module('starter', [
     url: '/matches',
       views: {
         'tab-matches': {
-          templateUrl: 'matches/matches-view.html',
+          templateUrl: 'matches/matches.html',
           controller: 'MatchesCtrl'          
         }        
       }
@@ -198,7 +198,7 @@ angular.module('starter', [
     url: '/matches/profiles/:type/:id',
     views: {
       'tab-matches': {
-        templateUrl: 'profiles/profile-view.html',
+        templateUrl: 'profiles/profile.html',
         controller: 'ProfileCtrl'
       }
     }
@@ -208,7 +208,7 @@ angular.module('starter', [
     url: '/matches/chat/:matchId',
     views: {
       'tab-matches': {
-        templateUrl: 'chats/chats-view.html',
+        templateUrl: 'chats/chats.html',
         controller: 'ChatsCtrl'
       }
     }
@@ -216,7 +216,7 @@ angular.module('starter', [
 
   .state('login', {
     url: '/login',
-    templateUrl: 'login/login-view.html',
+    templateUrl: 'login/login.html',
     controller: 'LoginCtrl'
   })
 

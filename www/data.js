@@ -222,7 +222,7 @@ angular.module('data', [])
 
   return {
     initialize: function(userLocation, User){
-      console.log('How the hell can this not get to the server - ', userLocation);
+      console.log('UserLocation being passed to server form PlaceFactory initialize - ', userLocation);
       return $http({
         method: 'PUT',
         url: baseUrl + '/user/' + User.fbid + '/location',

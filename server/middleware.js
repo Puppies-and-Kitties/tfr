@@ -9,13 +9,15 @@ module.exports = function(app, express) {
   app.use(morgan('dev'));
   app.use(bodyParser.json());
   app.use(express.static('www'));
-  // app.use(express.static('www'));
   app.get('/', function(req, res) {
     res.sendFile('index.html');
   });
   
-  app.use('/user', userRouter);  //user router for user requests (ie. initial login, update prefs)
-  app.use('/candidates', candidateRouter); // candidate router for user's potential candidates
+  //user router for user requests (ie. initial login, update prefs)
+  app.use('/user', userRouter);
+
+  // candidate router for user's potential candidates
+  app.use('/candidates', candidateRouter);
 
   require('./users/userRoutes.js')(userRouter);
   require('./candidates/candidateRoutes.js')(candidateRouter);
