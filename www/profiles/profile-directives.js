@@ -9,7 +9,7 @@ angular.module('profile.directives', [])
           templateMap = {
               swipeTop: 'candidate-top-box.html',
               matchesBottom: 'contact-info.html',
-              editProfile: 'edit-profile.html',
+              userBottom: 'edit-profile.html',
               swipeBottom: 'like-dislike.html',
               matchesTop: 'match-top-box.html',
               userTop: 'user-top-box.html',
