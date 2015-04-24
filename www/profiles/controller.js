@@ -29,10 +29,14 @@ angular.module('profile.controllers', [])
    $scope.keywords = $scope.profile.profile.keywords.join(", ");
   }
 
+  $scope.topBoxType = {'type':$stateParams.type+'Top'};
+  $scope.bottomBoxType = {'type':$stateParams.type+'Bottom'};
+
   $scope.profile.type = $stateParams.type;
   $scope.profile.match = true;
 
   $scope.candidateSwipe =  function (match){
+    console.log('!!!!!');
     CandidatesFactory.removeFirst();   
     if (match) {
       MatchesFactory.add($scope.currentCandidate, $scope.User, function(userMatch){

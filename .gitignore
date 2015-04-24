@@ -1,4 +1,5 @@
 www/lib/
+www/swipe/td-cards-helpers/non-min
 !www/lib/ionic
 bower_components/
 *.log

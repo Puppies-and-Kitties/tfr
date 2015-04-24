@@ -13,13 +13,12 @@
 
       <li class="item match item-text-wrap">
         <div class="profile-content">
-          <candidate-top-box ng-if="profile.type==='swipe'"></candidate-top-box>
-          <match-top-box ng-if="profile.type==='matches'"></match-top-box>
-          <user-top-box ng-if="profile===User"></user-top-box>
+          <profile-box ng-model="topBoxType" boxtype="topBoxType"></profile-box>
         </div>
       </li>
       
       <!-- /////////////////////////For Non Users //////////////////////-->
+     <!--  Need to move this into dynamically loaded template as per <profile-box> above -->
 
       <div ng-if="profile!==User"
         <li class="item item-text-wrap">
@@ -61,6 +60,7 @@
       </div>
        
        <!-- /////////////////For users who are not hosts ///////////////////////-->
+       <!--  Need to move this into dynamically loaded template as per <profile-box> above -->
 
        <div ng-if="profile===User && profile.location.host===false">
         <li class="item item-text-wrap">
@@ -98,6 +98,7 @@
 
 
       <!-- ////////////////For Users who are hosts////////////////// -->
+      <!--  Need to move this into dynamically loaded template as per <profile-box> above -->
       <div ng-if="profile===User && profile.location.host === true;">
         <h2><strong>I have a place, I just need a Roommate</strong>
         <li class="item item-text-wrap">
@@ -135,9 +136,7 @@
       <!-- only display like/dislike buttons if not matched -->
       <li class="item item-text-wrap">
         <div class="profile-content">
-          <like-dislike ng-if="profile.type==='swipe'"></like-dislike>
-          <contact-info ng-if="profile.type==='matches'"></contact-info>
-          <edit-profile ng-if="profile===User"></edit-profile>
+          <profile-box ng-model="bottomBoxType" boxtype="bottomBoxType" boxaction="candidateSwipe(like)"></profile-box>
         </div>
       </li>
 
