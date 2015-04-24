@@ -1,15 +1,9 @@
 <ion-view view-title="{{profile.name}}">
 
-<!--   <ion-nav-back-button class="button-clear"
-    ng-click="myGoBack()">
-    <i class="ion-arrow-left-c"></i> Back
-  </ion-nav-back-button> -->
-
   <ion-content class="padding">
 
     <div class="card">
       <div class="profile-content">
-        <!-- <img class="profile-content-pic" ng-src="//graph.facebook.com/{{fbId}}/picture?type=large"> -->
         <img ng-if="profile.id !== fbId" class="profile-image" ng-src="{{profile.face}}">
         <img ng-if="profile.fbid === fbId" class="profile-content-pic" ng-src="//graph.facebook.com/{{fbId}}/picture?type=large">
       </div>
@@ -17,7 +11,7 @@
 
     <ion-list>
 
-      <li class="item match item-text-wrap"><!--<div class="card">-->
+      <li class="item match item-text-wrap">
         <div class="profile-content">
           <candidate-top-box ng-if="profile.type==='swipe'"></candidate-top-box>
           <match-top-box ng-if="profile.type==='matches'"></match-top-box>
@@ -28,52 +22,52 @@
       <!-- /////////////////////////For Non Users //////////////////////-->
 
       <div ng-if="profile!==User"
-        <li class="item item-text-wrap"><!--<div class="card">-->
+        <li class="item item-text-wrap">
           <div class="profile-content" ng-if="profile.location.host !==true">
             <strong>Ideal Rent:</strong> <br>{{profile.location.desiredPlace.rent | currency}}
           </div>
           <div class="profile-content" ng-if="profile.location.host ===true">
             <strong>Rent:</strong> <br>{{profile.location.myPlace.rent | currency}}
           </div>
-        </li><!-- </div> -->
+        </li>
 
-        <li class="item item-text-wrap"><!--<div class="card">-->
+        <li class="item item-text-wrap">
           <div class="profile-content" ng-if="profile.location.host !==true">
             <strong>Location:</strong><br>{{profile.location.desiredPlace.city}}, {{profile.location.desiredPlace.state}}
           </div>
           <div class="profile-content" ng-if="profile.location.host ===true">
             <strong>Location:</strong><br>{{profile.location.myPlace.city}}, {{profile.location.myPlace.state}}
           </div>
-        </li><!-- </div> -->
+        </li>
 
-        <li class="item item-text-wrap"><!--<div class="card">-->
+        <li class="item item-text-wrap">
           <div class="profile-content">
             <strong>Choice Ionicons:</strong><br>
             <div id="listIcons" class="profile-icons"><span id="listIcons" ng-repeat="icon in profile.selectedIcons" class="{{icon}}"> </span></div>
           </div>
-        </li><!-- </div> -->
+        </li>
 
-        <li class="item item-text-wrap"><!--<div class="card">-->
+        <li class="item item-text-wrap">
           <div class="profile-content">
           <strong>Preferred Roommate Gender:</strong><br> {{profile.roommatePreferences.gender}}
           </div>
-        </li><!-- </div> -->
+        </li>
 
-        <li class="item item-text-wrap"><!--<div class="card">-->
+        <li class="item item-text-wrap">
           <div class="profile-content">
           <strong>A few words of description:</strong><br> {{keywords}}
           </div>
-        </li><!-- </div> -->
+        </li>
       </div>
        
        <!-- /////////////////For users who are not hosts ///////////////////////-->
 
        <div ng-if="profile===User && profile.location.host===false">
-        <li class="item item-text-wrap"><!--<div class="card">-->
+        <li class="item item-text-wrap">
           <div class="profile-content">
             <strong>Ideal Rent:</strong> <br>{{profile.location.desiredPlace.rent | currency}}
           </div>
-        </li><!-- </div> -->
+        </li>
 
         <li class="item item-text-wrap">
           <div class="profile-content">
@@ -81,72 +75,71 @@
           </div>
         </li>
 
-        <!-- </div> -->
+        
 
-        <li class="item item-text-wrap"><!--<div class="card">-->
+        <li class="item item-text-wrap">
           <div class="profile-content">
             <strong>Choice Ionicons:</strong><br>
             <div class="profile-icons"><div id="listIcons" class="profile-icons"><span id="listIcons" ng-repeat="icon in profile.selectedIcons" class="{{icon}}"> </span></div>
           </div>
-        </li><!-- </div> -->
+        </li>
 
-        <li class="item item-text-wrap"><!--<div class="card">-->
+        <li class="item item-text-wrap">
           <div class="profile-content">
           <strong>Preferred Roommate Gender:</strong><br> {{profile.roommatePreferences.gender}}
           </div>
-        </li><!-- </div> -->
+        </li>
 
-        <li class="item item-text-wrap"><!--<div class="card">-->
+        <li class="item item-text-wrap">
           <div class="profile-content">
-          <!-- <strong>A few words of description:</strong><br> <div ng-repeat="keyword in profile.userInfo.keywords"> {{keyword}}</div> -->
           </div>
-        </li><!-- </div> -->
+        </li>
       </div>
 
 
       <!-- ////////////////For Users who are hosts////////////////// -->
       <div ng-if="profile===User && profile.location.host === true;">
         <h2><strong>I have a place, I just need a Roommate</strong>
-        <li class="item item-text-wrap"><!--<div class="card">-->
+        <li class="item item-text-wrap">
           <div class="profile-content">
             <strong>Rent:</strong> <br>{{profile.location.myPlace.rent | currency}}
           </div>
-        </li><!-- </div> -->
+        </li>
 
-        <li class="item item-text-wrap"><!--<div class="card">-->
+        <li class="item item-text-wrap">
           <div class="profile-content">
             <strong>Location:</strong><br>{{profile.location.myPlace.city}}, {{profile.location.myPlace.state}}
           </div>
-        </li><!-- </div> -->
+        </li>
 
-        <li class="item item-text-wrap"><!--<div class="card">-->
+        <li class="item item-text-wrap">
           <div class="profile-content">
             <strong>Choice Ionicons:</strong><br>
             <div class="profile-icons"><div id="listIcons" class="profile-icons"><span id="listIcons" ng-repeat="icon in profile.selectedIcons" class="{{icon}}"> </span></div>
           </div>
-        </li><!-- </div> -->
+        </li>
 
-        <li class="item item-text-wrap"><!--<div class="card">-->
+        <li class="item item-text-wrap">
           <div class="profile-content">
           <strong>Preferred Roommate Gender:</strong><br> {{profile | json}}
           </div>
-        </li><!-- </div> -->
+        </li>
 
-        <li class="item item-text-wrap"><!--<div class="card">-->
+        <li class="item item-text-wrap">
           <div class="profile-content">
           <strong>A few words of description:</strong><br> <div ng-repeat="keyword in profile.userInfo.keywords"> {{keyword}}</div>
           </div>
-        </li><!-- </div> -->
+        </li>
       </div>
 
       <!-- only display like/dislike buttons if not matched -->
-      <li class="item item-text-wrap"><!-- <div class="card" ng-if="!profile.matched"> -->
+      <li class="item item-text-wrap">
         <div class="profile-content">
           <like-dislike ng-if="profile.type==='swipe'"></like-dislike>
           <contact-info ng-if="profile.type==='matches'"></contact-info>
           <edit-profile ng-if="profile===User"></edit-profile>
         </div>
-      </li><!-- </div> -->
+      </li>
 
     </ion-list>
   </ion-content>

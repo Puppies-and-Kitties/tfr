@@ -8,6 +8,5 @@ angular.module('matches.controllers', [])
   
   $scope.remove = function(match){
     MatchesFactory.remove(match);
-    //Will also need to do a PUT request here
   }
 })

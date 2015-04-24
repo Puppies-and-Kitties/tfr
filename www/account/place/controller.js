@@ -1,10 +1,8 @@
 angular.module('preferences.controllers', [])
 
 .controller('PlaceCtrl', function($scope, $state, User, PlaceFactory, ProfileFactory, userSession, CandidatesFactory){
-  // $scope.fbId = User.id;
   $scope.fbId = User.fbid;
   $scope.username = User.name;
-  // $scope.profile = ProfileFactory.all();
   $scope.notHost = {"checked": true}
   
   $scope.location = User.location || PlaceFactory.all();
@@ -14,16 +12,13 @@ angular.module('preferences.controllers', [])
     console.log("status pre click ", status);
     if(status === null) {
       $scope.location.host = input;
-    } else {
+    } 
+    else {
       $scope.location.host = null;
     }
-
   };
 
   $scope.savePreferences = function(){
-    // Will need to call PreferencesFactory.update and do a PUT/POST request to
-    // the server
-
     PlaceFactory.initialize($scope.location, User)
       .then(function(res) {
         console.log("Account: Place: response from database after saving ", res)
@@ -31,10 +26,11 @@ angular.module('preferences.controllers', [])
         CandidatesFactory.initialize(User);
       })
     $state.go('tab.account');
-  }
+  };
 
 
-  $scope.logout=function(){
+  $scope.logout = function(){
       userSession.auth.$logout();
-  }
+  };
+
 });

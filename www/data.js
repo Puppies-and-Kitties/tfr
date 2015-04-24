@@ -1,6 +1,3 @@
-//Can we reuse the initialize functions?
-//Can we reuse the all functions?
-
 angular.module('data', [])
 
 .factory('MatchesFactory', function($http){
@@ -9,10 +6,7 @@ angular.module('data', [])
   var liked = [];
   var matches = [];
   
-
-  //Possibly too much repetition/redundancy with CandidatesFactory
   return {
-
     initialize: function(req){
       console.log("MatchFactory: user obj sent to initialize ", req.matched)
       if(req.matched) {
@@ -25,7 +19,6 @@ angular.module('data', [])
           matches = matchedUsers.data;
         })
       }
-      //matches = usersMatches;
     },
     all: function() {
      return matches;
@@ -100,8 +93,12 @@ angular.module('data', [])
       console.log("match name ", match.name);
       console.log("match.liked ", match.liked);
       if (match.liked.indexOf(User._id) >= 0 ) {
-        if (!match.matched) {match.matched = {};}
-        if (!User.matched) {User.matched = {};}
+        if (!match.matched) {
+          match.matched = {};
+        }
+        if (!User.matched) {
+          User.matched = {};
+        }
         match.matched[userIdString] = false;
         match.liked.splice(match.liked.indexOf(User._id), 1);
         matches.push(match);
@@ -110,7 +107,8 @@ angular.module('data', [])
         result.push(User, match);
         console.log("matchFact: add: result ", result)
         cb(result);
-      } else {
+      } 
+      else {
         User.liked.push(match._id);
         result.push(User, match);
         return result;
@@ -120,11 +118,6 @@ angular.module('data', [])
 
 })
 
-
-//Outstanding question: Should be just handle those 'skipped' ('disliked') on 
-//the backend?
-//Do we need this list on the front end?
-//... probably not...
 .factory('SkippedFactory', function(){
 
   var skipped = [];
@@ -148,10 +141,6 @@ angular.module('data', [])
 
 .factory('ProfileFactory', function($http){
 
-  //???Should we make myPlace a separate object accessed through a separate factory?
-  //???Or should we make myPlace properties direct properties of profile?
-  //???Current approach means we have to update the whole object to update any myPlace property?
-  //???But maybe we would only ever update all properties at once?
   var profile = {
     gender: null,
     age: null,
@@ -160,11 +149,8 @@ angular.module('data', [])
 
   var baseUrl = 'http://localhost:8888';
 
-   //???How best to remove the redundancy in lines 86-99 and lines 107-120?
   return {
     initialize: function(usersProfile, User){
-      //console.log("!",usersProfile);
-      // profile = usersProfile;
       return $http({
         method: 'PUT',
         url: baseUrl + '/user/' + User.fbid + '/profile',
@@ -193,7 +179,6 @@ angular.module('data', [])
 
 .factory('PlaceFactory', function($http){
   
-  //???What is the difference between myplace here and myplace in profile factory?
   var location = { 
     host: null,
     myPlace: {
@@ -220,11 +205,8 @@ angular.module('data', [])
     }
   };
 
-
-
   var baseUrl = 'http://localhost:8888'
 
-  //How best to remove the redundancy in lines 86-99 and lines 107-120?
   return {
     initialize: function(userLocation, User){
       console.log('How the hell can this not get to the server - ', userLocation);
@@ -243,14 +225,6 @@ angular.module('data', [])
     },
     all: function() {
       return location;
-      // return $http({
-      //   method: 'GET',
-      //   url: baseUrl + '/user/' + User.fbid + '/location'
-      // })
-      // .then(function(data){
-      //   console.log('data in placefactory get - ', data);
-      //   return data;
-      // })
     },
     update: function(property,newValue) {
       location[property] = newValue;
@@ -272,10 +246,8 @@ angular.module('data', [])
     ageMax: null
   };
 
-  //How best to remove the redundancy in lines 86-99 and lines 107-120?
   return {
     initialize: function(preference, User){
-      // roommatePreferences = preference;
       return $http({
         method: 'PUT',
         url: baseUrl + '/user/' + User.fbid + '/roommatePreferences',
@@ -302,288 +274,18 @@ angular.module('data', [])
 
 })
 
-
-// https://Fauth.firebase.com%2Fv2%2Ftinderforroomies%2Fauth%2Ffacebook%2Fcallback
 .factory('CandidatesFactory', function($http, $rootScope){
 
   var baseUrl = 'http://localhost:8888'
 
   var candidates = [];
-  // var candidates = [{
-  //   fbid: 0,
-  //   name: 'Daniel Miller',
-  //   face: 'img/faceDaniel.png',
-  //   email: 'djmiller@gmail.com',
-  //   chatURL: 'https://ionictestchat.firebaseio.com/10155475481120094499',
-  //   match: false,
-  //   likedCurrentUser: true,
-  //   location: { 
-  //     host: true,
-  //     myPlace: {
-  //       rent: 750,
-  //       zipCode: null,
-  //       genders: 'both',
-  //       openRooms: 1,
-  //       roomType: 'private',
-  //       occupants: 3,
-  //       city: 'Berkeley',
-  //       state: 'CA',
-  //       latitude: 37.867044,
-  //       longitude: -122.250559
-  //     },
-  //     desiredPlace:{
-  //       rent: null,
-  //       zipCode: null,
-  //       radius: null,
-  //       roomType: null,
-  //       latitude: null,
-  //       longitude: null,
-  //       city: null,
-  //       state: null
-  //     }
-  //   },
-  //   roommatePreferences: {
-  //     gender: 'male',
-  //     ageMin: 21,
-  //     ageMax: 30
-  //   },
-  //   profile: {
-  //     gender: 'male',
-  //     age: 27,
-  //     icons: ['ion-ionic','ion-ios-minus-outline','ion-ios-chatboxes','ion-beaker','ion-woman'],
-  //     keywords: ['peaceful','cake','beer','wine','cheese']
-  //   },
-  //   liked: ["552eabd2a2d7560782cabdef"]
-  // }, {
-  //   fbid: 1,
-  //   name: 'Dick Rogers',
-  //   face: 'img/face1.png',
-  //   email: 'dickrodgers@test.com',
-  //   match: false,
-  //   likedCurrentUser: false,
-  //   location: { 
-  //     host: true,
-  //     myPlace: {
-  //       rent: null,
-  //       zipCode: null,
-  //       genders: null,
-  //       openRooms: null,
-  //       roomType: null,
-  //       occupants: 3,
-  //       city: null,
-  //       state: null,
-  //       latitude: null,
-  //       longitude: null
-  //     },
-  //     desiredPlace:{
-  //       rent: 900,
-  //       zipCode: null,
-  //       radius: 3,
-  //       roomType: 'private',
-  //       latitude: 37.79730575499309,
-  //       longitude: -122.41619110107422,
-  //       city: 'Berkeley',
-  //       state: 'CA'
-  //     }
-  //   },
-  //   roommatePreferences: {
-  //     gender: 'male',
-  //     ageMin: 21,
-  //     ageMax: 30
-  //   },
-  //   profile: {
-  //     gender: 'male',
-  //     age: 27,
-  //     icons: ['ion-ios-compose','ion-social-euro','ion-ios-email','ion-card','ion-leaf'],
-  //     keywords: ['rowdy','beer','cookies','football','cheese whiz']
-  //   },
-  //   liked: ["552eabd2a2d7560782cabdef"]
-  // }, {
-  //   fbid: 2,
-  //   name: 'Thick McStevens',
-  //   face: 'img/face2.png',
-  //   email: 'thicksteve@test.com',
-  //   match: false,
-  //   likedCurrentUser: true,
-  //   location: { 
-  //     host: false,
-  //     myPlace: {
-  //       rent: 750,
-  //       zipCode: null,
-  //       genders: 'both',
-  //       openRooms: 1,
-  //       roomType: 'private',
-  //       occupants: 3,
-  //       city: 'Berkeley',
-  //       state: 'CA',
-  //       latitude: 37.867044,
-  //       longitude: -122.250559
-  //     },
-  //     desiredPlace:{
-  //       rent: 250,
-  //       zipCode: null,
-  //       radius: 5,
-  //       roomType: null,
-  //       latitude: 37.867045,
-  //       longitude: -122.250560,
-  //       city: 'Berkeley',
-  //       state: 'CA'
-  //     }
-  //   },
-  //   roommatePreferences: {
-  //     gender: 'male',
-  //     ageMin: 21,
-  //     ageMax: 30
-  //   },
-  //   profile: {
-  //     gender: 'male',
-  //     age: 27,
-  //     icons: ['ion-card','ion-compose','ion-ios-bell','ion-wifi','ion-trash-a'],
-  //     keywords: ['peaceful','cake','beer','wine','cheese']
-  //   },
-  //   liked: []
-  // }, {
-  //   fbid: 3,
-  //   name: 'Jim Carrey',
-  //   face: 'img/face3.jpeg',
-  //   email: 'jimcarrey@test.com',
-  //   match: false,
-  //   likedCurrentUser: true,
-  //   location: { 
-  //     host: true,
-  //     myPlace: {
-  //       rent: 750,
-  //       zipCode: null,
-  //       genders: 'both',
-  //       openRooms: 1,
-  //       roomType: 'private',
-  //       occupants: 3,
-  //       city: 'Berkeley',
-  //       state: 'CA',
-  //       latitude: 37.867044,
-  //       longitude: -122.250559
-  //     },
-  //     desiredPlace:{
-  //       rent: null,
-  //       zipCode: null,
-  //       radius: null,
-  //       roomType: null,
-  //       latitude: null,
-  //       longitude: null,
-  //       city: null,
-  //       state: null
-  //     }
-  //   },
-  //   roommatePreferences: {
-  //     gender: 'male',
-  //     ageMin: 21,
-  //     ageMax: 30
-  //   },
-  //   profile: {
-  //     gender: 'male',
-  //     age: 27,
-  //     icons: ['ion-ios-paw','ion-social-yen','ion-social-apple','ion-ionic','ion-ios-minus-empty'],
-  //     keywords: ['Chiller','Smoker','beer','wine','cheese']
-  //   },
-  //   liked: ["552eabd2a2d7560782cabdef"]
-  // }, {
-  //   fbid: 4,
-  //   name: 'Max Howser',
-  //   face: 'img/face5.jpeg',
-  //   email: 'maxhowser@test.com',
-  //   match: false,
-  //   likedCurrentUser: true,
-  //   location: { 
-  //     host: true,
-  //     myPlace: {
-  //       rent: 750,
-  //       zipCode: null,
-  //       genders: 'both',
-  //       openRooms: 1,
-  //       roomType: 'private',
-  //       occupants: 3,
-  //       city: 'Reno',
-  //       state: 'NV',
-  //       latitude: 39.49556336059472,
-  //       longitude: -119.805908203125
-  //     },
-  //     desiredPlace:{
-  //       rent: null,
-  //       zipCode: null,
-  //       radius: null,
-  //       roomType: null,
-  //       latitude: null,
-  //       longitude: null,
-  //       city: null,
-  //       state: null
-  //     }
-  //   },
-  //   roommatePreferences: {
-  //     gender: 'male',
-  //     ageMin: 21,
-  //     ageMax: 30
-  //   },
-  //   profile: {
-  //     gender: 'male',
-  //     age: 27,
-  //     icons: ['ion-ios-reload','ion-umbrella','ion-thumbsdown','ion-tshirt-outline','ion-email'],
-  //     keywords: ['Nuts','Crazy','Wild','Hateful','Bad']
-  //   },
-  //   liked: ["552eabd2a2d7560782cabdef"]
-  // }, {
-  //   fbid: 5,
-  //   name: 'Zack Thompson',
-  //   face: 'img/face4.jpeg',
-  //   email: 'zackthompson@test.com',
-  //   match: false,
-  //   likedCurrentUser: true,
-  //   location: { 
-  //     host: true,
-  //     myPlace: {
-  //       rent: 750,
-  //       zipCode: null,
-  //       genders: 'both',
-  //       openRooms: 1,
-  //       roomType: 'private',
-  //       occupants: 3,
-  //       city: 'Berkeley',
-  //       state: 'CA',
-  //       latitude: 37.86509663749013,
-  //       longitude: -122.2639274597168
-  //     },
-  //     desiredPlace:{
-  //       rent: null,
-  //       zipCode: null,
-  //       radius: null,
-  //       roomType: null,
-  //       latitude: null,
-  //       longitude: null,
-  //       city: null,
-  //       state: null
-  //     }
-  //   },
-  //   roommatePreferences: {
-  //     gender: 'male',
-  //     ageMin: 21,
-  //     ageMax: 30
-  //   },
-  //   profile: {
-  //     gender: 'female',
-  //     age: 24,
-  //     icons: ['ion-ios-color-wand-outline','ion-planet','ion-android-bar','ion-record','ion-ios-personadd-outline'],
-  //     keywords: ['Books','Dogs','Fitness','Fun','Nature']
-  //   },
-  //   liked: ["552eabd2a2d7560782cabdef"]
-  // }];
-  // //Possibly too much repetition/redundancy with MatchesFactory
+ 
   return {
     initialize: function(req){
-      // if(candidates.length>0){
-      //   return;
-      // }
       if (!req.location) {
         console.log("not grabbing candidates yet! need to set search prefs")
-      } else if (req.location.host) {
+      } 
+      else if (req.location.host) {
         return $http({
           method: 'GET',
           url: baseUrl + '/user/' + req.fbid + '/' + req.location.myPlace.city
@@ -591,9 +293,9 @@ angular.module('data', [])
         .then(function(res) {
           console.log("candidates that match location ", res)
           candidates = res.data;
-          // return candidates;
         })
-      } else {
+      } 
+      else {
         var lat = req.location.desiredPlace.latitude;
         var longt = req.location.desiredPlace.longitude;
         var radi = req.location.desiredPlace.radius
@@ -605,7 +307,6 @@ angular.module('data', [])
         .then(function(res) {
           console.log("candidates that match location ", res.data)
           candidates = res.data;
-          // return candidates;  
         })
       }
     },
@@ -614,9 +315,6 @@ angular.module('data', [])
       console.log("Candidates: getting all candidates")
       return candidates;
     },
-
-      // console.log('You called candidate factory\'s all method');
-     // return candidates
     removeFirst: function() {
       candidates.splice(0, 1);
     },
@@ -627,23 +325,18 @@ angular.module('data', [])
       candidates.push(candidate);
     },
     mock: function(){
-      // candidates.forEach(function(candidate){
-        // console.log('mock candidate being sent to server ', candidate)
-        return $http({
-          method: 'PUT',
-          url: baseUrl + '/user/' + candidates[1].id,
-          data: {
-            candidate: candidates[1],
-          }
-        })
-        .then(function(res){
-          console.log("place factory res from db ", res)
-          return res.data.location;
-        })
+      return $http({
+        method: 'PUT',
+        url: baseUrl + '/user/' + candidates[1].id,
+        data: {
+          candidate: candidates[1],
+        }
+      })
+      .then(function(res){
+        console.log("place factory res from db ", res)
+        return res.data.location;
+      })
     },
     candidates: candidates
   };
-
 })
-
-  // Dummy Data all moved to tests/data/CandidatesFactory.tests.js

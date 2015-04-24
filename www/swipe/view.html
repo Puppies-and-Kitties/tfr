@@ -1,59 +1,31 @@
 <ion-view view-title="RooMe" class="swipe-page">
   <ion-content scroll="false">
 
+    <td-cards>
+      <td-card ng-repeat="candidate in candidates" on-swipe-right="candidateSwipe(true)" on-swipe-left="candidateSwipe(false)">
+        <div class="image" >
 
-<!--     <div class="list card current-candidate" 
-      ng-class="{skipped: currentCandidate.rated == false,
-                 favorited: currentCandidate.rated == true}"
-      ng-show="currentCandidate && !currentCandidate.hide">
+          <div class="item item-image">
+            <a href="#/tab/swipe/profiles/{{candidate.id}}">
+               <img ng-src="{{ candidate.face }}">        
+            </a>
+          </div>
 
-      <div class="item item-image">
-        <a href="#/tab/swipe/profiles/{{currentCandidate.id}}">
-           <img ng-src="{{ currentCandidate.face }}">        
-        </a>
-      </div>
+          <div class="item item-text-wrap profile-content">
+            <h2 id="h2">{{ candidate.name }}</h2>
+            <div id="listIcons" class="profile-icons"><span id="listIcons" ng-repeat="icon in candidate.profile.icons" class="{{icon}}">  </span></div>
+          </div>
 
-      <div class="item item-text-wrap profile-content">
-        <h2 id="h2">{{ currentCandidate.name }}</h2>
-        <div id="listIcons" class="profile-icons"><span id="listIcons" ng-repeat="icon in currentCandidate.icons" class="{{icon}}">  </span></div>
-      </div>
-
-      <div class="item tabs tabs-secondary tabs-icon-left">
-        <div>
-          <button class="button-medium button button-assertive icon-left ion-close" ng-click="candidateSwipe(false)">Skip</button>
-          <button class="button-medium button button-positive icon-left icon ion-android-happy" ng-click="candidateSwipe(true)">Like</button>
+          <div class="item tabs tabs-secondary tabs-icon-left">
+            <div>
+              <button class="button-medium button button-assertive icon-left ion-close" ng-click="candidateSwipe(false)">Skip</button>
+              <button class="button-medium button button-positive icon-left icon ion-android-happy" ng-click="candidateSwipe(true)">Like</button>
+            </div>
+          </div>
         </div>
-      </div>
 
-    </div> -->
-
-<td-cards>
-  <td-card ng-repeat="candidate in candidates" on-swipe-right="candidateSwipe(true)" on-swipe-left="candidateSwipe(false)">
-    <div class="image" >
-
-      <div class="item item-image">
-        <a href="#/tab/swipe/profiles/{{candidate.id}}">
-           <img ng-src="{{ candidate.face }}">        
-        </a>
-      </div>
-
-      <div class="item item-text-wrap profile-content">
-        <h2 id="h2">{{ candidate.name }}</h2>
-        <div id="listIcons" class="profile-icons"><span id="listIcons" ng-repeat="icon in candidate.profile.icons" class="{{icon}}">  </span></div>
-      </div>
-
-      <div class="item tabs tabs-secondary tabs-icon-left">
-        <div>
-          <button class="button-medium button button-assertive icon-left ion-close" ng-click="candidateSwipe(false)">Skip</button>
-          <button class="button-medium button button-positive icon-left icon ion-android-happy" ng-click="candidateSwipe(true)">Like</button>
-        </div>
-      </div>
-    </div>
-
-  </td-card>
-</td-cards>
-      </div>
-    </div>
+      </td-card>
+    </td-cards>
 
     <div ng-if="!candidates.length" class="item item-text-wrap profile-content no-more-candidates">
       <ion-item>
@@ -63,5 +35,4 @@
     </div>
 
   </ion-content>
-
 </ion-view>

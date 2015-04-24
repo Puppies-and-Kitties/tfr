@@ -9,22 +9,15 @@ angular.module('starter', [
   'ionic', 
   'ngResource',
   'firebase',
-  // 'starter.controllers', 
-  // 'starter.services', 
   'login.controllers', 
   'login.services', 
-  //'matches.services', 
   'matches.controllers',
-  //'matchProfile.controllers',
   'profile.controllers',
   'profile.directives',
-  //'profile.services',
   'userProfile.controllers',
   'preferences.controllers',
   'people.controllers',
-  //'preferences.services',
   'swipe.controllers',
-  //'swipe.services',
   'data',
   'map.controllers',
   'map.services',
@@ -39,13 +32,11 @@ angular.module('starter', [
   return function(input, start, end) {    
     start = parseInt(start);
     end = parseInt(end);
-    // console.log("range filter start ", start);
     var direction = (start <= end) ? 1 : -1;
     while (start != end) {
         input.push(start);
         start += direction;
     }
-    // console.log("range filter input ", input)
     return input;
   };
 })
@@ -78,7 +69,6 @@ angular.module('starter', [
     $state.go('login');
    });
 
-
    $rootScope.$on('userRetrieved', function(event, data){
     CandidatesFactory.initialize(data.data);
     MatchesFactory.initialize(data.data);
@@ -87,9 +77,6 @@ angular.module('starter', [
 })
 
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
-  // Initializes the openFB library with the appId, which enables oAuth.
-  // openFB.init({appId: 1631486397070306})
-
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
@@ -115,20 +102,7 @@ angular.module('starter', [
       }
     }
   })
-  // User: function(LoginFact){
-  //   return LoginFact.getFbInfo()
-  //     .then(function(data){
-  //       // console.log("data ", data)
-  //       // return data
-  //       return LoginFact.saveUser(data)
-  //         .then(function(data){
-  //           console.log("DATA", data)
-  //           return data.data;
-  //         })
-  //     })
-  // }
   // Each tab has its own nav history stack:
-
   .state('tab.swipe', {
     url: '/swipe',
     views: {
@@ -219,7 +193,7 @@ angular.module('starter', [
         }        
       }
   })
-  // Tried using the same pattern as for the swipe/profile, but it was causing a bunch of errors
+  
   .state('tab.matches-detail', {
     url: '/matches/profiles/:type/:id',
     views: {

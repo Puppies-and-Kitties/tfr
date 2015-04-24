@@ -217,20 +217,20 @@ When writing any block of code that is logically subordinate to the line immedia
     var secondItem = getSecond();
     ```
 
-* Put `else` and `else if` statements on the same line as the ending curly brace for the preceding `if` block
+* Put `else` and `else if` statements on the next line after the ending curly brace for the preceding `if` block
     ```javascript
     // good:
     if(condition){
       response();
-    }else{
+    }
+    else{
       otherResponse();
     }
 
     // bad:
     if(condition){
       response();
-    }
-    else{
+    } else{
       otherResponse();
     }
     ```

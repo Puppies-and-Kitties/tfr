@@ -4,7 +4,6 @@ angular.module('profile.controllers', [])
   $scope.User = User;
   $scope.fbId = User.fbid;
 
-  //console.log(CandidatesFactory.all());
   $scope.candidates = CandidatesFactory.all();
   $scope.currentCandidate = angular.copy($scope.candidates[0]);
 
@@ -19,27 +18,23 @@ angular.module('profile.controllers', [])
       break;
     default:
       $scope.profile = User;
-      // $scope.profile.profile = PlaceFactory.all();
-      // $scope.profile.people = RoommateFactory.all();
-      // $scope.profile.userInfo = ProfileFactory.all();
       break;
   }
-  // get stored location info
-  // ??? is this being used anymore? (Daniel: Apr 12)
+
   $scope.myGoBack = function() {
       $ionicHistory.goBack();
   };
+
   if ($scope.profile.profile) {
    $scope.keywords = $scope.profile.profile.keywords.join(", ");
   }
+
   $scope.profile.type = $stateParams.type;
   $scope.profile.match = true;
 
   $scope.candidateSwipe =  function (match){
-    //console.log(match,'ALL',CandidatesFactory.all());
     CandidatesFactory.removeFirst();   
     if (match) {
-      //Once server is up, this will be a POST request to the server
       MatchesFactory.add($scope.currentCandidate, $scope.User, function(userMatch){
         console.log("userMatch ", userMatch)
         User = userMatch[0];
@@ -52,19 +47,14 @@ angular.module('profile.controllers', [])
         MatchesFactory.updateMatchedUsers(candidate)
           .then(function(res) {
             console.log("SwipeCtrl: res: last candidate from updateMatchedUsers ", res)
-            // $scope.currentCandidate = res.data;
           })
       });
-    } else {
-      //Perhaps we just need to do a PUT request to the server here?
+    } 
+    else {
       SkippedFactory.add($scope.currentCandidate);
     }
     $scope.currentCandidate = angular.copy($scope.candidates[0]);
-    //console.log('ALL',CandidatesFactory.all(),'FIRST',CandidatesFactory.getFirst());
     $state.go('tab.swipe');
 
   };
 });
-
-
-
