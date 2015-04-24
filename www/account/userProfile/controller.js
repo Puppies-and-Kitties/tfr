@@ -9,34 +9,23 @@ angular.module('userProfile.controllers', [])
 
   $scope.ionicons = [];
 
-  // $scope.mockKeywords = {
-  //   keywords: ['Reading', 'Night-Owl', 'Beer', 'Cooking', 'Hiking']
-  // };
-    
-  
-  ////////////////////////
-
   $scope.toggleHost = function(status, input) {
     if(status === null) {
       $scope.profile.host = input;
-    } else {
+    } 
+    else {
       $scope.profile.host = null;
     }
-
-  }
-  ///////////////////////
+  };
 
   $scope.saveProfile = function(){
-    // Will need to call PreferencesFactory.update and do a PUT/POST request to
-    // the server
     ProfileFactory.initialize($scope.profile, User)
       .then(function(res) {
-        console.log("dat der profile data ", res);
+        console.log("Profile Data in userProfileCtrl saveProfile: ", res);
         User.profile = res;
       })
     $state.go('tab.account');
-   
-  }
+  };
 
   $scope.getIonicons = function(word){
     return IoniconsFact.get(word);
