@@ -18,11 +18,21 @@
       <a ng-href="#/tab/account/profile" class="button icon-right button-block ion-chevron-right button-outline button-dark">My Profile</a>
     </ion-item>
 
-    <ion-item>
+    <!--<ion-item>
       <button class="button button-block button-assertive col col-50 col-offset-25 col-center" ng-click="logout()">
         Logout Now
       </button>
-    </ion-item>
+    </ion-item> -->
     </ion-list>
   </ion-content>
+  <ion-footer-bar>
+    <div class="button-bar" >
+      <a class="button button-outline button-assertive">
+        Remove Account
+      </a>
+      <a class="button button-outline button-positive" ng-click="logout()">
+        Logout
+      </a>
+    </div>
+  </ion-footer-bar>
 </ion-view>
