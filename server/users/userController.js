@@ -13,39 +13,36 @@ var findAndUpdate = Q.nbind(Users.findOneAndUpdate, Users);
 module.exports = {
   
   getCandidates: function(req, res) {
-    var latitude = req.param('lat');
-    var longitude = req.param('longt');
-    var radius = req.param('radi')*1.6/6370;
-    findUsers({
-      loc: {$nearSphere: [latitude,longitude],$maxDistance: radius},
-      fbid: {$ne: ""+req.params.id}})
-    // var findCandidates = Q.nbind(Users.find, Users);
-    // var findUser = Q.nbind(Users.findOne, Users);
-    .then(function(data){
-      //console.log('getCandidates:',data);
-      res.send(data);
-    })
+    console.log("req body in getCandidates ", req.query)
+    console.log("req params ", req.params)
+    var latitude = req.query.lat;
+    var longitude = req.query.longt;
+    var radius = req.query.radi*1.6/6370;
+    findUser({fbid: req.params.id})
+      .then(function(user) {
+        console.log("got a user ", user);
+        if (user.matched) {
+          var matches = Object.keys(user.matched);
+        } else {
+          var matches = [];
+        }
+        var likeAndMatched = user.liked.concat(matches);
+        console.log("like and match ", likeAndMatched)
+        findUsers({ $and: [{
+          loc: {$nearSphere: [latitude,longitude],$maxDistance: radius},
+          fbid: {$ne: ""+req.params.id},
+          _id: {$nin: likeAndMatched}
+          }]
+        })
+        .then(function(data){
+          data.forEach(function(user) {
+            console.log("possible candidates' ids ", user.id)
+          })
+          res.send(data);
+        })
+      })
   },
 
-  /////////////////HAVING TROUBLE WITH FINDING OBJECT IDS//////////
-  ///////////////TRYING TO USE THIS CODE IN THE ABOVE FUNCTION////////
-  // findUser({fbid: req.params.id})
-  //   .then(function(user) {
-  //     console.log("user found when getting candidates ", user)
-  //     findCandidates({
-  //       $and: [{
-  //         $or: [{"location.myPlace.city": req.params.location}, {"location.desiredPlace.city": req.params.location}]
-  //       }, {
-  //         _id: {$ne: {$in: user.matched}}
-  //       }, {
-  //         _id: {$ne: user.id}
-  //       }]
-  //     })
-  //     .then(function(data){
-  //       console.log("candidates ", data)
-  //       res.send(data);
-  //     })
-  //   })
   addOrFindCurrentUser: function(req, res) {
     if(req.body.location){
       var latitude = req.body.location.desiredPlace.latitude;
@@ -54,7 +51,6 @@ module.exports = {
       var latitude = 0;
       var longitude = 0;
     }
-    console.log("id:",req.params.id);
     findOrCreate(
       {fbid: req.params.id}, 
       {$setOnInsert: {
@@ -69,7 +65,6 @@ module.exports = {
       {upsert: true, new: true}
     )
     .then(function(user) {
-      console.log("user from db in post ", user)
       res.send(user);
     });
   },
@@ -101,30 +96,25 @@ module.exports = {
   },
 
   updateRoommatePreferences: function(req, res) {
-    // var findOrCreate = Q.nbind(Users.findOneAndUpdate, Users);
-      findOrCreate(
-        {fbid: req.params.id }, 
-        {$set: {roommatePreferences: req.body.roommatePreferences}},
-        {upsert: true, new: true}
-      )
-      .then(function(user){
-        res.send(user);
-      });
+    findOrCreate(
+      {fbid: req.params.id }, 
+      {$set: {roommatePreferences: req.body.roommatePreferences}},
+      {upsert: true, new: true}
+    )
+    .then(function(user){
+      res.send(user);
+    });
   },
 
   getMatches: function(req, res) {
-    console.log("request to getMatches ", req.params)
-    // var findUser = Q.nbind(Users.findOne, Users);
-    // var findMatches = Q.nbind(Users.find, Users);
+    // console.log("request to getMatches ", req.params)
     
     findUser({fbid: req.params.id})
       .then(function(user){
-        console.log("user matched ", user.matched)
         var matches = Object.keys(user.matched);
-        console.log("matches variable ", matches)
         findUsers({_id: {$in: matches}})
           .then(function(matches) {
-            console.log("matches", matches)
+            // console.log("matches", matches)
             res.send(matches);
       })
     })
