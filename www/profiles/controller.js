@@ -40,17 +40,21 @@ angular.module('profile.controllers', [])
     CandidatesFactory.removeFirst();   
     if (match) {
       //Once server is up, this will be a POST request to the server
-      User = MatchesFactory.add($scope.currentCandidate, $scope.User);
-      MatchesFactory.saveAllMatches(User)
-        .then(function(res){
-          console.log("current user res from saveAllMatches", res);
-          $scope.User = User = res;
-        });
-      MatchesFactory.updateMatchedUsers()
-        .then(function(res) {
-          console.log("last candidate from updateMatchedUsers ", res)
-          // $scope.currentCandidate = res.data;
-        })
+      MatchesFactory.add($scope.currentCandidate, $scope.user, function(userMatch){
+        console.log("userMatch ", userMatch)
+        User = userMatch[0];
+        var candidate = userMatch[1];
+        MatchesFactory.saveAllMatches(User)
+          .then(function(res){
+            console.log("SwipeCtrl: res: current user res from saveAllMatches", res);
+            $scope.user = User = res;
+          });
+        MatchesFactory.updateMatchedUsers(candidate)
+          .then(function(res) {
+            console.log("SwipeCtrl: res: last candidate from updateMatchedUsers ", res)
+            // $scope.currentCandidate = res.data;
+          })
+      });
     } else {
       //Perhaps we just need to do a PUT request to the server here?
       SkippedFactory.add($scope.currentCandidate);

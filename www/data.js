@@ -21,8 +21,8 @@ angular.module('data', [])
   return {
 
     initialize: function(req){
-      console.log("MatchFactory: user obj sent to initialize ", req.matched.length)
-      if(req.matched.length) {
+      console.log("MatchFactory: user obj sent to initialize ", req.matched)
+      if(req.matched) {
         return $http({
           method: 'GET',
           url: baseUrl + '/user/' + req.fbid + '/matches'
@@ -60,7 +60,7 @@ angular.module('data', [])
     },
 
     saveAllMatches: function(User) {
-      console.log("saveAllMatches: User.matched ", User)
+      console.log("saveAllMatches: User", User)
       return $http ({
         method: 'PUT',
         url: baseUrl + '/user/' + User.fbid + '/matches',
@@ -75,15 +75,15 @@ angular.module('data', [])
       })
     },
 
-    updateMatchedUsers: function() {
+    updateMatchedUsers: function(newMatch) {
       var thisMatchedUser = matches[matches.length-1]
-      console.log("this matched user ", thisMatchedUser)
+      console.log("update matched user: this matched user ", thisMatchedUser)
       return $http({
         method: 'Put',
-        url: baseUrl + '/user/' + thisMatchedUser.fbid + '/matches',
+        url: baseUrl + '/user/' + newMatch.fbid + '/matches',
         data: {
-          matchesIds: thisMatchedUser.matched,
-          likedIds: thisMatchedUser.liked
+          matchesIds: newMatch.matched,
+          likedIds: newMatch.liked
         }
       })
       .then(function(res) {
@@ -93,33 +93,37 @@ angular.module('data', [])
     },
 
 
-    add: function(match, User){
-      var matchlikes = match.liked;
+    add: function(match, User, cb){
       var length = match.liked.length;
       var count = 0;
-      console.log("Match in matchfact add ", match._id)
-      console.log("matchfactory: add: current match array: ", matches)
-      console.log("MatchFactory: add: User ", User)
-      var liked = match.liked
-      var length = match.liked.length
-      var matchesIds = {}
-      for (var j = 0; j < matches.length; j++) {
-        matchesIds[matches[j]._id] = true;
-      }
-      for (var i = length; i >= 0; i--) {
-        if (matchlikes[i] === User._id && !matchesIds[match._id]) {
-          match.matched.push(User._id);
-          match.liked.splice(i, 1);
-          matches.push(match);
-          matchesIds[match._id] = true;
-          User.matched.push(match._id);
-          count ++;
-          return User;
-      }
-      if (count === 0) {
+      var userIdString = User._id;
+      var matchIdString = match._id;
+      var result = [];
+      console.log("matchFact: add: stringed user id ", userIdString);
+      console.log("matchFact: add: stringed match id ", matchIdString);
+    
+      if (match.liked.indexOf(User._id) >= 0 ) {
+        if (!match.matched) {match.matched = {};}
+        if (!User.matched) {User.matched = {};}
+        match.matched[userIdString] = true;
+        // match.liked.splice(i, 1);
+        matches.push(match);
+        matchesIds[match._id] = true;
+        User.matched[matchIdString] = true;
+        count ++;
+        result.push(User, match);
+        console.log("matchFact: add: result ", result)
+        cb(result);
+      } else {
         User.liked.push(match._id);
-        return User;
+        result.push(User, match);
+        return result;
       }
+      
+      // if (count === 0) {
+      //   User.liked.push(match._id);
+      //   return User;
+      // }
       
       // if(match.likedCurrentUser){
       //   console.log("and match.likecurrentuser")
