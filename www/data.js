@@ -8,14 +8,7 @@ angular.module('data', [])
   var baseUrl = 'http://localhost:8888';
   var liked = [];
   var matches = [];
-  var matchesIds = {};
-  var matchIds = function() {
-    var matchLength = matches.length
-    for (var i = 0; i < matchLength; i++) {
-      matchesIds[matches[i]._id] = true;
-    }
-    return matchesIds;
-  };
+  
 
   //Possibly too much repetition/redundancy with CandidatesFactory
   return {
@@ -30,7 +23,6 @@ angular.module('data', [])
         .then(function(matchedUsers){
           console.log("MatchFactory: initialize: matches returned from db ", matchedUsers.data);
           matches = matchedUsers.data;
-          matchIds();
         })
       }
       //matches = usersMatches;

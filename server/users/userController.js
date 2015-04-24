@@ -119,7 +119,10 @@ module.exports = {
     
     findUser({fbid: req.params.id})
       .then(function(user){
-        findUsers({_id: {$in: user.matched}})
+        console.log("user matched ", user.matched)
+        var matches = Object.keys(user.matched);
+        console.log("matches variable ", matches)
+        findUsers({_id: {$in: matches}})
           .then(function(matches) {
             console.log("matches", matches)
             res.send(matches);
