@@ -1,7 +1,7 @@
 angular.module('account.controllers', [])
 
 
-.controller('AccountCtrl', function($scope, userSession, User, $rootScope, ProfileFactory, $ionicPopup){
+.controller('AccountCtrl', function($scope, $state, userSession, User, $rootScope, ProfileFactory, $ionicPopup){
   $scope.username = User.name;
 
   $scope.fbId = User.fbid;
@@ -35,6 +35,7 @@ angular.module('account.controllers', [])
   $scope.deleteAccount = function(bool) {
     if(bool) {
       ProfileFactory.deleteAccount(User);
+      $state.go('login');
     }
   }
 })
