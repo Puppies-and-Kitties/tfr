@@ -20,12 +20,13 @@
 
 ## Usage
 
-> Some usage instructions
+> In order to run this locally, you will need to have a MongoDB instance running and then you will need to run gulp serve from the root directory. Then simply navigate to localhost:8888 in your browser, and voila!
 
 ## Requirements
 
 - Node
 - Ionic
+- Steroids (for testing on a device)
 
 ## Development
 
