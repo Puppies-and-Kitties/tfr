@@ -37,7 +37,8 @@ angular.module('data', [])
       console.log("matches in matchfact.get ", matches)
       console.log("matchId in matches fact ", matchId)
       for (var i = 0; i < matches.length; i++) {
-        if (matches[i].fbid === parseInt(matchId)) {
+        if (matches[i].fbid === matchId) {
+          console.log("matches[i] ", matches[i])
           return matches[i];
         }
       }
@@ -102,7 +103,7 @@ angular.module('data', [])
         if (!match.matched) {match.matched = {};}
         if (!User.matched) {User.matched = {};}
         match.matched[userIdString] = true;
-        // match.liked.splice(i, 1);
+        match.liked.splice(match.liked.indexOf(User._id), 1);
         matches.push(match);
         User.matched[matchIdString] = true;
         count ++;
@@ -114,16 +115,6 @@ angular.module('data', [])
         result.push(User, match);
         return result;
       }
-      
-      // if (count === 0) {
-      //   User.liked.push(match._id);
-      //   return User;
-      // }
-      
-      // if(match.likedCurrentUser){
-      //   console.log("and match.likecurrentuser")
-      //   matches.push(match);
-      // }
     }
   };
 
