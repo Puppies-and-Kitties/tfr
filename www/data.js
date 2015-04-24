@@ -276,6 +276,7 @@ angular.module('data', [])
   //   profile: {
   //     gender: 'male',
   //     age: 27,
+  //     icons: ['ion-ionic','ion-ios-minus-outline','ion-ios-chatboxes','ion-beaker','ion-woman'],
   //     keywords: ['peaceful','cake','beer','wine','cheese']
   //   },
   //   liked: ["552eabd2a2d7560782cabdef"]
@@ -319,6 +320,7 @@ angular.module('data', [])
   //   profile: {
   //     gender: 'male',
   //     age: 27,
+  //     icons: ['ion-ios-compose','ion-social-euro','ion-ios-email','ion-card','ion-leaf'],
   //     keywords: ['rowdy','beer','cookies','football','cheese whiz']
   //   },
   //   liked: ["552eabd2a2d7560782cabdef"]
@@ -362,6 +364,7 @@ angular.module('data', [])
   //   profile: {
   //     gender: 'male',
   //     age: 27,
+  //     icons: ['ion-card','ion-compose','ion-ios-bell','ion-wifi','ion-trash-a'],
   //     keywords: ['peaceful','cake','beer','wine','cheese']
   //   },
   //   liked: []
@@ -405,6 +408,7 @@ angular.module('data', [])
   //   profile: {
   //     gender: 'male',
   //     age: 27,
+  //     icons: ['ion-ios-paw','ion-social-yen','ion-social-apple','ion-ionic','ion-ios-minus-empty'],
   //     keywords: ['Chiller','Smoker','beer','wine','cheese']
   //   },
   //   liked: ["552eabd2a2d7560782cabdef"]
@@ -448,6 +452,7 @@ angular.module('data', [])
   //   profile: {
   //     gender: 'male',
   //     age: 27,
+  //     icons: ['ion-ios-reload','ion-umbrella','ion-thumbsdown','ion-tshirt-outline','ion-email'],
   //     keywords: ['Nuts','Crazy','Wild','Hateful','Bad']
   //   },
   //   liked: ["552eabd2a2d7560782cabdef"]
@@ -491,6 +496,7 @@ angular.module('data', [])
   //   profile: {
   //     gender: 'female',
   //     age: 24,
+  //     icons: ['ion-ios-color-wand-outline','ion-planet','ion-android-bar','ion-record','ion-ios-personadd-outline'],
   //     keywords: ['Books','Dogs','Fitness','Fun','Nature']
   //   },
   //   liked: ["552eabd2a2d7560782cabdef"]
