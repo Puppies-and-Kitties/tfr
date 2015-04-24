@@ -176,6 +176,9 @@ angular.module('data', [])
     getProperty: function(property) {
       return profile[property];
     },
+    deleteAccount: function(User) {
+      console.log("going to delete account for User: ", User)
+    }
   };
 
 })
