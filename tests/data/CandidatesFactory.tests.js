@@ -189,7 +189,7 @@ var testCandidates = [{
       age: 27,
       keywords: ['peaceful','cake','beer','wine','cheese']
     },
-    liked: ["552eabd2a2d7560782cabdef"]
+    liked: ["55329fd3752803f1ca8843e9"]
   }, {
     fbid: 1,
     name: 'Dick Rogers',
@@ -318,7 +318,7 @@ var testCandidates = [{
       age: 27,
       keywords: ['Chiller','Smoker','beer','wine','cheese']
     },
-    liked: ["552eabd2a2d7560782cabdef"]
+    liked: []
   }, {
     fbid: 4,
     name: 'Max Howser',
@@ -404,7 +404,7 @@ var testCandidates = [{
       age: 24,
       keywords: ['Books','Dogs','Fitness','Fun','Nature']
     },
-    liked: ["552eabd2a2d7560782cabdef"]
+    liked: ["55329fd3752803f1ca8843e9"]
   }];
   
 });

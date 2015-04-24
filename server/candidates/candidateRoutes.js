@@ -1,7 +1,11 @@
-// var Users = require('../users/userModel.js');
-// var q = require('q');
+var candidateController = require('./candidateController.js')
 
-module.exports = function(app) {};
+module.exports = function(app) {
+
+app.route('/matches')
+  .put(candidateController.updateCandidates)
+};
+
 //   console.log("in user router")
 //   var findOrCreate = q.nbind(Users.findOneAndUpdate, Users);
 

@@ -50,7 +50,7 @@ angular.module('starter', [
   };
 })
 
-.run(function($ionicPlatform, $rootScope, $state, userSession, CandidatesFactory) {
+.run(function($ionicPlatform, $rootScope, $state, userSession, CandidatesFactory, MatchesFactory) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -81,6 +81,7 @@ angular.module('starter', [
 
    $rootScope.$on('userRetrieved', function(event, data){
     CandidatesFactory.initialize(data.data);
+    MatchesFactory.initialize(data.data);
    });
 
 })

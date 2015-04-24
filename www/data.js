@@ -3,14 +3,29 @@
 
 angular.module('data', [])
 
-.factory('MatchesFactory', function(){
+.factory('MatchesFactory', function($http){
 
+  var baseUrl = 'http://localhost:8888';
+  var liked = [];
   var matches = [];
+  
 
   //Possibly too much repetition/redundancy with CandidatesFactory
   return {
-    initialize: function(usersMatches){
-      matches = usersMatches;
+
+    initialize: function(req){
+      console.log("MatchFactory: user obj sent to initialize ", req.matched)
+      if(req.matched) {
+        return $http({
+          method: 'GET',
+          url: baseUrl + '/user/' + req.fbid + '/matches'
+        })
+        .then(function(matchedUsers){
+          console.log("MatchFactory: initialize: matches returned from db ", matchedUsers.data);
+          matches = matchedUsers.data;
+        })
+      }
+      //matches = usersMatches;
     },
     all: function() {
      return matches;
@@ -22,24 +37,83 @@ angular.module('data', [])
       console.log("matches in matchfact.get ", matches)
       console.log("matchId in matches fact ", matchId)
       for (var i = 0; i < matches.length; i++) {
-        if (matches[i].fbid === parseInt(matchId)) {
+        if (matches[i].fbid === matchId) {
+          console.log("matches[i] ", matches[i])
           return matches[i];
         }
       }
       return null;
     },
-    update: function(matchId,property,newValue){
+    updateChatURL: function(matchId,property,newValue, cb){
+      console.log("in update: matchId, property, newValue ", matchId, property, newValue)
       for (var i = 0; i < matches.length; i++) {
-        if (matches[i].id === parseInt(matchId)) {
-          matches[i][property] = newValue;
+        if (matches[i].fbid === matchId) {
+          matches[i].matched[property] = newValue;
+          console.log("Match with new chat url: ", matches[i]);
+          cb(matches[i]);
         }
       }
     },
-    add: function(match){
-      console.log("Match in matchfact add ", match)
-      if(match.likedCurrentUser){
-        console.log("and match.likecurrentuser")
+
+    saveAllMatches: function(User) {
+      console.log("saveAllMatches: User", User)
+      return $http ({
+        method: 'PUT',
+        url: baseUrl + '/user/' + User.fbid + '/matches',
+        data: {
+          matchesIds: User.matched,
+          likedIds: User.liked
+        }
+      })
+      .then(function(res) {
+        console.log("matches factory: response for saveAllMatches ", res)
+        return res.data;
+      })
+    },
+
+    updateMatchedUsers: function(newMatch) {
+      var thisMatchedUser = matches[matches.length-1]
+      console.log("update matched user: this matched user ", thisMatchedUser)
+      return $http({
+        method: 'Put',
+        url: baseUrl + '/user/' + newMatch.fbid + '/matches',
+        data: {
+          matchesIds: newMatch.matched,
+          likedIds: newMatch.liked
+        }
+      })
+      .then(function(res) {
+        console.log("match factory: updated matched users' profiles ", res)
+        return res.data;
+      })
+    },
+
+
+    add: function(match, User, cb){
+      var length = match.liked.length;
+      var count = 0;
+      var userIdString = User._id;
+      var matchIdString = match._id;
+      var result = [];
+      console.log("matchFact: add: stringed user id ", userIdString);
+      console.log("matchFact: add: stringed match id ", matchIdString);
+      console.log("match name ", match.name);
+      console.log("match.liked ", match.liked);
+      if (match.liked.indexOf(User._id) >= 0 ) {
+        if (!match.matched) {match.matched = {};}
+        if (!User.matched) {User.matched = {};}
+        match.matched[userIdString] = false;
+        match.liked.splice(match.liked.indexOf(User._id), 1);
         matches.push(match);
+        User.matched[matchIdString] = false;
+        count ++;
+        result.push(User, match);
+        console.log("matchFact: add: result ", result)
+        cb(result);
+      } else {
+        User.liked.push(match._id);
+        result.push(User, match);
+        return result;
       }
     }
   };
@@ -540,7 +614,6 @@ angular.module('data', [])
       console.log("Candidates: getting all candidates")
       return candidates;
     },
-
 
       // console.log('You called candidate factory\'s all method');
      // return candidates
