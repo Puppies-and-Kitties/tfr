@@ -1,14 +1,11 @@
 var Users = require('./userModel.js');
 var Q = require('q');
 
-var updateMatchObjects = function(req, res) {
-  console.log("in update match objects. req: ", req.body)
-};
-
 var findUsers = Q.nbind(Users.find, Users);
 var findUser = Q.nbind(Users.findOne, Users);
 var findOrCreate = Q.nbind(Users.findOneAndUpdate, Users);
 var findAndUpdate = Q.nbind(Users.findOneAndUpdate, Users);
+var removeUser = Q.nbind(Users.remove, Users);
 
 module.exports = {
   
@@ -107,8 +104,6 @@ module.exports = {
   },
 
   getMatches: function(req, res) {
-    // console.log("request to getMatches ", req.params)
-    
     findUser({fbid: req.params.id})
       .then(function(user){
         var matches = Object.keys(user.matched);
@@ -118,24 +113,25 @@ module.exports = {
             res.send(matches);
       })
     })
-
   }, 
-
 
   updateUserMatches: function(req, res) {
     updateMatchObjects(req, res);
-    console.log("/user: updateMatches request body ", req.body)
-    // var findAndUpdate = Q.nbind(Users.findOneAndUpdate, Users);
     findAndUpdate({fbid: req.params.id},
       {$set: {matched: req.body.matchesIds, liked: req.body.likedIds}},
       {new: true}
     )
     .then(function(user) {
-      console.log("user after updating matched ", user)
       res.send(user);
     })
+  },
 
-
+  deleteAccount: function(req, res) {
+    console.log("in delete request ", req.params)
+    removeUser({_id: req.params.id})
+      .then(function(data) {
+        res.send("User deleted")
+      })
   }
 
 };

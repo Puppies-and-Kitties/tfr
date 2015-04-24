@@ -168,3 +168,7 @@ div .profile-content {
 .no-more-candidates {
   text-align: center;
 }
+
+ion-footer-bar {
+  margin-bottom: 10px
+}

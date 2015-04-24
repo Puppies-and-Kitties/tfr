@@ -6,7 +6,8 @@ module.exports = function(app) {
     .get(userController.getCandidates)
 
   app.route('/:id')
-    .post(userController.addOrFindCurrentUser) 
+    .post(userController.addOrFindCurrentUser)
+    .delete(userController.deleteAccount)
   
   app.route('/:id/location')
     .put(userController.updateLocation)
