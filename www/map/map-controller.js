@@ -26,8 +26,11 @@ angular.module('map.controllers', [])
   };
 
   // places a search radius cenetered on the currently placed marker
-  $scope.placeCircle = function(){
-    MapFactory.placeCircle($scope.input.radius);
+  $scope.placeCircle = function(toggled){
+    // check to make sure the radius option is toggled to true
+    if(toggled){
+      MapFactory.placeCircle($scope.input.radius);
+    }
   }
 
   // hides/shows the search radius
