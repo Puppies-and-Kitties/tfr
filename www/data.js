@@ -102,10 +102,10 @@ angular.module('data', [])
       if (match.liked.indexOf(User._id) >= 0 ) {
         if (!match.matched) {match.matched = {};}
         if (!User.matched) {User.matched = {};}
-        match.matched[userIdString] = true;
+        match.matched[userIdString] = false;
         match.liked.splice(match.liked.indexOf(User._id), 1);
         matches.push(match);
-        User.matched[matchIdString] = true;
+        User.matched[matchIdString] = false;
         count ++;
         result.push(User, match);
         console.log("matchFact: add: result ", result)

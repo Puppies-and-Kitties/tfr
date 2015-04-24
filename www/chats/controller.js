@@ -14,10 +14,11 @@ angular.module('chats.controllers', [])
   
   $scope.match = MatchesFactory.get(matchId);
 
-  var chatURL = $scope.match.matched[User._id];// $scope.existingChatURL = "https://ionictestchat.firebaseio.com/10155475481120094499"
+  var chatURL = $scope.match.matched[User._id] || User.matched[$scope.match._id];// $scope.existingChatURL = "https://ionictestchat.firebaseio.com/10155475481120094499"
+
   
 
-  if(!chatURL || chatURL === true){
+  if(!chatURL){
     console.log("going to set chat url")
     chatURL = userSession.user.id + matchId;
     MatchesFactory.updateChatURL(matchId,User._id,chatURL, function(matchWithChat) {
