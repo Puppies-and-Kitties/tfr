@@ -96,14 +96,14 @@ angular.module('data', [])
       var result = [];
       console.log("matchFact: add: stringed user id ", userIdString);
       console.log("matchFact: add: stringed match id ", matchIdString);
-    
+      console.log("match name ", match.name);
+      console.log("match.liked ", match.liked);
       if (match.liked.indexOf(User._id) >= 0 ) {
         if (!match.matched) {match.matched = {};}
         if (!User.matched) {User.matched = {};}
         match.matched[userIdString] = true;
         // match.liked.splice(i, 1);
         matches.push(match);
-        matchesIds[match._id] = true;
         User.matched[matchIdString] = true;
         count ++;
         result.push(User, match);

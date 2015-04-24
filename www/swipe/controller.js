@@ -19,9 +19,9 @@ angular.module('swipe.controllers', [])
   );
 
   $scope.candidateSwipe =  function (match, User){
-    console.log('candidateSwipe',match);
+    // console.log('candidateSwipe',match);
     if (match) {
-      $scope.currentCandidate.match = true;
+      // $scope.currentCandidate.match = true;
       //Once server is up, this will be a POST request to the server
       MatchesFactory.add($scope.currentCandidate, $scope.user, function(userMatch){
         console.log("userMatch ", userMatch)
@@ -45,6 +45,9 @@ angular.module('swipe.controllers', [])
 
     $scope.currentCandidate.hide = true;
     CandidatesFactory.removeFirst();
+    $scope.candidates = CandidatesFactory.all();
+    $scope.currentCandidate = angular.copy($scope.candidates[0]);
+    // console.log("scope.currentCandidate ", $scope.currentCandidate)
 
   };
 
