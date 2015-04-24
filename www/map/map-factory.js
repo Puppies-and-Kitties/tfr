@@ -88,13 +88,7 @@ angular.module('map.services', [])
     });
     console.log('about to init place factory location with - ', searchLocation);
 
-    // PlaceFactory.initialize(searchLocation, User)
-      // .then(function(res) {
-        // console.log("response from db in MAPCONTROLLER ", res)
-      // })
     return searchLocation;
-
-    // $state.go('tab.account-place');
   };
 
   var codeIt = function(address, radius){
@@ -136,7 +130,6 @@ angular.module('map.services', [])
 
     radius = radius || 0;
 
-    // if($scope.input.toggleRadius){
       circle = new google.maps.Circle({
         map: map,
         radius: 1693 * radius,
@@ -146,7 +139,6 @@ angular.module('map.services', [])
       circle.bindTo('center', marker, 'position');
       
       circlesArray.push(circle);
-    // }
   };
 
   // Deletes all markers in the array by removing references to them
@@ -188,4 +180,5 @@ angular.module('map.services', [])
     input: input,
     saveLocation: saveLocation
   }
+
 })
