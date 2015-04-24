@@ -1,6 +1,6 @@
-# Project Name
+# RooMe
 
-> Pithy project description
+> Tinder for Finding Roommates!
 
 ## Team
 
@@ -24,11 +24,8 @@
 
 ## Requirements
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- Node
+- Ionic
 
 ## Development
 
