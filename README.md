@@ -1,6 +1,8 @@
 # [RooMe](http://roome.azurewebsites.net/)
 
-> Tinder for Finding Roommates!
+> Imagine you've just got a new job and are primed to move to a new city. You're feeling crazy excited, nervous, curious, and all the other emotions that accompany moments of big change. The last thing you want to worry about at this point, is finding a place to live and someone to split rent with.<br><br> 
+With RooMe, you can toss all those cares away. Just sign-up, start swiping, and you'll have a new roommate before you finish breakfast.<br><br>
+RooMe, it's Tinder for Roomies!
 
 ## Team
 
@@ -14,7 +16,6 @@
 1. [Requirements](#requirements)
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
-    1. [Tasks](#tasks)
 1. [Team](#team)
 1. [Contributing](#contributing)
 
