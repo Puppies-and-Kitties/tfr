@@ -43,6 +43,16 @@ angular.module('map.services', [])
     // creates a google map based on the passed in options
     map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
+    // if no location has been set for the user, center the map on their current location
+      // if they don't avail their location, the map will center on Berkeley
+    if(!loc.host && loc.desiredPlace.latitude === null || loc.host && loc.myPlace.latitude === null){
+      navigator.geolocation.getCurrentPosition(function(pos) {
+        myLatlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+        map.setCenter(myLatlng);
+        placeMarker(myLatlng);
+      });
+    }
+
     // place a marker on the map center
     placeMarker(myLatlng);
 
