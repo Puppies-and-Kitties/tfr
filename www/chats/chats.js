@@ -1,6 +1,14 @@
 angular.module('chats.controllers', [])
 
-.controller('ChatsCtrl', function($scope, User, Chats, MatchesFactory, userSession, $stateParams) {
+.controller('ChatsCtrl', [
+  '$scope', 
+  'User', 
+  'Chats', 
+  'MatchesFactory', 
+  'userSession', 
+  '$stateParams',
+
+  function($scope, User, Chats, MatchesFactory, userSession, $stateParams) {
 
   var matchId = $stateParams.matchId;
   console.log('match id in chats controller - ', $stateParams);
@@ -32,4 +40,4 @@ angular.module('chats.controllers', [])
     Chats.add($scope.chats,User.name,message,User.fbid);
   };
 
-});
+}]);

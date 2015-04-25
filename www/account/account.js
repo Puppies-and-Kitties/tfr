@@ -1,41 +1,51 @@
 angular.module('account.controllers', [])
 
+.controller('AccountCtrl', [
+  '$scope', 
+  '$state', 
+  'userSession', 
+  'User', 
+  '$rootScope', 
+  'ProfileFactory', 
+  '$ionicPopup',
 
-.controller('AccountCtrl', function($scope, $state, userSession, User, $rootScope, ProfileFactory, $ionicPopup){
-  $scope.username = User.name;
+  function($scope, $state, userSession, User, $rootScope, ProfileFactory, $ionicPopup){
 
-  $scope.fbId = User.fbid;
+    $scope.username = User.name;
 
-  $scope.logout = function(){
-    userSession.auth.$unauth();
-  }
+    $scope.fbId = User.fbid;
 
-  $scope.alert = function() {
-    $ionicPopup.show({
-      subTitle: 'Delete account? All of your account data will be removed.',
-      // subTitle: ,
-      buttons: [
-        {
-          text: '<b>Delete</b>',
-          type: 'button-assertive',
-          onTap: function() {
-            $scope.deleteAccount(true);
+    $scope.logout = function(){
+      userSession.auth.$unauth();
+    };
+
+    $scope.alert = function() {
+      $ionicPopup.show({
+        subTitle: 'Delete account? All of your account data will be removed.',
+        // subTitle: ,
+        buttons: [
+          {
+            text: '<b>Delete</b>',
+            type: 'button-assertive',
+            onTap: function() {
+              $scope.deleteAccount(true);
+            }
+          },
+          {
+            text: 'Cancel',
+            onTap: function () {
+              $scope.deleteAccount(false);
+            }
           }
-        },
-        {
-          text: 'Cancel',
-          onTap: function () {
-            $scope.deleteAccount(false);
-          }
-        }
-      ]
-    })
-  }
+        ]
+      })
+    };
 
-  $scope.deleteAccount = function(bool) {
-    if(bool) {
-      ProfileFactory.deleteAccount(User);
-      $state.go('login');
-    }
-  }
-})
+    $scope.deleteAccount = function(bool) {
+      if(bool) {
+        ProfileFactory.deleteAccount(User);
+        $state.go('login');
+      }
+    };
+
+  }]);
