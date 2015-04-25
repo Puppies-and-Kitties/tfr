@@ -148,7 +148,7 @@ module.exports = {
   updateUserMatches: function(req, res) {
     updateMatchObjects(req, res);
     console.log('/user: updateMatches request body ', req.body);
-    findAndUpdate({fbid: req.params.id},
+    findAndUpdate({fbid: req.params.id,token: req.query.token},
       {$set: {matched: req.body.matchesIds, liked: req.body.likedIds}},
       {new: true}
     )

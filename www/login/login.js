@@ -7,8 +7,9 @@ angular.module('login.controllers', ['firebase', 'ui.router'])
   '$firebaseAuth', 
   'FIREBASE_REF', 
   'userSession',
+  '$http',
 
-  function($scope, $state, $firebaseAuth, FIREBASE_REF, userSession){
+  function($scope, $state, $firebaseAuth, FIREBASE_REF, userSession,$http){
   
     var ref = new Firebase(FIREBASE_REF);
 
