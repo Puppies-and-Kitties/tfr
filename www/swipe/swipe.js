@@ -1,5 +1,6 @@
 angular.module('swipe.controllers', [])
 
+<<<<<<< HEAD
 .controller('SwipeController', [
   '$scope', 
   '$timeout', 
@@ -52,7 +53,8 @@ angular.module('swipe.controllers', [])
       $scope.currentCandidate.hide = true;
       CandidatesFactory.removeFirst();
       $scope.candidates = CandidatesFactory.all();
+      console.log('swipectrl: candidates ', $scope.candidates);
+      $scope.user = User;
       $scope.currentCandidate = angular.copy($scope.candidates[0]);
-    };
-
+  };
 }]);

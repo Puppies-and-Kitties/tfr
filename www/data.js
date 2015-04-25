@@ -52,6 +52,7 @@ angular.module('data', [])
         }
       },
 
+<<<<<<< HEAD
       saveAllMatches: function(User) {
         console.log('saveAllMatches: User', User)
         return $http ({
@@ -67,6 +68,39 @@ angular.module('data', [])
           return res.data;
         })
       },
+||||||| merged common ancestors
+    updateMatchedUsers: function(newMatch) {
+      console.log('update matched user: this matched user ', newMatch);
+      return $http({
+        method: 'Put',
+        url: baseUrl + '/user/' + newMatch._id + '/matches',
+        data: {
+          matchesIds: newMatch.matched,
+          likedIds: newMatch.liked
+        }
+      })
+      .then(function(res) {
+        console.log('match factory: updated matched users\' profiles ', res);
+        return res.data;
+      })
+    },
+=======
+    updateMatchedUsers: function(newMatch) {
+      console.log('MatchFact: updateMatchedUser: input: this matched user ', newMatch);
+      return $http({
+        method: 'Put',
+        url: baseUrl + '/user/' + newMatch._id + '/matches',
+        data: {
+          matchesIds: newMatch.matched,
+          likedIds: newMatch.liked
+        }
+      })
+      .then(function(res) {
+        console.log('MatchFact: updateMatchedUser: res from db ', res);
+        return res.data;
+      })
+    },
+>>>>>>> (fix/refactor) Get matches, candidates, update them properly using objId instead of fbid
 
       updateMatchedUsers: function(newMatch) {
         var thisMatchedUser = matches[matches.length-1]
@@ -85,6 +119,7 @@ angular.module('data', [])
         })
       },
 
+<<<<<<< HEAD
       add: function(match, User, cb){
         var length = match.liked.length;
         var count = 0;
@@ -118,7 +153,82 @@ angular.module('data', [])
           User.liked.push(match._id);
           result.push(User, match);
           return result;
+||||||| merged common ancestors
+    add: function(match, User, cb){
+      var length = match.liked.length;
+      var count = 0;
+      var userIdString = User._id;
+      var matchIdString = match._id;
+      var result = [];
+      console.log('matchFact: add: stringed user id ', userIdString);
+      console.log('matchFact: add: stringed match id ', matchIdString);
+      console.log('match name ', match.name);
+      console.log('match.liked ', match.liked);
+      if (match.liked.indexOf(User._id) >= 0 ) {
+        if (!match.matched) {
+          match.matched = {};
         }
+        if (!User.matched) {
+          User.matched = {};
+        }
+        match.matched[userIdString] = false;
+        match.liked.splice(match.liked.indexOf(User._id), 1);
+        matches.push(match);
+        User.matched[matchIdString] = false;
+        count ++;
+        result.push(User, match);
+        console.log('matchFact: add: result ', result);
+        cb(result);
+      } 
+      else {
+        if (!User.liked.length) {
+          User.liked = [];
+=======
+    add: function(match, User, cb){
+      var length = match.liked.length;
+      var count = 0;
+      var userIdString = User._id;
+      var matchIdString = match._id;
+      var result = [];
+      console.log('matchFact: add: stringed user id ', userIdString);
+      console.log('matchFact: add: stringed match id ', matchIdString);
+      console.log('MatchFact: Add: match name ', match.name);
+      console.log('MatchFact: Add: match.liked ', match.liked);
+      if (match.liked.indexOf(User._id) >= 0 ) {
+        console.log("!!!!!!!!!!!!!!!!!!!!match likes user, should become match !!!!!!!!!!!!!!!!")
+        if (!match.matched) {
+          match.matched = {};
+        }
+        if (!User.matched) {
+          User.matched = {};
+        }
+        match.matched[userIdString] = false;
+        console.log("MatchFact: Add: match.matched after add userid ", match.matched)
+        match.liked.splice(match.liked.indexOf(User._id), 1);
+        matches.push(match);
+        User.matched[matchIdString] = false;
+        console.log("MatchFact: Add: user.matched after adding match id ", User.matched)
+        count ++;
+        result.push(User, match);
+        console.log('matchFact: add: result ', result);
+        cb(result);
+      } 
+      else {
+        console.log("MatchFact: Add: Match didn't like User")
+        if (!User.liked.length) {
+          User.liked = [];
+>>>>>>> (fix/refactor) Get matches, candidates, update them properly using objId instead of fbid
+        }
+<<<<<<< HEAD
+||||||| merged common ancestors
+        User.liked.push(match._id);
+        result.push(User, match);
+        return result;
+=======
+        User.liked.push(match._id);
+        result.push(User, match);
+        cb(result);
+>>>>>>> (fix/refactor) Get matches, candidates, update them properly using objId instead of fbid
       }
     };
 
