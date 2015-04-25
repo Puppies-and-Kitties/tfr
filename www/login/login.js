@@ -1,5 +1,6 @@
 angular.module('login.controllers', ['firebase', 'ui.router'])
 
+<<<<<<< HEAD
 .controller('LoginCtrl', [
   '$scope', 
   '$state', 
@@ -14,8 +15,17 @@ angular.module('login.controllers', ['firebase', 'ui.router'])
     ref.onAuth(function(authData){
       if (authData) {
         console.log('onAuth auth data',authData);
-        userSession.user = authData.facebook;
+        $http({
+            method: 'POST',
+            url: 'http://localhost:8888/user/auth/'+authData.facebook.id,
+            data: {token: authData.token}
+          })
+          .then(function(user){
+            console.log('Authenicated on server',user.data);
+          });
+        userSession.user = authData.facebook.cachedUserProfile;
         $state.go('tab.account');
+        
       } 
       else {
         $state.go('login');

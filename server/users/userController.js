@@ -1,5 +1,7 @@
 var Users = require('./userModel.js');
 var Q = require('q');
+var jwt = require('jwt-simple');
+var secret = "Eq4FJhf9wDQyjRoU5EXyio894lC8dEUEDRXefwAY";
 
 var updateMatchObjects = function(req, res) {
   console.log('in update match objects. req: ', req.body)
@@ -12,6 +14,18 @@ var findAndUpdate = Q.nbind(Users.findOneAndUpdate, Users);
 var removeUser = Q.nbind(Users.remove, Users);
 
 module.exports = {
+
+  getAuth: function(req,res){
+    console.log('getAuth',req.params.id);
+    console.log('req.body',req.body.token);
+    var token = req.body.token;
+    var decoded = jwt.decode(token, secret);
+    var decodedId = decoded.d.uid.match(/\d+/)[0];
+    if(req.params.id === decodedId){
+      console.log("!!!!!");
+      res.send(decoded);
+    }
+  },
   
   getCandidates: function(req, res) {
     console.log('req body in getCandidates ', req.query)

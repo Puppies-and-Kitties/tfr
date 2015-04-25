@@ -54,21 +54,6 @@ angular.module('starter', [
     }
   });
 
-  $rootScope.$on('$firebaseSimpleLogin:login', function(event, user) {
-     userSession.user = user;
-     console.log('success - ', userSession);
-     $state.go('tab.account');
-   });
-
-   $rootScope.$on('$firebaseSimpleLogin:error', function(event, error) {
-      console.log('Error logging user in: ', error);
-   });
-
-   $rootScope.$on('$firebaseSimpleLogin:logout', function(event) {
-    console.log('logged out')
-    $state.go('login');
-   });
-
    $rootScope.$on('userRetrieved', function(event, data){
     CandidatesFactory.initialize(data.data);
     MatchesFactory.initialize(data.data);
@@ -92,7 +77,7 @@ angular.module('starter', [
     resolve: {
       User: function(userSession, LoginFact){
         console.log('userSession: ', userSession);
-        var user = userSession.user.cachedUserProfile;
+        var user = userSession.user;
 
         return LoginFact.saveUser(user)
           .then(function(data){

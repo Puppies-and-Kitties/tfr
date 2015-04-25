@@ -25,6 +25,9 @@ module.exports = function(app) {
   app.route('/:id/:location')
     .get(userController.getCandidates)
 
+  app.route('/auth/:id/')
+    .post(userController.getAuth)
+
 }
     ////////////////FOR MOCK DATA///////////////
     // .put(function(req, res) {
