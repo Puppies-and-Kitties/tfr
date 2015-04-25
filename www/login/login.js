@@ -1,31 +1,38 @@
 angular.module('login.controllers', ['firebase', 'ui.router'])
 
-.controller('LoginCtrl', function($scope, $state, $firebaseAuth, FIREBASE_REF, userSession){
+.controller('LoginCtrl', [
+  '$scope', 
+  '$state', 
+  '$firebaseAuth', 
+  'FIREBASE_REF', 
+  'userSession',
+
+  function($scope, $state, $firebaseAuth, FIREBASE_REF, userSession){
   
-  var ref = new Firebase(FIREBASE_REF);
+    var ref = new Firebase(FIREBASE_REF);
 
-  ref.onAuth(function(authData){
-    if (authData) {
-      console.log('onAuth auth data',authData);
-      userSession.user = authData.facebook;
-      $state.go('tab.account');
-    } 
-    else {
-      $state.go('login');
-    }
-  });
-
-  userSession.auth = $firebaseAuth(ref);
-
-  $scope.login = function(provider){
-    userSession.auth.$authWithOAuthPopup('facebook', function(error, authData) {
-      if (error) {
-        console.log('Login Failed!', error);
+    ref.onAuth(function(authData){
+      if (authData) {
+        console.log('onAuth auth data',authData);
+        userSession.user = authData.facebook;
+        $state.go('tab.account');
       } 
       else {
-        console.log('Authenticated successfully with payload:', authData);
+        $state.go('login');
       }
     });
-  };
+
+    userSession.auth = $firebaseAuth(ref);
+
+    $scope.login = function(provider){
+      userSession.auth.$authWithOAuthPopup('facebook', function(error, authData) {
+        if (error) {
+          console.log('Login Failed!', error);
+        } 
+        else {
+          console.log('Authenticated successfully with payload:', authData);
+        }
+      });
+    };
   
-});
+}]);

@@ -1,6 +1,13 @@
 angular.module('chats.services', ['firebase'])
 
-.factory('Chats', function($firebaseArray,$firebaseObject,FIREBASE_REF,userSession,$stateParams) {
+.factory('Chats', [
+  '$firebaseArray', 
+  '$firebaseObject', 
+  'FIREBASE_REF', 
+  'userSession', 
+  '$stateParams', 
+
+  function($firebaseArray, $firebaseObject, FIREBASE_REF, userSession, $stateParams) {
 
   return {
     setChats: function(chatURL){
@@ -19,4 +26,4 @@ angular.module('chats.services', ['firebase'])
       firebaseArr.$add({from:from,message:message,photoUri:photoUri});
     }
   };
-});
+}]);
