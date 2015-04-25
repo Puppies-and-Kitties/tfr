@@ -9,7 +9,8 @@ angular.module('matches.controllers', [])
   function($scope, MatchesFactory, User, CandidatesFactory){
 
     $scope.fbId = User.fbId;
-    
+    $scope.id = User._id;
+
     $scope.matches = MatchesFactory.all();
     console.log('MATCHES: ', $scope.matches);
     

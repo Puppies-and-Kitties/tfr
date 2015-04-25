@@ -3,7 +3,7 @@ angular.module('data', [])
 .factory('MatchesFactory', [
   '$http',
 
-  function($http){
+  function($http) {
 
     var baseUrl = 'http://localhost:8888';
     var liked = [];
@@ -23,17 +23,20 @@ angular.module('data', [])
           })
         }
       },
+
       all: function() {
        return matches;
       },
+
       remove: function(match) {
         matches.splice(matches.indexOf(match), 1);
       },
+
       get: function(matchId) {
         console.log('matches in matchfact.get ', matches);
         console.log('matchId in matches fact ', matchId);
         for (var i = 0; i < matches.length; i++) {
-          if (matches[i].fbid === matchId) {
+          if (matches[i]._id === matchId) {
             console.log('matches[i] ', matches[i]);
             return matches[i];
           }
@@ -44,7 +47,7 @@ angular.module('data', [])
       updateChatURL: function(matchId,property,newValue, cb){
         console.log('in update: matchId, property, newValue ', matchId, property, newValue)
         for (var i = 0; i < matches.length; i++) {
-          if (matches[i].fbid === matchId) {
+          if (matches[i]._id === matchId) {
             matches[i].matched[property] = newValue;
             console.log('Match with new chat url: ', matches[i]);
             cb(matches[i]);
@@ -52,7 +55,6 @@ angular.module('data', [])
         }
       },
 
-<<<<<<< HEAD
       saveAllMatches: function(User) {
         console.log('saveAllMatches: User', User)
         return $http ({
@@ -68,45 +70,11 @@ angular.module('data', [])
           return res.data;
         })
       },
-||||||| merged common ancestors
-    updateMatchedUsers: function(newMatch) {
-      console.log('update matched user: this matched user ', newMatch);
-      return $http({
-        method: 'Put',
-        url: baseUrl + '/user/' + newMatch._id + '/matches',
-        data: {
-          matchesIds: newMatch.matched,
-          likedIds: newMatch.liked
-        }
-      })
-      .then(function(res) {
-        console.log('match factory: updated matched users\' profiles ', res);
-        return res.data;
-      })
-    },
-=======
-    updateMatchedUsers: function(newMatch) {
-      console.log('MatchFact: updateMatchedUser: input: this matched user ', newMatch);
-      return $http({
-        method: 'Put',
-        url: baseUrl + '/user/' + newMatch._id + '/matches',
-        data: {
-          matchesIds: newMatch.matched,
-          likedIds: newMatch.liked
-        }
-      })
-      .then(function(res) {
-        console.log('MatchFact: updateMatchedUser: res from db ', res);
-        return res.data;
-      })
-    },
->>>>>>> (fix/refactor) Get matches, candidates, update them properly using objId instead of fbid
 
       updateMatchedUsers: function(newMatch) {
-        var thisMatchedUser = matches[matches.length-1]
-        console.log('update matched user: this matched user ', thisMatchedUser);
+        console.log('MatchFact: updateMatchedUser: input: this matched user ', newMatch);
         return $http({
-          method: 'PUT',
+          method: 'Put',
           url: baseUrl + '/user/' + newMatch._id + '/matches',
           data: {
             matchesIds: newMatch.matched,
@@ -114,12 +82,11 @@ angular.module('data', [])
           }
         })
         .then(function(res) {
-          console.log('match factory: updated matched users\' profiles ', res);
+          console.log('MatchFact: updateMatchedUser: res from db ', res);
           return res.data;
         })
       },
 
-<<<<<<< HEAD
       add: function(match, User, cb){
         var length = match.liked.length;
         var count = 0;
@@ -128,110 +95,38 @@ angular.module('data', [])
         var result = [];
         console.log('matchFact: add: stringed user id ', userIdString);
         console.log('matchFact: add: stringed match id ', matchIdString);
-        console.log('match name ', match.name);
-        console.log('match.liked ', match.liked);
+        console.log('MatchFact: Add: match name ', match.name);
+        console.log('MatchFact: Add: match.liked ', match.liked);
         if (match.liked.indexOf(User._id) >= 0 ) {
+          console.log("!!!!!!!!!!!!!!!!!!!!match likes user, should become match !!!!!!!!!!!!!!!!")
           if (!match.matched) {
             match.matched = {};
           }
           if (!User.matched) {
             User.matched = {};
           }
-          match.matched[userIdString] = false;
+          match.matched[userIdString] = 'isMatch';
+          console.log("MatchFact: Add: match.matched after add userid ", match.matched)
           match.liked.splice(match.liked.indexOf(User._id), 1);
           matches.push(match);
-          User.matched[matchIdString] = false;
+          User.matched[matchIdString] = 'isMatch';
+          console.log("MatchFact: Add: user.matched after adding match id ", User.matched)
           count ++;
           result.push(User, match);
           console.log('matchFact: add: result ', result);
           cb(result);
         } 
         else {
+          console.log("MatchFact: Add: Match didn't like User")
           if (!User.liked.length) {
             User.liked = [];
           }
           User.liked.push(match._id);
           result.push(User, match);
-          return result;
-||||||| merged common ancestors
-    add: function(match, User, cb){
-      var length = match.liked.length;
-      var count = 0;
-      var userIdString = User._id;
-      var matchIdString = match._id;
-      var result = [];
-      console.log('matchFact: add: stringed user id ', userIdString);
-      console.log('matchFact: add: stringed match id ', matchIdString);
-      console.log('match name ', match.name);
-      console.log('match.liked ', match.liked);
-      if (match.liked.indexOf(User._id) >= 0 ) {
-        if (!match.matched) {
-          match.matched = {};
+          cb(result);
         }
-        if (!User.matched) {
-          User.matched = {};
-        }
-        match.matched[userIdString] = false;
-        match.liked.splice(match.liked.indexOf(User._id), 1);
-        matches.push(match);
-        User.matched[matchIdString] = false;
-        count ++;
-        result.push(User, match);
-        console.log('matchFact: add: result ', result);
-        cb(result);
-      } 
-      else {
-        if (!User.liked.length) {
-          User.liked = [];
-=======
-    add: function(match, User, cb){
-      var length = match.liked.length;
-      var count = 0;
-      var userIdString = User._id;
-      var matchIdString = match._id;
-      var result = [];
-      console.log('matchFact: add: stringed user id ', userIdString);
-      console.log('matchFact: add: stringed match id ', matchIdString);
-      console.log('MatchFact: Add: match name ', match.name);
-      console.log('MatchFact: Add: match.liked ', match.liked);
-      if (match.liked.indexOf(User._id) >= 0 ) {
-        console.log("!!!!!!!!!!!!!!!!!!!!match likes user, should become match !!!!!!!!!!!!!!!!")
-        if (!match.matched) {
-          match.matched = {};
-        }
-        if (!User.matched) {
-          User.matched = {};
-        }
-        match.matched[userIdString] = false;
-        console.log("MatchFact: Add: match.matched after add userid ", match.matched)
-        match.liked.splice(match.liked.indexOf(User._id), 1);
-        matches.push(match);
-        User.matched[matchIdString] = false;
-        console.log("MatchFact: Add: user.matched after adding match id ", User.matched)
-        count ++;
-        result.push(User, match);
-        console.log('matchFact: add: result ', result);
-        cb(result);
-      } 
-      else {
-        console.log("MatchFact: Add: Match didn't like User")
-        if (!User.liked.length) {
-          User.liked = [];
->>>>>>> (fix/refactor) Get matches, candidates, update them properly using objId instead of fbid
-        }
-<<<<<<< HEAD
-||||||| merged common ancestors
-        User.liked.push(match._id);
-        result.push(User, match);
-        return result;
-=======
-        User.liked.push(match._id);
-        result.push(User, match);
-        cb(result);
->>>>>>> (fix/refactor) Get matches, candidates, update them properly using objId instead of fbid
       }
-    };
-
+    }
 }])
 
 .factory('SkippedFactory',
@@ -311,60 +206,60 @@ angular.module('data', [])
 
   function($http){
   
-  var location = { 
-    host: null,
-    myPlace: {
-      rent: null,
-      zipCode: null,
-      genders: null,
-      openRooms: null,
-      roomType: null,
-      occupants: null,
-      city: null,
-      state: null,
-      latitude: null,
-      longitude: null
-    },
-    desiredPlace:{
-      rent: null,
-      zipCode: null,
-      radius: null,
-      roomType: null,
-      latitude: null,
-      longitude: null,
-      city: null,
-      state: null
-    }
-  };
+    var location = { 
+      host: null,
+      myPlace: {
+        rent: null,
+        zipCode: null,
+        genders: null,
+        openRooms: null,
+        roomType: null,
+        occupants: null,
+        city: null,
+        state: null,
+        latitude: null,
+        longitude: null
+      },
+      desiredPlace:{
+        rent: null,
+        zipCode: null,
+        radius: null,
+        roomType: null,
+        latitude: null,
+        longitude: null,
+        city: null,
+        state: null
+      }
+    };
 
-  var baseUrl = 'http://localhost:8888'
+    var baseUrl = 'http://localhost:8888'
 
-  return {
-    initialize: function(userLocation, User){
-      console.log('UserLocation being passed to server form PlaceFactory initialize - ', userLocation);
-      return $http({
-        method: 'PUT',
-        url: baseUrl + '/user/' + User._id + '/location?token=' + User.token,
-        data: {
-          location: userLocation
-        }
-      })
-      .then(function(res){
-        console.log('place factory res from db ', res)
-        location = res.data.location;
-        return res.data.location;
-      })
-    },
-    all: function() {
-      return location;
-    },
-    update: function(property,newValue) {
-      location[property] = newValue;
-    },
-    getProperty: function(property) {
-      return location[property];
-    },
-  };
+    return {
+      initialize: function(userLocation, User){
+        console.log('UserLocation being passed to server form PlaceFactory initialize - ', userLocation);
+        return $http({
+          method: 'PUT',
+          url: baseUrl + '/user/' + User._id + '/location?token=' + User.token,
+          data: {
+            location: userLocation
+          }
+        })
+        .then(function(res){
+          console.log('place factory res from db ', res)
+          location = res.data.location;
+          return res.data.location;
+        })
+      },
+      all: function() {
+        return location;
+      },
+      update: function(property,newValue) {
+        location[property] = newValue;
+      },
+      getProperty: function(property) {
+        return location[property];
+      },
+    };
 
 }])
 
@@ -373,39 +268,39 @@ angular.module('data', [])
 
   function($http){
 
-  var baseUrl = 'http://localhost:8888'
+    var baseUrl = 'http://localhost:8888'
 
-  var roommatePreferences = {
-    gender: null,
-    ageMin: null,
-    ageMax: null
-  };
+    var roommatePreferences = {
+      gender: null,
+      ageMin: null,
+      ageMax: null
+    };
 
-  return {
-    initialize: function(preference, User){
-      return $http({
-        method: 'PUT',
-        url: baseUrl + '/user/' + User._id + '/roommatePreferences' + '?token=' + User.token,
-        data: {
-          roommatePreferences: preference
-        }
-      })
-      .then(function(res) {
-        console.log('Roommate Factory Data - ', res);
-        roommatePreferences = res.data.roommatePreferences;
-        return res.data.roommatePreferences;
-      })    
-    },
-    all: function() {
-      return roommatePreferences;
-    },
-    update: function(property,newValue) {
-      roommatePreferences[property] = newValue;
-    },
-    getProperty: function(property) {
-      return roommatePreferences[property];
-    },
-  };
+    return {
+      initialize: function(preference, User){
+        return $http({
+          method: 'PUT',
+          url: baseUrl + '/user/' + User._id + '/roommatePreferences' + '?token=' + User.token,
+          data: {
+            roommatePreferences: preference
+          }
+        })
+        .then(function(res) {
+          console.log('Roommate Factory Data - ', res);
+          roommatePreferences = res.data.roommatePreferences;
+          return res.data.roommatePreferences;
+        })    
+      },
+      all: function() {
+        return roommatePreferences;
+      },
+      update: function(property,newValue) {
+        roommatePreferences[property] = newValue;
+      },
+      getProperty: function(property) {
+        return roommatePreferences[property];
+      },
+    };
 
 }])
 
@@ -419,65 +314,50 @@ angular.module('data', [])
 
     var candidates = [];
  
-  return {
-    initialize: function(req){
-      if (!req.location) {
-        console.log('not grabbing candidates yet! need to set search prefs');
-      } 
-      else if (req.location.host) {
-        return $http({
-          method: 'GET',
-          url: baseUrl + '/user/' + req._id + '/' + req.location.myPlace.city + '?token=' + req.token
-        })
-        .then(function(res){
-          console.log('place factory res from db ', res)
-          location = res.data.location;
-          return res.data.location;
-        })
-      }
-      else {
-        var lat = req.location.desiredPlace.latitude;
-        var longt = req.location.desiredPlace.longitude;
-        var radi = req.location.desiredPlace.radius;
-        var token = req.token;
-        return $http({
-          method: 'GET',
-          url: baseUrl + '/user/' + req._id + 
-              '/location?lat=' + lat + '&longt=' + longt + '&radi=' + radi + '&token=' + token
-        })
-        .then(function(res) {
-            console.log('candidates that match location ', res.data);
-            candidates = res.data;
-        })  
-      }
-    },
-    all: function() {
-      console.log('Candidates: getting all candidates');
-      return candidates;
-    },
-    removeFirst: function() {
-      candidates.splice(0, 1);
-    },
-    getFirst: function() {
-      return candidates[0];
-    },
-    add: function(candidate){
-      candidates.push(candidate);
-    },
-    mock: function(){
-      return $http({
-        method: 'PUT',
-        url: baseUrl + '/user/' + candidates[1].id,
-        data: {
-          candidate: candidates[1],
+    return {
+      initialize: function(req){
+        if (!req.location) {
+          console.log('not grabbing candidates yet! need to set search prefs');
+        } 
+        else if (req.location.host) {
+          return $http({
+            method: 'GET',
+            url: baseUrl + '/user/' + req._id + '/' + req.location.myPlace.city + '?token=' + req.token
+          })
+          .then(function(res){
+            console.log('place factory res from db ', res)
+            location = res.data.location;
+            return res.data.location;
+          })
         }
-      })
-      .then(function(res){
-        console.log('place factory res from db ', res);
-        return res.data.location;
-      })
-    },
-    candidates: candidates
-  };
+        else {
+          var lat = req.location.desiredPlace.latitude;
+          var longt = req.location.desiredPlace.longitude;
+          var radi = req.location.desiredPlace.radius;
+          var token = req.token;
+          return $http({
+            method: 'GET',
+            url: baseUrl + '/user/' + req._id + 
+                '/location?lat=' + lat + '&longt=' + longt + '&radi=' + radi + '&token=' + token
+          })
+          .then(function(res) {
+              console.log('candidates that match location ', res.data);
+              candidates = res.data;
+          })  
+        }
+      },
+      all: function() {
+        console.log('Candidates: getting all candidates');
+        return candidates;
+      },
+      removeFirst: function() {
+        candidates.splice(0, 1);
+      },
+      getFirst: function() {
+        return candidates[0];
+      },
+      add: function(candidate){
+        candidates.push(candidate);
+      }
 
 }])

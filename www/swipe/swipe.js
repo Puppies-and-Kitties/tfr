@@ -1,6 +1,5 @@
 angular.module('swipe.controllers', [])
 
-<<<<<<< HEAD
 .controller('SwipeController', [
   '$scope', 
   '$timeout', 
@@ -28,10 +27,10 @@ angular.module('swipe.controllers', [])
     );
 
     $scope.candidateSwipe =  function (match, User){
-      
+      console.log("Ctrl: candidateSwipe ", $scope.currentCandidate)
       if (match) {
         MatchesFactory.add($scope.currentCandidate, $scope.user, function(userMatch){
-          console.log('userMatch ', userMatch);
+          console.log('MatchCtrl: Res from Matcfact.Add: userMatch ', userMatch);
           User = userMatch[0];
           var candidate = userMatch[1];
 
@@ -56,5 +55,6 @@ angular.module('swipe.controllers', [])
       console.log('swipectrl: candidates ', $scope.candidates);
       $scope.user = User;
       $scope.currentCandidate = angular.copy($scope.candidates[0]);
-  };
+      console.log('currentCandidate in swipe controller ', $scope.currentCandidate);
+    };
 }]);

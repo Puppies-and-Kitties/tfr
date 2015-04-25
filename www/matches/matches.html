@@ -1,7 +1,7 @@
 <ion-view view-title="Matches">
   <ion-content>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="match in matches" type="item-text-wrap" href="#/tab/matches/profiles/matches/{{match.fbid}}">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="match in matches" type="item-text-wrap" href="#/tab/matches/profiles/matches/{{match._id}}">
         <img ng-src="{{match.face}}">
         <h2>{{match.name}}</h2>
         <i class="icon ion-chevron-right icon-accessory"></i>

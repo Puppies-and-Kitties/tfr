@@ -12,12 +12,14 @@ angular.module('chats.controllers', [])
 
   var matchId = $stateParams.matchId;
   console.log('match id in chats controller - ', $stateParams);
-  
+  console.log("ChatCTRL: USER ", User)
   $scope.match = MatchesFactory.get(matchId);
 
-  var chatURL = $scope.match.matched[User._id] || User.matched[$scope.match._id];  
-
-  if(!chatURL){
+  if($scope.match.matched[User._id] && $scope.match.matched[User._id] !== 'isMatch') {
+    var chatURL = $scope.match.matched[User._id] 
+  } else if (User.matched[$scope.match._id] && User.matched[$scope.match._id] !== 'isMatch') {
+    var chatURL = User.matched[$scope.match._id];  
+  } else {
     console.log('going to set chat url')
     chatURL = userSession.user.id + matchId;
     MatchesFactory.updateChatURL(matchId,User._id,chatURL, function(matchWithChat) {
