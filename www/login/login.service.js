@@ -14,14 +14,15 @@ angular.module('login.services', ['ngResource'])
       // Returns a promise with the logged in user's basic FB info, this is resolved in the app.js stateprovider
       return UserProfile.get({access_token: fbToken}).$promise;
     }
-    
+  
     var saveUser = function(user) {
       var baseUrl = 'http://localhost:8888';
       return $http({
         method: 'POST',
         url: baseUrl + '/user/' + user.id,
         data: {
-          name: user.name
+          name: user.name,
+          token: user.token
         }
       })
       .then(function(data) {

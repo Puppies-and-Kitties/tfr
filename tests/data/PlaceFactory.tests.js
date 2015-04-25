@@ -53,9 +53,9 @@ describe('Factory: PlaceFactory', function() {
     describe('initialize', function() {
 
       it("Should initialize place to the passed in object", function() {
-        httpBackend.whenPUT('http://localhost:8888/user/1234/location')
+        httpBackend.whenPUT('http://localhost:8888/user/1234/location?token=5678')
           .respond(testUser)
-        PlaceFactory.initialize(testUser.location, {fbid: 1234})
+        PlaceFactory.initialize(testUser.location, {fbid: 1234, token: 5678})
           .then(function(newLocation) {
             console.log("new location ", newLocation)
             expect(newLocation.myPlace.rent).toEqual(1000);
@@ -68,9 +68,9 @@ describe('Factory: PlaceFactory', function() {
     describe('all', function() {
 
       it("Should return the place object", function() {
-        httpBackend.whenPUT('http://localhost:8888/user/1234/location')
+        httpBackend.whenPUT('http://localhost:8888/user/1234/location?token=5678')
           .respond(testUser)
-        PlaceFactory.initialize(testUser.location, {fbid: 1234})
+        PlaceFactory.initialize(testUser.location, {fbid: 1234,token:5678})
           .then(function(newLocation) {
             console.log("all ", PlaceFactory.all())
             expect(PlaceFactory.all().myPlace.rent).toEqual(1000);
@@ -113,9 +113,9 @@ describe('Factory: PlaceFactory', function() {
     describe('getProperty', function() {
 
       it("Should return the specified property", function() {
-        httpBackend.whenPUT('http://localhost:8888/user/1234/location')
+        httpBackend.whenPUT('http://localhost:8888/user/1234/location?token=5678')
           .respond(testUser)
-        PlaceFactory.initialize(testUser.location, {fbid: 1234})
+        PlaceFactory.initialize(testUser.location, {fbid: 1234, token: 5678})
           .then(function(newLocation) {
             expect(PlaceFactory.getProperty('host')).toEqual(true);
             var myPlace = PlaceFactory.getProperty('myPlace');

@@ -26,7 +26,7 @@ module.exports = function(app) {
     .get(userController.getCandidates)
 
   app.route('/auth/:id/')
-    .post(userController.getAuth)
+    .post(userController.auth)
 
 }
     ////////////////FOR MOCK DATA///////////////

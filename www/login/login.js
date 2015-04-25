@@ -1,6 +1,6 @@
 angular.module('login.controllers', ['firebase', 'ui.router'])
 
-<<<<<<< HEAD
+
 .controller('LoginCtrl', [
   '$scope', 
   '$state', 
@@ -22,9 +22,11 @@ angular.module('login.controllers', ['firebase', 'ui.router'])
           })
           .then(function(user){
             console.log('Authenicated on server',user.data);
+            userSession.user = authData.facebook.cachedUserProfile;
+            userSession.user.token = user.data.token;
+            $state.go('tab.account');
           });
-        userSession.user = authData.facebook.cachedUserProfile;
-        $state.go('tab.account');
+        
         
       } 
       else {

@@ -35,9 +35,9 @@ describe('Factory: Profile', function() {
     describe('initialize', function() {
 
       it("Should initialize profile to the passed in object", function() {
-        httpBackend.whenPUT('http://localhost:8888/user/1234/profile')
+        httpBackend.whenPUT('http://localhost:8888/user/1234/profile?token=5678')
           .respond(testUser)
-        ProfileFactory.initialize(testUser.profile, {fbid: 1234})
+        ProfileFactory.initialize(testUser.profile, {fbid: 1234, token: 5678})
           .then(function(newProfile) {
             console.log("new location ", newProfile)
             expect(newProfile.age).toEqual(25);
@@ -50,9 +50,9 @@ describe('Factory: Profile', function() {
     describe('all', function() {
 
       it("Should return the profile object", function() {
-        httpBackend.whenPUT('http://localhost:8888/user/1234/profile')
+        httpBackend.whenPUT('http://localhost:8888/user/1234/profile?token=5678')
           .respond(testUser)
-        ProfileFactory.initialize(testUser.profile, {fbid: 1234})
+        ProfileFactory.initialize(testUser.profile, {fbid: 1234, token: 5678})
           .then(function(newProfile) {
             expect(ProfileFactory.all().gender).toEqual('female');
           });
@@ -85,9 +85,9 @@ describe('Factory: Profile', function() {
     describe('getProperty', function() {
 
       it("Should return the specified property", function() {
-        httpBackend.whenPUT('http://localhost:8888/user/1234/profile')
+        httpBackend.whenPUT('http://localhost:8888/user/1234/profile?token=5678')
           .respond(testUser)
-        ProfileFactory.initialize(testUser.profile, {fbid: 1234})
+        ProfileFactory.initialize(testUser.profile, {fbid: 1234, token: 5678})
           .then(function(newProfile) {
             expect(ProfileFactory.getProperty('age')).toEqual(25);
             expect(ProfileFactory.getProperty('gender')).toEqual('female');
