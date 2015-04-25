@@ -124,7 +124,7 @@ angular.module('data', [])
 
 }])
 
-.factory('SkippedFactory', [
+.factory('SkippedFactory',
 
   function(){
 
@@ -147,51 +147,54 @@ angular.module('data', [])
 
   })
 
-  .factory('ProfileFactory', function($http){
+  .factory('ProfileFactory', [
+    '$http',
 
-    var profile = {
-      gender: null,
-      age: null,
-      keywords: ['','','','','']
-    };
+    function($http){
 
-    var baseUrl = 'http://localhost:8888';
+      var profile = {
+        gender: null,
+        age: null,
+        keywords: ['','','','','']
+      };
 
-    return {
-      initialize: function(usersProfile, User){
-        return $http({
-          method: 'PUT',
-          url: baseUrl + '/user/' + User.fbid + '/profile',
-          data: {
-            profile: usersProfile
-          }
-        })
-        .then(function(res) {
-          console.log('Profile Factory Data - ', res);
-          profile = res.data.profile;
-          return res.data.profile;
-        })    
-      },
-      all: function() {
-        return profile;
-      },
-      update: function(property,newValue) {
-        profile[property] = newValue;
-      },
-      getProperty: function(property) {
-        return profile[property];
-      },
-      deleteAccount: function(User) {
-        console.log("going to delete account for User: ", User._id)
-        return $http({
-          method: 'DELETE',
-          url: baseUrl + '/user/' + User._id
-        })
-        .then(function(res){
-          console.log("User deleted: ", res)
-        })
-      }
-    };
+      var baseUrl = 'http://localhost:8888';
+
+      return {
+        initialize: function(usersProfile, User){
+          return $http({
+            method: 'PUT',
+            url: baseUrl + '/user/' + User.fbid + '/profile',
+            data: {
+              profile: usersProfile
+            }
+          })
+          .then(function(res) {
+            console.log('Profile Factory Data - ', res);
+            profile = res.data.profile;
+            return res.data.profile;
+          })    
+        },
+        all: function() {
+          return profile;
+        },
+        update: function(property,newValue) {
+          profile[property] = newValue;
+        },
+        getProperty: function(property) {
+          return profile[property];
+        },
+        deleteAccount: function(User) {
+          console.log("going to delete account for User: ", User._id)
+          return $http({
+            method: 'DELETE',
+            url: baseUrl + '/user/' + User._id
+          })
+          .then(function(res){
+            console.log("User deleted: ", res)
+          })
+        }
+      };
 
 }])
 
