@@ -15,7 +15,7 @@ angular.module('data', [])
         if(req.matched) {
           return $http({
             method: 'GET',
-            url: baseUrl + '/user/' + req.fbid + '/matches' + '?token=' + req.token
+            url: baseUrl + '/user/' + req._id + '/matches' + '?token=' + req.token
           })
           .then(function(matchedUsers){
             console.log('MatchFactory: initialize: matches returned from db ', matchedUsers.data);
@@ -40,6 +40,7 @@ angular.module('data', [])
         }
         return null;
       },
+
       updateChatURL: function(matchId,property,newValue, cb){
         console.log('in update: matchId, property, newValue ', matchId, property, newValue)
         for (var i = 0; i < matches.length; i++) {
@@ -55,7 +56,7 @@ angular.module('data', [])
         console.log('saveAllMatches: User', User)
         return $http ({
           method: 'PUT',
-          url: baseUrl + '/user/' + User.fbid + '/matches' + '?token=' + User.token,
+          url: baseUrl + '/user/' + User._id + '/matches' + '?token=' + User.token,
           data: {
             matchesIds: User.matched,
             likedIds: User.liked
@@ -71,8 +72,8 @@ angular.module('data', [])
         var thisMatchedUser = matches[matches.length-1]
         console.log('update matched user: this matched user ', thisMatchedUser);
         return $http({
-          method: 'Put',
-          url: baseUrl + '/user/' + newMatch.fbid + '/matches',
+          method: 'PUT',
+          url: baseUrl + '/user/' + newMatch._id + '/matches',
           data: {
             matchesIds: newMatch.matched,
             likedIds: newMatch.liked
@@ -83,7 +84,6 @@ angular.module('data', [])
           return res.data;
         })
       },
-
 
       add: function(match, User, cb){
         var length = match.liked.length;
@@ -159,12 +159,11 @@ angular.module('data', [])
     };
 
     var baseUrl = 'http://localhost:8888';
-
     return {
       initialize: function(usersProfile, User){
         return $http({
           method: 'PUT',
-          url: baseUrl + '/user/' + User.fbid + '/profile' + '?token=' + User.token,
+          url: baseUrl + '/user/' + User._id + '/profile' + '?token=' + User.token,
           data: {
             profile: usersProfile
           }
@@ -235,7 +234,7 @@ angular.module('data', [])
       console.log('UserLocation being passed to server form PlaceFactory initialize - ', userLocation);
       return $http({
         method: 'PUT',
-        url: baseUrl + '/user/' + User.fbid + '/location?token=' + User.token,
+        url: baseUrl + '/user/' + User._id + '/location?token=' + User.token,
         data: {
           location: userLocation
         }
@@ -276,7 +275,7 @@ angular.module('data', [])
     initialize: function(preference, User){
       return $http({
         method: 'PUT',
-        url: baseUrl + '/user/' + User.fbid + '/roommatePreferences' + '?token=' + User.token,
+        url: baseUrl + '/user/' + User._id + '/roommatePreferences' + '?token=' + User.token,
         data: {
           roommatePreferences: preference
         }
@@ -318,7 +317,7 @@ angular.module('data', [])
       else if (req.location.host) {
         return $http({
           method: 'GET',
-          url: baseUrl + '/user/' + req.fbid + '/' + req.location.myPlace.city + '?token=' + req.token
+          url: baseUrl + '/user/' + req._id + '/' + req.location.myPlace.city + '?token=' + req.token
         })
         .then(function(res){
           console.log('place factory res from db ', res)
@@ -333,7 +332,7 @@ angular.module('data', [])
         var token = req.token;
         return $http({
           method: 'GET',
-          url: baseUrl + '/user/' + req.fbid + 
+          url: baseUrl + '/user/' + req._id + 
               '/location?lat=' + lat + '&longt=' + longt + '&radi=' + radi + '&token=' + token
         })
         .then(function(res) {
