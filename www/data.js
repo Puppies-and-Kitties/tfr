@@ -15,7 +15,7 @@ angular.module('data', [])
         if(req.matched) {
           return $http({
             method: 'GET',
-            url: baseUrl + '/user/' + req.fbid + '/matches'
+            url: baseUrl + '/user/' + req.fbid + '/matches' + '?token=' + req.token
           })
           .then(function(matchedUsers){
             console.log('MatchFactory: initialize: matches returned from db ', matchedUsers.data);
@@ -55,7 +55,7 @@ angular.module('data', [])
         console.log('saveAllMatches: User', User)
         return $http ({
           method: 'PUT',
-          url: baseUrl + '/user/' + User.fbid + '/matches',
+          url: baseUrl + '/user/' + User.fbid + '/matches' + '?token=' + User.token,
           data: {
             matchesIds: User.matched,
             likedIds: User.liked
@@ -145,57 +145,56 @@ angular.module('data', [])
       } 
     };
 
-  })
+})
 
-  .factory('ProfileFactory', [
-    '$http',
+.factory('ProfileFactory', [
+  '$http',
 
-    function($http){
+  function($http){
 
-      var profile = {
-        gender: null,
-        age: null,
-        keywords: ['','','','','']
-      };
+    var profile = {
+      gender: null,
+      age: null,
+      keywords: ['','','','','']
+    };
 
-      var baseUrl = 'http://localhost:8888';
+    var baseUrl = 'http://localhost:8888';
 
-      return {
-        initialize: function(usersProfile, User){
-          return $http({
-            method: 'PUT',
-            url: baseUrl + '/user/' + User.fbid + '/profile',
-            data: {
-              profile: usersProfile
-            }
-          })
-          .then(function(res) {
-            console.log('Profile Factory Data - ', res);
-            profile = res.data.profile;
-            return res.data.profile;
-          })    
-        },
-        all: function() {
-          return profile;
-        },
-        update: function(property,newValue) {
-          profile[property] = newValue;
-        },
-        getProperty: function(property) {
-          return profile[property];
-        },
-        deleteAccount: function(User) {
-          console.log("going to delete account for User: ", User._id)
-          return $http({
-            method: 'DELETE',
-            url: baseUrl + '/user/' + User._id
-          })
-          .then(function(res){
-            console.log("User deleted: ", res)
-          })
-        }
-      };
-
+    return {
+      initialize: function(usersProfile, User){
+        return $http({
+          method: 'PUT',
+          url: baseUrl + '/user/' + User.fbid + '/profile' + '?token=' + User.token,
+          data: {
+            profile: usersProfile
+          }
+        })
+        .then(function(res) {
+          console.log('Profile Factory Data - ', res);
+          profile = res.data.profile;
+          return res.data.profile;
+        })    
+      },
+      all: function() {
+        return profile;
+      },
+      update: function(property,newValue) {
+        profile[property] = newValue;
+      },
+      getProperty: function(property) {
+        return profile[property];
+      },
+      deleteAccount: function(User) {
+        console.log("going to delete account for User: ", User._id)
+        return $http({
+          method: 'DELETE',
+          url: baseUrl + '/user/' + User._id + '?token=' + User.token
+        })
+        .then(function(res){
+          console.log("User deleted: ", res)
+        })
+      }
+    };
 }])
 
 .factory('PlaceFactory', [
@@ -203,60 +202,60 @@ angular.module('data', [])
 
   function($http){
   
-    var location = { 
-      host: null,
-      myPlace: {
-        rent: null,
-        zipCode: null,
-        genders: null,
-        openRooms: null,
-        roomType: null,
-        occupants: null,
-        city: null,
-        state: null,
-        latitude: null,
-        longitude: null
-      },
-      desiredPlace:{
-        rent: null,
-        zipCode: null,
-        radius: null,
-        roomType: null,
-        latitude: null,
-        longitude: null,
-        city: null,
-        state: null
-      }
-    };
+  var location = { 
+    host: null,
+    myPlace: {
+      rent: null,
+      zipCode: null,
+      genders: null,
+      openRooms: null,
+      roomType: null,
+      occupants: null,
+      city: null,
+      state: null,
+      latitude: null,
+      longitude: null
+    },
+    desiredPlace:{
+      rent: null,
+      zipCode: null,
+      radius: null,
+      roomType: null,
+      latitude: null,
+      longitude: null,
+      city: null,
+      state: null
+    }
+  };
 
-    var baseUrl = 'http://localhost:8888'
+  var baseUrl = 'http://localhost:8888'
 
-    return {
-      initialize: function(userLocation, User){
-        console.log('UserLocation being passed to server form PlaceFactory initialize - ', userLocation);
-        return $http({
-          method: 'PUT',
-          url: baseUrl + '/user/' + User.fbid + '/location',
-          data: {
-            location: userLocation
-          }
-        })
-        .then(function(res){
-          console.log('place factory res from db ', res)
-          location = res.data.location;
-          return res.data.location;
-        })
-      },
-      all: function() {
-        return location;
-      },
-      update: function(property,newValue) {
-        location[property] = newValue;
-      },
-      getProperty: function(property) {
-        return location[property];
-      },
-    };
+  return {
+    initialize: function(userLocation, User){
+      console.log('UserLocation being passed to server form PlaceFactory initialize - ', userLocation);
+      return $http({
+        method: 'PUT',
+        url: baseUrl + '/user/' + User.fbid + '/location?token=' + User.token,
+        data: {
+          location: userLocation
+        }
+      })
+      .then(function(res){
+        console.log('place factory res from db ', res)
+        location = res.data.location;
+        return res.data.location;
+      })
+    },
+    all: function() {
+      return location;
+    },
+    update: function(property,newValue) {
+      location[property] = newValue;
+    },
+    getProperty: function(property) {
+      return location[property];
+    },
+  };
 
 }])
 
@@ -265,39 +264,39 @@ angular.module('data', [])
 
   function($http){
 
-    var baseUrl = 'http://localhost:8888'
+  var baseUrl = 'http://localhost:8888'
 
-    var roommatePreferences = {
-      gender: null,
-      ageMin: null,
-      ageMax: null
-    };
+  var roommatePreferences = {
+    gender: null,
+    ageMin: null,
+    ageMax: null
+  };
 
-    return {
-      initialize: function(preference, User){
-        return $http({
-          method: 'PUT',
-          url: baseUrl + '/user/' + User.fbid + '/roommatePreferences',
-          data: {
-            roommatePreferences: preference
-          }
-        })
-        .then(function(res) {
-          console.log('Roommate Factory Data - ', res);
-          roommatePreferences = res.data.roommatePreferences;
-          return res.data.roommatePreferences;
-        })    
-      },
-      all: function() {
-        return roommatePreferences;
-      },
-      update: function(property,newValue) {
-        roommatePreferences[property] = newValue;
-      },
-      getProperty: function(property) {
-        return roommatePreferences[property];
-      },
-    };
+  return {
+    initialize: function(preference, User){
+      return $http({
+        method: 'PUT',
+        url: baseUrl + '/user/' + User.fbid + '/roommatePreferences' + '?token=' + User.token,
+        data: {
+          roommatePreferences: preference
+        }
+      })
+      .then(function(res) {
+        console.log('Roommate Factory Data - ', res);
+        roommatePreferences = res.data.roommatePreferences;
+        return res.data.roommatePreferences;
+      })    
+    },
+    all: function() {
+      return roommatePreferences;
+    },
+    update: function(property,newValue) {
+      roommatePreferences[property] = newValue;
+    },
+    getProperty: function(property) {
+      return roommatePreferences[property];
+    },
+  };
 
 }])
 
@@ -310,65 +309,66 @@ angular.module('data', [])
     var baseUrl = 'http://localhost:8888';
 
     var candidates = [];
-   
-    return {
-      initialize: function(req){
-        if (!req.location) {
-          console.log('not grabbing candidates yet! need to set search prefs');
-        } 
-        else if (req.location.host) {
-          return $http({
-            method: 'GET',
-            url: baseUrl + '/user/' + req.fbid + '/' + req.location.myPlace.city
-          })
-          .then(function(res) {
-            console.log('candidates that match location ', res);
-            candidates = res.data;
-          })
-        } 
-        else {
-          var lat = req.location.desiredPlace.latitude;
-          var longt = req.location.desiredPlace.longitude;
-          var radi = req.location.desiredPlace.radius;
-          return $http({
-            method: 'GET',
-            url: baseUrl + '/user/' + req.fbid + 
-                '/location?lat=' + lat + '&longt=' + longt + '&radi=' + radi
-          })
-          .then(function(res) {
-            console.log('candidates that match location ', res.data);
-            candidates = res.data;
-          })
-        }
-      },
-
-      all: function() {
-        console.log('Candidates: getting all candidates');
-        return candidates;
-      },
-      removeFirst: function() {
-        candidates.splice(0, 1);
-      },
-      getFirst: function() {
-        return candidates[0];
-      },
-      add: function(candidate){
-        candidates.push(candidate);
-      },
-      mock: function(){
+ 
+  return {
+    initialize: function(req){
+      if (!req.location) {
+        console.log('not grabbing candidates yet! need to set search prefs');
+      } 
+      else if (req.location.host) {
         return $http({
-          method: 'PUT',
-          url: baseUrl + '/user/' + candidates[1].id,
-          data: {
-            candidate: candidates[1],
-          }
+          method: 'GET',
+          url: baseUrl + '/user/' + req.fbid + '/' + req.location.myPlace.city + '?token=' + req.token
         })
         .then(function(res){
-          console.log('place factory res from db ', res);
+          console.log('place factory res from db ', res)
+          location = res.data.location;
           return res.data.location;
         })
-      },
-      candidates: candidates
-    };
-    
+      }
+      else {
+        var lat = req.location.desiredPlace.latitude;
+        var longt = req.location.desiredPlace.longitude;
+        var radi = req.location.desiredPlace.radius;
+        var token = req.token;
+        return $http({
+          method: 'GET',
+          url: baseUrl + '/user/' + req.fbid + 
+              '/location?lat=' + lat + '&longt=' + longt + '&radi=' + radi + '&token=' + token
+        })
+        .then(function(res) {
+            console.log('candidates that match location ', res.data);
+            candidates = res.data;
+        })  
+      }
+    },
+    all: function() {
+      console.log('Candidates: getting all candidates');
+      return candidates;
+    },
+    removeFirst: function() {
+      candidates.splice(0, 1);
+    },
+    getFirst: function() {
+      return candidates[0];
+    },
+    add: function(candidate){
+      candidates.push(candidate);
+    },
+    mock: function(){
+      return $http({
+        method: 'PUT',
+        url: baseUrl + '/user/' + candidates[1].id,
+        data: {
+          candidate: candidates[1],
+        }
+      })
+      .then(function(res){
+        console.log('place factory res from db ', res);
+        return res.data.location;
+      })
+    },
+    candidates: candidates
+  };
+
 }])

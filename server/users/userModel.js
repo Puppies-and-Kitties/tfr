@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var UserSchema = new mongoose.Schema({
   loc: { type: [Number], index: '2dsphere'},
   fbid: String,
+  token: String,
   name: String,
   face: String,
   email: String,

@@ -19,10 +19,11 @@ describe('Factory: Candidates: ', function() {
   describe('Initialize and All', function() {
 
     it('Should initialize candidates with get request and return them with all', function(){
-      httpBackend.whenGET("http://localhost:8888/user/1234/Berkeley")
+      httpBackend.whenGET("http://localhost:8888/user/1234/Berkeley?token=5678")
         .respond(testCandidates);
       CandidatesFactory.initialize({
           fbid: 1234, 
+          token: 5678,
           location:{
             host: true, 
             myPlace:{
@@ -79,10 +80,11 @@ describe('Factory: Candidates: ', function() {
     describe('getFirst', function() {
 
       it("Should return the first candidate in CandidatesFactory", function() {
-        httpBackend.whenGET("http://localhost:8888/user/1234/Berkeley")
+        httpBackend.whenGET("http://localhost:8888/user/1234/Berkeley?token=5678")
           .respond(testCandidates);
         CandidatesFactory.initialize({
-            fbid: 1234, 
+            fbid: 1234,
+            token: 5678,
             location:{
               host: true, 
               myPlace:{
