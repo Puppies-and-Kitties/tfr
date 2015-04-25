@@ -15,7 +15,7 @@
         <div ng-if="location.host">
           <h2 ng-if="location.host">My Place</h2>
           <ion-item>
-            <h2 ng-if="location.host"><strong>Rent: </strong></h2> {{location.myPlace.rent | currency}}
+            <span class="input-label"><h2 ng-if="location.host">Rent: {{location.myPlace.rent | currency}}</h2></span>
             <div class="range">
               <i class="ion-social-usd"></i>
               <input ng-if="location.host" type="range" name="volume" ng-model="location.myPlace.rent" min="0" max="5000" step="10">
@@ -57,7 +57,7 @@
         <div ng-if="!location.host">
           <h2 ng-if="!location.host">The Place I want</h2>
           <ion-item>
-            <h2 ng-if="!location.host"><strong>Desired Rent: </strong></h2> {{location.desiredPlace.rent | currency}}
+            <span class="input-label"><h2 ng-if="!location.host">Desired Rent: {{location.desiredPlace.rent | currency}}</h2></span>
             <div class="range">
               <i class="ion-social-usd"></i>
               <input ng-if="!location.host" type="range" name="volume" ng-model="location.desiredPlace.rent" min="0" max="5000" step="10">
