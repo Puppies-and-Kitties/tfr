@@ -8,7 +8,7 @@ angular.module('data', [])
     var baseUrl = 'http://localhost:8888';
     var liked = [];
     var matches = [];
-    
+  
     return {
       initialize: function(req){
         console.log('MatchFactory: user obj sent to initialize ', req.matched);
@@ -23,15 +23,12 @@ angular.module('data', [])
           })
         }
       },
-
       all: function() {
        return matches;
       },
-
       remove: function(match) {
         matches.splice(matches.indexOf(match), 1);
       },
-
       get: function(matchId) {
         console.log('matches in matchfact.get ', matches);
         console.log('matchId in matches fact ', matchId);
@@ -43,7 +40,6 @@ angular.module('data', [])
         }
         return null;
       },
-
       updateChatURL: function(matchId,property,newValue, cb){
         console.log('in update: matchId, property, newValue ', matchId, property, newValue)
         for (var i = 0; i < matches.length; i++) {
@@ -56,19 +52,19 @@ angular.module('data', [])
       },
 
       saveAllMatches: function(User) {
-        console.log('saveAllMatches: User', User)
-        return $http ({
-          method: 'PUT',
-          url: baseUrl + '/user/' + User._id + '/matches' + '?token=' + User.token,
-          data: {
-            matchesIds: User.matched,
-            likedIds: User.liked
-          }
-        })
-        .then(function(res) {
-          console.log('matches factory: response for saveAllMatches ', res);
-          return res.data;
-        })
+       console.log('saveAllMatches: User', User)
+       return $http ({
+         method: 'PUT',
+         url: baseUrl + '/user/' + User._id + '/matches' + '?token=' + User.token,
+         data: {
+           matchesIds: User.matched,
+           likedIds: User.liked
+         }
+       })
+       .then(function(res) {
+         console.log('matches factory: response for saveAllMatches ', res);
+         return res.data;
+       })
       },
 
       updateMatchedUsers: function(newMatch) {
@@ -261,7 +257,9 @@ angular.module('data', [])
       },
     };
 
-}])
+})
+
+
 
 .factory('RoommateFactory', [
   '$http',
@@ -277,7 +275,7 @@ angular.module('data', [])
     };
 
     return {
-      initialize: function(preference, User){
+      initialize: function(usersProfile, User){
         return $http({
           method: 'PUT',
           url: baseUrl + '/user/' + User._id + '/roommatePreferences' + '?token=' + User.token,
@@ -310,10 +308,10 @@ angular.module('data', [])
 
   function($http, $rootScope){
 
-    var baseUrl = 'http://localhost:8888';
+    var baseUrl = 'http://localhost:8888'
 
     var candidates = [];
- 
+   
     return {
       initialize: function(req){
         if (!req.location) {
@@ -322,14 +320,13 @@ angular.module('data', [])
         else if (req.location.host) {
           return $http({
             method: 'GET',
-            url: baseUrl + '/user/' + req._id + '/' + req.location.myPlace.city + '?token=' + req.token
+            url: baseUrl + '/user/' + req._id + '/' + req.location.myPlace.city
           })
-          .then(function(res){
-            console.log('place factory res from db ', res)
-            location = res.data.location;
-            return res.data.location;
+          .then(function(res) {
+            console.log('candidates that match location ', res);
+            candidates = res.data;
           })
-        }
+        } 
         else {
           var lat = req.location.desiredPlace.latitude;
           var longt = req.location.desiredPlace.longitude;
@@ -359,5 +356,5 @@ angular.module('data', [])
       add: function(candidate){
         candidates.push(candidate);
       }
-
+    }
 }])
