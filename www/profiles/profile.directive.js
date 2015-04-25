@@ -1,6 +1,11 @@
 angular.module('profile.directives', [])
 
-  .directive('profileBox', ['$compile', '$http', '$templateCache', function($compile, $http, $templateCache) {
+  .directive('profileBox', [
+    '$compile', 
+    '$http', 
+    '$templateCache', 
+
+    function($compile, $http, $templateCache) {
 
       var getTemplate = function(boxType) {
           var templateLoader,
@@ -40,4 +45,5 @@ angular.module('profile.directives', [])
           },
           link: linker
       };
+      
   }]);
