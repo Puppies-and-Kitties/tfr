@@ -27,7 +27,7 @@
         </label>
         <ion-item >
           <span class="input-label"><h1>Custom Icons</h1></span>
-          <div id="listIcons" class="profile-icons"><span id="listIcons" ng-repeat="selectIcon in profile.selectedIcons" class="{{selectIcon}}" ng-click="removeFromSelected(selectIcon)"> </span></div>
+          <div id="listIcons" class="profile-icons"><span id="listIcons" ng-repeat="icon in profile.icons" class="{{icon}}" ng-click="removeFromSelected(icon)"> </span></div>
           <p id="ionicon-text">Start typing words that represent you to select icons</p>
           <label class="item item-input" id="ionicon-input">
             <input type="text" ng-model="search" /> 
