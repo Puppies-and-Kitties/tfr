@@ -11,7 +11,7 @@ angular.module('data', [])
   
     return {
       initialize: function(req){
-        console.log('MatchFactory: user obj sent to initialize ', req.matched);
+        console.log('MatchFactory: user obj sent to initialize ', req.token);
         if(req.matched) {
           return $http({
             method: 'GET',
@@ -254,12 +254,10 @@ angular.module('data', [])
       },
       getProperty: function(property) {
         return location[property];
-      },
+      }
     };
 
-})
-
-
+}])
 
 .factory('RoommateFactory', [
   '$http',
@@ -314,8 +312,9 @@ angular.module('data', [])
    
     return {
       initialize: function(req){
+        console.log("In CandFact: Initialize")
         if (!req.location) {
-          console.log('not grabbing candidates yet! need to set search prefs');
+          console.log('CandFact: Initialize: not grabbing candidates yet! need to set search prefs');
         } 
         else if (req.location.host) {
           return $http({
@@ -328,6 +327,7 @@ angular.module('data', [])
           })
         } 
         else {
+          console.log("CandFact: Initialize: User not host ", req)
           var lat = req.location.desiredPlace.latitude;
           var longt = req.location.desiredPlace.longitude;
           var radi = req.location.desiredPlace.radius;

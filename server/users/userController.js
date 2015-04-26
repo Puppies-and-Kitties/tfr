@@ -43,14 +43,14 @@ module.exports = {
     console.log('req.query.token',req.query.token);
     findUser({_id: req.params.id,token: req.query.token})
       .then(function(user) {
-        console.log('got a user ', user);
+        console.log('getCandidates: found user-  ', user);
         if (user.matched) {
           var matches = Object.keys(user.matched);
         } else {
           var matches = [];
         }
         var likeAndMatchedAndUser = user.liked.concat(matches);
-        console.log('like and match ', likeAndMatched)
+        console.log('like and match ', likeAndMatchedAndUser)
         likeAndMatchedAndUser.push(req.params.id)
         findUsers({ 
           loc: {$nearSphere: [latitude, longitude], $maxDistance: radius},
@@ -58,7 +58,7 @@ module.exports = {
         })
         .then(function(data){
           data.forEach(function(user) {
-            console.log('possible candidates\' ids ', user.id);
+            console.log('getCandidates: possible candidates\' ids ', user.id);
           })
           res.send(data);
         })
@@ -66,7 +66,7 @@ module.exports = {
   },
 
   addOrFindCurrentUser: function(req, res) {
-    console.log('req.body!!!',req.body);
+    console.log('req.body!!!',req.body.name);
     if(req.body.location){
       var latitude = req.body.location.desiredPlace.latitude;
       var longitude = req.body.location.desiredPlace.longitude;
@@ -76,14 +76,8 @@ module.exports = {
     }
     findAndUpdate(
       {fbid: req.params.id,token: req.body.token}, 
-      {$setOnInsert: {
-        loc: [latitude,longitude],
-        fbid: req.params.id,
-        token: req.body.token, 
+      {$set: {
         name: req.body.name,
-        profile: req.body.profile,
-        location: req.body.location,
-        roommatePreferences: req.body.roommatePreferences
         }
       },
       {upsert: false, new: true}
