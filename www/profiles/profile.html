@@ -122,7 +122,7 @@
 
         <li class="item item-text-wrap">
           <div class="profile-content">
-          <strong>Preferred Roommate Gender:</strong><br> {{profile | json}}
+          <strong>Preferred Roommate Gender:</strong><br> {{profile.roommatePreferences.gender}}
           </div>
         </li>
 
@@ -136,7 +136,7 @@
       <!-- only display like/dislike buttons if not matched -->
       <li class="item item-text-wrap">
         <div class="profile-content">
-          <profile-box ng-model="bottomBoxType" boxtype="bottomBoxType" boxaction="candidateSwipe(like)"></profile-box>
+          <profile-box ng-model="bottomBoxType" boxtype="bottomBoxType" boxaction="candidateSwipe(like)" boxprofile="profile"></profile-box>
         </div>
       </li>
 

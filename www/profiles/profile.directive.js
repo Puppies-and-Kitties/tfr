@@ -8,6 +8,7 @@ angular.module('profile.directives', [])
     function($compile, $http, $templateCache) {
 
       var getTemplate = function(boxType) {
+          console.log("box type in getTemplate ", boxType)
           var templateLoader,
           baseUrl = './profiles/directives/',
           templateMap = {
@@ -21,29 +22,32 @@ angular.module('profile.directives', [])
 
           var templateUrl = baseUrl + templateMap[boxType];
           templateLoader = $http.get(templateUrl, {cache: $templateCache});
-
           return templateLoader;
 
       }
 
       var linker = function(scope, element, attrs) {
-          console.log(scope.boxtype.type);
+          console.log("scope.boxtype.type", scope.boxtype.type);
           var loader = getTemplate(scope.boxtype.type);
 
           var promise = loader.success(function(html) {
               element.html(html);
           }).then(function (response) {
+              console.log("element ", element)
               element.replaceWith($compile(element.html())(scope));
+              console.log("element 2 ", element)
           });
       }
 
       return {
+          transclude: true,
           restrict: 'E',
           scope: {
               boxtype:'=',
-              boxaction:"&"
+              boxaction:"&",
+              boxprofile:'='
           },
-          link: linker
+          link: linker,
       };
       
   }]);

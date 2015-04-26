@@ -27,11 +27,11 @@ angular.module('swipe.controllers', [])
     );
 
     $scope.candidateSwipe =  function (match, User){
-      
+      console.log("Ctrl: candidateSwipe ", $scope.currentCandidate)
       if (match) {
         MatchesFactory.add($scope.currentCandidate, $scope.user, function(userMatch){
-          console.log('userMatch ', userMatch);
-          User = userMatch[0];
+          console.log('MatchCtrl: Res from Matcfact.Add: userMatch ', userMatch);
+          $scope.user = User = userMatch[0];
           var candidate = userMatch[1];
 
           MatchesFactory.saveAllMatches(User)
@@ -53,6 +53,7 @@ angular.module('swipe.controllers', [])
       CandidatesFactory.removeFirst();
       $scope.candidates = CandidatesFactory.all();
       $scope.currentCandidate = angular.copy($scope.candidates[0]);
+      console.log("new candidate ", $scope.currentCandidate)
     };
 
 }]);
