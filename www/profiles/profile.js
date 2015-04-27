@@ -43,7 +43,7 @@ angular.module('profile.controllers', [])
     };
 
     if ($scope.profile.profile) {
-     $scope.keywords = $scope.profile.profile.keywords.join(', ');
+     $scope.icons = $scope.profile.profile.icons;
     }
 
     $scope.topBoxType = {'type':profileType+'Top'};

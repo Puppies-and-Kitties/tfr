@@ -40,12 +40,12 @@ angular.module('userProfile.controllers', [])
     };
 
     $scope.addToSelected = function(ionicon){
-      $scope.profile.selectedIcons.push(ionicon);
+      $scope.profile.icons.push(ionicon);
     };
 
     $scope.removeFromSelected = function(ionicon){
       var indexToRemove = $scope.profile.selectedIcons.indexOf(ionicon);
-      $scope.profile.selectedIcons.splice(indexToRemove,1);
+      $scope.profile.icons.splice(indexToRemove,1);
     };
 
   }]);
