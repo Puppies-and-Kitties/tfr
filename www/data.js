@@ -273,12 +273,12 @@ angular.module('data', [])
     };
 
     return {
-      initialize: function(usersProfile, User){
+      initialize: function(roommatePrefs, User){
         return $http({
           method: 'PUT',
           url: baseUrl + '/user/' + User._id + '/roommatePreferences' + '?token=' + User.token,
           data: {
-            roommatePreferences: preference
+            roommatePreferences: roommatePrefs
           }
         })
         .then(function(res) {
