@@ -20,7 +20,7 @@
       <!-- /////////////////////////For Non Users //////////////////////-->
      <!--  Need to move this into dynamically loaded template as per <profile-box> above -->
 
-      <div ng-if="profile!==User"
+      <div ng-if="profile!==User">
         <li class="item item-text-wrap">
           <div class="profile-content" ng-if="profile.location.host !==true">
             <strong>Ideal Rent:</strong> <br>{{profile.location.desiredPlace.rent | currency}}
