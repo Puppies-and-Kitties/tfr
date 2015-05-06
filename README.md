@@ -4,6 +4,10 @@
 With RooMe, you can toss all those cares away. Just sign-up, start swiping, and you'll have a new roommate before you finish breakfast.<br><br>
 RooMe, it's Tinder for Roomies!
 
+| <img src="http://cdn.makeagif.com/media/5-05-2015/BM_zXD.gif" width="200"> | <img src="http://cdn.makeagif.com/media/5-05-2015/o2ZufB.gif" width="200"> | <img src="http://cdn.makeagif.com/media/5-05-2015/qRMdAD.gif" width="200"> |
+
+### Checkout our demo video: http://tinyurl.com/RooMeDemo
+
 ## [The Team](http://roome.azurewebsites.net/#team)
 
   - __Product Owner__: David Blanchard
